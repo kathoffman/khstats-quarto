@@ -1,0 +1,3974 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Katherine Hoffman">
+<meta name="dcterms.date" content="2020-10-10">
+
+<title>KHstats - Become a Superlearner! An Illustrated Guide to Superlearning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  </head><body class="nav-fixed fullcontent">true
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">Google Scholar</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Become a Superlearner! An Illustrated Guide to Superlearning</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">statistics</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Katherine Hoffman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 10, 2020</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Why use <em>one</em> machine learning algorithm when you could use all of them?! This post contains a step-by-step walkthrough of how to build a superlearner prediction algorithm in <code>R</code>.</p>
+<!--more-->
+<p><strong>October 10, 2020.</strong></p>
+
+
+<title>
+HTML Image as link
+</title>
+
+
+<img alt="cheatsheet" src="../../img/sl_steps/Superlearning.jpg" width="100%&quot;">
+<figcaption>
+<strong><em>A Visual Guide…</em></strong> Over the winter, I read <a href="https://www.springer.com/gp/book/9781441997814"><em>Targeted Learning</em></a> by Mark van der Laan and Sherri Rose. This “visual guide” I made for <em>Chapter 3: Superlearning</em> by Rose, van der Laan, and Eric Polley is a condensed version of the following tutorial. It is available as an <a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Superlearner.pdf">8.5x11” pdf on Github</a>, should you wish to print it out for reference (or desk decor).
+</figcaption>
+
+
+
+<p><br></p>
+<section id="supercuts-of-superlearning" class="level1">
+<h1>Supercuts of superlearning</h1>
+<ul>
+<li><strong>Superlearning</strong> is a technique for prediction that involves <strong>combining many individual statistical algorithms</strong> (commonly called “data-adaptive” or “machine learning” algorithms) to <strong>create a new, single prediction algorithm</strong> that is expected to <strong>perform at least as well as any of the individual algorithms</strong>.</li>
+<li>The superlearner algorithm “decides” how to combine, or weight, the individual algorithms based upon how well each one <strong>minimizes a specified loss function</strong>, for example, the mean squared error (MSE). This is done using cross-validation to avoid overfitting.</li>
+<li>The motivation for this type of “ensembling” is that <strong>a mix of multiple algorithms may be more optimal for a given data set than any single algorithm</strong>. For example, a tree based model averaged with a linear model (e.g.&nbsp;random forests and LASSO) could smooth some of the model’s edges to improve predictive performance.</li>
+<li>Superlearning is also called stacking, stacked generalizations, and weighted ensembling by different specializations within the realms of statistics and data science.</li>
+</ul>
+<p><img src="../../img/spiderman_meme.jpg" class="img-fluid" style="width:42.0%"></p>
+</section>
+<section id="superlearning-step-by-step" class="level1">
+<h1>Superlearning, step by step</h1>
+<p>First I’ll go through the algorithm one step at a time using a simulated data set.</p>
+<section id="initial-set-up-load-libraries-set-seed-simulate-data" class="level2">
+<h2 class="anchored" data-anchor-id="initial-set-up-load-libraries-set-seed-simulate-data">Initial set-up: Load libraries, set seed, simulate data</h2>
+<p>For simplicity I’ll show the concept of superlearning using only four variables (AKA features or predictors) to predict a continuous outcome. Let’s first simulate a continuous outcome, <code>y</code>, and four potential predictors, <code>x1</code>, <code>x2</code>, <code>x3</code>, and <code>x4</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>obs <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">rnorm</span>(n),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fu">plogis</span>(<span class="dv">10</span><span class="sc">*</span>x1)),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x3 =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fu">plogis</span>(x1<span class="sc">*</span>x2 <span class="sc">+</span> .<span class="dv">5</span><span class="sc">*</span>x2)),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x4 =</span> <span class="fu">rnorm</span>(n, <span class="at">mean=</span>x1<span class="sc">*</span>x2, <span class="at">sd=</span>.<span class="dv">5</span><span class="sc">*</span>x3),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x2<span class="sc">*</span>x3 <span class="sc">+</span> <span class="fu">sin</span>(x4)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(<span class="fu">head</span>(obs)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="st">"Simulated data set"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">everything</span>(),<span class="at">decimals=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="epunggiefm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#epunggiefm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#epunggiefm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#epunggiefm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#epunggiefm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#epunggiefm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#epunggiefm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#epunggiefm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#epunggiefm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#epunggiefm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#epunggiefm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#epunggiefm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#epunggiefm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#epunggiefm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#epunggiefm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#epunggiefm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#epunggiefm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#epunggiefm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#epunggiefm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#epunggiefm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#epunggiefm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#epunggiefm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#epunggiefm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#epunggiefm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#epunggiefm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#epunggiefm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#epunggiefm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#epunggiefm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#epunggiefm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#epunggiefm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#epunggiefm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#epunggiefm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#epunggiefm .gt_left {
+  text-align: left;
+}
+
+#epunggiefm .gt_center {
+  text-align: center;
+}
+
+#epunggiefm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#epunggiefm .gt_font_normal {
+  font-weight: normal;
+}
+
+#epunggiefm .gt_font_bold {
+  font-weight: bold;
+}
+
+#epunggiefm .gt_font_italic {
+  font-style: italic;
+}
+
+#epunggiefm .gt_super {
+  font-size: 65%;
+}
+
+#epunggiefm .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#epunggiefm .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#epunggiefm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#epunggiefm .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#epunggiefm .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#epunggiefm .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Simulated data set</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">id</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">x1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">x2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">x3</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">x4</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">y</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">1.000</td>
+<td class="gt_row gt_right">2.287</td>
+<td class="gt_row gt_right">1.000</td>
+<td class="gt_row gt_right">1.000</td>
+<td class="gt_row gt_right">1.385</td>
+<td class="gt_row gt_right">5.270</td></tr>
+    <tr><td class="gt_row gt_right">2.000</td>
+<td class="gt_row gt_right">−1.197</td>
+<td class="gt_row gt_right">0.000</td>
+<td class="gt_row gt_right">0.000</td>
+<td class="gt_row gt_right">0.000</td>
+<td class="gt_row gt_right">−1.197</td></tr>
+    <tr><td class="gt_row gt_right">3.000</td>
+<td class="gt_row gt_right">−0.694</td>
+<td class="gt_row gt_right">0.000</td>
+<td class="gt_row gt_right">0.000</td>
+<td class="gt_row gt_right">0.000</td>
+<td class="gt_row gt_right">−0.694</td></tr>
+    <tr><td class="gt_row gt_right">4.000</td>
+<td class="gt_row gt_right">−0.412</td>
+<td class="gt_row gt_right">0.000</td>
+<td class="gt_row gt_right">1.000</td>
+<td class="gt_row gt_right">−0.541</td>
+<td class="gt_row gt_right">−0.928</td></tr>
+    <tr><td class="gt_row gt_right">5.000</td>
+<td class="gt_row gt_right">−0.971</td>
+<td class="gt_row gt_right">0.000</td>
+<td class="gt_row gt_right">0.000</td>
+<td class="gt_row gt_right">0.000</td>
+<td class="gt_row gt_right">−0.971</td></tr>
+    <tr><td class="gt_row gt_right">6.000</td>
+<td class="gt_row gt_right">−0.947</td>
+<td class="gt_row gt_right">0.000</td>
+<td class="gt_row gt_right">1.000</td>
+<td class="gt_row gt_right">−0.160</td>
+<td class="gt_row gt_right">−1.107</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+
+
+<h2 style="color:#c30a0a" class="anchored">
+<strong>Step 1: Split data into K folds
+</strong></h2><strong>
+</strong>
+
+
+<p><img src="../../img/sl_steps/step1.png" class="img-fluid" style="width:50.0%"> The superlearner algorithm relies on K-fold cross-validation (CV) to avoid overfitting. We will start this process by splitting the data into 10 folds. The easiest way to do this is by creating indices for each CV fold.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># 10 fold cv</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cv_index <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>k, <span class="at">each =</span> n<span class="sc">/</span>k)) <span class="co"># create indices for each CV fold. We need each fold K to contain n (all the rows of our data set) divided by k rows. in our example this is 5000/10 = 500 rows in each fold</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+<h2 style="color:#c30a0a" class="anchored">
+<strong>Step 2: Fit base learners for first CV-fold
+</strong></h2><strong>
+</strong>
+
+
+<p><img src="../../img/sl_steps/step2.png" class="img-fluid" style="width:50.0%"></p>
+<p>Recall that in K-fold CV, each fold serves as the validation set one time. In this first round of CV, we will train all of our base learners on all the CV folds (k = 1,2,…,9) <em>except</em> for the very last one: <code>cv_index == 10</code>.</p>
+<p>The individual algorithms or <strong>base learners</strong> that we’ll use here are three linear regressions with differently specified parameters:</p>
+<ol type="1">
+<li><p><strong>Learner A</strong>: <span class="math inline">\(Y=\beta_0 + \beta_1 X_2 + \beta_2 X_4 + \epsilon\)</span></p></li>
+<li><p><strong>Learner B</strong>: <span class="math inline">\(Y=\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_1 X_3 + \beta_4 sin(X_4) + \epsilon\)</span></p></li>
+<li><p><strong>Learner C</strong>: <span class="math inline">\(Y=\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + \beta_4 X_1 X_2 + \beta_5 X_1 X_3 + \beta_6 X_2 X_3 + \beta_7 X_1 X_2 X_3 + \epsilon\)</span></p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cv_train_1 <span class="ot">&lt;-</span> obs[<span class="sc">-</span><span class="fu">which</span>(cv_index <span class="sc">==</span> <span class="dv">10</span>),] <span class="co"># make a data set that contains all observations except those in k=1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fit_1a <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x2 <span class="sc">+</span> x4, <span class="at">data=</span>cv_train_1) <span class="co"># fit the first linear regression on that training data</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fit_1b <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x1<span class="sc">*</span>x3 <span class="sc">+</span> <span class="fu">sin</span>(x4), <span class="at">data=</span>cv_train_1) <span class="co"># second LR fit on the training data</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fit_1c <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x1<span class="sc">*</span>x2<span class="sc">*</span>x3, <span class="at">data=</span>cv_train_1) <span class="co"># and the third LR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I am <em>only</em> using the linear regressions so that code for running more complicated regressions does not take away from understanding the general superlearning algorithm.</p>
+<p>Superlearning actually works best if you use a diverse set, or <strong>superlearner library</strong>, of base learners. For example, instead of three linear regressions, we could use a least absolute shrinkage estimator (LASSO), random forest, and multivariate adaptive splines (MARS). Any parametric or non-parametric supervised machine learning algorithm can be included as a base learner.</p>
+
+
+<h2 style="color:#c30a0a" class="anchored">
+<strong>Step 3: Obtain predictions for first CV-fold
+</strong></h2><strong>
+</strong>
+
+
+<p><img src="../../img/sl_steps/step3.png" class="img-fluid" style="width:50.0%"></p>
+<p>We can then get use our validation data, <code>cv_index == 10</code>, to obtain our first set of cross-validated predictions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cv_valid_1 <span class="ot">&lt;-</span> obs[<span class="fu">which</span>(cv_index <span class="sc">==</span> <span class="dv">10</span>),] <span class="co"># make a data set that only contains observations except in k=10</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pred_1a <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_1a, <span class="at">newdata =</span> cv_valid_1) <span class="co"># use that data set as the validation for all the models in the SL library</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pred_1b <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_1b, <span class="at">newdata =</span> cv_valid_1) </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>pred_1c <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_1c, <span class="at">newdata =</span> cv_valid_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Since we have 5000 <code>obs</code>ervations, that gives us three vectors of length 500: a set of predictions for each of our Learners A, B, and C.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(pred_1a) <span class="co"># double check we only have n/k predictions ...we do :-)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 500</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">cbind</span>(pred_1a, pred_1b, pred_1c)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">everything</span>(), <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="st">"First CV round of predictions"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="uqioxzzkvs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#uqioxzzkvs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#uqioxzzkvs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uqioxzzkvs .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#uqioxzzkvs .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#uqioxzzkvs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uqioxzzkvs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uqioxzzkvs .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#uqioxzzkvs .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#uqioxzzkvs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#uqioxzzkvs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#uqioxzzkvs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#uqioxzzkvs .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#uqioxzzkvs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#uqioxzzkvs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#uqioxzzkvs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#uqioxzzkvs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#uqioxzzkvs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uqioxzzkvs .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#uqioxzzkvs .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#uqioxzzkvs .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uqioxzzkvs .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#uqioxzzkvs .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#uqioxzzkvs .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uqioxzzkvs .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uqioxzzkvs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#uqioxzzkvs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#uqioxzzkvs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uqioxzzkvs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uqioxzzkvs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uqioxzzkvs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uqioxzzkvs .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uqioxzzkvs .gt_left {
+  text-align: left;
+}
+
+#uqioxzzkvs .gt_center {
+  text-align: center;
+}
+
+#uqioxzzkvs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#uqioxzzkvs .gt_font_normal {
+  font-weight: normal;
+}
+
+#uqioxzzkvs .gt_font_bold {
+  font-weight: bold;
+}
+
+#uqioxzzkvs .gt_font_italic {
+  font-style: italic;
+}
+
+#uqioxzzkvs .gt_super {
+  font-size: 65%;
+}
+
+#uqioxzzkvs .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#uqioxzzkvs .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#uqioxzzkvs .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#uqioxzzkvs .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#uqioxzzkvs .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#uqioxzzkvs .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">First CV round of predictions</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">pred_1a</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">pred_1b</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">pred_1c</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">−0.77</td>
+<td class="gt_row gt_right">−0.81</td>
+<td class="gt_row gt_right">−0.69</td></tr>
+    <tr><td class="gt_row gt_right">2.54</td>
+<td class="gt_row gt_right">1.89</td>
+<td class="gt_row gt_right">1.63</td></tr>
+    <tr><td class="gt_row gt_right">0.19</td>
+<td class="gt_row gt_right">0.60</td>
+<td class="gt_row gt_right">−0.32</td></tr>
+    <tr><td class="gt_row gt_right">2.46</td>
+<td class="gt_row gt_right">2.69</td>
+<td class="gt_row gt_right">2.98</td></tr>
+    <tr><td class="gt_row gt_right">3.63</td>
+<td class="gt_row gt_right">4.04</td>
+<td class="gt_row gt_right">3.73</td></tr>
+    <tr><td class="gt_row gt_right">3.59</td>
+<td class="gt_row gt_right">3.23</td>
+<td class="gt_row gt_right">3.15</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+
+
+<h2 style="color:#c30a0a" class="anchored">
+<strong>Step 4: Obtain CV predictions for entire data set
+</strong></h2><strong>
+</strong>
+
+
+<p><img src="../../img/sl_steps/step4.png" class="img-fluid" style="width:32.0%"></p>
+<p>We’ll want to get those predictions for <em>every</em> fold. So, using your favorite <code>for</code> loop, <code>apply</code> statement, or <code>map</code>ping function, fit the base learners and obtain predictions for each of them, so that there are 1000 predictions – one for every point in <code>obs</code>ervations.</p>
+<p>The way I chose to code this was to make a generic function that combines Step 2 (base learners fit to the training data) and Step 3 (predictions on the validation data), then use <code>map_dfr()</code> from the <code>purrr</code> package to repeat over all 10 CV folds. I saved the results in a new data frame called <code>cv_preds</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cv_folds <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="dv">1</span><span class="sc">:</span>k)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cv_folds) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"fold"</span>,<span class="dv">1</span><span class="sc">:</span>k)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>get_preds <span class="ot">&lt;-</span> <span class="cf">function</span>(fold){   <span class="co"># function that does the same procedure as step 2 and 3 for any CV fold</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  cv_train <span class="ot">&lt;-</span> obs[<span class="sc">-</span><span class="fu">which</span>(cv_index <span class="sc">==</span> fold),]  <span class="co"># make a training data set that contains all data except fold k</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  fit_a <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x2 <span class="sc">+</span> x4, <span class="at">data=</span>cv_train)  <span class="co"># fit all the base learners to that data</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  fit_b <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x1<span class="sc">*</span>x3 <span class="sc">+</span> <span class="fu">sin</span>(x4), <span class="at">data=</span>cv_train)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  fit_c <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x1<span class="sc">*</span>x2<span class="sc">*</span>x3, <span class="at">data=</span>cv_train)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  cv_valid <span class="ot">&lt;-</span> obs[<span class="fu">which</span>(cv_index <span class="sc">==</span> fold),]  <span class="co"># make a validation data set that only contains data from fold k</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  pred_a <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_a, <span class="at">newdata =</span> cv_valid)  <span class="co"># obtain predictions from all the base learners for that validation data</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  pred_b <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_b, <span class="at">newdata =</span> cv_valid)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  pred_c <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_c, <span class="at">newdata =</span> cv_valid)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">data.frame</span>(<span class="st">"obs_id"</span> <span class="ot">=</span> cv_valid<span class="sc">$</span>id, <span class="st">"cv_fold"</span> <span class="ot">=</span> fold, pred_a, pred_b, pred_c))  <span class="co"># save the predictions and the ids of the observations in a data frame</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>cv_preds <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(cv_folds, <span class="sc">~</span><span class="fu">get_preds</span>(<span class="at">fold =</span> .x)) <span class="co"># map_dfr loops through every fold (1:k) and binds the rows of the listed results together</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>cv_preds <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(obs_id) <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(cv_fold<span class="sc">:</span>pred_c, <span class="at">decimals=</span><span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="st">"All CV predictions for all three base learners"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="wxklwgczbv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#wxklwgczbv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wxklwgczbv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wxklwgczbv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wxklwgczbv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wxklwgczbv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wxklwgczbv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wxklwgczbv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wxklwgczbv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wxklwgczbv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wxklwgczbv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wxklwgczbv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wxklwgczbv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wxklwgczbv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wxklwgczbv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wxklwgczbv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wxklwgczbv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wxklwgczbv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wxklwgczbv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wxklwgczbv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wxklwgczbv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wxklwgczbv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wxklwgczbv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wxklwgczbv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wxklwgczbv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wxklwgczbv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wxklwgczbv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wxklwgczbv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wxklwgczbv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wxklwgczbv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wxklwgczbv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wxklwgczbv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wxklwgczbv .gt_left {
+  text-align: left;
+}
+
+#wxklwgczbv .gt_center {
+  text-align: center;
+}
+
+#wxklwgczbv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wxklwgczbv .gt_font_normal {
+  font-weight: normal;
+}
+
+#wxklwgczbv .gt_font_bold {
+  font-weight: bold;
+}
+
+#wxklwgczbv .gt_font_italic {
+  font-style: italic;
+}
+
+#wxklwgczbv .gt_super {
+  font-size: 65%;
+}
+
+#wxklwgczbv .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#wxklwgczbv .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#wxklwgczbv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wxklwgczbv .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#wxklwgczbv .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#wxklwgczbv .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">All CV predictions for all three base learners</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">obs_id</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">cv_fold</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">pred_a</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">pred_b</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">pred_c</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">7.00</td>
+<td class="gt_row gt_right">3.74</td>
+<td class="gt_row gt_right">5.42</td>
+<td class="gt_row gt_right">5.28</td></tr>
+    <tr><td class="gt_row gt_right">2</td>
+<td class="gt_row gt_right">6.00</td>
+<td class="gt_row gt_right">−0.77</td>
+<td class="gt_row gt_right">−1.19</td>
+<td class="gt_row gt_right">−1.20</td></tr>
+    <tr><td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">10.00</td>
+<td class="gt_row gt_right">−0.77</td>
+<td class="gt_row gt_right">−0.81</td>
+<td class="gt_row gt_right">−0.69</td></tr>
+    <tr><td class="gt_row gt_right">4</td>
+<td class="gt_row gt_right">8.00</td>
+<td class="gt_row gt_right">−1.39</td>
+<td class="gt_row gt_right">−0.77</td>
+<td class="gt_row gt_right">−0.41</td></tr>
+    <tr><td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">2.00</td>
+<td class="gt_row gt_right">−0.78</td>
+<td class="gt_row gt_right">−1.02</td>
+<td class="gt_row gt_right">−0.97</td></tr>
+    <tr><td class="gt_row gt_right">6</td>
+<td class="gt_row gt_right">9.00</td>
+<td class="gt_row gt_right">−0.96</td>
+<td class="gt_row gt_right">−1.04</td>
+<td class="gt_row gt_right">−0.94</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+
+
+<h2 style="color:#c30a0a" class="anchored">
+<strong>Step 5: Choose and compute loss function of interest via metalearner
+</strong></h2><strong>
+</strong>
+
+
+<p><img src="../../img/sl_steps/step5.png" class="img-fluid" style="width:60.0%"></p>
+<blockquote class="blockquote">
+<p>This is the key step of the superlearner algorithm: we will use a new learner, a <strong>metalearner</strong>, to take information from all of the base learners and create that new algorithm.</p>
+</blockquote>
+<p>Now that we have cross-validated predictions for every observation in the data set, we want to merge those CV predictions back into our main data set…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>obs_preds <span class="ot">&lt;-</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(obs, cv_preds, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"id"</span> <span class="ot">=</span> <span class="st">"obs_id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>…so that we can minimize a final loss function of interest between the true outcome and each CV prediction. This is how we’re going to optimize our overall prediction algorithm: we want to make sure we’re “losing the least” in the way we combine our base learners’ predictions to ultimately make final predictions. We can do this efficiently by choosing a new learner, a metalearner, which reflects the final loss function of interest.</p>
+<p>For simplicity, we’ll use another linear regression as our metalearner. Using a linear regression as a metalearner will minimize the Cross-Validated Mean Squared Error (CV-MSE) when combining the base learner predictions. Note that we could use a variety of parametric or non-parametric regressions to minimize the CV-MSE.</p>
+<p>No matter what metalearner we choose, the predictors will always be the cross-validated predictions from each base learner, and the outcome will always be the true outcome, <code>y</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sl_fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> pred_a <span class="sc">+</span> pred_b <span class="sc">+</span> pred_c, <span class="at">data =</span> obs_preds)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(sl_fit) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(estimate<span class="sc">:</span>p.value, <span class="at">decimals=</span><span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="st">"Metalearner regression coefficients"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="lofpihbenx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#lofpihbenx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lofpihbenx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lofpihbenx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lofpihbenx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lofpihbenx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lofpihbenx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lofpihbenx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lofpihbenx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lofpihbenx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lofpihbenx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lofpihbenx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lofpihbenx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lofpihbenx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lofpihbenx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lofpihbenx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lofpihbenx .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lofpihbenx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lofpihbenx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lofpihbenx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lofpihbenx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lofpihbenx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#lofpihbenx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lofpihbenx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lofpihbenx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lofpihbenx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lofpihbenx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lofpihbenx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lofpihbenx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lofpihbenx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lofpihbenx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lofpihbenx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lofpihbenx .gt_left {
+  text-align: left;
+}
+
+#lofpihbenx .gt_center {
+  text-align: center;
+}
+
+#lofpihbenx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lofpihbenx .gt_font_normal {
+  font-weight: normal;
+}
+
+#lofpihbenx .gt_font_bold {
+  font-weight: bold;
+}
+
+#lofpihbenx .gt_font_italic {
+  font-style: italic;
+}
+
+#lofpihbenx .gt_super {
+  font-size: 65%;
+}
+
+#lofpihbenx .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#lofpihbenx .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#lofpihbenx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lofpihbenx .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#lofpihbenx .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#lofpihbenx .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Metalearner regression coefficients</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">std.error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p.value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">(Intercept)</td>
+<td class="gt_row gt_right">0.00</td>
+<td class="gt_row gt_right">0.00</td>
+<td class="gt_row gt_right">−1.42</td>
+<td class="gt_row gt_right">0.16</td></tr>
+    <tr><td class="gt_row gt_left">pred_a</td>
+<td class="gt_row gt_right">−0.02</td>
+<td class="gt_row gt_right">0.00</td>
+<td class="gt_row gt_right">−4.75</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">pred_b</td>
+<td class="gt_row gt_right">0.85</td>
+<td class="gt_row gt_right">0.01</td>
+<td class="gt_row gt_right">128.15</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">pred_c</td>
+<td class="gt_row gt_right">0.17</td>
+<td class="gt_row gt_right">0.01</td>
+<td class="gt_row gt_right">30.07</td>
+<td class="gt_row gt_right">0.00</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>This metalearner provides us with the coefficients, or weights, to apply to each of the base learners. In other words, if we have a set of predictions from Learner A, B, and C, we can obtain our best possible predictions by starting with an intercept of -0.003, then adding -0.017 <span class="math inline">\(\times\)</span> predictions from Learner A, 0.854 <span class="math inline">\(\times\)</span> predictions from Learner B, and 0.165 <span class="math inline">\(\times\)</span> predictions from Learner C.</p>
+<p><em>For more information on the metalearning step, check out the <a href="#appendix">Appendix</a>.</em></p>
+
+
+<h2 style="color:#c30a0a" class="anchored">
+<strong>Step 6: Fit base learners on entire data set
+</strong></h2><strong>
+</strong>
+
+
+<p><img src="../../img/sl_steps/step6.png" class="img-fluid" style="width:50.0%"></p>
+<p>After we fit the metalearner, we officially have our superlearner algorithm, so it’s time to input data and obtain predictions! To implement the algorithm and obtain final predictions, we first need to fit the base learners on the full data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit_a <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x2 <span class="sc">+</span> x4, <span class="at">data=</span>obs)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fit_b <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x1<span class="sc">*</span>x3 <span class="sc">+</span> <span class="fu">sin</span>(x4), <span class="at">data=</span>obs)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>fit_c <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x1<span class="sc">*</span>x2<span class="sc">*</span>x3, <span class="at">data=</span>obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+<h2 style="color:#c30a0a" class="anchored">
+<strong>Step 7: Obtain predictions from each base learner on entire data set
+</strong></h2><strong>
+</strong>
+
+
+<p><img src="../../img/sl_steps/step7.png" class="img-fluid" style="width:40.0%"></p>
+<p>We’ll use <em>those</em> base learner fits to get predictions from each of the base learners for the entire data set, and then we will plug those predictions into the metalearner fit. Remember, we were previously using cross-validated predictions, rather than fitting the base learners on the whole data set. This was to avoid overfitting.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pred_a <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_a)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pred_b <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_b)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>pred_c <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_c)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>full_data_preds <span class="ot">&lt;-</span> <span class="fu">tibble</span>(pred_a, pred_b, pred_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+<h2 style="color:#c30a0a" class="anchored">
+<strong>Step 8: Use metalearner fit to weight base learners
+</strong></h2><strong>
+</strong>
+
+
+<p><img src="../../img/sl_steps/step8.png" class="img-fluid" style="width:60.0%"></p>
+<p>Once we have the predictions from the full data set, we can input them to the metalearner, where the output will be a final prediction for <code>y</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sl_predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(sl_fit, <span class="at">newdata =</span> full_data_preds)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">sl_predictions =</span> <span class="fu">head</span>(sl_predictions)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">fmt_number</span>(sl_predictions, <span class="at">decimals=</span><span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_header</span>(<span class="st">"Final SL predictions (manual)"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="cxoiligfyd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#cxoiligfyd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cxoiligfyd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cxoiligfyd .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cxoiligfyd .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cxoiligfyd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cxoiligfyd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cxoiligfyd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cxoiligfyd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cxoiligfyd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cxoiligfyd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cxoiligfyd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cxoiligfyd .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cxoiligfyd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cxoiligfyd .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cxoiligfyd .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cxoiligfyd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cxoiligfyd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cxoiligfyd .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#cxoiligfyd .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#cxoiligfyd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cxoiligfyd .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#cxoiligfyd .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#cxoiligfyd .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cxoiligfyd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cxoiligfyd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cxoiligfyd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cxoiligfyd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cxoiligfyd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cxoiligfyd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cxoiligfyd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cxoiligfyd .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cxoiligfyd .gt_left {
+  text-align: left;
+}
+
+#cxoiligfyd .gt_center {
+  text-align: center;
+}
+
+#cxoiligfyd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cxoiligfyd .gt_font_normal {
+  font-weight: normal;
+}
+
+#cxoiligfyd .gt_font_bold {
+  font-weight: bold;
+}
+
+#cxoiligfyd .gt_font_italic {
+  font-style: italic;
+}
+
+#cxoiligfyd .gt_super {
+  font-size: 65%;
+}
+
+#cxoiligfyd .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#cxoiligfyd .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#cxoiligfyd .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#cxoiligfyd .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#cxoiligfyd .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#cxoiligfyd .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="1" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Final SL predictions (manual)</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">sl_predictions</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">5.44</td></tr>
+    <tr><td class="gt_row gt_right">−1.20</td></tr>
+    <tr><td class="gt_row gt_right">−0.79</td></tr>
+    <tr><td class="gt_row gt_right">−0.71</td></tr>
+    <tr><td class="gt_row gt_right">−1.02</td></tr>
+    <tr><td class="gt_row gt_right">−1.03</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>And… that’s it! Those are our superlearner predictions for the full data set.</p>
+
+
+<h2 style="color:#c30a0a" class="anchored">
+<strong>Step 9: Obtain predictions on new data
+</strong></h2><strong>
+</strong>
+
+
+<p>We can now modify Step 7 and Step 8 to accommodate any new observation(s):</p>
+<blockquote class="blockquote">
+<p><strong>To predict on new data:</strong><br>&nbsp;1. Use the fits from each base learner to obtain base learner predictions for the new observation(s).<br>&nbsp;2. Plug those base learner predictions into the metalearner fit.</p>
+</blockquote>
+<p>We can generate a single <code>new_obs</code>ervation to see how this would work in practice.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>new_obs <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x1 =</span> .<span class="dv">5</span>, <span class="at">x2 =</span> <span class="dv">0</span>, <span class="at">x3 =</span> <span class="dv">0</span>, <span class="at">x4 =</span> <span class="sc">-</span><span class="dv">3</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>new_pred_a <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_a, new_obs)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>new_pred_b <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_b, new_obs)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>new_pred_c <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_c, new_obs)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>new_pred_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="st">"pred_a"</span> <span class="ot">=</span> new_pred_a, <span class="st">"pred_b"</span> <span class="ot">=</span> new_pred_b, <span class="st">"pred_c"</span> <span class="ot">=</span> new_pred_c)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(sl_fit, <span class="at">newdata =</span> new_pred_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        1 
+0.1183103 </code></pre>
+</div>
+</div>
+<p>Our superlearner model predicts that an observation with predictors <span class="math inline">\(X_1=.5\)</span>, <span class="math inline">\(X_2=0\)</span>, <span class="math inline">\(X_3=0\)</span>, and <span class="math inline">\(X_4=-3\)</span> will have an outcome of <span class="math inline">\(Y=0.118\)</span>.</p>
+
+
+<h2 style="color:#c30a0a" class="anchored">
+<strong>Step 10 and beyond…
+</strong></h2><strong>
+</strong>
+
+
+<p>We could compute the MSE of the ensemble superlearner predictions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sl_mse <span class="ot">&lt;-</span> <span class="fu">mean</span>((obs<span class="sc">$</span>y <span class="sc">-</span> sl_predictions)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>sl_mse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01927392</code></pre>
+</div>
+</div>
+<p>We could also add more algorithms to our base learner library (we definitely should, since we only used linear regressions!), and we could write functions to tune these algorithms’ hyperparameters over various grids. For example, if we were to include random forest in our library, we may want to tune over a number of trees and maximum bucket sizes.</p>
+<p>We can then cross-validate this entire process to evaluate the predictive performance of our superlearner algorithm. Alternatively, we could leave a hold-out training data set to evaluate the performance.</p>
+</section>
+</section>
+<section id="using-the-superlearner-package" class="level1">
+<h1>Using the <code>SuperLearner</code> package</h1>
+<p>Or… we could use a package and avoid all the hand-coding. Here is how you would build an ensemble superlearner for our data with the base learner libraries of <code>ranger</code> (random forests), <code>glmnet</code> (LASSO, by default), and <code>earth</code> (MARS) using the <code>SuperLearner</code> package in <code>R</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SuperLearner)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x_df <span class="ot">&lt;-</span> obs <span class="sc">%&gt;%</span> <span class="fu">select</span>(x1<span class="sc">:</span>x4) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sl_fit <span class="ot">&lt;-</span> <span class="fu">SuperLearner</span>(<span class="at">Y =</span> obs<span class="sc">$</span>y, <span class="at">X =</span> x_df, <span class="at">family =</span> <span class="fu">gaussian</span>(),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">SL.library =</span> <span class="fu">c</span>(<span class="st">"SL.ranger"</span>, <span class="st">"SL.glmnet"</span>, <span class="st">"SL.earth"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can specify the metalearner with the <code>method</code> argument. The default is <a href="##non-negative-least-squares">Non-Negative Least Squares</a> (NNLS).</p>
+<section id="cv-risk-and-coefficient-weights" class="level2">
+<h2 class="anchored" data-anchor-id="cv-risk-and-coefficient-weights">CV-Risk and Coefficient Weights</h2>
+<p>We can examine the cross-validated <code>Risk</code> (loss function), and the <code>Coef</code>ficient (weight) given to each of the models.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sl_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:  
+SuperLearner(Y = obs$y, X = x_df, family = gaussian(), SL.library = c("SL.ranger",  
+    "SL.glmnet", "SL.earth")) 
+
+                     Risk      Coef
+SL.ranger_All 0.013672503 0.1606329
+SL.glmnet_All 0.097257031 0.0000000
+SL.earth_All  0.003181357 0.8393671</code></pre>
+</div>
+</div>
+<p>From this summary we can see that the CV-risk (the default risk is MSE) in this library of base learners is smallest for <code>SL.Earth</code>. This translates to the largest coefficient, or weight, given to the predictions from <code>earth</code>.</p>
+<p>The LASSO model implemented by <code>glmnet</code> has the largest CV-risk, and after the metalearning step, those predictions receive a coefficient, or weight, of 0. This means that the predictions from LASSO will not be incorporated into the final predictions at all.</p>
+</section>
+<section id="obtaining-the-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="obtaining-the-predictions">Obtaining the predictions</h2>
+<p>We can extract the predictions easily via the <code>SL.predict</code> element of the <code>SuperLearner</code> fit object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">data.frame</span>(<span class="at">sl_predictions =</span> sl_fit<span class="sc">$</span>SL.predict)) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">everything</span>(),<span class="at">decimals=</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">tab_header</span>(<span class="st">"Final SL predictions (package)"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="exzlacqdmx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#exzlacqdmx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#exzlacqdmx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#exzlacqdmx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#exzlacqdmx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#exzlacqdmx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#exzlacqdmx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#exzlacqdmx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#exzlacqdmx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#exzlacqdmx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#exzlacqdmx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#exzlacqdmx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#exzlacqdmx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#exzlacqdmx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#exzlacqdmx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#exzlacqdmx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#exzlacqdmx .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#exzlacqdmx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#exzlacqdmx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#exzlacqdmx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#exzlacqdmx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#exzlacqdmx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#exzlacqdmx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#exzlacqdmx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#exzlacqdmx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#exzlacqdmx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#exzlacqdmx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#exzlacqdmx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#exzlacqdmx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#exzlacqdmx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#exzlacqdmx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#exzlacqdmx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#exzlacqdmx .gt_left {
+  text-align: left;
+}
+
+#exzlacqdmx .gt_center {
+  text-align: center;
+}
+
+#exzlacqdmx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#exzlacqdmx .gt_font_normal {
+  font-weight: normal;
+}
+
+#exzlacqdmx .gt_font_bold {
+  font-weight: bold;
+}
+
+#exzlacqdmx .gt_font_italic {
+  font-style: italic;
+}
+
+#exzlacqdmx .gt_super {
+  font-size: 65%;
+}
+
+#exzlacqdmx .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#exzlacqdmx .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#exzlacqdmx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#exzlacqdmx .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#exzlacqdmx .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#exzlacqdmx .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="1" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Final SL predictions (package)</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">sl_predictions</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">5.28</td></tr>
+    <tr><td class="gt_row gt_right">−1.19</td></tr>
+    <tr><td class="gt_row gt_right">−0.68</td></tr>
+    <tr><td class="gt_row gt_right">−0.87</td></tr>
+    <tr><td class="gt_row gt_right">−0.97</td></tr>
+    <tr><td class="gt_row gt_right">−1.08</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="cross-validated-superlearner" class="level2">
+<h2 class="anchored" data-anchor-id="cross-validated-superlearner">Cross-validated Superlearner</h2>
+<p>Recall that we can cross-validate the entire model fitting process to evaluate the predictive performance of our superlearner algorithm. This is easy with the function <code>CV.SuperLearner()</code>. Beware, this gets computationally burdensome very quickly!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cv_sl_fit <span class="ot">&lt;-</span> <span class="fu">CV.SuperLearner</span>(<span class="at">Y =</span> obs<span class="sc">$</span>y, <span class="at">X =</span> x_df, <span class="at">family =</span> <span class="fu">gaussian</span>(),</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">SL.library =</span> <span class="fu">c</span>(<span class="st">"SL.ranger"</span>, <span class="st">"SL.glmnet"</span>, <span class="st">"SL.earth"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For more information on the <code>SuperLearner</code> package, take a look at this <a href="https://cran.r-project.org/web/packages/SuperLearner/vignettes/Guide-to-SuperLearner.html">vignette</a>.</p>
+</section>
+<section id="alternative-packages-to-superlearn" class="level2">
+<h2 class="anchored" data-anchor-id="alternative-packages-to-superlearn">Alternative packages to superlearn</h2>
+<p>Other packages freely available in <code>R</code> that can be used to implement the superlearner algorithm include <a href="https://tlverse.org/tlverse-handbook/sl3.html"><code>sl3</code></a> (an update to the original <code>Superlearner</code> package), <a href="https://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science/stacked-ensembles.html"><code>h2o</code></a>, and <a href="https://rdrr.io/cran/caretEnsemble/f/vignettes/caretEnsemble-intro.Rmd"><code>caretEnsemble</code></a>. I previously wrote a <a href="https://www.khstats.com/blog/sl3_demo/sl/">brief demo</a> on using <code>sl3</code> for an NYC R-Ladies demo.</p>
+<p>The authors of <code>tidymodels</code> – a suite of packages for machine learning including <code>recipes</code>, <code>parsnip</code>, and <code>rsample</code> – recently came out with a new package to perform superlearning/stacking called <a href="%5Bhttps://stacks.tidymodels.org/articles/basics.html"><code>stacks</code></a>. Prior to this, Alex Hayes wrote a <a href="https://www.alexpghayes.com/blog/implementing-the-super-learner-with-tidymodels/">blog post</a> on using <code>tidymodels</code> infrastructure to implement superlearning.</p>
+</section>
+</section>
+<section id="coming-soon-when-prediction-is-not-the-end-goal" class="level1">
+<h1>Coming soon… when prediction is not the end goal</h1>
+<p>When prediction is not the end goal, superlearning combines well with semi-parametric estimation methods for statistical inference. This is the reason I was reading <em>Targeted Learning</em> in the first place; I am a statistician with collaborators who typically want estimates of treatment effects with confidence intervals, not predictions!</p>
+<p>I’m working on a similar visual guide for one such semiparametric estimation method: <a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/TMLE.pdf">Targeted Maximum Likelihood Estimation</a> (TMLE)). TMLE allows the use of flexible statistical models like the superlearner algorithm when estimating treatment effects. If you found this superlearning tutorial helpful, you may be interested in this <a href="https://www.khstats.com/blog/tmle/tutorial/">similarly visual tutorial</a> on TMLE.</p>
+
+
+<title>
+HTML Image as link
+</title>
+
+
+<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/TMLE.pdf"> <img alt="cheatsheet" src="../../img/TMLE.jpg" width="100%&quot;"> </a>
+
+
+</section>
+<section id="appendix" class="level1">
+<h1>Appendix</h1>
+<p>These sections contain a bit of extra information on the superlearning algorithm, such as: intuition on manually computing the loss function of interest, explanation of the discrete superlearner, brief advice on choosing a metalearner, and a different summary visual provided in the <em>Targeted Learning</em> book.</p>
+<section id="manually-computing-the-mse" class="level3">
+<h3 class="anchored" data-anchor-id="manually-computing-the-mse">Manually computing the MSE</h3>
+<p>Let’s say we have chosen our loss function of interest to be the Mean Squared Error (MSE). We could first compute the squared error <span class="math inline">\((y - \hat{y})^2\)</span> for each CV prediction A, B, and C.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cv_sq_error <span class="ot">&lt;-</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  obs_preds <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cv_sqrd_error_a =</span> (y<span class="sc">-</span>pred_a)<span class="sc">^</span><span class="dv">2</span>,   <span class="co"># compute squared error for each observation</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">cv_sqrd_error_b =</span> (y<span class="sc">-</span>pred_b)<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">cv_sqrd_error_c =</span> (y<span class="sc">-</span>pred_c)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cv_sq_error <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(cv_sqrd_error_a, cv_sqrd_error_b, cv_sqrd_error_c), <span class="co"># make the CV squared errors long form for plotting</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"base_learner"</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"squared_error"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">base_learner =</span> <span class="fu">toupper</span>(<span class="fu">str_remove</span>(base_learner, <span class="st">"cv_sqrd_error_"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(base_learner, squared_error, <span class="at">col=</span>base_learner)) <span class="sc">+</span> <span class="co"># make box plots</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">col=</span>F) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Base Learner"</span>, <span class="at">y=</span><span class="st">"Squared Error"</span>, <span class="at">title=</span><span class="st">"Squared Errors of Learner A, B, and C"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
+"none")` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="superlearning_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="528"></p>
+</div>
+</div>
+<p>And then take the mean of those three cross-validated squared error columns, grouped by <code>cv_fold</code>, to get the CV-MSE for each fold.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cv_risks <span class="ot">&lt;-</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  cv_sq_error <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cv_fold) <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">cv_mse_a =</span> <span class="fu">mean</span>(cv_sqrd_error_a),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">cv_mse_b =</span> <span class="fu">mean</span>(cv_sqrd_error_b),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">cv_mse_c =</span> <span class="fu">mean</span>(cv_sqrd_error_c)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>cv_risks <span class="sc">%&gt;%</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(cv_mse_a<span class="sc">:</span>cv_mse_c,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"base_learner"</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"mse"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">base_learner =</span> <span class="fu">toupper</span>(<span class="fu">str_remove</span>(base_learner,<span class="st">"cv_mse_"</span>)))  <span class="sc">%&gt;%</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cv_fold, mse, <span class="at">col=</span>base_learner)) <span class="sc">+</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()  <span class="sc">+</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cross-Validation (CV) Fold"</span>, <span class="at">y=</span><span class="st">"Mean Squared Error (MSE)"</span>, <span class="at">col =</span> <span class="st">"Base Learner"</span>, <span class="at">title=</span><span class="st">"CV-MSEs for Base Learners A, B, and C"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="superlearning_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We see that across each fold, Learner B consistently has an MSE around 0.02, while Learner C hovers around 0.1, and Learner A varies between 0.35 and 0.45. We can take another mean to get the overall CV-MSE for each learner.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>cv_risks <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>cv_fold) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(mean) <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">everything</span>(), <span class="at">decimals=</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">tab_header</span>(<span class="st">"CV-MSE for each base learner"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="zzlxyntbys" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#zzlxyntbys .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zzlxyntbys .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zzlxyntbys .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zzlxyntbys .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zzlxyntbys .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zzlxyntbys .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zzlxyntbys .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zzlxyntbys .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zzlxyntbys .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zzlxyntbys .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zzlxyntbys .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zzlxyntbys .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zzlxyntbys .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zzlxyntbys .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zzlxyntbys .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zzlxyntbys .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zzlxyntbys .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzlxyntbys .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zzlxyntbys .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zzlxyntbys .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzlxyntbys .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zzlxyntbys .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zzlxyntbys .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zzlxyntbys .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzlxyntbys .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zzlxyntbys .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zzlxyntbys .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zzlxyntbys .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zzlxyntbys .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzlxyntbys .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zzlxyntbys .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzlxyntbys .gt_left {
+  text-align: left;
+}
+
+#zzlxyntbys .gt_center {
+  text-align: center;
+}
+
+#zzlxyntbys .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zzlxyntbys .gt_font_normal {
+  font-weight: normal;
+}
+
+#zzlxyntbys .gt_font_bold {
+  font-weight: bold;
+}
+
+#zzlxyntbys .gt_font_italic {
+  font-style: italic;
+}
+
+#zzlxyntbys .gt_super {
+  font-size: 65%;
+}
+
+#zzlxyntbys .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#zzlxyntbys .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#zzlxyntbys .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zzlxyntbys .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#zzlxyntbys .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#zzlxyntbys .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">CV-MSE for each base learner</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">cv_mse_a</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">cv_mse_b</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">cv_mse_c</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">0.38</td>
+<td class="gt_row gt_right">0.02</td>
+<td class="gt_row gt_right">0.11</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>The base learner that performs the best using our chosen loss function of interest is clearly Learner B. We can see from our data simulation code why this is true – Learner B is almost exactly the mimicking the data generating mechanism of <code>y</code>.</p>
+<p>Our results align with the linear regression fit from our metalearning step; Learner B predictions received a much larger coefficient relative to Learners A and C.</p>
+</section>
+<section id="discrete-superlearner" class="level3">
+<h3 class="anchored" data-anchor-id="discrete-superlearner">Discrete Superlearner</h3>
+<p>We <em>could</em> stop after minimizing our loss function (MSE) and fit Learner B to our full data set, and that would be called using the <strong>discrete superlearner</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>discrete_sl_predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="fu">glm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x1<span class="sc">*</span>x3 <span class="sc">+</span> <span class="fu">sin</span>(x4), <span class="at">data=</span>obs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, we can almost always create an even better prediction algorithm if we use information from <em>all</em> of the algorithms’ CV predictions.</p>
+</section>
+<section id="choosing-a-metalearner" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-a-metalearner">Choosing a metalearner</h3>
+<p>In the <a href="#references">Reference</a> papers on superlearning, the metalearner which yields the best results theoretically and in practice is a <strong>convex combination optimization</strong> of learners. This means fitting the following regression, where <span class="math inline">\(\alpha_1\)</span>, <span class="math inline">\(\alpha_2\)</span>, and <span class="math inline">\(\alpha_3\)</span> are all non-negative and sum to 1.</p>
+<p><span class="math inline">\(\mathrm{E}[Y|\hat{Y}_{LrnrA},\hat{Y}_{LrnrB},\hat{Y}_{LrnrC}] = \alpha_1\hat{Y}_{LrnrA} + \alpha_2\hat{Y}_{LrnrB} + \alpha_3\hat{Y}_{LrnrC}\)</span></p>
+<p>The default in the <code>Superlearner</code> package is to fit a non-negative least squares (NNLS) regression. NNLS fits the above equation where the <span class="math inline">\(\alpha\)</span>’s must be greater than or equal to 0 but do not necessarily sum to 1. The package then reweights the <span class="math inline">\(\alpha\)</span>’s to force them to sum to 1. This makes the weights a convex combination, but may not yield the same optimal results as an initial convex combination optimization.</p>
+<p>The metalearner should change with the goals of the prediction algorithm and the loss function of interest. In these examples it is the MSE, but if the goal is to build a prediction algorithm that is best for binary classification, the loss function of interest may be the rank loss, or <span class="math inline">\(1-AUC\)</span>. It is outside the scope of this post, but for more information, I recommend this <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4912128/">paper</a> by Erin Ledell on maximizing the Area Under the Curve (AUC) with superlearner algorithms.</p>
+</section>
+<section id="another-visual-guide-for-superlearning" class="level3">
+<h3 class="anchored" data-anchor-id="another-visual-guide-for-superlearning">Another visual guide for superlearning</h3>
+<p>The steps of the superlearner algorithm are summarized nicely in this graphic in Chapter 3 of the <em>Targeted Learning</em> book:</p>
+<p><img src="../../img/sl_diagram.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="acknowledgments" class="level1">
+<h1>Acknowledgments</h1>
+<p>Thank you to Eric Polley, Iván Díaz, Nick Williams, Anjile An, and Adam Peterson for very helpful content (and design!) suggestions for this post.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>MJ Van der Laan, EC Polley, AE Hubbard, Super Learner, Statistical applications in genetics and molecular, 2007</p>
+<p>Polley, Eric. “Chapter 3: Superlearning.” Targeted Learning: Causal Inference for Observational and Experimental Data, by M. J. van der. Laan and Sherri Rose, Springer, 2011.</p>
+<p>Polley E, LeDell E, Kennedy C, van der Laan M. Super Learner: Super Learner Prediction. 2016 URL https://CRAN.R-project.org/package=SuperLearner. R package version 2.0-22.</p>
+<p>Naimi AI, Balzer LB. Stacked generalization: an introduction to super learning. <em>Eur J Epidemiol.</em> 2018;33(5):459-464. doi:10.1007/s10654-018-0390-z</p>
+<p>LeDell, E. (2015). Scalable Ensemble Learning and Computationally Efficient Variance Estimation. UC Berkeley. ProQuest ID: LeDell_berkeley_0028E_15235. Merritt ID: ark:/13030/m5wt1xp7. Retrieved from https://escholarship.org/uc/item/3kb142r2</p>
+<p>M. Petersen and L. Balzer. Introduction to Causal Inference. UC Berkeley, August 2014. <a href="www.ucbbiostat.com">www.ucbbiostat.com</a></p>
+</section>
+<section id="session-info" class="level1">
+<h1>Session Info</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.1.3 (2022-03-10)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] splines   stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] SuperLearner_2.0-28 gam_1.20.2          foreach_1.5.2      
+ [4] nnls_1.4            gt_0.6.0            forcats_0.5.1      
+ [7] stringr_1.4.1       dplyr_1.0.9         purrr_0.3.4        
+[10] readr_2.1.2         tidyr_1.2.0         tibble_3.1.8       
+[13] ggplot2_3.3.6       tidyverse_1.3.1    
+
+loaded via a namespace (and not attached):
+ [1] httr_1.4.2         sass_0.4.1         jsonlite_1.8.0     modelr_0.1.8      
+ [5] Formula_1.2-4      assertthat_0.2.1   cellranger_1.1.0   yaml_2.3.5        
+ [9] pillar_1.8.1       backports_1.4.1    lattice_0.20-45    glue_1.6.2        
+[13] digest_0.6.29      checkmate_2.0.0    rvest_1.0.2        colorspace_2.0-3  
+[17] htmltools_0.5.2    Matrix_1.4-0       pkgconfig_2.0.3    broom_0.8.0       
+[21] earth_5.3.1        haven_2.5.0        scales_1.2.1       ranger_0.14.1     
+[25] TeachingDemos_2.12 tzdb_0.3.0         farver_2.1.1       generics_0.1.3    
+[29] ellipsis_0.3.2     withr_2.5.0        cli_3.3.0          survival_3.2-13   
+[33] magrittr_2.0.3     crayon_1.5.1       readxl_1.4.0       evaluate_0.15     
+[37] fs_1.5.2           fansi_1.0.3        xml2_1.3.3         cabinets_0.6.0    
+[41] tools_4.1.3        hms_1.1.1          lifecycle_1.0.1    munsell_0.5.0     
+[45] reprex_2.0.1       glmnet_4.1-4       plotrix_3.8-2      compiler_4.1.3    
+[49] rlang_1.0.4        plotmo_3.6.2       grid_4.1.3         iterators_1.0.14  
+[53] rstudioapi_0.13    htmlwidgets_1.5.4  labeling_0.4.2     rmarkdown_2.13    
+[57] gtable_0.3.0       codetools_0.2-18   DBI_1.1.2          R6_2.5.1          
+[61] lubridate_1.8.0    knitr_1.38         fastmap_1.1.0      utf8_1.2.2        
+[65] shape_1.4.6        stringi_1.7.8      Rcpp_1.0.9         vctrs_0.4.1       
+[69] dbplyr_2.1.1       tidyselect_1.1.2   xfun_0.32         </code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Katherine Hoffman">
+<meta name="dcterms.date" content="2022-04-07">
+
+<title>KHstats - An Illustrated Guide to Modified Treatment Policies, Part 1: Introduction and Motivation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">Google Scholar</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">An Illustrated Guide to Modified Treatment Policies, Part 1: Introduction and Motivation</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">statistics</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Katherine Hoffman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 7, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+
+
+<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="lmtp/mtp_summary.jpg" style="border:1px solid black;" width="100%&quot;"></a></p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg">
+</a><p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"></a></p>
+
+
+<section id="table-of-contents" class="level1">
+<h1>Table of contents</h1>
+<ol type="1">
+<li><a href="#an-overview-of-existing-methodology">An Overview of Existing Methodology</a></li>
+<li><a href="#modified-treatment-policies-mtps">Explanation and examples of Modified Treatment Policies</a></li>
+<li><a href="#a-general-and-unifying-framework-extending-to-longitudinal-settings">Capabilities of the Longitudinal Modified Treatment Policy (LMTP) framework</a></li>
+</ol>
+</section>
+<section id="tldr" class="level1">
+<h1>TLDR</h1>
+<ul>
+<li>Modified Treatment Policies are a collection of methods for <strong>defining</strong> and <strong>operationalizing</strong> interesting <strong>causal inference questions</strong>.</li>
+<li>The unifying theme in this collection of methods is that they allow us to study hypothetical interventions, or treatment policies, that are <strong>extremely flexible</strong>.</li>
+<li>This flexibility enables us to <strong>answer more realistic scientific questions</strong> in both <strong>cross-sectional and longitudinal settings</strong>, with <strong>multivariate, categorical, or continuous exposures</strong>.</li>
+</ul>
+<hr>
+<!-- Lastly, before I begin, please note a few sets of words I’ll use interchangeably: -->
+<!-- - Exposure and treatment -->
+<!-- - Treatment policy and intervention -->
+</section>
+<section id="an-overview-of-existing-methodology" class="level1">
+<h1>An Overview of Existing Methodology</h1>
+<section id="lets-review-causal-inference-at-a-high-level." class="level2">
+<h2 class="anchored" data-anchor-id="lets-review-causal-inference-at-a-high-level.">Let’s review causal inference at a high level.</h2>
+
+
+<title>
+HTML Image as link
+</title>
+
+
+<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/comics/universe_comic.jpeg"> <img src="universe_comic.jpeg" style="float:right; padding-left:10px;" width="60%&quot;"> </a>
+
+
+<p>Most modern causal inference methods utilize the <strong>potential outcomes framework</strong>, which asks questions of <strong>what would happen</strong> in a <strong>hypothetical world</strong> in which we could <strong>manipulate exposures</strong> and then <strong>compare outcomes for the same observations under different exposures</strong>.</p>
+<p>Questions with binary exposures typically take the form, “<strong>what would happen if everyone had received the exposure compared to if no one had received the exposure</strong>?” Similarly, questions with multi-level or continuous exposures often take the form “what would happen if everyone had received <em>this much</em> of the exposure, versus if everyone had received <em>that much</em> of the exposure?” Study designs like this which compare all observations under two (or more) specific levels of exposure are called <strong>static interventions</strong>.</p>
+</section>
+<section id="static-interventions-are-a-common-approach-in-causal-inference-but-a-few-problems-frequently-arise." class="level2">
+<h2 class="anchored" data-anchor-id="static-interventions-are-a-common-approach-in-causal-inference-but-a-few-problems-frequently-arise.">Static interventions are a common approach in causal inference, but a few problems frequently arise.</h2>
+<h3 style="color: #C41E3A;" class="anchored">
+<p>Problem #1: Positivity Violations</p>
+</h3>
+<p>A key requirement for causal inference is the <strong>positivity assumption</strong>. This means if you are comparing two exposures (say, treatments A vs.&nbsp;B), <strong>for every covariate combination</strong> in your dataset, there must be <strong>individuals who sometimes get treatment A and sometimes get treatment B</strong>. Intuitively, this ensures there is enough “experimentation” in the dataset that effects can be estimated.</p>
+
+
+
+
+<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/comics/positivity_comic.jpeg"> <img src="positivity_comic.jpeg" style="float:right; padding-left:20px;" width="55%&quot;"> </a>
+
+
+<p>As you can imagine, this often does not hold true. Sometimes there are <strong>theoretical positivity violations</strong>: for example, if we are studying the effects of a drug for heart disease, cardiologists might say this drug is never given to people who also have chronic kidney disease because the drug damages the kidneys. The probability of a patient receiving the drug conditional on having kidney disease will be zero in all datasets.</p>
+<p>Other times we see <strong>practical positivity violations</strong>, meaning that due to small sample size and/or random chance, there are certain covariate combinations in which few observations receive the treatment of interest in our dataset. Perhaps in a dataset to study the previous example’s heart disease drug, due to random chance, there are no women aged 40-60 years who received the drug in the data. It is not a theoretical positivity violation (i.e.&nbsp;doctors would give the drug to women in this age group), but it is a practical violation nonetheless as it yields small or zero treatment probabilities.</p>
+<p>Positivity issues must be addressed, preferably in the planning stage of a study.</p>
+<h3 style="color: #C41E3A;" class="anchored">
+<p>Problem #2: Unrealistic Interventions</p>
+</h3>
+<p>A second problem arises with static interventions: there are many situations in which it is <strong>not realistic to set everyone’s hypothetical exposure to the same value</strong>. Let’s take an example where we are studying the effect of physical activity. A static intervention approach might ask, “<em>what would happen if everyone exercised 30 minutes a week?</em>” Yet there is no actual intervention we could translate to the real world to make everyone exercise 30 minutes a week, i.e.&nbsp;there is no policy a decision-maker could enact to make this happen, even approximately. We could estimate an outcome under this policy, but this unrealistic intervention will likely have a meaningless result.</p>
+<blockquote class="blockquote">
+<p>Notably, you can have an unrealistic intervention without having a positivity violation. For example, we may have access to a large data set with people of all possible covariate combinations who exercise 30 minutes a week; however, it is still scientifically not meaningful or realistic to evaluate a world in which everyone exercises the exact same amount of time.</p>
+</blockquote>
+
+
+
+
+<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="lmtp/static_graph.jpg" width="100%&quot;"> </a></p>
+<figcaption>
+<small>A graphical example of a static intervention on the pollution measurement of Air Quality Index (AQI). On the left we see the naturally observed exposure values for one day in the US, and on the right we see what the hypothetical exposure values would look like under a static intervention in which all study subjects had an AQI exposure of 20.</small>
+</figcaption>
+
+
+<p><br></p>
+</section>
+<section id="one-possible-solution-to-the-problems-posed-by-static-interventions-is-dynamic-interventions." class="level2">
+<h2 class="anchored" data-anchor-id="one-possible-solution-to-the-problems-posed-by-static-interventions-is-dynamic-interventions.">One possible solution to the problems posed by Static Interventions is Dynamic Interventions.</h2>
+<p><strong>Dynamic treatment policies</strong> or interventions ask what would have happened in a hypothetical world where <strong>exposure is assigned based on each observation’s covariate history</strong>.</p>
+<p>For example, let’s say we want to study the effect of pollution on asthma attacks in the United States. A simple study design could be to find a representative sample of individuals living with asthma, measure their pollution exposure via the <a href="https://www.airnow.gov/aqi/aqi-basics/">Air Quality Index (AQI)</a> on one calendar day (along with other confounders), and record whether an asthma attack occurs within a specified time frame.</p>
+<p>Although I don’t study pollution, I know it is <strong>scientifically impossible</strong> for everyone in the US to receive the same air quality exposure, even in a world with countless environmental regulations. Natural and geographical forces such as wind, wildfires, elevation, proximity to the ocean, etc. make it <strong>unrealistic to study a single air quality exposure value for everyone</strong>.</p>
+<p>We can try getting around these issues by evaluating a dynamic intervention that depends on baseline characteristics of the person or environment. For example, “<em>if a person lives in an urban area, make their AQI exposure 40, and if a person lives in a residential area, make their AQI exposure 20.</em>”</p>
+
+
+
+
+<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="lmtp/dynamic_graph.jpg" width="100%&quot;"> </a></p>
+<figcaption>
+<small>An example of a naturally observed exposure of AQI in the US (left) and what it would look like under a hypothetical dynamic intervention in which all urban counties have an AQI of 40 and rural counties have an AQI of 20 (right).</small>
+</figcaption>
+
+
+<p><br> This intervention may <strong>reduce positivity violations</strong> and <strong>lead to a more realistic study</strong>, yet there are <strong>many other interesting questions</strong> about air pollution <strong>we still cannot answer</strong> with dynamic treatment policies.</p>
+<h3 style="color: #C41E3A;" class="anchored">
+<p>Problem #3: Static and dynamic interventions cannot depend on the observed exposure</p>
+</h3>
+<p>Another <strong>key limitation</strong> with both static and dynamic interventions is that the <strong>hypothetical exposure value is completely determined by each observation’s baseline characteristics</strong> rather than the observed exposure. However, there are many <strong>interesting scientific questions</strong> about interventions that <strong>depend on the actual exposure received</strong>. For example, a more relevant question for our pollution example could be, “<em>what would have happened in a hypothetical world where everyone’s AQI exposure was 10% lower than what we observed?</em>” Or, “<em>what if the reduction had been 20 units for individuals living in an area with a daily AQI &gt; 100?</em>”</p>
+<blockquote class="blockquote">
+<p>What questions, or hypothetical interventions, would we propose if we did not feel limited by statistical methodology?</p>
+</blockquote>
+<!-- <center> ✨✨✨</center> -->
+</section>
+</section>
+<section id="modified-treatment-policies-mtps" class="level1">
+<h1>Modified Treatment Policies (MTPs)</h1>
+<p>We can solve all three problems mentioned above with <strong>Modified Treatment Policies (MTPs)</strong>. MTPs describe <strong>hypothetical interventions which depend on the observed value of treatment</strong>, possibly in addition to baseline characteristics. We already mentioned two potential MTPs for our pollution example: “<em>what if we reduced everyone’s AQI exposure by 20%?</em>” and “<em>what if we reduced individuals living in an area with a daily AQI &gt; 100 by 20 units?</em>”</p>
+
+
+
+
+<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="lmtp/modified_graph.jpg" width="100%&quot;"> </a></p>
+<figcaption>
+<small>An example of a naturally observed exposure of AQI in the US (left) and what it would look like under a hypothetical modified treatment policy in which all observations have an AQI exposure 20% less than what was actually observed (right).</small>
+</figcaption>
+
+
+<p><br> Other interesting MTPs unrelated to pollution might be questions along the lines of:</p>
+
+
+
+
+<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/comics/climbing_comic.jpg"> <img src="climbing_comic.JPG" style="float:right" width="40%&quot;"> </a>
+
+
+<ul>
+<li>
+<em>How would recovery rates change if we decreased surgery times for surgeries lasting longer than four hours?</em>
+</li>
+<li>
+<em>How would diabetes incidence rates change if everyone with a Body Mass Index (BMI) &gt;30 lowered their BMI by 2 units?</em>
+</li>
+<li>
+<em>How would medical school admission rates change if all students with MCAT scores less than 500 increased their score by 5 points?</em>
+</li>
+</ul>
+<p><strong>MTPs are an excellent solution</strong> for getting around positivity issues to analyze <strong>more feasible and realistic interventions</strong>. Hopefully this list inspires you to think of MTPs relevant to your own field of study!</p>
+</section>
+<section id="a-general-and-unifying-framework-extending-to-longitudinal-settings" class="level1">
+<h1>A general and unifying framework extending to longitudinal settings</h1>
+<p>MTPs for cross-sectional, or point-treatment, studies have actually been <strong>generalized to exposures and covariates measured at multiple time points</strong>, i.e.&nbsp;longitudinal studies. We will refer to this generalization as <strong>Longitudinal Modified Treatment Policies (LMTPs)</strong>, for which there is a corresponding <code>R</code> package called <code>lmtp</code>.</p>
+<section id="longitudinal-data-analysis-complexities" class="level2">
+<h2 class="anchored" data-anchor-id="longitudinal-data-analysis-complexities">Longitudinal data analysis complexities</h2>
+<p>Longitudinal studies pose certain crucial and often-overlooked issues, most notably time-dependent confounders. <strong>Time-dependent confounders are variables which change over time, affect the likelihood of both future exposure and the outcome, and are affected by previous exposure.</strong></p>
+<p>A key time-dependent confounder for the relationship between pollution and asthma attacks could be weather. Hot, humid air causes air quality to decrease, and it also aggravates pulmonary conditions like asthma. I will explain time-dependent confounders more in later posts of this series, but for now, note that <strong>LMTP</strong> (the method and <code>R</code> package) <strong>properly accommodates time-dependent confounders.</strong></p>
+</section>
+<section id="lmtp-methodology-and-software-capabilities" class="level2">
+<h2 class="anchored" data-anchor-id="lmtp-methodology-and-software-capabilities">LMTP methodology and software capabilities</h2>
+<p><strong>This LMTP methodology and <code>lmtp</code> software allows the user to handle:</strong></p>
+
+
+
+
+<a href="https://github.com/nt-williams/lmtp"> <img src="lmtp_sticker.png" alt="LMTP sticker" style="float:right; padding-left:20px;" width="40%&quot;"> </a>
+
+
+<ul>
+<li>
+Cross-sectional or longitudinal exposures
+</li>
+<li>
+Binary, categorical, or continuous exposures
+</li>
+<li>
+Exposures that are dependent on time, i.e.&nbsp;delaying the occurrence of the exposure as an intervention
+</li>
+<li>
+Multiple exposures
+</li>
+<li>
+Binary, continuous, or time-to-event outcomes
+</li>
+<li>
+Informative loss to follow-up/censoring
+</li>
+<li>
+Competing risks
+</li>
+<li>
+Survey weights
+</li>
+</ul>
+<p><strong>This could translate to longitudinal research questions such as:</strong></p>
+<ul>
+<li>
+<em>How would asthma rates change if we reduced two pollutants (fine particulate matter and ozone) by 10% every day for a year?</em>
+</li>
+<li>
+<em>How would drug overdose numbers change if Naloxone access laws were implemented one year later?</em>
+</li>
+<li>
+<em>How would length of intubation for intubated COVID-19 patients change if patients who never received steroids were given a standard dose of steroids upon intubation? (Death of other causes is a competing risk and discharge is an informative loss to follow up.)</em> <!-- - *How would your maximum climbing grade have changed by the end of the year if you had gone to the climbing gym one hour more every week?* -->
+</li>
+</ul>
+<!-- <p align="center"><iframe src="https://giphy.com/embed/SIJiRqIcb6CJVLs9CX" width="480" height="270" frameBorder="0" allowFullScreen></iframe><p></p> -->
+<hr>
+</section>
+</section>
+<section id="resources-to-learn-more" class="level1">
+<h1>Resources to learn more</h1>
+<p>Future posts will walk through examples of applications like these using the <code>R</code> package <code>lmtp</code>. In the meantime, a recent summary of the literature is described in <a href="https://www.tandfonline.com/doi/full/10.1080/01621459.2021.1955691"><em>Nonparametric Causal Effects Based on Longitudinal Modified Treatment Policies</em></a> by Díaz et al.&nbsp;Although the Díaz paper and accompanying <code>R</code> package are new, LMTP is an extension of causal inference concepts, methodology, and software that are well-established and steadily becoming more widely used.</p>
+<p><strong>Here are several other resources I found useful in writing this post:</strong></p>
+<ul>
+<li>Nick Williams’ (author of the <code>lmtp</code> package) <a href="https://towardsdatascience.com/an-introduction-to-estimating-the-causal-effects-of-feasible-interventions-e07ed45136ff">blog post</a> introducing MTPs and using <code>lmtp</code> for an example with LSAT scores and law school admission rates.</li>
+<li><a href="https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2021/03/ciwhatif_hernanrobins_30mar21.pdf"><em>What If</em></a> by Miguel Hernán and James Robins, a freely available book, has an entire section on longitudinal data and time-dependent confounding (see Part III, Chapters 19-21).</li>
+<li><em>Effects of multiple interventions.</em> is a section in the book <em>Comparative quantification of health risks: global and regional burden of disease attributable to selected major risk factors</em> by Robins et al.&nbsp;which brings up many of the issues which are later solved by MTPs.</li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/23913589/"><em>Estimation of the effect of interventions that modify the received treatment</em></a> by Haneuse and Rotnitzky and <a href="https://pubmed.ncbi.nlm.nih.gov/21977966/"><em>Population intervention causal effects based on stochastic interventions</em></a> by Diaz and van der Laan both describe the problem well, contain helpful examples, and make advances in the methodology for MTPs.</li>
+<li><a href="https://www.degruyter.com/document/doi/10.1515/em-2012-0001/html?lang=en"><em>Identification, Estimation and Approximation of Risk under Interventions that Depend on the Natural Value of Treatment Using Observational Data</em></a> by Young et. al (2014) is a publicly available paper that also provides a good summary of the literature and fundamental progress to the methods of MTPs (in this paper they are “interventions which depend on the natural value of treatment”).</li>
+</ul>
+<p>As with all my posts, I welcome feedback from my intended audience and/or experts of causal inference. I am also open to suggestions of other resources to include in the reference section. Check back later for posts walking through specific examples and <code>R</code> code!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

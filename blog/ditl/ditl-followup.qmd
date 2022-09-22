@@ -1,0 +1,87 @@
+---
+title: "Becoming a Biostatistician: FAQs for 'A Day in the Life of a Biostatistician'"
+author: "Katherine Hoffman"
+image: faq.jpeg
+description: " "
+date: 2021-01-15
+categories: ["career"]
+tags: ["career", "biostatistics"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=F, warning=F)
+```
+
+**Last updated August 23, 2022.**
+
+To my surprise since writing it, I've received hundreds of emails about my first blog post, ["Day in the Life of a Biostatistician"](https://www.khstats.com/blog/ditl-biostats/). I really enjoy hearing from everyone who reaches out, but I thought I'd give detailed answers to the most common questions I've received in this follow up post.
+
+***Caveat all my answers with "this is just one early-career biostatistician's opinion," please!***
+
+------------------------------------------------------------------------
+
+**What do you recommend majoring in?**
+
+If you're still early in your undergraduate education, I think it is best to major in statistics or math and supplement those classes with specific applications of statistics that interest you. Courses in biological science (e.g. genetics) or issues in healthcare (e.g. medical ethics, health economics) are all beneficial if you're specifically interested in medical and biological applications of statistics. Any computer science courses you're able to fit into your schedule will also help.
+
+If you're too far along in your current degree or you already finished college, not to worry! Depending on how much time you have before you apply to school, you should take Calculus I-III and Linear Algebra equivalents. This is a pretty standard requirement for most M.S. programs. I wish I had also taken a class in mathematical proofs.
+
+**Did you find the transition from biological sciences to statistics to be difficult?** *(For those who haven't read my DITL post, I majored in Biochemistry and had not taken the prerequisite math courses since my freshman year of college.)*
+
+Yes, absolutely. I don't want to scare anyone away from going into biostatistics, but it was a difficult transition for me and required a lot of effort to catch up. I underestimated the transition to learn graduate level statistics after a years-long hiatus from math. I had to relearn many concepts from calculus and teach my brain to learn high-level math after years of studying biology. I say this not to discourage you(!), but so that you understand you may feel very behind when you first begin your journey in biostatistics. It doesn't mean you cannot or will not be successful.
+
+**Did you know how to code before you started school and did you find learning to code to be difficult?**
+
+No, I didn't know how to code at all before starting graduate school (you might be reading this thinking, *why did anyone let her in?!* and I honestly don't know, either). I did not find learning to code particularly easy at first, but once I got over the initial learning curve after a few months in school, I found learning to code much easier than statistical theory. This might be because there's a ton of resources to learn to code online, whereas math is usually harder to find good resources to learn independently.
+
+**Do you have advice on \[insert school name here\]?**
+
+I don't feel like i'm in a position to give advice on specific programs as I only applied to one program, and my reason was purely financially-based. If I *had* applied to multiple schools I would've still tried to minimize post-school debt. Also, grad school can be very stressful, so pick a school that is in either a location you think you'll enjoy living, and/or where you will have a good support system around you. I would also recommend trying to talk to current students beforehand if you're deciding between multiple schools.
+
+**I'm starting a Masters in Biostatistics soon. Do you have advice for grad school?**
+
+Here's what worked for me... take from it what you want! I have a lot of advice because I learned a lot of things the hard way. :-)
+
+1.  Don't be afraid to ask a lot of questions or to be a regular presence at office hours. I found that even when I was struggling quite a bit, professors wanted to help me when they saw I was putting in the effort to understand. It can be stressful to ask questions that you think you probably *should* know the answer to, but I always thought, "I'd rather ask this to my professor than not know it in front of my future boss." Plus, you might need letters of recommendations or references, so you want your professors to be able to speak to your personality.
+
+2.  Try to strike a good balance between learning to code and learning the theory. I attended a theory-heavy program (a one-credit SAS coding class comprised my entire formal programming education) so I spent a lot of time learning to code on my own, especially in the summer between my first and second years. It seems like more schools are shifting to an applied curriculum, so if you attend one of those programs, I would put independent effort into understanding the underlying theory.
+
+3.  I found it helpful to get to know everyone in my cohort. Being on friendly terms with classmates benefited me on countless occasions throughout my Masters and afterwards. I understand it can be tough to put yourself out there, but it really will make your life easier when you're stuck on a homework question or just generally feeling overwhelmed by school. My motto was always, "everyone here is likely awkward because we've all decided to study statistics, so I really have nothing to lose by 'making the first move' towards friendly conversation."
+
+4.  Don't obsess over grades. I did this a little when I was in school and it was a complete waste of time. No one asked for my grades when I applied for jobs. Focus on learning the concepts and being able to explain what you've learned to audiences with varying degrees of technical background. Grades are an imperfect measure of your learning (and to be completely honest, they are often skewed due to a portion of students having materials from previously taught courses) so use them as feedback rather than an absolute measure of success. I TA now and it drives me *crazy* when students obsess over a less-than-perfect grade rather than their less-than-perfect understanding of a concept.
+
+5.  I cannot emphasize this enough: don't question your abilities if concepts don't seem to come as "naturally" as they do for your classmates, especially if they've taken more quantitative courses than you (e.g. math, stats, computer science, engineering majors). They've probably already seen the foundation of what you're learning in various forms before, and that matters *so much*! It took me a while to realize this, and I wasted a lot of time worrying I'd never be a good statistician because I had to study so much longer to understand concepts at even a passing level.
+
+**Should I do an internship during grad school? Do you have any advice on getting an internship?**
+
+Sure, apply to internships! I applied to several for the summer between my first and second year of my Masters. There is a downside that they often don't pay that well, and it can be costly to live in a new city for just 2-3 months. I ended up not taking any of my internship offers for that reason, and ultimately doing summer research in a lab at my university. I don't think this hurt my final job prospects at all. My advice for getting internships is to review your CV/cover letter with your school's career counselors, and then apply early and often. If you don't have any relevant work experience (I didn't), highlight in your cover letter and CV how your projects in school thus far have prepared you to do good work as an intern. For example, I discussed the dataset we used in my first semester regression course as a way of highlighting applied skills (exploratory data analysis, assumptions of regression, etc.).
+
+As for summer research, it worked for me to email professors explaining that I was interested in their research and asking if we could set up a time to briefly chat. I used to get really nervous for these meetings before someone informed me that pretty much all professors *love* to talk about their research. Even if they don't have any research opportunities at the moment, it's a good way to learn about aspects of biostatistics you didn't know existed.
+
+**Do you feel intellectually stimulated as a biostatistician?**
+
+Absolutely. This is, hands down, the reason I like biostatistics so much. I will never know all there is to know about biostatistics (not even close!) and there are so many directions to grow.
+
+**Do you feel financially rewarded as a biostatistician?**
+
+Also yes. I've been able to live comfortably and save money while working in academic research right out of school (we notoriously make lower salaries than positions in pharmaceutical or tech companies). If you're curious about specific salaries, you might like this [recent ASA survey of (bio)statistics graduates](https://magazine.amstat.org/blog/2019/08/01/mastergraduate/). Note that when you're looking at salaries online, you can also look at jobs with the title "data scientist," which you should have the base qualifications for after you receive a Masters in (Bio)statistics.
+
+**Do you think a PhD is necessary for your career growth?**
+
+I'm four years into my career and don't yet feel stunted, so that's a good sign, I think! No, I don't think a PhD is necessary to have a stable, rewarding career. This is not to say I'll never apply, because I do really love learning new statistical theory, but I do not think it is necessary and can see many routes to having a "successful" career without one.
+
+**What's your favorite part of your job?**
+
+I love when I am able to focus on one project and optimize my code to be really well documented and efficient. I also like improving my understanding of the biology or clinical domain knowledge for specific projects. Interestingly, one of my least favorite parts of the job *used* to be writing and editing manuscripts, but as I've gained experience reading and writing scientific papers, I enjoy this much more.
+
+**What's your least favorite part of your job?**
+
+It is working with individuals who either believe they have equivalent knowledge to me in statistics after taking an introductory course, or who know very little about statistics, do not desire to learn more, and yet do not trust my knowledge. Both types of people tend to want to be very hands-on in my analyses and this usually results in me explaining (to little avail) why we cannot do the analysis they think we should do. I don't think this is unique to my job or even academia, however, it is definitely my least favorite part.
+
+------------------------------------------------------------------------
+
+That's all for now! I hope it is helpful. As always feel free to reach out if you have other questions; I try to answer my messages to this [email](mailto:kathoffman.stats@gmail.com) once a week. You can also read about my friend Kim's career as a biostatistician at a pharmaceutical CRO in this [previous blog post](https://www.khstats.com/blog/ditl/pharma-cro/).
+
+Cheers,
+
+Kat

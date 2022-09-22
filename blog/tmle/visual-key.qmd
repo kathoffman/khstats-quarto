@@ -1,0 +1,218 @@
+---
+title: "A Condensed Key for A Visual Guide to Targeted Maximum Likelihood Estimation (TMLE)"
+author: "Katherine Hoffman"
+date: 2019-01-09
+categories: ["statistics"]
+image: "tmle/1_data_structure.png"
+weight: 38
+math: true
+draft: false
+tags: ["statistics","causal inference","R","lmtp","TMLE","Targeted Maximum Likelihood Estimation","introduction to TMLE","targeted learning"]
+output:
+  blogdown::html_page:
+    toc: false
+---
+
+A helper post to *TMLE Part II: The Algorithm* containing only formulas and graphics.
+
+<!--more-->
+
+> A condensed key for my corresponding [TMLE tutorial](www.khstats.com/blog/tmle/tutorial) blog post.
+
+### Initial set up
+
+![](tmle/1_data_structure.png){width="80%"} **Estimand of interest:**
+
+$$ATE = \Psi = E_W[\mathrm{E}[Y|A=1,\mathbf{W}] - \mathrm{E}[Y|A=0,\mathbf{W}]]$$
+
+<html>
+
+<body>
+
+<h2 style="color:navy" >
+
+<strong>Step 1: Estimate the Outcome
+
+</h1>
+
+</strong>
+
+</body>
+
+</html>
+
+First, estimate the expected value of the outcome using treatment and confounders as predictors.
+
+$$Q(A,\mathbf{W}) = \mathrm{E}[Y|A,\mathbf{W}]$$ ![](tmle/2_outcome_fit.png){width="70%"}
+
+Then use that fit to obtain estimates of the expected outcome under varying three different treatment conditions:
+
+**1. If every observation received the treatment they *actually* received.**
+
+$$\hat{Q}(A,\mathbf{W}) = \mathrm{\hat{E}}[Y|A,\mathbf{W}]$$
+
+![](tmle/3_QA.png){width="50%"}
+
+**2. If every observation received the treatment.**
+
+$$\hat{Q}(1,\mathbf{W}) = \mathrm{\hat{E}}[Y|A=1,\mathbf{W}]$$
+
+![](tmle/4_Q1.png){width="80%"}
+
+**3. If every observation received the control.**
+
+$$\hat{Q}(0,\mathbf{W}) = \mathrm{\hat{E}}[Y|A=0,\mathbf{W}]$$
+
+![](tmle/5_Q1.png){width="80%"}
+
+<html>
+
+<body>
+
+<h2 style="color:navy" >
+
+<strong>Step 2: Estimate the Probability of Treatment
+
+</h1>
+
+</strong>
+
+</body>
+
+</html>
+
+The next step is to estimate the probability of treatment, given confounders.
+
+$$g(\mathbf{W}) = \mathrm{Pr}(A=1|\mathbf{W})$$ ![](tmle/6_treatment_fit.png){width="60%"}
+
+Then we need to compute three different quantities from this model fit:
+
+**1. The inverse probability of receiving treatment.**
+
+$$H(1,\mathbf{W}) = \frac{1}{g(\mathbf{W})} = \frac{1}{\mathrm{Pr}(A=1|\mathbf{W})}$$
+
+![](tmle/7_H1.png){width="60%"}
+
+**2. The negative inverse probability of not receiving treatment.**
+
+$$H(0,\mathbf{W}) = -\frac{1}{1-g(\mathbf{W})}= -\frac{1}{\mathrm{Pr}(A=0|\mathbf{W})}$$
+
+![](tmle/8_H0.png){width="70%"}
+
+**3. If the observation was treated, the inverse probability of receiving treatment, and if they were not treated, the negative inverse probability of not receiving treatment.**
+
+$$H(A,\mathbf{W}) = \frac{\mathrm{I}(A=1)}{\mathrm{Pr}(A=1|\mathbf{W})}-\frac{\mathrm{I}(A=0)}{\mathrm{Pr}(A=0|\mathbf{W})}$$
+
+![](tmle/9_HA.png){width="50%"}
+
+<html>
+
+<body>
+
+<h2 style="color:navy" >
+
+<strong>Step 3: Estimate the Fluctuation Parameter
+
+</h1>
+
+</strong>
+
+</body>
+
+</html>
+
+Estimating equation we need to solve:
+
+$$logit(\mathrm{E}[Y|A,\mathbf{W}]) = logit(\mathrm{\hat{E}}[Y|A,\mathbf{W}]) + \epsilon H(A,\mathbf{W})$$ Two technical points for application: we use `qlogis` to transform the probabilities $\mathrm{\hat{E}}[Y|A,\mathbf{W}]$ to the $logit$ scale. Also, the `R` code for a fixed intercept is `-1 + offset(fixed_intercept)`.
+
+![](tmle/10_logistic_regression.png)
+
+Next we need to save the coefficient from that logistic regression, which we will call $\hat{\epsilon}$:
+
+![](tmle/11_epsilon.png){width="40%"}
+
+<html>
+
+<body>
+
+<h2 style="color:navy" >
+
+<strong>Step 4: Update the Initial Estimates of the Expected Outcome
+
+</h1>
+
+</strong>
+
+</body>
+
+</html>
+
+*Note we can use* $expit$ to show the inverse of the $logit$ function, and we will denote updates to the outcome regressions as $\hat{\mathrm{E}}^*$.
+
+**1. Update the expected outcomes of all observations, given the treatment they actually received and their baseline confounders.**
+
+$$\hat{\mathrm{E}}^*[Y|A,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A,\mathbf{W}]) + \hat{\epsilon}H(A,\mathbf{W}))$$
+
+![](tmle/update_qAW.png){width="70%"}
+
+**2. Update the expected outcomes, conditional on baseline confounders and everyone receiving the treatment.**
+
+$$\hat{\mathrm{E}}^*[Y|A=1,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A=1,\mathbf{W}]) + \hat{\epsilon}H(A,1))$$ ![](tmle/12_update_Q1.png){width="70%"}
+
+**3. Update the expected outcomes, conditional on baseline confounders and no one receiving the treatment.**
+
+$$\hat{\mathrm{E}}^*[Y|A=0,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A=0,\mathbf{W}]) + \hat{\epsilon}H(A,0))$$ ![](tmle/13_update_Q0.png){width="70%"}
+
+<html>
+
+<body>
+
+<h2 style="color:navy" >
+
+<strong>Step 5: Compute the Statistical Estimand of Interest
+
+</h1>
+
+</strong>
+
+</body>
+
+</html>
+
+We now have updated expected outcomes estimates, so we can compute the ATE as the mean difference in the updated outcome estimates under treatment and no treatment:
+
+$$\hat{ATE}_{TMLE} = \hat{\Psi}_{TMLE} = \sum_{i=1}^{n}[\hat{E^*}[Y|A=1,\mathbf{W}] - \hat{E^*}[Y|A=0,\mathbf{W}]]$$
+
+![](tmle/14_compute_ATE.png){width="60%"}
+
+<html>
+
+<body>
+
+<h2 style="color:navy" >
+
+<strong>Step 6: Calculate the Standard Errors, Confidence Intervals, and P-values
+
+</h1>
+
+</strong>
+
+</body>
+
+</html>
+
+To obtain the standard errors, we first need to compute the **Influence Curve** (IC). The equation for the IC looks like this:
+
+$$\hat{IC} = (Y-\hat{E^*}[Y|A,\mathbf{W}])H(A,\mathbf{W}) + \hat{E^*}[Y|A=1,\mathbf{W}] - \hat{E^*}[Y|A=0,\mathbf{W}] - \hat{ATE}$$
+
+Once we have the IC, we can take the square-root of its variance divided by the number of observations to get the standard error of our estimate.
+
+$$\hat{SE} = \sqrt{\frac{var(\hat{IC})}{N}} $$
+
+![](tmle/15_ses.png){width="100%"} Once we have that standard error, we can easily get the 95% confidence interval and p-value of our estimate.
+
+------------------------------------------------------------------------
+
+*A visual guide designed as a printable reference is available on my [Github](https://github.com/kathoffman/CI-visual-guides/blob/master/visual-guides/TMLE.pdf):*
+
+![](TMLE.jpg)

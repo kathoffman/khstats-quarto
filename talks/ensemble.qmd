@@ -1,0 +1,10 @@
+---
+title: "Introduction to Ensemble Learning and Super Learning"
+categories: ["statistics"]
+editor: visual
+description: " "
+date: 2021-01-19
+image: /img/wcm-cc-bagging.png
+---
+
+Slide deck available [[here]](https://kathoffman.github.io/superlearning-wcm-cc/presentation.html#1).

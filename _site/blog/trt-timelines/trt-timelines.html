@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Katherine Hoffman">
+<meta name="dcterms.date" content="2019-11-28">
+
+<title>KHstats - Patient Treatment Timelines for Longitudinal Survival Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">Google Scholar</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Patient Treatment Timelines for Longitudinal Survival Data</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">data visualization</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Katherine Hoffman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 28, 2019</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>A ggplot code walkthrough for making treatment timelines or “swimmer plots” for longitudinal time-to-event data on 1) a categorical covariate and 2) a continuous covariate organized by missingness frequency.</p>
+<!--more-->
+<p><strong><em>November 3, 2019.</em></strong></p>
+<p>I am a biostatistician at a research university, and I often find myself working with longitudinal survival data. As with any data analysis, I need to examine the quality of my data before deciding which statistical methods to implement.</p>
+<p>This post contains reproducible examples for how I prefer to visually explore survival data containing longitudinal exposures or covariates. I create a “treatment timeline” for each patient, and the end product looks something like this:</p>
+<div class="cell-output-display">
+<p><img src="trt-timelines_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="960"></p>
+</div>
+<p>Each line represents one patient, and each square represents a measurement at a specified point. I find these graphs useful to look for patterns or discrepancies in follow up times, treatment, and missingness. They also allow me to verify that my coding is correct as I move through different data manipulations for my analyses.</p>
+<p>For the following examples I generate longitudinal survival data sets. I skip over how I made this data because it’s not the focus of this post, but if you have questions about the data generation please let me know. In general, I am trying to work from the point in a survival data analysis where you’ve already calculated each individual’s time to event.</p>
+<section id="example-1-binary-treatment" class="level1">
+<h1>Example 1: Binary Treatment</h1>
+<p>To make these charts, my first step is to load the package <code>tidyverse</code>, since I use functions from <code>dplyr</code>, <code>tidyr</code>, <code>forcats</code>, and <code>ggplot2</code>.</p>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here is the data generation code. If you’re interested in how I made it, you can check the comments, but if not, <strong>I recommend just copying and pasting into your <code>R</code> console to try the plotting code.</strong></p>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="co"># The data sets I make these visualizations for are typically 100-500 patients in size, but for space purposes I'll set my n to only 50.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">.rows =</span> n) <span class="sc">%&gt;%</span>  <span class="co"># empty data frame / tibble with n rows</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_id =</span> <span class="fu">factor</span>(<span class="fu">row_number</span>()),  <span class="co"># patient ids are 1-n</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">pt_trt_prob =</span> <span class="fu">runif</span>(n,<span class="dv">0</span>,<span class="dv">1</span>), <span class="co"># randomly generate a treatment probability for each patient so we can see patterns</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">months_followup =</span> <span class="fu">round</span>(<span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">20</span>)), <span class="co"># randomly generate length of time in the study</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">death =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, .<span class="dv">5</span>)) <span class="sc">%&gt;%</span> <span class="co"># death randomly occurs at any time point. Obviously an unrealistic assumption. :)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pt_id) <span class="sc">%&gt;%</span>   <span class="co"># group by patient so we can do more data manipulation</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(<span class="at">months_followup =</span> <span class="fu">full_seq</span>(<span class="dv">0</span><span class="sc">:</span><span class="fu">max</span>(months_followup), <span class="dv">1</span>)) <span class="sc">%&gt;%</span> <span class="co"># add i^n all the months patients are in the study</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(pt_trt_prob, <span class="at">.direction =</span> <span class="st">"up"</span>) <span class="sc">%&gt;%</span> <span class="co"># fill in the treatment probability I made earlier so I can use this to add treatment for every time point</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> <span class="co"># no longer need patients grouped</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">trt =</span> <span class="fu">factor</span>(<span class="fu">rbinom</span>(<span class="fu">row_number</span>(), <span class="dv">1</span>, pt_trt_prob<span class="sc">^</span><span class="dv">2</span>)),  <span class="co"># fill in treatment for everyone based on their treatment probability</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">death =</span> <span class="fu">replace_na</span>(death, <span class="dv">0</span>)) <span class="sc">%&gt;%</span>  <span class="co"># also fill in death</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pt_id, months_followup, trt, death) <span class="co"># remove leftover columns from data generation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s look at the data. It’s in “long” format with patient ID’s repeating for each <code>month_followup</code> they were in my (fake) study. At every month, we know whether or not they were on the treatment, and whether they died at that time point. This first example does not contain any missingness.</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(dat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">pt_id</th>
+<th style="text-align: right;">months_followup</th>
+<th style="text-align: left;">trt</th>
+<th style="text-align: right;">death</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We can now plot our data in a very basic way. We really only need to specify in the <code>aes</code>thetics that the <code>x</code>-axis is time, the <code>y</code>-axis is subject IDs, the <code>col</code>or should correspond to treatment, and <em>our lines should be <code>group</code>ed together by subject</em>. Don’t forget that last one! Then we can say we want <code>geom_line</code> to make a base timeline for each subject, and the points on the timeline should be squares (<code>shape = 15</code> in the <code>geom_point</code> mapping function).</p>
+<p>Et voilà! A cute patient treatment timeline.</p>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> months_followup, <span class="at">y =</span> pt_id, <span class="at">group =</span> pt_id, <span class="at">col =</span> trt)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()  <span class="sc">+</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="trt-timelines_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>Okay, it’s not <em>that</em> cute. But that little bit of code is really the core of the plot! If you want to add markers of death (or any other event) and rearrange by length of follow up time it just takes a little bit of extra data manipulation and one additional line of <code>ggplot2</code> code.</p>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pt_id) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make a new column with all patients last follow up visit</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">last_month_followup =</span> <span class="fu">max</span>(months_followup), </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         <span class="co"># new variable for month that patients died, if they died</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">month_death =</span> <span class="fu">case_when</span>(death <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> last_month_followup, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="co"># reorder pt id by last month of follow up (highest to lowest)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>         <span class="co"># without fct_rev, chart is arranged in opposite direction (lowest to highest)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_id =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_reorder</span>(pt_id, last_month_followup))) <span class="sc">%&gt;%</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> months_followup, <span class="at">y =</span> pt_id, <span class="at">group =</span> pt_id, <span class="at">col =</span> trt)) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()  <span class="sc">+</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add in a new mapping layer of points that correspond to death</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> month_death, <span class="at">y =</span> pt_id), <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">shape =</span> <span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Warning: Removed 515 rows containing missing values (geom_point).</code></pre>
+<div class="cell-output-display">
+<p><img src="trt-timelines_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>Don’t worry about the warning for removing missing values – it’s because we have <code>NA</code>s at most months for our <code>month_death</code>, so <code>geom_point</code> doesn’t know where to put an ‘x’ marker.</p>
+<p>Finally, let’s work on making the plot a bit nicer to look at:</p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pt_id) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">last_month_followup =</span> <span class="fu">max</span>(months_followup), </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">month_death =</span> <span class="fu">case_when</span>(death <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> last_month_followup, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_id =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_reorder</span>(pt_id, last_month_followup)),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>         <span class="co"># make the treatment variable labels nicer</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">trt =</span> <span class="fu">factor</span>(trt, <span class="at">levels=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"No"</span>,<span class="st">"Yes"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> months_followup, <span class="at">y =</span> pt_id, <span class="at">group =</span> pt_id, <span class="at">col =</span> trt)) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()  <span class="sc">+</span> </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> month_death, <span class="at">y =</span> pt_id), <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">shape =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Months of Follow-Up"</span>, <span class="at">y =</span> <span class="st">"Patient ID"</span>, <span class="at">col =</span> <span class="st">"Treatment"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Patient Treatment Timeline"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"x indicates month of patient death"</span>) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># edit legend box and make patient ids small</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">6</span>),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">6</span>, .<span class="dv">9</span>), <span class="at">legend.direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">linetype=</span><span class="st">"solid"</span>, <span class="at">colour =</span><span class="st">"black"</span>)) <span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove extra space around timeline</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>)) <span class="sc">+</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set the color of the lines and points</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"dodgerblue"</span>,<span class="st">"firebrick1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Warning: Removed 515 rows containing missing values (geom_point).</code></pre>
+<div class="cell-output-display">
+<p><img src="trt-timelines_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>I have never made one of these plots for publication, so I don’t mind that the subtitle contains legend information. If you wanted to have the <code>month_death</code> markers in a legend, you could change:</p>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> month_death, <span class="at">y =</span> pt_id), <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">shape =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to:</p>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> month_death, <span class="at">y =</span> pt_id, <span class="at">shape =</span> month_death), <span class="at">col =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="example-2-continuous-covariate-with-missingness" class="level1">
+<h1>Example 2: Continuous Covariate with Missingness</h1>
+<p>We can follow the very same steps for making a timeline for a continuous variable.</p>
+<p>Again, here is the data generation code so you can make these plots yourself:</p>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dat_cc <span class="ot">&lt;-</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">.rows =</span> n) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_id =</span> <span class="fu">row_number</span>(),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">months_followup =</span> <span class="fu">round</span>(<span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">12</span>)), <span class="co"># random months of follow up</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">pt_cov_mean =</span> <span class="fu">runif</span>(n, <span class="dv">80</span>, <span class="dv">150</span>), <span class="co"># random mean of a patient's covariate measures</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">death =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>)) <span class="sc">%&gt;%</span> <span class="co"># random death</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pt_id) <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(<span class="at">months_followup =</span> <span class="fu">full_seq</span>(<span class="dv">0</span><span class="sc">:</span><span class="fu">max</span>(months_followup), <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(pt_cov_mean, death, <span class="at">.direction =</span> <span class="st">"up"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">last_month_followup =</span> <span class="fu">max</span>(months_followup),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_date =</span> <span class="fu">case_when</span>(death <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> last_month_followup, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cov =</span> <span class="fu">rnorm</span>(<span class="fu">row_number</span>(), pt_cov_mean, <span class="dv">10</span>))  <span class="co"># everyone's covariates are close to their original mean (use to see patterns later)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This time I am incorporating missingness at a patient-level on my simulated covariate measurements to show how we can use the plots to look at potential patterns in missingness.</p>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dat_cc_samp <span class="ot">&lt;-</span> dat_cc <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">idx =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_frac</span>(.<span class="dv">4</span>, <span class="at">weight =</span> pt_cov_mean<span class="sc">^</span><span class="dv">3</span>)  <span class="sc">%&gt;%</span> <span class="co"># sample 40% of data, with weights for the sample determined by the patient's mean covariate. This would mean patients with a higher mean covariate measure are more likely to have missing data.</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(idx)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>dat_cc_miss  <span class="ot">&lt;-</span> dat_cc <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cov =</span> <span class="fu">case_when</span>(<span class="fu">row_number</span>() <span class="sc">%in%</span> dat_cc_samp <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                         <span class="cn">TRUE</span> <span class="sc">~</span> cov)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pt_id, months_followup, cov, death)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Looking again at the data we’ll be using:</p>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(dat_cc_miss))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">pt_id</th>
+<th style="text-align: right;">months_followup</th>
+<th style="text-align: right;">cov</th>
+<th style="text-align: right;">death</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">91.69544</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">156.57317</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">172.23156</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We can plot the data and see this missingness with gray timeline points and lines:</p>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dat_cc_miss <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pt_id) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">last_month_followup =</span> <span class="fu">max</span>(months_followup), </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">month_death =</span> <span class="fu">case_when</span>(death <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> last_month_followup, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_id =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_reorder</span>(<span class="fu">factor</span>(pt_id), last_month_followup))) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> months_followup, <span class="at">y =</span> pt_id,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> pt_id, <span class="at">col =</span> cov)) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()  <span class="sc">+</span> </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> month_death, <span class="at">y =</span> pt_id), <span class="at">shape=</span><span class="dv">4</span>, <span class="at">col=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Months of Follow-Up"</span>, <span class="at">y =</span> <span class="st">"Patient ID"</span>, <span class="at">col =</span> <span class="st">"Covariate"</span>,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Patient Timelines: Continuous Covariate"</span>,</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"x indicates month of patient death, gray indicates missing covariate"</span>) <span class="sc">+</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">6</span>),</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">7</span>, .<span class="dv">9</span>),</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">linetype=</span><span class="st">"solid"</span>, <span class="at">colour =</span><span class="st">"black"</span>)) <span class="sc">+</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>)) <span class="sc">+</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low=</span><span class="st">"dodgerblue"</span>, <span class="at">high=</span><span class="st">"firebrick1"</span>, <span class="at">na.value =</span> <span class="st">"lightgray"</span>,</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">180</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Warning: Removed 143 rows containing missing values (geom_point).</code></pre>
+<div class="cell-output-display">
+<p><img src="trt-timelines_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>Alternatively, we could rearrange our timelines by the number of measures we have for each patient’s <code>cov</code>ariate of interest by making a new column containing the <code>sum(!is.na(cov))</code> and rearranging our <code>pt_id</code> by that column.</p>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dat_cc_miss <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pt_id) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">last_month_followup =</span> <span class="fu">max</span>(months_followup),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>         <span class="co"># a column containing how many measures we have for each patient</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">n_measures =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(cov))) <span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># reorder IDs by number of measures we have for each patient</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">pt_id =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_reorder</span>(<span class="fu">factor</span>(pt_id), n_measures)),</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">month_death =</span> <span class="fu">case_when</span>(death <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> last_month_followup, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> months_followup, <span class="at">y =</span> pt_id,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> pt_id, <span class="at">col =</span> cov)) <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()  <span class="sc">+</span> </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> month_death, <span class="at">y =</span> pt_id), <span class="at">shape=</span><span class="dv">4</span>, <span class="at">col=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Months of Follow-Up"</span>, <span class="at">y =</span> <span class="st">"Patient ID"</span>, <span class="at">col =</span> <span class="st">"Covariate"</span>,</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Patient Timelines: Continuous Covariate"</span>,</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"x indicates month of patient death, gray indicates missing covariate"</span>) <span class="sc">+</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">6</span>),</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">7</span>, .<span class="dv">9</span>),</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">linetype=</span><span class="st">"solid"</span>, <span class="at">colour =</span><span class="st">"black"</span>)) <span class="sc">+</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>)) <span class="sc">+</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low=</span><span class="st">"dodgerblue"</span>,<span class="at">high=</span><span class="st">"firebrick1"</span>,<span class="at">na.value =</span> <span class="st">"lightgray"</span>,</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">180</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Warning: Removed 143 rows containing missing values (geom_point).</code></pre>
+<div class="cell-output-display">
+<p><img src="trt-timelines_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>From this plot we can start to see that patients with more missing measurements have higher covariate measurements. This becomes clearer if we rearrange patients by their <em>proportion</em> of non-missing measurements.</p>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dat_cc_miss <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pt_id) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">last_month_followup =</span> <span class="fu">max</span>(months_followup),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>         <span class="co"># the proportion is the total number of measures divided by the total months of followup</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">prop_measures =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(cov))<span class="sc">/</span>last_month_followup) <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reorder IDs by proportion of measures we have for each patient</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_id =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_reorder</span>(<span class="fu">factor</span>(pt_id), prop_measures)),</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">month_death =</span> <span class="fu">case_when</span>(death <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> last_month_followup, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> months_followup, <span class="at">y =</span> pt_id,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> pt_id, <span class="at">col =</span> cov)) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()  <span class="sc">+</span> </span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> month_death, <span class="at">y =</span> pt_id), <span class="at">shape=</span><span class="dv">4</span>, <span class="at">col=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Months of Follow-Up"</span>, <span class="at">y =</span> <span class="st">"Patient ID"</span>, <span class="at">col =</span> <span class="st">"Covariate"</span>,</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Patient Timelines: Continuous Covariate"</span>,</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"x indicates month of patient death, gray indicates missing covariate"</span>) <span class="sc">+</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">6</span>), <span class="co"># move legend to the side by removing legend location</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">linetype=</span><span class="st">"solid"</span>, <span class="at">colour =</span><span class="st">"black"</span>)) <span class="sc">+</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>)) <span class="sc">+</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low=</span><span class="st">"dodgerblue"</span>,<span class="at">high=</span><span class="st">"firebrick1"</span>,<span class="at">na.value =</span> <span class="st">"lightgray"</span>,</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">180</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Warning: Removed 143 rows containing missing values (geom_point).</code></pre>
+<div class="cell-output-display">
+<p><img src="trt-timelines_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="768"></p>
+</div>
+<p>If this were my real data, I would follow up with my research collaborators for more information on the missingness mechanism.</p>
+<p>Please let me know if you have questions or a suggestion for a data set. Happy treatment timeline plotting!</p>
+<hr>
+<section id="session-info" class="level3">
+<h3 class="anchored" data-anchor-id="session-info">Session info</h3>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R version 4.1.3 (2022-03-10) Platform: x86_64-apple-darwin17.0 (64-bit) Running under: macOS Catalina 10.15.7</p>
+<p>Matrix products: default BLAS: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib</p>
+<p>locale: [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</p>
+<p>attached base packages: [1] stats graphics grDevices utils datasets methods base</p>
+<p>other attached packages: [1] forcats_0.5.1 stringr_1.4.1 dplyr_1.0.9 purrr_0.3.4<br>
+[5] readr_2.1.2 tidyr_1.2.0 tibble_3.1.8 ggplot2_3.3.6<br>
+[9] tidyverse_1.3.1</p>
+<p>loaded via a namespace (and not attached): [1] tidyselect_1.1.2 xfun_0.32 haven_2.5.0 colorspace_2.0-3 [5] vctrs_0.4.1 generics_0.1.3 htmltools_0.5.2 yaml_2.3.5<br>
+[9] utf8_1.2.2 rlang_1.0.4 pillar_1.8.1 glue_1.6.2<br>
+[13] withr_2.5.0 DBI_1.1.2 dbplyr_2.1.1 modelr_0.1.8<br>
+[17] readxl_1.4.0 lifecycle_1.0.1 munsell_0.5.0 gtable_0.3.0<br>
+[21] cellranger_1.1.0 rvest_1.0.2 htmlwidgets_1.5.4 evaluate_0.15<br>
+[25] labeling_0.4.2 knitr_1.38 tzdb_0.3.0 fastmap_1.1.0<br>
+[29] cabinets_0.6.0 fansi_1.0.3 highr_0.9 broom_0.8.0<br>
+[33] backports_1.4.1 scales_1.2.1 jsonlite_1.8.0 farver_2.1.1<br>
+[37] fs_1.5.2 gridExtra_2.3 hms_1.1.1 digest_0.6.29<br>
+[41] stringi_1.7.8 grid_4.1.3 cli_3.3.0 tools_4.1.3<br>
+[45] magrittr_2.0.3 crayon_1.5.1 pkgconfig_2.0.3 ellipsis_0.3.2<br>
+[49] xml2_1.3.3 reprex_2.0.1 lubridate_1.8.0 assertthat_0.2.1 [53] rmarkdown_2.13 httr_1.4.2 rstudioapi_0.13 R6_2.5.1<br>
+[57] compiler_4.1.3</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

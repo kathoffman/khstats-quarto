@@ -1,0 +1,14 @@
+---
+title: "Swimmer plots for longitudinal data using ggplot2"
+editor: visual
+categories: ["programming"]
+description: " "
+date: 2022-08-25
+image: /img/graphics/rmed-screenshot.png
+---
+
+The slide deck for my R/medicine talk is available [\[here\]](https://kathoffman.github.io/swimmer-plots/slides.html).
+
+A recording is on [Youtube](https://www.youtube.com/watch?v=s-IYmN1TBJg).
+
+

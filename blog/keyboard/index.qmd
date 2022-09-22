@@ -1,0 +1,169 @@
+---
+title: "You're just my type! A beginner's guide to building a custom mechanical keyboard"
+author: "Katherine Hoffman"
+image:  keyboard/IMG_2826.JPG
+description: " "
+date: 2022-06-15
+weight: 17
+categories: ["miscellaneous"]
+draft: false
+tags: ["mechanical keyboard","diy","building","keyboards","kbdfans","data science", "computer keyboard", "coding"]
+---
+
+> This blog post details a DIY project I did last summer -- building a mechanical keyboard. I'm no expert, but I enjoyed the process of building the keyboard so much that I thought I would briefly walk through the steps and share helpful resources. Even if you have no interest in building your own, I hope it encourages you to learn something new that you may have initially felt intimidated by!
+
+![](keyboard/IMG_2826.JPG)
+
+<!-- <iframe src="https://giphy.com/embed/2IGcITcJg09VK" width="480" height="379" frameBorder="0"  allowFullScreen></iframe><p><a href="https://giphy.com/gifs/2IGcITcJg09VK"></a></p> -->
+
+# What's a mechanical keyboard?
+
+<!-- <iframe src="https://giphy.com/embed/2IGcITcJg09VK" width="700" frameBorder="0" allowFullScreen></iframe><p></p> -->
+
+A mechanical keyboard is the typing unit that comes with a desktop computer, as opposed to a laptop. The keys are taller and provide more feedback in feel and sound when you hit them. Gamers, typists, and coders are more likely to use a mechanical keyboard.
+
+# Why would I want to build a mechanical keyboard?
+
+You can buy a mechanical keyboard, and to be honest, it's a much cheaper monetary and time investment. Practically, the reason to build your own keyboard is customizability. Picking out the components provides freedom in colors, layout, feel/sound of the keys, and more. Yet the primary reason people do it is that it's fun. If you enjoy DIY projects, you'll probably enjoy the challenge that comes with building your own keyboard.
+
+Personally, I decided to build my mechanical keyboard because I was bored during quarantine after catching COVID-19 last summer. I texted my dad at 1AM to see if I could use his soldering iron, and the rest is history.
+
+![](keyboard/ss_dad.jpeg){width="75%"}
+
+# What components do I need to buy?
+
+Picking out the components can be overwhelming! Yet it boils down to six main pieces you'll need:
+
+1.  [Case](#case)
+2.  [Printed Circuit Board (PCB)](#pcb)
+3.  [Keyboard plate](#keyboard-plate)
+4.  [Key switches](#key-switches)
+5.  [Key stabilizers](#key-stabilizers)
+6.  [Key caps](#key-caps)
+
+## Case {#case}
+
+The **case** is the outside of your keyboard. The size of the case you choose will limit how many keys you can have on your keyboard. Case sizes are described in percentages, i.e. 100%, 80%, 75%, 60%, 40%, which corresponds to how many keys fit on the board.
+
+## PCB {#pcb}
+
+The Printed Circuit Board **(PCB)** is the electronic circuitry of your keyboard. You will need to choose a PCB that fits into whatever size case you've picked. One option with a PCB is whether it has RGB underglow on it, which means it has tiny lights on it that you can program to display different colors. If you want these lights to show, you should find a case and/or key caps with some aspect of transparency.
+
+Another option for the PCB is whether you attach the keys via "hot swap" or "soldering". If you choose hot swap, you just click the keys into place. However, most PCBs require you to solder the key switches (discussed below) to the circuitry on the board.
+
+## Keyboard plate {#keyboard-plate}
+
+**Keyboard plates** are what you put on top of PCBs to hold your keys in place. You can choose from aluminum, brass, or steel. If you're feeling overwhelmed, this isn't something you should stress about. You can barely see it below the keys, so color doesn't matter much, and the differences in sound/material from the material seem minimal to me. You should make sure to get one that matches the layout of the keys that you want, though.
+
+## Key switches {#key-switches}
+
+This is a fun choice! **Key switches** are what go below the keys to provide the majority of sound and feel. You can choose from many different brands, e.g. Cherry MX or Gateron, and types of switch feels, e.g. tactile, linear, clicky. I won't go into all the differences here, but you should know that switch colors correspond to certain sounds/feels. The color of the switch won't be seen unless you have translucent key caps. I discovered the world of [typing test videos](https://www.youtube.com/watch?v=yXfysGqNLeE) while I was picking out key switches.
+
+## Key stabilizers {#key-stabilizers}
+
+**Key stabilizers** are necessary but a bit boring. They go beneath the wider keys like space bar and shift to help distribute the weight of your finger to press the button. It is common to lubricate the key stabilizers before you install them so that these keys are easier to press.
+
+## Key caps {#key-caps}
+
+**Key caps** are, in my opinion, the most exciting part! They go on top of the switches and are the most visible part of the keyboard. You can choose the material and colors, and either buy as a set or pick out [unique custom keycaps](https://www.etsy.com/market/keycaps?utm_source=google&utm_medium=cpc&utm_term=etsy%20keycaps_e&utm_campaign=Search_US_Brand_GGL_ENG_Electronics_General_All&utm_ag=Keycaps&utm_custom1=_k_CjwKCAjw46CVBhB1EiwAgy6M4nJbZIFPQUy_kGqdGNyhP_E6sUvFiW16Ge2NwLGC4YxSKDCI6dXxCxoCG_AQAvD_BwE_k_&utm_content=go_6518574893_130991488488_536666961773_aud-459688891595:kwd-1394000379778_c_&utm_custom2=6518574893&gclid=CjwKCAjw46CVBhB1EiwAgy6M4nJbZIFPQUy_kGqdGNyhP_E6sUvFiW16Ge2NwLGC4YxSKDCI6dXxCxoCG_AQAvD_BwE).
+
+## Soldering equipment
+
+Unless you get a hot swap PCB, you'll need a soldering iron, solder wire, something to remove excess solder (i.e. solder wick or sucker).
+
+# My Build
+
+These were the components I used. If I were to do it again I would pick another type of switch besides Cherry MX Brown... they work great but they're a bit boring. I spent some time perusing builds on [reddit (r/Mechanical Keybards)](https://www.reddit.com/r/MechanicalKeyboards/) before I bought my components.
+
+-   [Blue aluminum KBD75 V2 Case with acrylic midlayer to show RBG lighting](https://kbdfans.com/products/kbd75v2-custom-keyboard-diy-kit-1)
+-   [KBD75 Rev 2.0 Solderable PCB](https://kbdfans.com/products/kbdfans-75-pcb-75)
+-   [KBD75 Brass plate](https://kbdfans.com/products/kbd75-brass-plate)
+-   [KBD75 Foam pad](https://kbdfans.com/products/kbd75-pcb-foam)
+-   [Cherry screw in stabilizers](https://www.amazon.com/Genuine-Cherry-GMK-Screw-Stabilizers/dp/B082Z5P769)
+-   [Cherry RGB Brown switches](https://www.amazon.com/Cherry-Switches-MX1A-L1NA-Mechanical-Keyboard/dp/B0852QJ8PJ?th=1)
+-   [Retro blue and red keycaps](https://www.amazon.com/TAI-HAO-Profile-Keycaps-Compatible-Keyboards/dp/B08W56W35R/ref=sr_1_58?crid=1A8BUF5OB84RB&keywords=red+blue+keycaps+retro&qid=1655008111&sprefix=red+blue+keycaps+retro%2Caps%2C55&sr=8-58)
+-   Soldering equipment: I borrowed my dad's [Hakko FX-601 iron](https://www.amazon.com/Hakko-FX601-02-Adjustable-Temperature-Controlled/dp/B00FZPSX3G) and used a [sharp cone-shaped tip](https://www.amazon.com/gp/product/B00B4T9KBG/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1). I also used [rosin core solder wire](https://www.homedepot.com/p/Forney-1-16-in-1-4-lb-Rosin-Core-60-40-Solder-38073/206471634), a [solder wick](https://www.amazon.com/Lesnow-No-Clean-Desoldering-Removal-Dispenser/dp/B094GZ6CPZ/ref=sr_1_1_sspa?keywords=solder+wick&qid=1655225989&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExUjlQTklXM1c4MTNEJmVuY3J5cHRlZElkPUEwNzYyODczMlZYVjQ4TzhSSVlXUCZlbmNyeXB0ZWRBZElkPUEwNjQ5NzAyMlpES0gxR05GM0o5JndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==) and [brass sponge]() for removing solder. I later purchased a [solder sucker](https://www.amazon.com/gp/product/B002MJMXD4/ref=ppx_yo_dt_b_asin_title_o07_s04?ie=UTF8&psc=1), which I recommend for removing soldering.
+
+![*My components and tools, from left to right: a rag for touching up lubricant/solder, silicone lubricant, brass sponge for removing solder, solder wire, soldering iron with stand, scissors, tweezers, toothpicks, switches, stabilizers (black platic feet), screws, soft feet stickers, stabilizers (metal rods), case, key caps, PCB, brass plate, and foam pad. Not pictured: solder sucker that I purchased later.*](keyboard/IMG_9073.png)
+
+# The steps
+
+I'll briefly outline the steps to building the keyboard below. If you're actually in the process of building, I highly recommend finding a recorded live stream and/or tutorials on Youtube to walk you through the process. I found one by [Taeha Types](https://www.youtube.com/channel/UCMHXMAeKkI6HXlPfLiYvo9g) for my [exact build]((https://www.youtube.com/watch?v=O7uJprfBlos)), and watched it almost in entirety.
+
+## 1. Test your PCB
+
+First you'll want to download a keyboard programming app like [VIA](https://www.caniusevia.com/), plug your keyboard into your computer, take a pair of tweezers, and test each point of key circuitry on your PCB plate.
+
+<video width="100%" controls>
+
+<source src="keyboard/testing_keys.mp4#t=0.1" type="video/mp4">
+
+</video>
+
+## 2. Lubricate the stabilizers
+
+If your PCB plate is working properly, go ahead and add lubricant and put together your stabilizers. I found the whole process a bit tricky, but [Youtube](https://www.youtube.com/watch?v=usNx1_d0HbQ) helped a lot. There are special lubricants made for keyboards, but I was impatient and used silicone lubricant that I already had.
+
+![](keyboard/IMG_9074.png)
+
+## 3. Place your stabilizers on the PCB
+
+Time to click the stabilizers into place! You can put the respective keycaps on (space bar, shift, backspace, etc.) and make sure you like the feel at this point.
+
+<video width="100%" controls>
+
+<source src="keyboard/test_stabs.mp4#t=0.1" type="video/mp4">
+
+</video>
+
+## 4. Add the plate and click the key switches into the PCB
+
+You can now overlay your plate on the PCB and start clicking each key switch's metal prongs into the small holes on the PCB. You should feel a click when it locks into place, and the switches should not fall out if you flip the board over.
+
+<video width="100%"  controls>
+
+<source src="keyboard/clicking_switches.mp4#t=0.1" type="video/mp4">
+
+</video>
+
+## 5. Soldering
+
+This was hands-down my favorite part of the entire process. Soldering (pronounced saw-der-ing) is SO much fun. There's a ton of videos online about it, and you can buy a kit to practice if you want, but honestly I just went for it. You basically melt a piece of metal (solder) and then place the soldering iron right next to the key switch prongs and PCB ring of metal to create an electrical conduction.
+
+<video width="100%"  controls>
+
+<source src="keyboard/soldering.mp4#t=0.1" type="video/mp4">
+
+</video>
+
+One important note with soldering is that you should wait a day and retest your keys to make sure the conduction stayed. I had an issue where I would successfully test the keys about five minutes after soldering, but the next day the same keys would no longer work. I finally realized this was because I was soldering outside on a summer night (to avoid the fumes). As the sun went down, my soldering iron was no longer as hot as it said it was (\~400° Fahrenheit) because the wind/outside air was cooling it down.
+
+This is what my final soldered PCB and switches looked like. Each of the keys has two small mounds of solder creating an electrical conduction between the switch and the PCB. These look like small silver balls.
+
+![](keyboard/final_solder.png)
+
+## 6. Stack and screw
+
+Once all your keys' electrical connections work, you can add your key caps. Finally, stack all the pieces together (case, foam plate, plate/PCB/switches/keys) and tighten the necessary screws.
+
+<video width="100%" controls>
+
+<source src="keyboard/screws.mp4#t=0.1" type="video/mp4">
+
+</video>
+
+## 7. Type away
+
+Enjoy the click-clack of your brand new custom mechanical keyboard!
+
+<video width= "100%" controls>
+
+<source src="keyboard/typing.mp4#t=0.1" type="video/mp4">
+
+</video>
+
+# Lessons learned
+
+In the end, the process of learning to build a mechanical keyboard felt just like learning any new concept in statistics/data science. The knowledge took some time to find, and the jargon was a bit intimidating, but after spending some time sifting through information I could always find what I needed. The entire process was very enjoyable, and I'm already looking forward to my next build!
+
+![](keyboard/IMG_7198.png)

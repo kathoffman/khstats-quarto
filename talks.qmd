@@ -1,0 +1,16 @@
+---
+title: "Talks"
+listing:
+  contents: "talks/*md"
+  feed: true
+  sort: "date desc"
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  image-placeholder: images/image-placeholder.png
+  fields: [image, date, title, description]
+page-layout: full
+title-block-banner: true
+---
+
+Selected slide decks are shown below. A full listing of talks is available on my [CV]().

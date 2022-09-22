@@ -1,0 +1,11 @@
+---
+title: "Publications"
+bibliography: mypubs.bib
+nocite: |
+  @*
+---
+
+*Selected publications; for a full listing please see my [Google Scholar profile](https://scholar.google.com/citations?user=73RvTUoAAAAJ).*
+
+::: {#refs}
+:::

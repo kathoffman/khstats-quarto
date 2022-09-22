@@ -1,0 +1,14 @@
+{
+  "hash": "d61e4f4f7afbf9c108e66630e9868f1c",
+  "result": {
+    "markdown": "---\ntitle: \"R/Medicine 2022: Making swimmer plots for longitudinal data using {ggplot}\"\nauthor: \"Katherine Hoffman\"\nshowonlyimage: true\ndate: 2019-04-16T21:13:14-05:00\ntags: [\"positivity\",\"causal inference\",\"taylor swift\"]\ncategories: [\"comics\",\"statistics\"]\nimage: /img/graphics/rmed-screenshot.png\nweight: 50\n---\n\n\nSlide deck.\n\n<!--more-->\n\n<html>\n   <head>\n   </head>\n   \n   <body>\n   <a\n   href=\"https://kathoffman.github.io/swimmer-plots/slides.html#1\">\n         <img alt=\"r medicine slides\" src=\"/img/graphics/rmed-screenshot.png\"  >\n   </body>\n</html>",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

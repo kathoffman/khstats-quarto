@@ -1,0 +1,238 @@
+---
+title: "Silver Linings: five coding tricks learned during Lockdown"
+author: "Katherine Hoffman"
+date: 2020-07-10T21:13:14-05:00
+categories: ["programming"]
+image: /img/covid_fx/gtsummary_tweet-crop.png
+tags: ["R","Electronic Health Record","COVID-19","data wrangling","tidyverse","tidylog","gtsummary"]
+math: true
+description: " "
+output: 
+  blogdown::html_page:
+    toc: false
+    smart: false
+    df_print: "paged"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results="asis")
+```
+
+In non-coronavirus times, I am the biostatistician for a team of NYC pulmonologists and intensivists. When the pandemic hit NYC in mid-March, I immediately became a <strike>100%</strike> 200% COVID-19 statistician. I received many analysis requests, though not all of them from official investigators:
+
+<blockquote class="twitter-tweet">
+
+<p lang="en" dir="ltr">
+
+My family recently learned I am the statistician for my hospital's pulmonologists and now I get COVID-19 analysis requests from them, too <a href="https://t.co/wlHmUaBh6Y">pic.twitter.com/wlHmUaBh6Y</a>
+
+</p>
+
+--- Kat Hoffman (@rkatlady) <a href="https://twitter.com/rkatlady/status/1248746176834306056?ref_src=twsrc%5Etfw">April 10, 2020</a>
+
+</blockquote>
+
+```{=html}
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+```
+Jokes aside, I was really busy during the Spring 2020 outbreak. While doing work for both hospital operations and rapidly moving COVID-19 academic research, it was especially important to code efficiently and accurately while working with a deluge of Electronic Health Record (EHR) data.
+
+This post contains my favorite (because they were either the most useful or most used) lines of `R` code for turning very raw-form EHR data into analytical files for descriptive reporting and statistical inference. For the examples, I've created data that is a simplified version of my actual data sets -- just in case you too would like to pretend you are a COVID-19 biostatistician!
+
+The first data set contains some basic demographic and clinical outcome information for all COVID-19 positive patients who arrived at a hospital. The second data set contains laboratory results for all patients who arrived at the hospital during a certain window of time. In theory, the first data set (`patients`) should be a subset of the second (`labs`).
+
+```{r, message=F, warning=F}
+# load tidyverse for data creation and set seed for reproducible data
+library(tidyverse)
+set.seed(7)
+
+# data set of basic patient demographics
+patients <-
+  tribble(
+    ~id, ~admit_dt, ~death_or_discharge_dt,
+    ~age, ~sex, ~height, ~weight, ~current_smoker, ~immunosuppressed, 
+    100, "2020-03-21 00:10", "2020-05-13 12:10",
+64, "Male", 68, 199, "Yes", "No", 
+    104, "2020-04-03 12:15", "2020-04-29 18:34",
+25, "Male", 72, NA, "Yes", "No", 
+    106, "2020-03-28 12:22", "2020-04-05 19:18",
+49, "Female", 64, 189, "No", "Yes", 
+     107, "2020-04-10 18:15","2020-04-14 19:12",
+ 88, "Male", 62, 111, "No", "Yes", 
+    111, "2020-04-18 00:49", "2020-04-25 19:18",
+61, "Female", 67, 156, "No", "Yes"
+  ) %>%
+  # set time zone for date time variables
+  mutate_at(vars(ends_with("_dt")), ~as.POSIXct(., tz="America/New_York"))
+
+# generate labs data
+labs <- map_dfr(100:110, function(x){
+  lab_time <- sample(seq(as.POSIXct("2020-03-01 00:00"), as.POSIXct("2020-05-30 00:00"), by="hours"), runif(1, 50, 200))
+  id <- rep(x, length.out=length(lab_time))
+  lab_name <- sample(c("D-Dimer","Platelet Count","C-Reactive Protein","Lactate Dehydrogenase","LYMPHOCYTE PERC","Absolute Lymphocyte Count"), size = length(lab_time), replace = T)
+  lab_value <- runif(length(lab_time), 100, 1200)
+  lab_value <- ifelse(lab_value > 1000, ">1000", as.character(round(lab_value)))
+  df <- tibble(id, lab_time, lab_name, lab_value)
+  return(df)
+}) 
+```
+
+```{r}
+patients
+labs
+```
+
+# 1. `tidylog`
+
+The first line of `R` code I found most useful was actually just loading an entire package. It sounds crazy, but that's all you have to do! You simply load the package, `tidylog`, after `tidyverse` (or `dplyr` or `tidyr`):
+
+```{r}
+library(tidylog, warn.conflicts = F)
+```
+
+Then, whenever you use one of the previously mentioned packages to wrangle data, `tidylog` will give you super helpful information about what just happened. For example, if you use `mutate` on a column, it will tell you how many new `NA` values were created, if any. It will also remind you which variables you removed, and will give you feedback after you've grouped or ungrouped by a certain variable.
+
+```{r}
+patients <-
+  patients %>%
+  # compute BMI
+  mutate(bmi = weight / height^2 * 703) %>%
+  # remove the patients height and weight from the data frame
+  select(-height, -weight)
+```
+
+It's especially helpful for joining data, because it will tell you how many rows matched in the right and left hand side of your data. In this example, we can see that about 50% of the lab values in `labs` have a match in patients -- as expected. However, one patient in `patients` does not have any labs in `labs` -- not good! This would be a scenario I would need to follow up with my data source (the Informatics team I work with) to figure out.
+
+```{r}
+patient_labs <-
+  patients %>%
+  left_join(labs)
+patient_labs
+```
+
+`library(tidylog)` has singlehandedly helped me detect countless errors while working with rapidly changing COVID-19 data from many different sources. My coworker once summed it up perfectly by saying, "`tidylog` isn't just a package, it's a lifestyle."
+
+# 2. `gtsummary::tbl_summary()` + `labelled::add_variable_labels` + `snakecase::to_title_case`
+
+<blockquote class="twitter-tweet">
+
+<p lang="en" dir="ltr">
+
+efficiently labeling variables: a useful skill if you make a lot of <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> tables👩🏼‍💻<br><br>feat. labelled, snakecase, stringr & gtsummary 📦s <a href="https://t.co/YmiYZEjVKS">pic.twitter.com/YmiYZEjVKS</a>
+
+</p>
+
+--- Kat Hoffman (@kat_hoffman_) <a href="https://twitter.com/kat_hoffman_/status/1305218425732595713?ref_src=twsrc%5Etfw">September 13, 2020</a>
+
+</blockquote>
+
+```{=html}
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+```
+`gtsummary`'s `tbl_summary()` is hands down my favorite function for making summary tables. It is so smooth and flexible to use, and it works seamlessly with the new `gt` package for making tables. You simply input a dataset containing the variables you want to summarize, and, optionally, a grouping variable to stratify those summary statistics by, and you'll immediately have a clean and clear descriptive table!
+
+In this example, I'll use `tbl_summary()` to summarize the median and IQR or number and percent of all the demographic variables in our `patients` data set. We *could* use this code: the barebones function truly only needs a data set containing the variables of interest, and then `gtsummary` does all the formatting work:
+
+```{r}
+library(gtsummary)
+```
+
+```{r, eval=F}
+patients %>% 
+  # select vars of interest for tables
+  select(age, sex, bmi, current_smoker, immunosuppressed) %>%
+  tbl_summary(
+    # make sure all numeric variables are reported as continuous
+    type = list(all_numeric() ~ "continuous")
+  ) 
+```
+
+That'd be fine, but what I *really* found to be useful during the NYC outbreak was the `labelled` function. Since I was constantly presenting data to clinicians, it was important that the tables and figures I showed were clear and concise. I try to always eliminate the "ugly" variable names from my presentations and reports, as a rule... but while doing that as automatically as possible.
+
+It was incredibly helpful to use `set_variable_labels()` from the `labelled` package to make the variable names ready for reporting. My favorite trick was to combine this function with the `to_title_case()` function from the `snakecase` package. The latter will take any variable of the format **`snake_case`** (i.e. all lowercase, with underscores between words), remove the underscores, and capitalize the first letter of each word -- just like a title.
+
+If you use `to_title_case(names(.))` in the `.labels` global argument of the `set_variable_names()` function, it'll clean up most variables in an extremely intuitive and readable way. Then if there are variables (such as acronyms) that are still not labelled the way you'd prefer them to be, you can directly change them by listing the variable name and the character string you'd like it to say instead. We can do this for BMI, so it does not read "Bmi" when `to_title_case` transforms the label.
+
+```{r}
+patients %>% 
+  # select vars of interest for tables
+  select(age, sex, bmi, current_smoker, immunosuppressed) %>%
+  # edit variable names using labelled package
+  labelled::set_variable_labels(
+    # change all variable labels to "Title Case"
+    .labels = snakecase::to_title_case(names(.)),
+    # change any extra variables that are not title case, like BMI
+    bmi = "BMI"
+    ) %>%
+  tbl_summary(
+    # don't show missing (unknown) values
+    missing = "no",
+    # make sure all numeric variables are reported as continuous
+    type = list(all_numeric() ~ "continuous")
+  ) %>%
+  # bold the labels
+  bold_labels()
+```
+
+So clean and readable, with such little effort! A few other lines of code I usually add to make the tables nicer with very little effort are `missing = "no"` to the main `tbl_summary()` argument, and `bold_labels()` after.
+
+# 3. `dplyr::filter()` + `stringr::str_detect()` + `tolower()`
+
+This has been *such* a life saver when searching through very long-form COVID-19 data for a particular lab, vital sign, medication, or order of interest. I often don't know the exact word, much less capitalization, of the string I'm looking for in a data set, but this combination of functions really saves the day.
+
+Here we can use it to figure out the name of patients' absolute lymphocyte count labs. Of course we could just do something like:
+
+```{r}
+sort(unique(labs$lab_name))
+```
+
+But in my actual data sets of upwards of 50 million rows, this would return thousands of results! I discovered the easiest way to find what I was looking for was to first convert the `lab_name` to all lowercase using `tolower(lab_name)`, and then search for strings using `str_detect()`, only keeping rows that matched using `filter()` and then looking at *those* unique values using `pull()`\* and `unique()`.
+
+```{r}
+labs %>%
+  filter(str_detect(tolower(lab_name), "lymph")) %>%
+  pull(lab_name) %>%
+  unique() 
+```
+
+Although you don't have to use pipes to do this, I often used those filtered rows for other exploratory data checks, such as looking at the units or distributions of the tests, so it was helpful to have it in the "tidy" format.
+
+\*`pull()` is a somewhat lesser known function of `dplyr` that extracts a column as a dimensionless vector from a data frame, rather than `select`ing a single column, which `R` still treats as a data frame.
+
+# 4. `readr::parse_number()`
+
+This is handy whenever I'm dealing with test results that can contain values above or below a detection range. Instead of using `as.numeric()` on a vector, I've switched to always using `readr`'s `parse_number()` function. This is because `as.numeric()` will turn values with meaningful information (such as "\>1,000") into `NA`.
+
+Let's look at this with the D-Dimer values in `patients_labs`. If you've been keeping up with any of the cytokine storm in COVID-19 headlines, you'll know that D-Dimers are often sky-high in severely ill COVID-19 patients. So high, that they're sometimes out of detectable ranges\*!
+
+```{r}
+patient_labs %>%
+  filter(str_detect(tolower(lab_name), "dimer")) %>%
+  select(lab_name, lab_value) %>%
+  mutate(lab_value_numeric = as.numeric(lab_value),
+         lab_value_parsed_number = readr::parse_number(lab_value))
+```
+
+When we use `as.numeric()` to switch the values from strings, we lose those out of range values. Those are our sickest patients, so if we continue with the analysis, we'll definitely bias our results. However, if we use `parse_number()` we can at least evaluate those patients conservatively, using the upper bound of the test detection range.
+
+\*Detectable range is usually \>55,000 ng/mL, but for the sake of demonstration, let's pretend it's \>1,000 of the mystery units in my fake data set.
+
+# 5. `lubridate`'s `%within%` + `interval()` + `hours()`
+
+Last but not least is two beautiful functions from the `lubridate` package. If you ever find yourself working with time-stamped data, you should definitely check it out. I tried multiple functions and packages at the beginning of the outbreak, and in the end, nothing compared to `lubridate`, at least for my use-cases.
+
+The `%within%` function allows you to determine whether a time value (stored in `R` as a `POSIXct` object) falls within a window of time. You can specify this window of time using the `interval()` function. If you have only the start or the end time of the window of interest, you can add or subtract using supplemental functions like `days()` or `hours()`.
+
+For my COVID-19 research, the pulmonologists were often interested in snapshots of patients relative to a certain time in their disease course, for example, within the first 24 hours after intubation. The `lubridate` functions made it super easy to extract the labs, vital signs, or other information that happened relative to another date.
+
+Here's how we could use the aforementioned functions in the `patient_labs` dataset we made previously. We can extract all the labs relative to 24 hours after the hospital admission date.
+
+```{r}
+library(lubridate)
+patient_labs %>%
+  filter(lab_time %within% interval(admit_dt, admit_dt + days(1)))
+```
+
+Perfect! I could go on to informatively join this data to another using `tidylog`, make tables with clean labels using `tbl_summary()`, `set_variable_labels()`, and `to_title_case()`, find further labs of interest with `filter()`, `str_detect()`, and `tolower()`, and make the lab values numeric with `parse_number()`... the possibilities are endless!
+
+I hope you enjoyed a quick insight into the data side of COVID-19 research, and/or perhaps picked up some useful function combinations for your own applied work with `R`.

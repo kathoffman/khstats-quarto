@@ -1,0 +1,14 @@
+{
+  "hash": "4d5c096abc592cc479ee511f873f9b81",
+  "result": {
+    "markdown": "---\ntitle: \"Corticosteroids for COVID-19: Optimizing Observational Research through Target Trial Emulations\"\nauthor: \"Katherine Hoffman\"\nshowonlyimage: true\ndate: 2019-04-16T21:13:14-05:00\ntags: [\"target trial emulation\",\"causal inference\"]\ncategories: [\"statistics\"]\nimage: /img/graphics/ACIC_slide_cover.png\nweight: 32\n---\n\n\nSlide deck and Github link for my 2022 American Causal Inference Conference (ACIC) talk.\n\n<!--more-->\n\nView the Github repository for this analysis [[here]](https://github.com/kathoffman/steroids-trial-emulation).\n\n<html>\n   <head>\n   </head>\n   \n   <body>\n   <a\n   href=\"https://github.com/kathoffman/steroids-trial-emulation/blob/main/presentations/hoffman_acic_slides.pdf\">\n         <img alt=\"acic 2022 slide deck\" src=\"/img/graphics/ACIC_slide_cover.png\"  >\n   </body>\n</html>",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

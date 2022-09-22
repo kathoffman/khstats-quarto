@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Katherine Hoffman">
+<meta name="dcterms.date" content="2022-06-15">
+
+<title>KHstats - You’re just my type! A beginner’s guide to building a custom mechanical keyboard</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">Google Scholar</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">You’re just my type! A beginner’s guide to building a custom mechanical keyboard</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">miscellaneous</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Katherine Hoffman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 15, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<blockquote class="blockquote">
+<p>This blog post details a DIY project I did last summer – building a mechanical keyboard. I’m no expert, but I enjoyed the process of building the keyboard so much that I thought I would briefly walk through the steps and share helpful resources. Even if you have no interest in building your own, I hope it encourages you to learn something new that you may have initially felt intimidated by!</p>
+</blockquote>
+<p><img src="keyboard/IMG_2826.JPG" class="img-fluid"></p>
+<!-- <iframe src="https://giphy.com/embed/2IGcITcJg09VK" width="480" height="379" frameBorder="0"  allowFullScreen></iframe><p><a href="https://giphy.com/gifs/2IGcITcJg09VK"></a></p> -->
+<section id="whats-a-mechanical-keyboard" class="level1">
+<h1>What’s a mechanical keyboard?</h1>
+<!-- <iframe src="https://giphy.com/embed/2IGcITcJg09VK" width="700" frameBorder="0" allowFullScreen></iframe><p></p> -->
+<p>A mechanical keyboard is the typing unit that comes with a desktop computer, as opposed to a laptop. The keys are taller and provide more feedback in feel and sound when you hit them. Gamers, typists, and coders are more likely to use a mechanical keyboard.</p>
+</section>
+<section id="why-would-i-want-to-build-a-mechanical-keyboard" class="level1">
+<h1>Why would I want to build a mechanical keyboard?</h1>
+<p>You can buy a mechanical keyboard, and to be honest, it’s a much cheaper monetary and time investment. Practically, the reason to build your own keyboard is customizability. Picking out the components provides freedom in colors, layout, feel/sound of the keys, and more. Yet the primary reason people do it is that it’s fun. If you enjoy DIY projects, you’ll probably enjoy the challenge that comes with building your own keyboard.</p>
+<p>Personally, I decided to build my mechanical keyboard because I was bored during quarantine after catching COVID-19 last summer. I texted my dad at 1AM to see if I could use his soldering iron, and the rest is history.</p>
+<p><img src="keyboard/ss_dad.jpeg" class="img-fluid" style="width:75.0%"></p>
+</section>
+<section id="what-components-do-i-need-to-buy" class="level1">
+<h1>What components do I need to buy?</h1>
+<p>Picking out the components can be overwhelming! Yet it boils down to six main pieces you’ll need:</p>
+<ol type="1">
+<li><a href="#case">Case</a></li>
+<li><a href="#pcb">Printed Circuit Board (PCB)</a></li>
+<li><a href="#keyboard-plate">Keyboard plate</a></li>
+<li><a href="#key-switches">Key switches</a></li>
+<li><a href="#key-stabilizers">Key stabilizers</a></li>
+<li><a href="#key-caps">Key caps</a></li>
+</ol>
+<section id="case" class="level2">
+<h2 class="anchored" data-anchor-id="case">Case</h2>
+<p>The <strong>case</strong> is the outside of your keyboard. The size of the case you choose will limit how many keys you can have on your keyboard. Case sizes are described in percentages, i.e.&nbsp;100%, 80%, 75%, 60%, 40%, which corresponds to how many keys fit on the board.</p>
+</section>
+<section id="pcb" class="level2">
+<h2 class="anchored" data-anchor-id="pcb">PCB</h2>
+<p>The Printed Circuit Board <strong>(PCB)</strong> is the electronic circuitry of your keyboard. You will need to choose a PCB that fits into whatever size case you’ve picked. One option with a PCB is whether it has RGB underglow on it, which means it has tiny lights on it that you can program to display different colors. If you want these lights to show, you should find a case and/or key caps with some aspect of transparency.</p>
+<p>Another option for the PCB is whether you attach the keys via “hot swap” or “soldering”. If you choose hot swap, you just click the keys into place. However, most PCBs require you to solder the key switches (discussed below) to the circuitry on the board.</p>
+</section>
+<section id="keyboard-plate" class="level2">
+<h2 class="anchored" data-anchor-id="keyboard-plate">Keyboard plate</h2>
+<p><strong>Keyboard plates</strong> are what you put on top of PCBs to hold your keys in place. You can choose from aluminum, brass, or steel. If you’re feeling overwhelmed, this isn’t something you should stress about. You can barely see it below the keys, so color doesn’t matter much, and the differences in sound/material from the material seem minimal to me. You should make sure to get one that matches the layout of the keys that you want, though.</p>
+</section>
+<section id="key-switches" class="level2">
+<h2 class="anchored" data-anchor-id="key-switches">Key switches</h2>
+<p>This is a fun choice! <strong>Key switches</strong> are what go below the keys to provide the majority of sound and feel. You can choose from many different brands, e.g.&nbsp;Cherry MX or Gateron, and types of switch feels, e.g.&nbsp;tactile, linear, clicky. I won’t go into all the differences here, but you should know that switch colors correspond to certain sounds/feels. The color of the switch won’t be seen unless you have translucent key caps. I discovered the world of <a href="https://www.youtube.com/watch?v=yXfysGqNLeE">typing test videos</a> while I was picking out key switches.</p>
+</section>
+<section id="key-stabilizers" class="level2">
+<h2 class="anchored" data-anchor-id="key-stabilizers">Key stabilizers</h2>
+<p><strong>Key stabilizers</strong> are necessary but a bit boring. They go beneath the wider keys like space bar and shift to help distribute the weight of your finger to press the button. It is common to lubricate the key stabilizers before you install them so that these keys are easier to press.</p>
+</section>
+<section id="key-caps" class="level2">
+<h2 class="anchored" data-anchor-id="key-caps">Key caps</h2>
+<p><strong>Key caps</strong> are, in my opinion, the most exciting part! They go on top of the switches and are the most visible part of the keyboard. You can choose the material and colors, and either buy as a set or pick out <a href="https://www.etsy.com/market/keycaps?utm_source=google&amp;utm_medium=cpc&amp;utm_term=etsy%20keycaps_e&amp;utm_campaign=Search_US_Brand_GGL_ENG_Electronics_General_All&amp;utm_ag=Keycaps&amp;utm_custom1=_k_CjwKCAjw46CVBhB1EiwAgy6M4nJbZIFPQUy_kGqdGNyhP_E6sUvFiW16Ge2NwLGC4YxSKDCI6dXxCxoCG_AQAvD_BwE_k_&amp;utm_content=go_6518574893_130991488488_536666961773_aud-459688891595:kwd-1394000379778_c_&amp;utm_custom2=6518574893&amp;gclid=CjwKCAjw46CVBhB1EiwAgy6M4nJbZIFPQUy_kGqdGNyhP_E6sUvFiW16Ge2NwLGC4YxSKDCI6dXxCxoCG_AQAvD_BwE">unique custom keycaps</a>.</p>
+</section>
+<section id="soldering-equipment" class="level2">
+<h2 class="anchored" data-anchor-id="soldering-equipment">Soldering equipment</h2>
+<p>Unless you get a hot swap PCB, you’ll need a soldering iron, solder wire, something to remove excess solder (i.e.&nbsp;solder wick or sucker).</p>
+</section>
+</section>
+<section id="my-build" class="level1">
+<h1>My Build</h1>
+<p>These were the components I used. If I were to do it again I would pick another type of switch besides Cherry MX Brown… they work great but they’re a bit boring. I spent some time perusing builds on <a href="https://www.reddit.com/r/MechanicalKeyboards/">reddit (r/Mechanical Keybards)</a> before I bought my components.</p>
+<ul>
+<li><a href="https://kbdfans.com/products/kbd75v2-custom-keyboard-diy-kit-1">Blue aluminum KBD75 V2 Case with acrylic midlayer to show RBG lighting</a></li>
+<li><a href="https://kbdfans.com/products/kbdfans-75-pcb-75">KBD75 Rev 2.0 Solderable PCB</a></li>
+<li><a href="https://kbdfans.com/products/kbd75-brass-plate">KBD75 Brass plate</a></li>
+<li><a href="https://kbdfans.com/products/kbd75-pcb-foam">KBD75 Foam pad</a></li>
+<li><a href="https://www.amazon.com/Genuine-Cherry-GMK-Screw-Stabilizers/dp/B082Z5P769">Cherry screw in stabilizers</a></li>
+<li><a href="https://www.amazon.com/Cherry-Switches-MX1A-L1NA-Mechanical-Keyboard/dp/B0852QJ8PJ?th=1">Cherry RGB Brown switches</a></li>
+<li><a href="https://www.amazon.com/TAI-HAO-Profile-Keycaps-Compatible-Keyboards/dp/B08W56W35R/ref=sr_1_58?crid=1A8BUF5OB84RB&amp;keywords=red+blue+keycaps+retro&amp;qid=1655008111&amp;sprefix=red+blue+keycaps+retro%2Caps%2C55&amp;sr=8-58">Retro blue and red keycaps</a></li>
+<li>Soldering equipment: I borrowed my dad’s <a href="https://www.amazon.com/Hakko-FX601-02-Adjustable-Temperature-Controlled/dp/B00FZPSX3G">Hakko FX-601 iron</a> and used a <a href="https://www.amazon.com/gp/product/B00B4T9KBG/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&amp;psc=1">sharp cone-shaped tip</a>. I also used <a href="https://www.homedepot.com/p/Forney-1-16-in-1-4-lb-Rosin-Core-60-40-Solder-38073/206471634">rosin core solder wire</a>, a <a href="https://www.amazon.com/Lesnow-No-Clean-Desoldering-Removal-Dispenser/dp/B094GZ6CPZ/ref=sr_1_1_sspa?keywords=solder+wick&amp;qid=1655225989&amp;sr=8-1-spons&amp;psc=1&amp;spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExUjlQTklXM1c4MTNEJmVuY3J5cHRlZElkPUEwNzYyODczMlZYVjQ4TzhSSVlXUCZlbmNyeXB0ZWRBZElkPUEwNjQ5NzAyMlpES0gxR05GM0o5JndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==">solder wick</a> and <a href="">brass sponge</a> for removing solder. I later purchased a <a href="https://www.amazon.com/gp/product/B002MJMXD4/ref=ppx_yo_dt_b_asin_title_o07_s04?ie=UTF8&amp;psc=1">solder sucker</a>, which I recommend for removing soldering.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="keyboard/IMG_9073.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><em>My components and tools, from left to right: a rag for touching up lubricant/solder, silicone lubricant, brass sponge for removing solder, solder wire, soldering iron with stand, scissors, tweezers, toothpicks, switches, stabilizers (black platic feet), screws, soft feet stickers, stabilizers (metal rods), case, key caps, PCB, brass plate, and foam pad. Not pictured: solder sucker that I purchased later.</em></figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="the-steps" class="level1">
+<h1>The steps</h1>
+<p>I’ll briefly outline the steps to building the keyboard below. If you’re actually in the process of building, I highly recommend finding a recorded live stream and/or tutorials on Youtube to walk you through the process. I found one by <a href="https://www.youtube.com/channel/UCMHXMAeKkI6HXlPfLiYvo9g">Taeha Types</a> for my <a href="(https://www.youtube.com/watch?v=O7uJprfBlos)">exact build</a>, and watched it almost in entirety.</p>
+<section id="test-your-pcb" class="level2">
+<h2 class="anchored" data-anchor-id="test-your-pcb">1. Test your PCB</h2>
+<p>First you’ll want to download a keyboard programming app like <a href="https://www.caniusevia.com/">VIA</a>, plug your keyboard into your computer, take a pair of tweezers, and test each point of key circuitry on your PCB plate.</p>
+<video width="100%" controls="">
+<source src="keyboard/testing_keys.mp4#t=0.1" type="video/mp4">
+</video>
+</section>
+<section id="lubricate-the-stabilizers" class="level2">
+<h2 class="anchored" data-anchor-id="lubricate-the-stabilizers">2. Lubricate the stabilizers</h2>
+<p>If your PCB plate is working properly, go ahead and add lubricant and put together your stabilizers. I found the whole process a bit tricky, but <a href="https://www.youtube.com/watch?v=usNx1_d0HbQ">Youtube</a> helped a lot. There are special lubricants made for keyboards, but I was impatient and used silicone lubricant that I already had.</p>
+<p><img src="keyboard/IMG_9074.png" class="img-fluid"></p>
+</section>
+<section id="place-your-stabilizers-on-the-pcb" class="level2">
+<h2 class="anchored" data-anchor-id="place-your-stabilizers-on-the-pcb">3. Place your stabilizers on the PCB</h2>
+<p>Time to click the stabilizers into place! You can put the respective keycaps on (space bar, shift, backspace, etc.) and make sure you like the feel at this point.</p>
+<video width="100%" controls="">
+<source src="keyboard/test_stabs.mp4#t=0.1" type="video/mp4">
+</video>
+</section>
+<section id="add-the-plate-and-click-the-key-switches-into-the-pcb" class="level2">
+<h2 class="anchored" data-anchor-id="add-the-plate-and-click-the-key-switches-into-the-pcb">4. Add the plate and click the key switches into the PCB</h2>
+<p>You can now overlay your plate on the PCB and start clicking each key switch’s metal prongs into the small holes on the PCB. You should feel a click when it locks into place, and the switches should not fall out if you flip the board over.</p>
+<video width="100%" controls="">
+<source src="keyboard/clicking_switches.mp4#t=0.1" type="video/mp4">
+</video>
+</section>
+<section id="soldering" class="level2">
+<h2 class="anchored" data-anchor-id="soldering">5. Soldering</h2>
+<p>This was hands-down my favorite part of the entire process. Soldering (pronounced saw-der-ing) is SO much fun. There’s a ton of videos online about it, and you can buy a kit to practice if you want, but honestly I just went for it. You basically melt a piece of metal (solder) and then place the soldering iron right next to the key switch prongs and PCB ring of metal to create an electrical conduction.</p>
+<video width="100%" controls="">
+<source src="keyboard/soldering.mp4#t=0.1" type="video/mp4">
+</video>
+<p>One important note with soldering is that you should wait a day and retest your keys to make sure the conduction stayed. I had an issue where I would successfully test the keys about five minutes after soldering, but the next day the same keys would no longer work. I finally realized this was because I was soldering outside on a summer night (to avoid the fumes). As the sun went down, my soldering iron was no longer as hot as it said it was (~400° Fahrenheit) because the wind/outside air was cooling it down.</p>
+<p>This is what my final soldered PCB and switches looked like. Each of the keys has two small mounds of solder creating an electrical conduction between the switch and the PCB. These look like small silver balls.</p>
+<p><img src="keyboard/final_solder.png" class="img-fluid"></p>
+</section>
+<section id="stack-and-screw" class="level2">
+<h2 class="anchored" data-anchor-id="stack-and-screw">6. Stack and screw</h2>
+<p>Once all your keys’ electrical connections work, you can add your key caps. Finally, stack all the pieces together (case, foam plate, plate/PCB/switches/keys) and tighten the necessary screws.</p>
+<video width="100%" controls="">
+<source src="keyboard/screws.mp4#t=0.1" type="video/mp4">
+</video>
+</section>
+<section id="type-away" class="level2">
+<h2 class="anchored" data-anchor-id="type-away">7. Type away</h2>
+<p>Enjoy the click-clack of your brand new custom mechanical keyboard!</p>
+<video width="100%" controls="">
+<source src="keyboard/typing.mp4#t=0.1" type="video/mp4">
+</video>
+</section>
+</section>
+<section id="lessons-learned" class="level1">
+<h1>Lessons learned</h1>
+<p>In the end, the process of learning to build a mechanical keyboard felt just like learning any new concept in statistics/data science. The knowledge took some time to find, and the jargon was a bit intimidating, but after spending some time sifting through information I could always find what I needed. The entire process was very enjoyable, and I’m already looking forward to my next build!</p>
+<p><img src="keyboard/IMG_7198.png" class="img-fluid"></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

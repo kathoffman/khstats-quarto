@@ -1,0 +1,350 @@
+---
+title: "Customizable correlation plots in R"
+author: "Katherine Hoffman"
+date: 2020-08-24
+description: " "
+image: /img/corr-cover-image.png
+categories: ["programming"]
+tags: ["R","ggplot2","purrr","rstats","correlation"]
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    smart: false
+    print_df: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results="asis", warning=F, messages=F)
+library(tidyverse)
+library(knitr)
+library(gt)
+cors <- function(df) {
+  M <- Hmisc::rcorr(as.matrix(df))
+  Mdf <- map(M, ~data.frame(.x))
+  return(Mdf)
+}
+
+formatted_cors <- function(df){
+  cors(df) %>%
+    map(~rownames_to_column(.x, var="measure1")) %>%
+    map(~pivot_longer(.x, -measure1, "measure2")) %>%
+    bind_rows(.id = "id") %>%
+    pivot_wider(names_from = id, values_from = value) %>%
+    rename(p = P) %>%
+    mutate(sig_p = ifelse(p < .05, T, F),
+           p_if_sig = ifelse(sig_p, p, NA),
+           r_if_sig = ifelse(sig_p, r, NA))
+}
+```
+
+------------------------------------------------------------------------
+
+*Updated to include `gt` package August 23, 2022.*
+
+If you're ever felt limited by correlogram packages in `R`, this post will show you how to write your own function to tidy the many correlations into a `ggplot2`-friendly form for plotting.
+
+<!--more-->
+
+By the end of this post, you will be able to run one function to get a tidied data frame of correlations:
+
+```{r}
+formatted_cors(mtcars) %>% head() %>% gt()
+```
+
+You can then run `ggplot2` code on this data to make your own correlation heat maps.
+
+```{r, echo=F}
+formatted_cors(mtcars) %>%
+  ggplot(aes(measure1, measure2, fill=r, label=round(r_if_sig,2))) +
+  geom_tile() +
+  labs(x = NULL, y = NULL, fill = "Pearson's\nCorrelation", title="Correlations in Mtcars",
+       subtitle="Only significant Pearson's correlation coefficients shown") +
+  scale_fill_gradient2(mid="#FBFEF9",low="#0C6291",high="#A63446", limits=c(-1,1)) +
+  geom_text() +
+  theme_classic() +
+  scale_x_discrete(expand=c(0,0)) +
+  scale_y_discrete(expand=c(0,0)) +
+  theme(text=element_text(family="Roboto"))
+```
+
+If you just want the code, [skip to the end](#just-the-code).
+
+------------------------------------------------------------------------
+
+# Less-customizable options
+
+I really appreciate some of the packages and functions that allow me to make correlation plots super quickly using `R`. Here are a few examples:
+
+```{r}
+corrplot::corrplot(cor(mtcars))
+```
+
+```{r}
+corrgram::corrgram(mtcars)
+```
+
+```{r}
+ggcorrplot::ggcorrplot(cor(mtcars))
+```
+
+All of these are nice, but none of them are ultimately as customizable as I need them to be. I'll next show how you can bypass using someone else's function constraints to prepare correlations in your data in a `ggplot2`-friendly format.
+
+# Getting the correlations
+
+We could use the base `R` function `cor()` to get our correlations, but I do not like the defaults for missing data. Instead, I use Frank Harrell's `Hmisc::rcorr()` function for two reasons:
+
+1.  it drops missing pairs as the default
+
+2.  it returns p-values, so you only need one function to get both the correlation coefficient and matching p-value
+
+Let's load the libraries we'll need for this, which are `knitr` for showing tables using `gt`, and `tidyverse` (we'll specifically use `tidyr`, `dplyr`, `ggplot2`, `tibble` and `purrr`).
+
+```{r}
+library(knitr)
+library(gt)
+library(tidyverse, warn.conflict=F)
+```
+
+First, let's look at our output from our correlation function we'll use, `Hmisc::rcorr()`. It requires the input to be a matrix, and outputs a list of three matrices.
+
+```{r}
+mtcars_cor <- Hmisc::rcorr(as.matrix(mtcars))
+```
+
+These three matrices include the correlation coefficient (default is Pearson's), `r`, the p-value, `P`, and the number of observations used for each correlation, `n`. Let's turn each matrix into a `data frame` and look at the top six rows with `head` and `gt`.
+
+The correlation coefficients, `r`:
+
+```{r}
+data.frame(mtcars_cor$r) %>% head() %>% gt()
+```
+
+The p-values, `P`:
+
+```{r}
+data.frame(mtcars_cor$P) %>% head() %>% gt()
+```
+
+The number of observations, `n`. There are no missing data in the `mtcars` data set so there are 32 pairs used for all correlations.
+
+```{r}
+data.frame(mtcars_cor$n) %>% head(n=3) %>% gt()
+```
+
+Next we can write a function that formats a `data frame` correctly for `Hmisc::rcorr()` and then turns each of the three elements of the list (`r`,`n` and `P`)
+
+```{r}
+cors <- function(df) {
+  M <- Hmisc::rcorr(as.matrix(df))
+  # turn all three matrices (r, n, and P into a data frame)
+  Mdf <- map(M, ~data.frame(.x))
+  # return the three data frames in a list
+  return(Mdf)
+}
+```
+
+Nothing too crazy happened in this function. Now we just have a list of three data frames. We can look at the the first element of our list using `first()`, which shows us the correlations between all our variables:
+
+```{r}
+cors(mtcars) %>% first() %>% head() %>% gt()
+```
+
+# Prep the correlations for `ggplot2`
+
+The next step is to get the data ready for plotting with `ggplot2`. We can keep the data in a list for now and use the `map()` function from `purrr`.
+
+First, we need to move the rownames to their own column using `tibble::rownames_to_column()`. The output of that looks like:
+
+```{r}
+cors(mtcars) %>%
+  map(~rownames_to_column(.x, var="measure1")) %>%
+  # look at the first element of the list (r)
+  first() %>%
+  head() %>%
+  gt()
+```
+
+Next, we can turn move of the columns to a single column called `measure2` using `tidyr::pivot_longer()`
+
+```{r}
+cors(mtcars) %>%
+  map(~rownames_to_column(.x, var="measure1")) %>%
+  # format each data set (r,P,n) long
+  map(~pivot_longer(.x, -measure1, "measure2")) %>%
+  # look at the first element of the list (r)
+  first() %>%
+  head() %>%
+  gt()
+```
+
+Now, we're ready to unlist our data by using `bind_rows()`. This will turn our correlations into a very long data frame with all the rows from `r`, then `n`, then `P`.
+
+```{r}
+cors(mtcars) %>%
+  map(~rownames_to_column(.x, var="measure1")) %>%
+  # format each data set (r,P,n) long
+  map(~pivot_longer(.x, -measure1, "measure2")) %>%
+  # merge our three list elements by binding the rows
+  bind_rows(.id = "id") %>%
+  head() %>%
+  gt()
+```
+
+For `ggplot2`, we'll need to have `r`, `n`, and `p` as their own column. We can use `pivot_longer()` to do this.
+
+```{r}
+cors(mtcars) %>%
+  map(~rownames_to_column(.x, var="measure1")) %>%
+  # format each data set (r,P,n) long
+  map(~pivot_longer(.x, -measure1, "measure2")) %>%
+  # merge our three list elements by binding the rows
+  bind_rows(.id = "id") %>%
+  pivot_wider(names_from = id, values_from = value) %>%
+  head() %>%
+  gt()
+```
+
+Finally, we can add a few columns that will potentially be useful later for making our correlation plots more informative. Let's add columns that tell us whether the p-value was less than 0.05, and if so, give us back 1) the p-value and 2) the correlation coefficient, in case we want to label our plot with these values.
+
+```{r}
+cors(mtcars) %>%
+  map(~rownames_to_column(.x, var="measure1")) %>%
+  # format each data set (r,P,n) long
+  map(~pivot_longer(.x, -measure1, "measure2")) %>%
+  # merge our three list elements by binding the rows
+  bind_rows(.id = "id") %>%
+  pivot_wider(names_from = id, values_from = value) %>%
+  # change so everything is lower case
+  rename(p = P) %>%
+  mutate(sig_p = ifelse(p < .05, T, F),
+           p_if_sig = ifelse(sig_p, p, NA),
+           r_if_sig = ifelse(sig_p, r, NA)) %>%
+  head() %>% 
+  gt()
+```
+
+This seems like everything I think I'll ever ever want to plot. Of course you could add more. At this point I turned my formatted correlations into a function:
+
+```{r}
+formatted_cors <- function(df){
+  cors(df) %>%
+    map(~rownames_to_column(.x, var="measure1")) %>%
+    map(~pivot_longer(.x, -measure1, "measure2")) %>%
+    bind_rows(.id = "id") %>%
+    pivot_wider(names_from = id, values_from = value) %>%
+    rename(p = P) %>%
+    mutate(sig_p = ifelse(p < .05, T, F),
+           p_if_sig = ifelse(sig_p, p, NA),
+           r_if_sig = ifelse(sig_p, r, NA)) 
+}
+```
+
+We can test the function works as expected:
+
+```{r}
+formatted_cors(mtcars) %>% head() %>% gt()
+```
+
+# Plotting
+
+We're finally ready to plot our correlation heat maps in `ggplot2`.
+
+The simplest form of this plot only requires us to specify `measure1` and `measure2` on the `x` and `y`-axis, respectively. Then we can map the correlation `r` to the `fill` `aes`thetic, and add a tile as the `geom`etry.
+
+```{r}
+formatted_cors(mtcars) %>%
+  ggplot(aes(x = measure1, y = measure2, fill = r)) +
+  geom_tile()
+```
+
+We can make some minor aesthetic changes, such as the fill coloring scale, titles, and font family.
+
+```{r}
+formatted_cors(mtcars) %>%
+  ggplot(aes(x = measure1, y = measure2, fill = r)) +
+  geom_tile() +
+  labs(x = NULL, y = NULL, fill = "Pearson's\nCorrelation", title="Correlations in Mtcars") +
+  # map a red, white and blue color scale to correspond to -1:1 sequential gradient
+  scale_fill_gradient2(mid="#FBFEF9",low="#0C6291",high="#A63446", limits=c(-1,1)) +
+  theme_classic() +
+  # remove excess space on x and y axes
+  scale_x_discrete(expand=c(0,0)) +
+  scale_y_discrete(expand=c(0,0)) +
+  # change global font to roboto
+  theme(text=element_text(family="Roboto"))
+```
+
+We can add the correlations for extra information. For this particular plot, I only added significant (p-value less than 0.05) correlations, using the column `r_if_sig` that outputs from `formatted_cors()`.
+
+```{r}
+formatted_cors(mtcars) %>%
+  ggplot(aes(measure1, measure2, fill=r, label=round(r_if_sig,2))) +
+  geom_tile() +
+  labs(x = NULL, y = NULL, fill = "Pearson's\nCorrelation", title="Correlations in Mtcars",
+       subtitle="Only significant Pearson's correlation coefficients shown") +
+  scale_fill_gradient2(mid="#FBFEF9",low="#0C6291",high="#A63446", limits=c(-1,1)) +
+  geom_text() +
+  theme_classic() +
+  scale_x_discrete(expand=c(0,0)) +
+  scale_y_discrete(expand=c(0,0)) +
+  theme(text=element_text(family="Roboto"))
+```
+
+Another version of this could involve squares with different sizes to denote strength of correlation using `geom_point` with `shape` set to a value from [these available `geom_shape`s](http://www.sthda.com/english/wiki/ggplot2-point-shapes). Make sure you take the absolute value of the correlation so that strong negative correlations can also be denoted larger.
+
+```{r, fig.width=6}
+formatted_cors(mtcars) %>%
+  ggplot(aes(measure1, measure2, col=r)) + ## to get the rect filled
+  geom_tile(col="black", fill="white") +
+  geom_point(aes(size = abs(r)), shape=15) +
+  labs(x = NULL, y = NULL, col = "Pearson's\nCorrelation", title="Correlations in Mtcars") +
+  theme_classic()+
+  scale_color_gradient2(mid="#FBFEF9",low="#0C6291",high="#A63446", limits=c(-1,1))  +
+  scale_x_discrete(expand=c(0,0)) +
+  scale_y_discrete(expand=c(0,0)) +
+  theme(text=element_text(family="Roboto")) +
+  scale_size(range=c(1,11), guide=NULL) 
+```
+
+Please feel free to reach out with questions or suggestions. Thank you to Elena Leib for spotting a minor bug in a previous version of this post!
+
+# Just the code {#just-the-code}
+
+```{r}
+cors <- function(df) {
+  M <- Hmisc::rcorr(as.matrix(df))
+  Mdf <- map(M, ~data.frame(.x))
+  return(Mdf)
+}
+
+formatted_cors <- function(df){
+  cors(df) %>%
+    map(~rownames_to_column(.x, var="measure1")) %>%
+    map(~pivot_longer(.x, -measure1, "measure2")) %>%
+    bind_rows(.id = "id") %>%
+    pivot_wider(names_from = id, values_from = value) %>%
+    rename(p = P) %>%
+    mutate(sig_p = ifelse(p < .05, T, F),
+           p_if_sig = ifelse(sig_p, p, NA),
+           r_if_sig = ifelse(sig_p, r, NA)) 
+}
+
+formatted_cors(mtcars) %>%
+  ggplot(aes(measure1, measure2, fill=r, label=round(r_if_sig,2))) +
+  geom_tile() +
+  labs(x = NULL, y = NULL, fill = "Pearson's\nCorrelation", title="Correlations in Mtcars",
+       subtitle="Only significant Pearson's correlation coefficients shown") +
+  scale_fill_gradient2(mid="#FBFEF9",low="#0C6291",high="#A63446", limits=c(-1,1)) +
+  geom_text() +
+  theme_classic() +
+  scale_x_discrete(expand=c(0,0)) +
+  scale_y_discrete(expand=c(0,0)) +
+  theme(text=element_text(family="Roboto"))
+```
+
+### Session info
+
+```{r results='markup'}
+sessionInfo()
+```

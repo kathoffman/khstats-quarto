@@ -1,0 +1,67 @@
+/* css styles */
+
+/*-- scss:defaults --*/
+
+// Nav bar
+// Nav bar
+
+.li.a.dropdown-item {
+  color: "#2B2423";
+}
+
+.dropdown-text {
+  color: "#FFFFFF";
+}
+
+
+// Typography
+
+p.subtitle.lead {
+  text-align: center;
+}
+
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a:href {
+  text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul {
+  list-style-type: square;
+}
+
+.navbar {
+  color: #FFFFFF;
+}
+
+
+//** Global textual link color.
+$link-color:            #a499be !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%) !default;
+//** Link decoration.
+$link-decoration: none;
+//**$link-hover-decoration: none;
+
+$code-block-bg: #2B2423;
+
+.navbar {
+  color: #FFFFFF;
+}
+
+
+a.sidebar-item-text.sidebar-link {
+    color: #FFFFFF;
+}
+
+.navbar li.dropdown-header {
+  text-transform: none;
+}

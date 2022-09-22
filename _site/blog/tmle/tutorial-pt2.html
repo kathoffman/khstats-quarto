@@ -1,0 +1,2689 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Katherine Hoffman">
+<meta name="dcterms.date" content="2020-12-11">
+
+<title>KHstats - An Illustrated Guide to TMLE, Part II: The Algorithm</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  </head><body class="nav-fixed fullcontent">true
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">Google Scholar</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">An Illustrated Guide to TMLE, Part II: The Algorithm</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">statistics</div>
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Katherine Hoffman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 11, 2020</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>The second post of a three-part series to help beginners and/or visual learners understand Targeted Maximum Likelihood Estimation (TMLE). This section walks through the <strong>TMLE algorithm for the mean difference in outcomes for a binary treatment and binary outcome</strong>.</p>
+<!--more-->
+<p><strong><em>December 6, 2020.</em></strong></p>
+
+<link rel="stylesheet" href="../../style.css">
+
+<p>The second post of a three-part series to help beginners and/or visual learners understand Targeted Maximum Likelihood Estimation (TMLE). This section walks through the <strong>TMLE algorithm for the mean difference in outcomes for a binary treatment and binary outcome</strong>. <br> <br> This post is an expansion of a printable “visual guide” available on my <a href="https://github.com/kathoffman/causal-inference-visual-guides">Github</a>. I hope it helps analysts who feel out-of-practice reading mathematical notation follow along with the TMLE algorithm. A web-based key without explanations is also available <a href="https://khstats.com/blog/tmle/visual-key">here</a>.</p>
+
+
+<title>
+HTML Image as link
+</title>
+
+
+<a href="https://github.com/kathoffman/CI-visual-guides/blob/master/visual-guides/TMLE.pdf"> <img alt="cheatsheet" src="../../img/tmle/tmle.jpg" width="100%&quot;"> </a>
+
+
+<hr>
+<p>⬅️<a href="https://khstats.com/blog/tmle/tutorial/"><em>Return to Part I: Motivation</em></a></p>
+<section id="part-ii-the-algorithm" class="level1">
+<h1>Part II: The Algorithm:</h1>
+<p><a href="#why-the-visual-guide">Why the Visual Guide? 🎨</a></p>
+<p><a href="#tmle-step-by-step">TMLE, Step-by-Step 🚶🏽️</a></p>
+<ol type="1">
+<li><p><a href="#step-1-estimate-the-outcome">Estimate the Outcome</a></p></li>
+<li><p><a href="#step-2-estimate-the-probability-of-treatment">Estimate the Probability of Treatment</a></p></li>
+<li><p><a href="#step-3-estimate-the-fluctuation-parameter">Estimate the Fluctuation Parameter</a></p></li>
+<li><p><a href="#step-4-update-the-initial-estimates-of-the-expected-outcome">Update the Initial Estimates of the Expected Outcome</a></p></li>
+<li><p><a href="#step-5-compute-the-statistical-estimand-of-interest">Compute the Statistical Estimand of Interest</a></p></li>
+<li><p><a href="#step-6-calculate-the-standard-errors-for-confidence-intervals-and-p-values">Calculate the Standard Errors for Confidence Intervals and P-values</a></p></li>
+</ol>
+<p><a href="#using-the-tmle-package">Using the <code>tmle</code> package 📦</a></p>
+<p><a href="#full-tutorial-code">Full tutorial code 💻</a></p>
+<p>➡️<a href="https://khstats.com/blog/tmle/tutorial-pt3/"><em>Skip to Part III: Evaluation</em></a></p>
+<hr>
+</section>
+<section id="why-the-visual-guide" class="level1">
+<h1>Why the Visual Guide? 🎨</h1>
+<p>TMLE was developed in 2007 by Mark van der Laan and colleagues at UC Berkeley, and it is slowly but surely starting to see more widespread use. Since learning about TMLE, I’ve believed many more analysts with a skill set similar to mine <em>could</em> be using TMLE, but perhaps find even the most introductory resources to be a bit daunting.</p>
+<p>I am a very applied thinker, and I’ve tried to write this tutorial in the way I would have found most useful and accessible when I began learning about TMLE. Each step is accompanied by:</p>
+<ol type="1">
+<li>a non-rigorous explanation</li>
+<li>an equation using the simplest notation possible</li>
+<li>in-line <code>R</code> code</li>
+<li>a small graphic representing the computation on a data frame or vector</li>
+</ol>
+<p>This last piece is super important for me, because I remember best when I associate an image with what I’ve learned. If the graphics are also useful to you, it may be helpful to open this <a href="https://khstats.com/blog/tmle/visual-key">corresponding key</a> in another browser or print the <a href="https://github.com/kathoffman/causal-inference-visual-guides">visual guide</a> for reference.</p>
+<p>This tutorial is not meant to replace the resources I used to learn TMLE, but rather to supplement them. I use the same mathematical notation as the TMLE literature to make it easier to move back and forth. I hope you find the way I think about the algorithm useful, but if not, consider checking out the references I’ve listed in <a href="https://khstats.com/blog/tmle/tutorial-pt3/#resources-to-learn-more"><em>Part III</em></a>. TMLE is a very powerful method and will undoubtedly only grow in popularity in statistics and data science.</p>
+</section>
+<section id="tmle-step-by-step" class="level1">
+<h1>TMLE, Step-by-Step 🚶🏽</h1>
+<p>Let’s look at the algorithm step-by-step. As you’re reading, keep in mind that there are <code>R</code> packages that will do this for you as easily as running a <code>glm()</code> or <code>coxph()</code> function. This tutorial is to help understand what’s going on behind-the-scenes.</p>
+<p>One final note before we dive into the algorithm:</p>
+<section id="superlearning" class="level3">
+<h3 class="anchored" data-anchor-id="superlearning">Superlearning</h3>
+<p>I use the ensemble learning method superlearning (also known as “stacking”) to demonstrate TMLE. This is because superlearning is theoretically and empirically proven to yield the best results in TMLE.</p>
+<p>If you’re new to superlearning/stacking, the necessary knowledge for this post is that it allows you to combine many machine learning algorithms for prediction. When I use <code>SuperLearner()</code> in the following example code, I could have used <code>glm()</code>, <code>randomForest()</code>, or any other parametric or non-parametric supervised learning algorithm.</p>
+
+
+<title>
+HTML Image as link
+</title>
+
+
+<a href="https://khstats.com/blog/sl/superlearning"> <img alt="cheatsheet" src="../../img/Superlearning.jpg" width="50%" style="float:right; padding-left:60px;"> </a>
+
+
+<p>Note that the choice of base learners for superlearning is not the point of this post. In practice we simply want to add flexible machine learning models which we think <strong>may</strong> reflect the underlying data distribution. For a tutorial on superlearning, you can check out one of my <a href="https://khstats.com/blog/sl/superlearning">previous blog posts</a>.</p>
+</section>
+<section id="initial-set-up" class="level3">
+<h3 class="anchored" data-anchor-id="initial-set-up">Initial set up</h3>
+<p>Let’s first load the necessary libraries and set a seed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data manipulation</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt) <span class="co"># for table printing</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SuperLearner) <span class="co"># for ensemble learning</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>) <span class="co"># for reproducible results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, let’s simulate a data set for demonstration of the algorithm. This data will have a very simple structure: a binary treatment, <span class="math inline">\(A\)</span>; binary outcome, <span class="math inline">\(Y\)</span>; and four confounders: <span class="math inline">\(W_1\)</span>, <span class="math inline">\(W_2\)</span>, <span class="math inline">\(W_3\)</span>, and <span class="math inline">\(W_4\)</span>.</p>
+<p><img src="../../img/tmle/1_data_structure.png" class="img-fluid" style="width:80.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>generate_data <span class="ot">&lt;-</span> <span class="cf">function</span>(n){ </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    W1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span><span class="fl">0.2</span>) <span class="co"># binary confounder</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    W2 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span><span class="fl">0.5</span>) <span class="co"># binary confounder</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    W3 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(n, <span class="at">min=</span><span class="dv">2</span>, <span class="at">max=</span><span class="dv">7</span>)) <span class="co"># continuous confounder</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    W4 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(n, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">4</span>)) <span class="co"># continuous confounder</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    A  <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span> <span class="fu">plogis</span>(<span class="sc">-</span><span class="fl">0.2</span> <span class="sc">+</span> <span class="fl">0.2</span><span class="sc">*</span>W2 <span class="sc">+</span> <span class="fu">log</span>(<span class="fl">0.1</span><span class="sc">*</span>W3) <span class="sc">+</span> <span class="fl">0.3</span><span class="sc">*</span>W4 <span class="sc">+</span> <span class="fl">0.2</span><span class="sc">*</span>W1<span class="sc">*</span>W4)) <span class="co"># binary treatment depends on confounders</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    Y <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span> <span class="fu">plogis</span>(<span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> A <span class="sc">-</span> <span class="fl">0.1</span><span class="sc">*</span>W1 <span class="sc">+</span> <span class="fl">0.2</span><span class="sc">*</span>W2 <span class="sc">+</span> <span class="fl">0.3</span><span class="sc">*</span>W3 <span class="sc">-</span> <span class="fl">0.1</span><span class="sc">*</span>W4 <span class="sc">+</span> <span class="fu">sin</span>(<span class="fl">0.1</span><span class="sc">*</span>W2<span class="sc">*</span>W4))) <span class="co"># binary outcome depends on confounders</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">tibble</span>(Y, W1, W2, W3, W4, A))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>dat_obs <span class="ot">&lt;-</span> <span class="fu">generate_data</span>(n) <span class="co"># generate a data set with n observations</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>dat_obs <span class="sc">%&gt;%</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="st">"Simulated data set."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="fkgwpykulw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#fkgwpykulw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#fkgwpykulw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fkgwpykulw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#fkgwpykulw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#fkgwpykulw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fkgwpykulw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fkgwpykulw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#fkgwpykulw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#fkgwpykulw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#fkgwpykulw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#fkgwpykulw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#fkgwpykulw .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#fkgwpykulw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#fkgwpykulw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#fkgwpykulw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#fkgwpykulw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#fkgwpykulw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fkgwpykulw .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#fkgwpykulw .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#fkgwpykulw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fkgwpykulw .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#fkgwpykulw .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#fkgwpykulw .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fkgwpykulw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fkgwpykulw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#fkgwpykulw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#fkgwpykulw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fkgwpykulw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fkgwpykulw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fkgwpykulw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fkgwpykulw .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fkgwpykulw .gt_left {
+  text-align: left;
+}
+
+#fkgwpykulw .gt_center {
+  text-align: center;
+}
+
+#fkgwpykulw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#fkgwpykulw .gt_font_normal {
+  font-weight: normal;
+}
+
+#fkgwpykulw .gt_font_bold {
+  font-weight: bold;
+}
+
+#fkgwpykulw .gt_font_italic {
+  font-style: italic;
+}
+
+#fkgwpykulw .gt_super {
+  font-size: 65%;
+}
+
+#fkgwpykulw .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#fkgwpykulw .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#fkgwpykulw .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#fkgwpykulw .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#fkgwpykulw .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#fkgwpykulw .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Simulated data set.</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Y</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">W1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">W2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">W3</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">W4</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">A</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">6</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">1</td></tr>
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">6</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">1</td></tr>
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">6</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">1</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>As mentioned earlier, TMLE can estimate many different statistical estimands of interest. In this example, our statistical estimand is the mean difference in outcomes between those who received the treatment and those who did not, adjusting for confounders.</p>
+<p>Under causal assumptions, this could be <em>identifiable</em> as the Average Treatment Effect (ATE). I won’t go through the identification process here (see <a href="https://khstats.com/blog/tmle/tutorial-pt3/#resources-to-learn-more"><em>Part III, References</em></a>), but since TMLE is often used for causal inference, let’s pretend for this example that we previously met causal assumptions and call our statistical estimand, <span class="math inline">\(\Psi\)</span>, the ATE.</p>
+<p><span class="math display">\[ATE = \Psi = E_W[\mathrm{E}[Y|A=1,\mathbf{W}] - \mathrm{E}[Y|A=0,\mathbf{W}]]\]</span></p>
+<p>The ATE, once we estimate it, will be interpretable as the mean difference in outcomes in a hypothetical world where everyone received the treatment compared to a hypothetical world where no one received the treatment.</p>
+<p>At this point in set-up, we should also pick our base machine learning algorithms to combine via superlearning to estimate the expected outcome and probability of treatment. Let’s use LASSO (<code>glmnet</code>), random forests (<code>ranger</code>), Multivariate Adaptive Regression Splines (MARS) (<code>earth</code>), and a generalized linear model (<code>glm</code>) for demonstration.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sl_libs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'SL.glmnet'</span>, <span class="st">'SL.ranger'</span>, <span class="st">'SL.earth'</span>, <span class="st">'SL.glm'</span>) <span class="co"># a library of machine learning algorithms (penalized regression, random forests, and multivariate adaptive regression splines)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-1-estimate-the-outcome" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-estimate-the-outcome">Step 1: Estimate the Outcome</h2>
+<p>The very first step of TMLE is to <strong>estimate the expected value of the outcome</strong> using treatment and confounders as predictors.</p>
+<p>This is what that looks like in mathematical notation. There is some function <span class="math inline">\(Q\)</span> which takes <span class="math inline">\(A\)</span> and <span class="math inline">\(\mathbf{W}\)</span> as inputs and yields the conditional expectation of <span class="math inline">\(Y\)</span>:</p>
+<p><span class="math display">\[Q(A,\mathbf{W}) = \mathrm{E}[Y|A,\mathbf{W}]\]</span></p>
+<p>We can use any regression to estimate this conditional expectation, but it is best to use flexible machine learning models so that we don’t have unnecessary assumptions on the underlying distribution of the data.</p>
+<p>We can think about the above equation as some generic regression function in <code>R</code> called <code>fit()</code> with inputs in formula form: <code>outcome ~ predictors</code>:</p>
+<p><img src="../../img/tmle/2_outcome_fit.png" class="img-fluid" style="width:70.0%"> In real <code>R</code> code, we’ll use the <code>SuperLearner()</code> function to fit a weighted combination of multiple machine learning models (defined earlier in <code>sl_libs</code>). This function takes the outcome <code>Y</code> as a vector and a data frame <code>X</code> as predictors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> dat_obs<span class="sc">$</span>Y</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>W_A <span class="ot">&lt;-</span> dat_obs <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>Y) <span class="co"># remove the outcome to make a matrix of predictors (A, W1, W2, W3, W4) for SuperLearner</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">&lt;-</span> <span class="fu">SuperLearner</span>(<span class="at">Y =</span> Y, <span class="co"># Y is the outcome vector</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">X =</span> W_A, <span class="co"># W_A is the matrix of W1, W2, W3, W4, and A</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family=</span><span class="fu">binomial</span>(), <span class="co"># specify we have a binary outcome</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">SL.library =</span> sl_libs) <span class="co"># specify our superlearner library of LASSO, RF, and MARS</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, we should estimate the outcome for every observation under three different scenarios:</p>
+<p><strong>1. If every observation received the treatment they <em>actually</em> received.</strong></p>
+<p>We can get this expected outcome estimate by simply calling <code>predict()</code> on the model fit without specifying any new data.</p>
+<p><span class="math display">\[\hat{Q}(A,\mathbf{W}) = \mathrm{\hat{E}}[Y|A,\mathbf{W}]\]</span></p>
+<p>We will save that vector of estimates as a new object in <code>R</code>.</p>
+<p><img src="../../img/tmle/3_QA.png" class="img-fluid" style="width:50.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Q_A <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">predict</span>(Q)<span class="sc">$</span>pred) <span class="co"># obtain predictions for everyone using the treatment they actually received</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>2. If every observation received the treatment.</strong></p>
+<p>To do this, we’ll first need to create a data set where every observation received the treatment of interest, whether they actually did or not. Then we can call the <code>predict()</code> function on that data set.</p>
+<p><span class="math display">\[\hat{Q}(1,\mathbf{W}) = \mathrm{\hat{E}}[Y|A=1,\mathbf{W}]\]</span></p>
+<p><img src="../../img/tmle/4_Q1.png" class="img-fluid" style="width:80.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>W_A1 <span class="ot">&lt;-</span> W_A <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">A =</span> <span class="dv">1</span>)  <span class="co"># data set where everyone received treatment</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Q_1 <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">predict</span>(Q, <span class="at">newdata =</span> W_A1)<span class="sc">$</span>pred) <span class="co"># predict on that everyone-exposed data set</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>3. If every observation received the control.</strong></p>
+<p>Similarly, we create a data set where every observation did <em>not</em> receive the treatment of interest, whether they actually did or not, and call the <code>predict()</code> function again.</p>
+<p><span class="math display">\[\hat{Q}(0,\mathbf{W}) = \mathrm{\hat{E}}[Y|A=0,\mathbf{W}]\]</span></p>
+<p><img src="../../img/tmle/5_Q1.png" class="img-fluid" style="width:80.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>W_A0 <span class="ot">&lt;-</span> W_A <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">A =</span> <span class="dv">0</span>) <span class="co"># data set where no one received treatment</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Q_0 <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">predict</span>(Q, <span class="at">newdata =</span> W_A0)<span class="sc">$</span>pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><em>Next</em></strong>, let’s create a new data frame, <code>dat_tmle</code>, to hold the three vectors we’ve created so far, along with the treatment status <span class="math inline">\(A\)</span> and observed outcome <span class="math inline">\(Y\)</span>. Notice that when <span class="math inline">\(A=1\)</span>, the expected outcome <span class="math inline">\(\mathrm{\hat{E}}[Y|A,\mathbf{W}]\)</span> equals the expected outcome under treatment <span class="math inline">\(\mathrm{\hat{E}}[Y|A=1,\mathbf{W}]\)</span>. When <span class="math inline">\(A=0\)</span>, the expected outcome <span class="math inline">\(\mathrm{\hat{E}}[Y|A,\mathbf{W}]\)</span> equals the expected outcome under no treatment <span class="math inline">\(\mathrm{\hat{E}}[Y|A=0,\mathbf{W}]\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dat_tmle <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Y =</span> dat_obs<span class="sc">$</span>Y, <span class="at">A =</span> dat_obs<span class="sc">$</span>A, Q_A, Q_0, Q_1)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dat_tmle <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="st">"TMLE Algorithm after Step 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="wqrrijfakd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#wqrrijfakd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wqrrijfakd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wqrrijfakd .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wqrrijfakd .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wqrrijfakd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wqrrijfakd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wqrrijfakd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wqrrijfakd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wqrrijfakd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wqrrijfakd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wqrrijfakd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wqrrijfakd .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wqrrijfakd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wqrrijfakd .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wqrrijfakd .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wqrrijfakd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wqrrijfakd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqrrijfakd .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wqrrijfakd .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wqrrijfakd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqrrijfakd .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wqrrijfakd .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wqrrijfakd .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wqrrijfakd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqrrijfakd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wqrrijfakd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wqrrijfakd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wqrrijfakd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wqrrijfakd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqrrijfakd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wqrrijfakd .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqrrijfakd .gt_left {
+  text-align: left;
+}
+
+#wqrrijfakd .gt_center {
+  text-align: center;
+}
+
+#wqrrijfakd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wqrrijfakd .gt_font_normal {
+  font-weight: normal;
+}
+
+#wqrrijfakd .gt_font_bold {
+  font-weight: bold;
+}
+
+#wqrrijfakd .gt_font_italic {
+  font-style: italic;
+}
+
+#wqrrijfakd .gt_super {
+  font-size: 65%;
+}
+
+#wqrrijfakd .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#wqrrijfakd .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#wqrrijfakd .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wqrrijfakd .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#wqrrijfakd .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#wqrrijfakd .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">TMLE Algorithm after Step 1</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Y</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">A</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_A</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_0</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_1</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0.8461853</td>
+<td class="gt_row gt_right">0.6770917</td>
+<td class="gt_row gt_right">0.8461853</td></tr>
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.6986440</td>
+<td class="gt_row gt_right">0.6986440</td>
+<td class="gt_row gt_right">0.8589257</td></tr>
+    <tr><td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.4932538</td>
+<td class="gt_row gt_right">0.4932538</td>
+<td class="gt_row gt_right">0.7188934</td></tr>
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0.8213403</td>
+<td class="gt_row gt_right">0.6363132</td>
+<td class="gt_row gt_right">0.8213403</td></tr>
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.6266258</td>
+<td class="gt_row gt_right">0.6266258</td>
+<td class="gt_row gt_right">0.8151742</td></tr>
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0.8578239</td>
+<td class="gt_row gt_right">0.6966588</td>
+<td class="gt_row gt_right">0.8578239</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<!-- *Also note that our expected outcomes are on the original outcome scale (i.e. probability, rather than the $logit$ probability).* -->
+<p>We could stop here and get our estimate of the ATE by computing the average difference between <span class="math inline">\(\mathrm{\hat{E}}[Y|A=1,\mathbf{W}]\)</span> and <span class="math inline">\(\mathrm{\hat{E}}[Y|A=0,\mathbf{W}]\)</span>, which <em>would</em> be the mean difference in the expected outcomes, conditional on confounders. This estimation method is often called <strong>standardization</strong>, <strong>simple substitution estimation</strong>, <strong>g-formula estimation</strong>, or <strong>G-computation</strong>.</p>
+<p><span class="math display">\[\hat{ATE}_{G-comp}= \hat{\Psi}_{G-comp} = \frac{1}{N}\sum_{i=1}^{N}(\mathrm{\hat{E}}[Y|A=1,\mathbf{W}]-\mathrm{\hat{E}}[Y|A=0,\mathbf{W}])\]</span></p>
+<p><img src="../../img/tmle/ate_gcomp.png" class="img-fluid" style="width:50.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ate_gcomp <span class="ot">&lt;-</span> <span class="fu">mean</span>(dat_tmle<span class="sc">$</span>Q_1 <span class="sc">-</span> dat_tmle<span class="sc">$</span>Q_0)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ate_gcomp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.195287</code></pre>
+</div>
+</div>
+<p>However, this G-computation ATE estimate does not have the appropriate bias-variance tradeoff for the ATE because it was built to have the best bias-variance tradeoff for estimating the <em>outcome</em>, conditional on confounders, rather than the ATE. We also cannot compute the standard error of the estimator because we don’t know the sampling distribution of the machine learning estimates.</p>
+<p>⤴️<a href="#part-ii-the-algorithm"><em>Back to the top</em></a></p>
+</section>
+<section id="step-2-estimate-the-probability-of-treatment" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-estimate-the-probability-of-treatment">Step 2: Estimate the Probability of Treatment</h2>
+<p>The next step is to estimate the probability of treatment, given confounders. This quantity is often called the <strong>propensity score</strong>, as in it gives the probability or <em>propensity</em> that an observation will receive a treatment of interest.</p>
+<p><span class="math display">\[g(\mathbf{W}) = \mathrm{Pr}(A=1|\mathbf{W})\]</span></p>
+<p><img src="../../img/tmle/6_treatment_fit.png" class="img-fluid" style="width:60.0%"></p>
+<p>We will estimate <span class="math inline">\(\mathrm{Pr}(A=1|\mathbf{W})\)</span> in the same way as we estimated <span class="math inline">\(\mathrm{E}[Y|A,\mathbf{W}]\)</span>: using the superlearner algorithm.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> dat_obs<span class="sc">$</span>A</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> dat_obs <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>Y, <span class="sc">-</span>A) <span class="co"># matrix of predictors that only contains the confounders W1, W2, W3, and W4</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">SuperLearner</span>(<span class="at">Y =</span> A, <span class="co"># outcome is the A (treatment) vector</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">X =</span> W, <span class="co"># W is a matrix of predictors</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family=</span><span class="fu">binomial</span>(), <span class="co"># treatment is a binomial outcome</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">SL.library=</span>sl_libs) <span class="co"># using same candidate learners; could use different learners</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then we need to compute three different quantities from this model fit:</p>
+<p><strong>1. The inverse probability of receiving treatment.</strong></p>
+<p><span class="math display">\[H(1,\mathbf{W}) = \frac{1}{g(\mathbf{W})} = \frac{1}{\mathrm{Pr}(A=1|\mathbf{W})}\]</span></p>
+<p>We can estimate the probability of receiving treatment for every observation by using the <code>predict()</code> funcion without specifying any new data, and then take the inverse of that.</p>
+<p><img src="../../img/tmle/7_H1.png" class="img-fluid" style="width:60.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>g_w <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">predict</span>(g)<span class="sc">$</span>pred) <span class="co"># Pr(A=1|W)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>H_1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>g_w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>2. The negative inverse probability of not receiving treatment.</strong></p>
+<p><span class="math display">\[H(0,\mathbf{W}) = -\frac{1}{1-g(\mathbf{W})}= -\frac{1}{\mathrm{Pr}(A=0|\mathbf{W})}\]</span></p>
+<p>The probability of not receiving treatment for a binary treatment is simply 1 minus the probability of treatment.</p>
+<p><img src="../../img/tmle/8_H0.png" class="img-fluid" style="width:70.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>H_0 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>g_w) <span class="co"># Pr(A=0|W) is 1-Pr(A=1|W)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>3. If the observation was treated, the inverse probability of receiving treatment, and if they were not treated, the negative inverse probability of not receiving treatment.</strong> I’ll discuss why later, but in the TMLE literature this is called the <strong>clever covariate</strong>.</p>
+<p><span class="math display">\[H(A,\mathbf{W}) = \frac{\mathrm{I}(A=1)}{\mathrm{Pr}(A=1|\mathbf{W})}-\frac{\mathrm{I}(A=0)}{\mathrm{Pr}(A=0|\mathbf{W})}\]</span></p>
+<p><img src="../../img/tmle/9_HA.png" class="img-fluid" style="width:50.0%"></p>
+<p>To calculate the clever covariate, we’ll first add the <span class="math inline">\(H(1,\mathbf{W})\)</span> and <span class="math inline">\(H(0,\mathbf{W})\)</span> vectors to our <code>dat_tmle</code> data frame, and then we can use <span class="math inline">\(A\)</span> to assign <span class="math inline">\(H(A,\mathbf{W})\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dat_tmle <span class="ot">&lt;-</span> <span class="co"># add clever covariate data to dat_tmle</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  dat_tmle <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">H_1 =</span> H_1,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">H_0 =</span> H_0) <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">H_A =</span> <span class="fu">case_when</span>(A <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> H_1, <span class="co"># if A is 1 (treated), assign H_1</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                       A <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> H_0))  <span class="co"># if A is 0 (not treated), assign H_0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We now have our initial estimates of the outcome, and the estimates of the probability of treatment:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dat_tmle <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_header</span>(<span class="st">"TMLE Algorithm after Step 2"</span>) <span class="sc">%&gt;%</span> <span class="fu">fmt_number</span>(<span class="fu">everything</span>(), <span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="hjkpoiqvpu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#hjkpoiqvpu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hjkpoiqvpu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hjkpoiqvpu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hjkpoiqvpu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hjkpoiqvpu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hjkpoiqvpu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hjkpoiqvpu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hjkpoiqvpu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hjkpoiqvpu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hjkpoiqvpu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hjkpoiqvpu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hjkpoiqvpu .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hjkpoiqvpu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hjkpoiqvpu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hjkpoiqvpu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hjkpoiqvpu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hjkpoiqvpu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hjkpoiqvpu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hjkpoiqvpu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hjkpoiqvpu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hjkpoiqvpu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hjkpoiqvpu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hjkpoiqvpu .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hjkpoiqvpu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hjkpoiqvpu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hjkpoiqvpu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hjkpoiqvpu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hjkpoiqvpu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hjkpoiqvpu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hjkpoiqvpu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hjkpoiqvpu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hjkpoiqvpu .gt_left {
+  text-align: left;
+}
+
+#hjkpoiqvpu .gt_center {
+  text-align: center;
+}
+
+#hjkpoiqvpu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hjkpoiqvpu .gt_font_normal {
+  font-weight: normal;
+}
+
+#hjkpoiqvpu .gt_font_bold {
+  font-weight: bold;
+}
+
+#hjkpoiqvpu .gt_font_italic {
+  font-style: italic;
+}
+
+#hjkpoiqvpu .gt_super {
+  font-size: 65%;
+}
+
+#hjkpoiqvpu .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#hjkpoiqvpu .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#hjkpoiqvpu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hjkpoiqvpu .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#hjkpoiqvpu .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#hjkpoiqvpu .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">TMLE Algorithm after Step 2</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Y</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">A</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_A</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_0</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">H_1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">H_0</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">H_A</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">1.00</td>
+<td class="gt_row gt_right">1.00</td>
+<td class="gt_row gt_right">0.85</td>
+<td class="gt_row gt_right">0.68</td>
+<td class="gt_row gt_right">0.85</td>
+<td class="gt_row gt_right">2.18</td>
+<td class="gt_row gt_right">−1.85</td>
+<td class="gt_row gt_right">2.18</td></tr>
+    <tr><td class="gt_row gt_right">1.00</td>
+<td class="gt_row gt_right">0.00</td>
+<td class="gt_row gt_right">0.70</td>
+<td class="gt_row gt_right">0.70</td>
+<td class="gt_row gt_right">0.86</td>
+<td class="gt_row gt_right">1.60</td>
+<td class="gt_row gt_right">−2.67</td>
+<td class="gt_row gt_right">−2.67</td></tr>
+    <tr><td class="gt_row gt_right">0.00</td>
+<td class="gt_row gt_right">0.00</td>
+<td class="gt_row gt_right">0.49</td>
+<td class="gt_row gt_right">0.49</td>
+<td class="gt_row gt_right">0.72</td>
+<td class="gt_row gt_right">3.39</td>
+<td class="gt_row gt_right">−1.42</td>
+<td class="gt_row gt_right">−1.42</td></tr>
+    <tr><td class="gt_row gt_right">1.00</td>
+<td class="gt_row gt_right">1.00</td>
+<td class="gt_row gt_right">0.82</td>
+<td class="gt_row gt_right">0.64</td>
+<td class="gt_row gt_right">0.82</td>
+<td class="gt_row gt_right">2.39</td>
+<td class="gt_row gt_right">−1.72</td>
+<td class="gt_row gt_right">2.39</td></tr>
+    <tr><td class="gt_row gt_right">1.00</td>
+<td class="gt_row gt_right">0.00</td>
+<td class="gt_row gt_right">0.63</td>
+<td class="gt_row gt_right">0.63</td>
+<td class="gt_row gt_right">0.82</td>
+<td class="gt_row gt_right">2.31</td>
+<td class="gt_row gt_right">−1.76</td>
+<td class="gt_row gt_right">−1.76</td></tr>
+    <tr><td class="gt_row gt_right">1.00</td>
+<td class="gt_row gt_right">1.00</td>
+<td class="gt_row gt_right">0.86</td>
+<td class="gt_row gt_right">0.70</td>
+<td class="gt_row gt_right">0.86</td>
+<td class="gt_row gt_right">2.14</td>
+<td class="gt_row gt_right">−1.88</td>
+<td class="gt_row gt_right">2.14</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>⤴️<a href="#part-ii-the-algorithm"><em>Back to the top</em></a></p>
+</section>
+<section id="step-3-estimate-the-fluctuation-parameter" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-estimate-the-fluctuation-parameter">Step 3: Estimate the Fluctuation Parameter</h2>
+<p>To reiterate, in <a href="#step-1-estimate-the-outcome">Step 1</a> we estimated the expected outcome, conditional on treatment and confounders. We know those machine learning fits have an optimal bias-variance trade-off for estimating the outcome (conditional on treatment and confounders), rather than the ATE. <strong>We will now use information about the treatment mechanism (from Step 2) to optimize the bias-variance trade-off for the ATE so we can obtain valid inference.</strong></p>
+
+
+<title>
+HTML Image as link
+</title>
+
+
+<a href=""> <img alt="cheatsheet" src="../../img/bear_with_me.jpg" style="float:right; padding-left:65px;" width="50%&quot;"> </a>
+
+
+<p>🚨 <strong><em>Warning:</em></strong> this step is easy to code, but difficult to understand unless you have a background in semiparametric theory. Let’s first look at <em>what</em> we’re doing, and then I’ll discuss at a very high-level why we’re doing that in a <a href="#why-does-tmle-work">later section</a>.</p>
+<p>The point of this step is to solve an <em>estimating equation</em> for the <em>efficient influence function</em> (EIF) of our estimand of interest. Without diving into what an EIF or an estimating equation is, let’s accept for a moment that they will help us:</p>
+<ol type="1">
+<li><p><strong>Update our initial outcome estimates</strong> so that our estimate of the ATE is asymptotically unbiased (under certain conditions, see <a href="https://khstats.com/blog/tmle/tutorial-pt3/#properties-of-tmle"><em>Part III, Statistical Properties</em></a>).</p></li>
+<li><p><strong>Calculate the variance</strong>, and thus the standard error, confidence interval, and p-value for our estimate of the ATE for hypothesis testing.</p></li>
+</ol>
+<p>Next, let’s take a look at a model that will help us solve an EIF estimating equation and then update our estimates:</p>
+<p><span class="math display">\[logit(\mathrm{E}[Y|A,\mathbf{W}]) = logit(\mathrm{\hat{E}}[Y|A,\mathbf{W}]) + \epsilon H(A,\mathbf{W})\]</span></p>
+<p>To reiterate, I haven’t explained at all why this step works; we’re just focusing on implementing it for now.</p>
+<p>If we look at the left side, we can see this equation contains the true outcome <span class="math inline">\(Y\)</span>, just <span class="math inline">\(logit\)</span> transformed. Luckily for us, there’s a well-known model that <span class="math inline">\(logit\)</span> transforms the left side of an equation: logistic regression. Our estimating equation looks <em>a lot</em> like a simple logistic regression, actually: <span class="math inline">\(logit(\mathrm{E}[Y|X]) = \beta_0 + \beta_1 X\)</span>.</p>
+<p>Do you see how our equation also has a vector on the right-hand side, <span class="math inline">\(H(A,\mathbf{W})\)</span>, with a corresponding coefficient, <span class="math inline">\(\epsilon\)</span>? The only difference is that the “intercept” in our equation, <span class="math inline">\(logit(\mathrm{\hat{E}}[Y|A,\mathbf{W}])\)</span> is not a constant value like <span class="math inline">\(\beta_0\)</span>; it is a vector of values. We can see it as an <strong>offset</strong> or a <strong>fixed intercept</strong> in a logistic regression, rather than a constant-value intercept.</p>
+<p>Therefore, to accomplish our goal of solving an estimating equation for the EIF we can leverage standard statistical software and fit a logistic regression with one covariate, <span class="math inline">\(H(A,\mathbf{W})\)</span>, and the initial outcome estimate, <span class="math inline">\(logit(\mathrm{\hat{E}}[Y|A,\mathbf{W}])\)</span>, as a fixed intercept. The outcome of the logistic regression is the observed outcome, <span class="math inline">\(Y\)</span>.</p>
+<p>Two technical points for application: we use <code>qlogis</code> to transform the probabilities <span class="math inline">\(\mathrm{\hat{E}}[Y|A,\mathbf{W}]\)</span> to the <span class="math inline">\(logit\)</span> scale. Also, the <code>R</code> code for a fixed intercept is <code>-1 + offset(fixed_intercept)</code>.</p>
+<p><img src="../../img/tmle/10_logistic_regression.png" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>glm_fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">qlogis</span>(Q_A)) <span class="sc">+</span> H_A, <span class="at">data=</span>dat_tmle, <span class="at">family=</span>binomial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Note that we are only using a logistic regression because it happens to have the correct form for solving the estimating equation for the EIF for the ATE estimand. It has nothing to do with having a binary outcome, and it isn’t putting any parametric restraints on our data.</em></p>
+<p>Next we need to save the coefficient from that logistic regression, which we will call <span class="math inline">\(\hat{\epsilon}\)</span>:</p>
+<p><img src="../../img/tmle/11_epsilon.png" class="img-fluid" style="width:40.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fu">coef</span>(glm_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the TMLE literature, <span class="math inline">\(\epsilon\)</span> is called the <strong>fluctuation parameter</strong>, because it provides information about how much to change, or fluctuate, our initial outcome estimates. Similarly, <span class="math inline">\(H(A,\mathbf{W})\)</span> is called the <strong>clever covariate</strong> because it “cleverly” helps us solve for the EIF and then update our estimates.</p>
+<p>We will use both the fluctuation parameter and clever covariate in the next step to update our initial estimates of the expected outcome, conditional on confounders and treatment.</p>
+<p>⤴️<a href="#part-ii-the-algorithm"><em>Back to the top</em></a></p>
+</section>
+<section id="step-4-update-the-initial-estimates-of-the-expected-outcome" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-update-the-initial-estimates-of-the-expected-outcome">Step 4: Update the Initial Estimates of the Expected Outcome</h2>
+<p>Almost done! Let’s recap:</p>
+<ul>
+<li><p>In <a href="#estimate-the-outcome">Step 1</a>, we obtained <strong>initial estimates</strong> of the expected outcome using machine learning (ML). These ML estimates are optimized to estimate <span class="math inline">\(E[Y|A,W]\)</span>, not the ATE.</p></li>
+<li><p>We need to update those initial expected outcome estimates using <strong>information about the treatment mechanism</strong>, so we computed the expected probability of treatment, conditional on confounders, in <a href="#estimate-the-probability-of-treatment">Step 2</a>.</p></li>
+<li><p>Then, in <a href="#estimate-the-fluctuation-parameter">Step 3</a>, we used quantities from Step 1 and Step 2 to <strong>solve an estimating equation for the EIF</strong>. We didn’t talk about <em>why</em> this works; we simply accepted for now that this is how we can target our estimand of interest (the ATE).</p></li>
+<li><p>Now, we will <strong>update our initial outcome estimates</strong> from Step 1 using information from Step 2 and 3 to obtain the correct bias-variance tradeoff for the ATE.</p></li>
+</ul>
+<p>To update our expected outcome estimates, we first need to <strong>put the initial expected outcome estimates on the <span class="math inline">\(logit\)</span> scale</strong> using <code>qlogis()</code> because that’s the scale we used to solve our estimating equation for the EIF in Step 3. Then we can <strong>calculate how much we need to fluctuate our initial estimates</strong> using the product of the clever covariate and fluctuation parameter: <span class="math inline">\(H(A,\mathbf{W}) \times \hat{\epsilon}\)</span>. These are our outputs of Step 2 and 3, respectively. We will <strong>add that quantity to the initial outcome estimates to create updated outcome estimates</strong>. Finally, we can <strong>put the updated estimates back on the true outcome scale</strong> using <code>plogis()</code>.</p>
+<p><em>Note we can use <span class="math inline">\(expit\)</span> to show the inverse of the <span class="math inline">\(logit\)</span> function, and we will denote updates to the outcome regressions as <span class="math inline">\(\hat{\mathrm{E}}^*\)</span> instead of <span class="math inline">\(\hat{\mathrm{E}}\)</span>.</em></p>
+<p><strong>1. Update the expected outcomes of all observations, given the treatment they actually received and their baseline confounders.</strong></p>
+<p><span class="math display">\[\hat{\mathrm{E}}^*[Y|A,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A,\mathbf{W}]) + \hat{\epsilon}H(A,\mathbf{W}))\]</span></p>
+<p><img src="../../img/tmle/update_qAW.png" class="img-fluid" style="width:70.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>H_A <span class="ot">&lt;-</span> dat_tmle<span class="sc">$</span>H_A <span class="co"># for cleaner code in Q_A_update</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Q_A_update <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">qlogis</span>(Q_A) <span class="sc">+</span> eps<span class="sc">*</span>H_A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>2. Update the expected outcomes, conditional on baseline confounders and everyone receiving the treatment.</strong></p>
+<p><span class="math display">\[\hat{\mathrm{E}}^*[Y|A=1,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A=1,\mathbf{W}]) + \hat{\epsilon}H(1,A))\]</span></p>
+<p><img src="../../img/tmle/12_update_Q1.png" class="img-fluid" style="width:70.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Q_1_update <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">qlogis</span>(Q_1) <span class="sc">+</span> eps<span class="sc">*</span>H_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>3. Update the expected outcomes, conditional on baseline confounders and no one receiving the treatment.</strong></p>
+<p><span class="math display">\[\hat{\mathrm{E}}^*[Y|A=0,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A=0,\mathbf{W}]) + \hat{\epsilon}H(0,W))\]</span></p>
+<p><img src="../../img/tmle/13_update_Q0.png" class="img-fluid" style="width:70.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Q_0_update <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">qlogis</span>(Q_0) <span class="sc">+</span> eps<span class="sc">*</span>H_0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>⤴️<a href="#part-ii-the-algorithm"><em>Back to the top</em></a></p>
+</section>
+<section id="step-5-compute-the-statistical-estimand-of-interest" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-compute-the-statistical-estimand-of-interest">Step 5: Compute the Statistical Estimand of Interest</h2>
+<p>We now have updated expected outcomes estimates, so we can <strong>compute the ATE as the mean difference in the updated outcome estimates under treatment and no treatment</strong>:</p>
+<p><span class="math display">\[\hat{ATE}_{TMLE} = \hat{\Psi}_{TMLE} = \frac{1}{N}\sum_{i=1}^{N}[\hat{E^*}[Y|A=1,\mathbf{W}] - \hat{E^*}[Y|A=0,\mathbf{W}]]\]</span></p>
+<p><img src="../../img/tmle/14_compute_ATE.png" class="img-fluid" style="width:60.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tmle_ate <span class="ot">&lt;-</span> <span class="fu">mean</span>(Q_1_update <span class="sc">-</span> Q_0_update)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>tmle_ate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1911676</code></pre>
+</div>
+</div>
+<p>We can then say, “the average treatment effect was estimated to be 19.1%.”</p>
+<p>If causal assumptions were not met, we would say, “the proportion of observations who experienced the outcome, after adjusting for baseline confounders, was estimated to be 19.1% higher for those who received treatment compared to those who did not.”</p>
+<p>⤴️<a href="#part-ii-the-algorithm"><em>Back to the top</em></a></p>
+</section>
+<section id="step-6-calculate-the-standard-errors-for-confidence-intervals-and-p-values" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-calculate-the-standard-errors-for-confidence-intervals-and-p-values">Step 6: Calculate the Standard Errors for Confidence Intervals and P-values</h2>
+<p>This point estimate is great, but we usually need an <strong>estimate of variance</strong> so that we can compute confidence intervals, test statistics, p-values, etc. This is another step that contains quite a lot of theory, so I’ll give another birds-eye view for now. If you’re curious, you can read more about this in <a href="https://khstats.com/blog/tmle/tutorial-pt3"><em>Part III</em></a>.</p>
+<p>To obtain the standard errors, we first need to compute the <strong>Influence Function</strong> (IF), which is the empirical version of what we used our estimating equation to figure out in <a href="#step-3-estimate-the-fluctuation-parameter">Step 3</a>. The IF tells us <strong>how much each observation influences the final estimate</strong>.</p>
+<p>The equation for the IF looks like this:</p>
+<p><span class="math display">\[\hat{IF} = (Y-\hat{E^*}[Y|A,\mathbf{W}])H(A,\mathbf{W}) + \hat{E^*}[Y|A=1,\mathbf{W}] - \hat{E^*}[Y|A=0,\mathbf{W}] - \hat{ATE}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>infl_fn <span class="ot">&lt;-</span> (Y <span class="sc">-</span> Q_A_update) <span class="sc">*</span> H_A <span class="sc">+</span> Q_1_update <span class="sc">-</span> Q_0_update <span class="sc">-</span> tmle_ate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once we have the IF, we can <strong>take the square-root of its variance divided by the number of observations</strong> to get the standard error of our estimate.</p>
+<p><span class="math display">\[\hat{SE} = \sqrt{\frac{var(\hat{IF})}{N}} \]</span></p>
+<p><img src="../../img/tmle/15_ses.png" class="img-fluid" style="width:100.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tmle_se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(infl_fn)<span class="sc">/</span><span class="fu">nrow</span>(dat_obs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once we have that standard error, we can easily get the 95% confidence interval and p-value of our estimate.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>conf_low <span class="ot">&lt;-</span> tmle_ate <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>tmle_se</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>conf_high <span class="ot">&lt;-</span> tmle_ate <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>tmle_se</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(tmle_ate <span class="sc">/</span> tmle_se)))</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(tmle_ate, conf_low, conf_high) <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_header</span>(<span class="st">"TMLE Estimate of the ATE"</span>) <span class="sc">%&gt;%</span> <span class="fu">fmt_number</span>(<span class="fu">everything</span>(), <span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="hrilomjnxp" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#hrilomjnxp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hrilomjnxp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hrilomjnxp .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hrilomjnxp .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hrilomjnxp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hrilomjnxp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hrilomjnxp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hrilomjnxp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hrilomjnxp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hrilomjnxp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hrilomjnxp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hrilomjnxp .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hrilomjnxp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hrilomjnxp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hrilomjnxp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hrilomjnxp .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hrilomjnxp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hrilomjnxp .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hrilomjnxp .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hrilomjnxp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hrilomjnxp .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hrilomjnxp .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hrilomjnxp .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hrilomjnxp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hrilomjnxp .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hrilomjnxp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hrilomjnxp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hrilomjnxp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hrilomjnxp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hrilomjnxp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hrilomjnxp .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hrilomjnxp .gt_left {
+  text-align: left;
+}
+
+#hrilomjnxp .gt_center {
+  text-align: center;
+}
+
+#hrilomjnxp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hrilomjnxp .gt_font_normal {
+  font-weight: normal;
+}
+
+#hrilomjnxp .gt_font_bold {
+  font-weight: bold;
+}
+
+#hrilomjnxp .gt_font_italic {
+  font-style: italic;
+}
+
+#hrilomjnxp .gt_super {
+  font-size: 65%;
+}
+
+#hrilomjnxp .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#hrilomjnxp .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#hrilomjnxp .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hrilomjnxp .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#hrilomjnxp .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#hrilomjnxp .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">TMLE Estimate of the ATE</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">tmle_ate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">conf_low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">conf_high</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">0.191</td>
+<td class="gt_row gt_right">0.133</td>
+<td class="gt_row gt_right">0.249</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>Then we can successfully report our ATE as 0.191 (95% CI: 0.133, 0.249).</p>
+<p><em>Note that a TMLE estimator is asymptotically normally distributed, so we could bootstrap the entire algorithm to get our standard errors instead.</em></p>
+<p>⤴️<a href="#part-ii-the-algorithm"><em>Back to the top</em></a></p>
+</section>
+</section>
+<section id="using-the-tmle-package" class="level1">
+<h1>Using the <code>tmle</code> package 📦</h1>
+<p>Luckily there are <code>R</code> packages so that you don’t have to hand code TMLE yourself. <code>R</code> packages to implement the TMLE algorithm include <a href="https://www.jstatsoft.org/article/view/v051i13"><code>tmle</code></a>, <a href="https://tlverse.org/tlverse-handbook/tmle3.html"><code>tmle3</code></a>, <a href="https://www.jstatsoft.org/article/view/v081i01"><code>ltmle</code></a>, <a href="https://cran.r-project.org/web/packages/drtmle/vignettes/using_drtmle.html"><code>drtmle</code></a>, and <a href="https://htmlpreview.github.io/?https://gist.githubusercontent.com/nt-williams/ddd44c48390b8d976fad71750e48d8bf/raw/45db700a02bf92e2a55790e60ed48266a97ca4e7/intro-lmtp.html"><code>lmtp</code></a>.</p>
+<p>The code using the original <code>tmle</code> package’s <code>tmle()</code> function is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tmle_fit <span class="ot">&lt;-</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  tmle<span class="sc">::</span><span class="fu">tmle</span>(<span class="at">Y =</span> Y, <span class="co"># outcome vector</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">A =</span> A, <span class="co"># treatment vector</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">W =</span> W, <span class="co"># matrix of confounders W1, W2, W3, W4</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">Q.SL.library =</span> sl_libs, <span class="co"># superlearning libraries from earlier for outcome regression Q(A,W)</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">g.SL.library =</span> sl_libs) <span class="co"># superlearning libraries from earlier for treatment regression g(W)</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>tmle_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Additive Effect
+   Parameter Estimate:  0.19188
+   Estimated Variance:  0.00088096
+              p-value:  1.0142e-10
+    95% Conf Interval: (0.13371, 0.25006) 
+
+ Additive Effect among the Treated
+   Parameter Estimate:  0.18992
+   Estimated Variance:  0.00091243
+              p-value:  3.2259e-10
+    95% Conf Interval: (0.13072, 0.24913) 
+
+ Additive Effect among the Controls
+   Parameter Estimate:  0.19372
+   Estimated Variance:  0.00101
+              p-value:  1.0908e-09
+    95% Conf Interval: (0.13143, 0.25601) </code></pre>
+</div>
+</div>
+<p>We can get the same result (variation due to randomness in the machine learning models) in just a few lines of code: the estimate using the original <code>tmle</code> package is 0.192 (95% CI: 0.134, 0.25).</p>
+<hr>
+<p>To learn more about the statistical properties of TMLE and the underlying theory, <a href="https://khstats.com/blog/tmle/tutorial-pt3"><em>continue on to Part III</em></a>. Alternatively, return to the motivation in <a href="https://khstats.com/blog/tmle/tutorial/"><em>Part I</em></a>, or see the full tutorial code below.</p>
+<p>⤴️<a href="#part-ii-the-algorithm"><em>Back to the top</em></a></p>
+<hr>
+</section>
+<section id="full-tutorial-code" class="level1">
+<h1>Full tutorial code</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data manipulation</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SuperLearner) <span class="co"># for ensemble learning</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>) <span class="co"># for reproducible results</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>sl_libs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'SL.glmnet'</span>, <span class="st">'SL.ranger'</span>, <span class="st">'SL.earth'</span>) <span class="co"># a library of machine learning algorithms (penalized regression, random forests, and multivariate adaptive regression splines)</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>generate_data <span class="ot">&lt;-</span> <span class="cf">function</span>(n){ </span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    W1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span><span class="fl">0.2</span>) <span class="co"># binary confounder</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    W2 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span><span class="fl">0.5</span>) <span class="co"># binary confounder</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    W3 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(n, <span class="at">min=</span><span class="dv">2</span>, <span class="at">max=</span><span class="dv">7</span>)) <span class="co"># continuous confounder</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    W4 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(n, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">4</span>)) <span class="co"># continuous confounder</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    A  <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span> <span class="fu">plogis</span>(<span class="sc">-</span><span class="fl">0.2</span> <span class="sc">+</span> <span class="fl">0.2</span><span class="sc">*</span>W2 <span class="sc">+</span> <span class="fu">log</span>(<span class="fl">0.1</span><span class="sc">*</span>W3) <span class="sc">+</span> <span class="fl">0.3</span><span class="sc">*</span>W4 <span class="sc">+</span> <span class="fl">0.2</span><span class="sc">*</span>W1<span class="sc">*</span>W4)) <span class="co"># binary treatment depends on confounders</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    Y <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span> <span class="fu">plogis</span>(<span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> A <span class="sc">-</span> <span class="fl">0.1</span><span class="sc">*</span>W1 <span class="sc">+</span> <span class="fl">0.2</span><span class="sc">*</span>W2 <span class="sc">+</span> <span class="fl">0.3</span><span class="sc">*</span>W3 <span class="sc">-</span> <span class="fl">0.1</span><span class="sc">*</span>W4 <span class="sc">+</span> <span class="fu">sin</span>(<span class="fl">0.1</span><span class="sc">*</span>W2<span class="sc">*</span>W4))) <span class="co"># binary outcome depends on confounders</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">tibble</span>(Y, W1, W2, W3, W4, A))</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>dat_obs <span class="ot">&lt;-</span> <span class="fu">generate_data</span>(n) <span class="co"># generate a data set with n observations</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> dat_obs<span class="sc">$</span>Y</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>W_A <span class="ot">&lt;-</span> dat_obs <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>Y) <span class="co"># remove the outcome to make a matrix of predictors (A, W1, W2, W3, W4) for SuperLearner</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 1: Estimate Q</span></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">&lt;-</span> <span class="fu">SuperLearner</span>(<span class="at">Y =</span> Y, <span class="co"># Y is the outcome vector</span></span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>                  <span class="at">X =</span> W_A, <span class="co"># W_A is the matrix of W1, W2, W3, W4, and A</span></span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family=</span><span class="fu">binomial</span>(), <span class="co"># specify we have a binary outcome</span></span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>                  <span class="at">SL.library =</span> sl_libs) <span class="co"># specify our superlearner library of LASSO, RF, and MARS</span></span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>Q_A <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">predict</span>(Q)<span class="sc">$</span>pred) <span class="co"># obtain predictions for everyone using the treatment they actually received</span></span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>W_A1 <span class="ot">&lt;-</span> W_A <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">A =</span> <span class="dv">1</span>)  <span class="co"># data set where everyone received treatment</span></span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>Q_1 <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">predict</span>(Q, <span class="at">newdata =</span> W_A1)<span class="sc">$</span>pred) <span class="co"># predict on that everyone-exposed data set</span></span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>W_A0 <span class="ot">&lt;-</span> W_A <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">A =</span> <span class="dv">0</span>) <span class="co"># data set where no one received treatment</span></span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>Q_0 <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">predict</span>(Q, <span class="at">newdata =</span> W_A0)<span class="sc">$</span>pred)</span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>dat_tmle <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Y =</span> dat_obs<span class="sc">$</span>Y, <span class="at">A =</span> dat_obs<span class="sc">$</span>A, Q_A, Q_0, Q_1)</span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 2: Estimate g and compute H(A,W)</span></span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> dat_obs<span class="sc">$</span>A</span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> dat_obs <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>Y, <span class="sc">-</span>A) <span class="co"># matrix of predictors that only contains the confounders W1, W2, W3, and W4</span></span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">SuperLearner</span>(<span class="at">Y =</span> A, <span class="co"># outcome is the A (treatment) vector</span></span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a>                  <span class="at">X =</span> W, <span class="co"># W is a matrix of predictors</span></span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family=</span><span class="fu">binomial</span>(), <span class="co"># treatment is a binomial outcome</span></span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a>                  <span class="at">SL.library=</span>sl_libs) <span class="co"># using same candidate learners; could use different learners</span></span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a>g_w <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">predict</span>(g)<span class="sc">$</span>pred) <span class="co"># Pr(A=1|W)</span></span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>H_1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>g_w</span>
+<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a>H_0 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>g_w) <span class="co"># Pr(A=0|W) is 1-Pr(A=1|W)</span></span>
+<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a>dat_tmle <span class="ot">&lt;-</span> <span class="co"># add clever covariate data to dat_tmle</span></span>
+<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a>  dat_tmle <span class="sc">%&gt;%</span></span>
+<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(</span>
+<span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a>         <span class="at">H_1 =</span> H_1,</span>
+<span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a>         <span class="at">H_0 =</span> H_0) <span class="sc">%&gt;%</span></span>
+<span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">H_A =</span> <span class="fu">case_when</span>(A <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> H_1, <span class="co"># if A is 1 (treated), assign H_1</span></span>
+<span id="cb28-53"><a href="#cb28-53" aria-hidden="true" tabindex="-1"></a>                       A <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> H_0))  <span class="co"># if A is 0 (not treated), assign H_0</span></span>
+<span id="cb28-54"><a href="#cb28-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-55"><a href="#cb28-55" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 3: Estimate fluctuation parameter</span></span>
+<span id="cb28-56"><a href="#cb28-56" aria-hidden="true" tabindex="-1"></a>glm_fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">qlogis</span>(Q_A)) <span class="sc">+</span> H_A, <span class="at">data=</span>dat_tmle, <span class="at">family=</span>binomial) <span class="co"># fixed intercept logistic regression</span></span>
+<span id="cb28-57"><a href="#cb28-57" aria-hidden="true" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fu">coef</span>(glm_fit) <span class="co"># save the only coefficient, called epsilon in TMLE lit</span></span>
+<span id="cb28-58"><a href="#cb28-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-59"><a href="#cb28-59" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 4: Update Q's</span></span>
+<span id="cb28-60"><a href="#cb28-60" aria-hidden="true" tabindex="-1"></a>H_A <span class="ot">&lt;-</span> dat_tmle<span class="sc">$</span>H_A <span class="co"># for cleaner code in Q_A_update</span></span>
+<span id="cb28-61"><a href="#cb28-61" aria-hidden="true" tabindex="-1"></a>Q_A_update <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">qlogis</span>(Q_A) <span class="sc">+</span> eps<span class="sc">*</span>H_A) <span class="co"># updated expected outcome given treatment actually received</span></span>
+<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a>Q_1_update <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">qlogis</span>(Q_1) <span class="sc">+</span> eps<span class="sc">*</span>H_1) <span class="co"># updated expected outcome for everyone receiving treatment</span></span>
+<span id="cb28-63"><a href="#cb28-63" aria-hidden="true" tabindex="-1"></a>Q_0_update <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">qlogis</span>(Q_0) <span class="sc">+</span> eps<span class="sc">*</span>H_0) <span class="co"># updated expected outcome for everyone not receiving treatment</span></span>
+<span id="cb28-64"><a href="#cb28-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-65"><a href="#cb28-65" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 5: Compute ATE</span></span>
+<span id="cb28-66"><a href="#cb28-66" aria-hidden="true" tabindex="-1"></a>tmle_ate <span class="ot">&lt;-</span> <span class="fu">mean</span>(Q_1_update <span class="sc">-</span> Q_0_update) <span class="co"># mean diff in updated expected outcome estimates</span></span>
+<span id="cb28-67"><a href="#cb28-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-68"><a href="#cb28-68" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 6: compute standard error, CIs and pvals</span></span>
+<span id="cb28-69"><a href="#cb28-69" aria-hidden="true" tabindex="-1"></a>infl_fn <span class="ot">&lt;-</span> (Y <span class="sc">-</span> Q_A_update) <span class="sc">*</span> H_A <span class="sc">+</span> Q_1_update <span class="sc">-</span> Q_0_update <span class="sc">-</span> tmle_ate <span class="co"># influence function</span></span>
+<span id="cb28-70"><a href="#cb28-70" aria-hidden="true" tabindex="-1"></a>tmle_se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(infl_fn)<span class="sc">/</span><span class="fu">nrow</span>(dat_obs)) <span class="co"># standard error</span></span>
+<span id="cb28-71"><a href="#cb28-71" aria-hidden="true" tabindex="-1"></a>conf_low <span class="ot">&lt;-</span> tmle_ate <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>tmle_se <span class="co"># 95% CI</span></span>
+<span id="cb28-72"><a href="#cb28-72" aria-hidden="true" tabindex="-1"></a>conf_high <span class="ot">&lt;-</span> tmle_ate <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>tmle_se</span>
+<span id="cb28-73"><a href="#cb28-73" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(tmle_ate <span class="sc">/</span> tmle_se))) <span class="co"># p-value at alpha .05</span></span>
+<span id="cb28-74"><a href="#cb28-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-75"><a href="#cb28-75" aria-hidden="true" tabindex="-1"></a>tmle_ate</span>
+<span id="cb28-76"><a href="#cb28-76" aria-hidden="true" tabindex="-1"></a>conf_low</span>
+<span id="cb28-77"><a href="#cb28-77" aria-hidden="true" tabindex="-1"></a>conf_high</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.1.3 (2022-03-10)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] splines   stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] SuperLearner_2.0-28 gam_1.20.2          foreach_1.5.2      
+ [4] nnls_1.4            gt_0.6.0            forcats_0.5.1      
+ [7] stringr_1.4.1       dplyr_1.0.9         purrr_0.3.4        
+[10] readr_2.1.2         tidyr_1.2.0         tibble_3.1.8       
+[13] ggplot2_3.3.6       tidyverse_1.3.1    
+
+loaded via a namespace (and not attached):
+ [1] httr_1.4.2         sass_0.4.1         jsonlite_1.8.0     modelr_0.1.8      
+ [5] Formula_1.2-4      assertthat_0.2.1   cellranger_1.1.0   yaml_2.3.5        
+ [9] pillar_1.8.1       backports_1.4.1    lattice_0.20-45    glue_1.6.2        
+[13] digest_0.6.29      checkmate_2.0.0    rvest_1.0.2        colorspace_2.0-3  
+[17] htmltools_0.5.2    Matrix_1.4-0       pkgconfig_2.0.3    broom_0.8.0       
+[21] earth_5.3.1        haven_2.5.0        scales_1.2.1       ranger_0.14.1     
+[25] TeachingDemos_2.12 tzdb_0.3.0         generics_0.1.3     ellipsis_0.3.2    
+[29] withr_2.5.0        ROCR_1.0-11        cli_3.3.0          survival_3.2-13   
+[33] magrittr_2.0.3     crayon_1.5.1       readxl_1.4.0       evaluate_0.15     
+[37] fs_1.5.2           fansi_1.0.3        xml2_1.3.3         cabinets_0.6.0    
+[41] tools_4.1.3        hms_1.1.1          lifecycle_1.0.1    munsell_0.5.0     
+[45] reprex_2.0.1       glmnet_4.1-4       plotrix_3.8-2      compiler_4.1.3    
+[49] rlang_1.0.4        plotmo_3.6.2       grid_4.1.3         iterators_1.0.14  
+[53] rstudioapi_0.13    htmlwidgets_1.5.4  rmarkdown_2.13     gtable_0.3.0      
+[57] codetools_0.2-18   DBI_1.1.2          R6_2.5.1           lubridate_1.8.0   
+[61] knitr_1.38         fastmap_1.1.0      utf8_1.2.2         shape_1.4.6       
+[65] tmle_1.5.0.2       stringi_1.7.8      Rcpp_1.0.9         vctrs_0.4.1       
+[69] dbplyr_2.1.1       tidyselect_1.1.2   xfun_0.32         </code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

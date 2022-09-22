@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Katherine Hoffman">
+<meta name="dcterms.date" content="2019-01-09">
+
+<title>KHstats - A Condensed Key for A Visual Guide to Targeted Maximum Likelihood Estimation (TMLE)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  </head><body class="nav-fixed fullcontent">true
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">Google Scholar</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">A Condensed Key for A Visual Guide to Targeted Maximum Likelihood Estimation (TMLE)</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">statistics</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Katherine Hoffman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 9, 2019</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>A helper post to <em>TMLE Part II: The Algorithm</em> containing only formulas and graphics.</p>
+<!--more-->
+<blockquote class="blockquote">
+<p>A condensed key for my corresponding <a href="www.khstats.com/blog/tmle/tutorial">TMLE tutorial</a> blog post.</p>
+</blockquote>
+<section id="initial-set-up" class="level3">
+<h3 class="anchored">Initial set up</h3>
+<p><img src="tmle/1_data_structure.png" class="img-fluid" style="width:80.0%"> <strong>Estimand of interest:</strong></p>
+<p><span class="math display">\[ATE = \Psi = E_W[\mathrm{E}[Y|A=1,\mathbf{W}] - \mathrm{E}[Y|A=0,\mathbf{W}]]\]</span></p>
+
+
+<h2 style="color:navy" class="anchored" data-anchor-id="initial-set-up">
+<p><strong>Step 1: Estimate the Outcome</strong></p><strong>
+</strong></h2><strong>
+</strong><p><strong></strong></p>
+
+
+<p>First, estimate the expected value of the outcome using treatment and confounders as predictors.</p>
+<p><span class="math display">\[Q(A,\mathbf{W}) = \mathrm{E}[Y|A,\mathbf{W}]\]</span> <img src="tmle/2_outcome_fit.png" class="img-fluid" style="width:70.0%"></p>
+<p>Then use that fit to obtain estimates of the expected outcome under varying three different treatment conditions:</p>
+<p><strong>1. If every observation received the treatment they <em>actually</em> received.</strong></p>
+<p><span class="math display">\[\hat{Q}(A,\mathbf{W}) = \mathrm{\hat{E}}[Y|A,\mathbf{W}]\]</span></p>
+<p><img src="tmle/3_QA.png" class="img-fluid" style="width:50.0%"></p>
+<p><strong>2. If every observation received the treatment.</strong></p>
+<p><span class="math display">\[\hat{Q}(1,\mathbf{W}) = \mathrm{\hat{E}}[Y|A=1,\mathbf{W}]\]</span></p>
+<p><img src="tmle/4_Q1.png" class="img-fluid" style="width:80.0%"></p>
+<p><strong>3. If every observation received the control.</strong></p>
+<p><span class="math display">\[\hat{Q}(0,\mathbf{W}) = \mathrm{\hat{E}}[Y|A=0,\mathbf{W}]\]</span></p>
+<p><img src="tmle/5_Q1.png" class="img-fluid" style="width:80.0%"></p>
+
+
+<h2 style="color:navy" class="anchored">
+<p><strong>Step 2: Estimate the Probability of Treatment</strong></p><strong>
+</strong></h2><strong>
+</strong><p><strong></strong></p>
+
+
+<p>The next step is to estimate the probability of treatment, given confounders.</p>
+<p><span class="math display">\[g(\mathbf{W}) = \mathrm{Pr}(A=1|\mathbf{W})\]</span> <img src="tmle/6_treatment_fit.png" class="img-fluid" style="width:60.0%"></p>
+<p>Then we need to compute three different quantities from this model fit:</p>
+<p><strong>1. The inverse probability of receiving treatment.</strong></p>
+<p><span class="math display">\[H(1,\mathbf{W}) = \frac{1}{g(\mathbf{W})} = \frac{1}{\mathrm{Pr}(A=1|\mathbf{W})}\]</span></p>
+<p><img src="tmle/7_H1.png" class="img-fluid" style="width:60.0%"></p>
+<p><strong>2. The negative inverse probability of not receiving treatment.</strong></p>
+<p><span class="math display">\[H(0,\mathbf{W}) = -\frac{1}{1-g(\mathbf{W})}= -\frac{1}{\mathrm{Pr}(A=0|\mathbf{W})}\]</span></p>
+<p><img src="tmle/8_H0.png" class="img-fluid" style="width:70.0%"></p>
+<p><strong>3. If the observation was treated, the inverse probability of receiving treatment, and if they were not treated, the negative inverse probability of not receiving treatment.</strong></p>
+<p><span class="math display">\[H(A,\mathbf{W}) = \frac{\mathrm{I}(A=1)}{\mathrm{Pr}(A=1|\mathbf{W})}-\frac{\mathrm{I}(A=0)}{\mathrm{Pr}(A=0|\mathbf{W})}\]</span></p>
+<p><img src="tmle/9_HA.png" class="img-fluid" style="width:50.0%"></p>
+
+
+<h2 style="color:navy" class="anchored">
+<p><strong>Step 3: Estimate the Fluctuation Parameter</strong></p><strong>
+</strong></h2><strong>
+</strong><p><strong></strong></p>
+
+
+<p>Estimating equation we need to solve:</p>
+<p><span class="math display">\[logit(\mathrm{E}[Y|A,\mathbf{W}]) = logit(\mathrm{\hat{E}}[Y|A,\mathbf{W}]) + \epsilon H(A,\mathbf{W})\]</span> Two technical points for application: we use <code>qlogis</code> to transform the probabilities <span class="math inline">\(\mathrm{\hat{E}}[Y|A,\mathbf{W}]\)</span> to the <span class="math inline">\(logit\)</span> scale. Also, the <code>R</code> code for a fixed intercept is <code>-1 + offset(fixed_intercept)</code>.</p>
+<p><img src="tmle/10_logistic_regression.png" class="img-fluid"></p>
+<p>Next we need to save the coefficient from that logistic regression, which we will call <span class="math inline">\(\hat{\epsilon}\)</span>:</p>
+<p><img src="tmle/11_epsilon.png" class="img-fluid" style="width:40.0%"></p>
+
+
+<h2 style="color:navy" class="anchored">
+<p><strong>Step 4: Update the Initial Estimates of the Expected Outcome</strong></p><strong>
+</strong></h2><strong>
+</strong><p><strong></strong></p>
+
+
+<p><em>Note we can use</em> <span class="math inline">\(expit\)</span> to show the inverse of the <span class="math inline">\(logit\)</span> function, and we will denote updates to the outcome regressions as <span class="math inline">\(\hat{\mathrm{E}}^*\)</span>.</p>
+<p><strong>1. Update the expected outcomes of all observations, given the treatment they actually received and their baseline confounders.</strong></p>
+<p><span class="math display">\[\hat{\mathrm{E}}^*[Y|A,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A,\mathbf{W}]) + \hat{\epsilon}H(A,\mathbf{W}))\]</span></p>
+<p><img src="tmle/update_qAW.png" class="img-fluid" style="width:70.0%"></p>
+<p><strong>2. Update the expected outcomes, conditional on baseline confounders and everyone receiving the treatment.</strong></p>
+<p><span class="math display">\[\hat{\mathrm{E}}^*[Y|A=1,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A=1,\mathbf{W}]) + \hat{\epsilon}H(A,1))\]</span> <img src="tmle/12_update_Q1.png" class="img-fluid" style="width:70.0%"></p>
+<p><strong>3. Update the expected outcomes, conditional on baseline confounders and no one receiving the treatment.</strong></p>
+<p><span class="math display">\[\hat{\mathrm{E}}^*[Y|A=0,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A=0,\mathbf{W}]) + \hat{\epsilon}H(A,0))\]</span> <img src="tmle/13_update_Q0.png" class="img-fluid" style="width:70.0%"></p>
+
+
+<h2 style="color:navy" class="anchored">
+<p><strong>Step 5: Compute the Statistical Estimand of Interest</strong></p><strong>
+</strong></h2><strong>
+</strong><p><strong></strong></p>
+
+
+<p>We now have updated expected outcomes estimates, so we can compute the ATE as the mean difference in the updated outcome estimates under treatment and no treatment:</p>
+<p><span class="math display">\[\hat{ATE}_{TMLE} = \hat{\Psi}_{TMLE} = \sum_{i=1}^{n}[\hat{E^*}[Y|A=1,\mathbf{W}] - \hat{E^*}[Y|A=0,\mathbf{W}]]\]</span></p>
+<p><img src="tmle/14_compute_ATE.png" class="img-fluid" style="width:60.0%"></p>
+
+
+<h2 style="color:navy" class="anchored">
+<p><strong>Step 6: Calculate the Standard Errors, Confidence Intervals, and P-values</strong></p><strong>
+</strong></h2><strong>
+</strong><p><strong></strong></p>
+
+
+<p>To obtain the standard errors, we first need to compute the <strong>Influence Curve</strong> (IC). The equation for the IC looks like this:</p>
+<p><span class="math display">\[\hat{IC} = (Y-\hat{E^*}[Y|A,\mathbf{W}])H(A,\mathbf{W}) + \hat{E^*}[Y|A=1,\mathbf{W}] - \hat{E^*}[Y|A=0,\mathbf{W}] - \hat{ATE}\]</span></p>
+<p>Once we have the IC, we can take the square-root of its variance divided by the number of observations to get the standard error of our estimate.</p>
+<p><span class="math display">\[\hat{SE} = \sqrt{\frac{var(\hat{IC})}{N}} \]</span></p>
+<p><img src="tmle/15_ses.png" class="img-fluid" style="width:100.0%"> Once we have that standard error, we can easily get the 95% confidence interval and p-value of our estimate.</p>
+<hr>
+<p><em>A visual guide designed as a printable reference is available on my <a href="https://github.com/kathoffman/CI-visual-guides/blob/master/visual-guides/TMLE.pdf">Github</a>:</em></p>
+<p><img src="TMLE.jpg" class="img-fluid"></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

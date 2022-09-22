@@ -1,0 +1,14 @@
+{
+  "hash": "3cae4b9002e3133d0c3bc5f3106cd3e4",
+  "result": {
+    "markdown": "---\ntitle: \"We are never ever ever meeting the positivity assumption.\"\nauthor: \"Katherine Hoffman\"\nshowonlyimage: true\ndate: 2019-04-16T21:13:14-05:00\ntags: [\"positivity\",\"causal inference\",\"taylor swift\"]\ncategories: [\"comics\",\"statistics\"]\nimage: img/positivity_comic.jpeg\nweight: 8\n---\n\n\nLike, ever.\n\n<!--more-->\n\n<html>\n   <head>\n   </head>\n   \n   <body>\n   <a\n   href=\"https://github.com/kathoffman/causal-inference-visual-guides/blob/master/comics/positivity_comic.jpeg\">\n         <img alt=\"positivity-assumption\" src=\"/img/positivity_comic.jpeg\"  >\n   </body>\n</html>",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

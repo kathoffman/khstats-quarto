@@ -1,0 +1,384 @@
+id,day,intubation_status,steroids,death,severe
+397,0,Not intubated,0,0,0
+397,1,Not intubated,0,0,0
+397,2,Not intubated,0,0,1
+397,3,Not intubated,0,0,0
+397,4,Not intubated,0,0,0
+397,5,Not intubated,0,0,0
+397,6,Not intubated,0,0,0
+397,7,Not intubated,0,0,0
+397,8,Not intubated,0,0,0
+397,9,Not intubated,0,0,0
+397,10,Not intubated,0,0,0
+397,11,Not intubated,0,0,0
+397,12,Not intubated,0,0,0
+397,13,Not intubated,0,0,0
+397,14,Not intubated,0,0,0
+397,15,Not intubated,0,0,0
+397,16,Not intubated,0,1,0
+575,0,Not intubated,0,0,0
+575,1,Not intubated,0,0,1
+575,2,Intubated,0,0,0
+575,3,Intubated,0,0,0
+575,4,Intubated,0,0,0
+575,5,Intubated,0,0,0
+575,6,Intubated,0,0,0
+575,7,Intubated,0,0,0
+575,8,Intubated,0,0,0
+575,9,Intubated,0,0,0
+575,10,Intubated,0,0,0
+575,11,Intubated,1,0,0
+575,12,Intubated,1,0,0
+575,13,Intubated,0,0,0
+575,14,Intubated,0,0,0
+575,15,Intubated,0,0,0
+575,16,Intubated,0,0,0
+575,17,Intubated,0,0,0
+575,18,Intubated,1,0,0
+575,19,Intubated,1,0,0
+575,20,Not intubated,1,0,0
+575,21,Not intubated,0,0,0
+575,22,Not intubated,0,0,0
+575,23,Not intubated,0,0,0
+575,24,Not intubated,0,0,0
+575,25,Not intubated,0,0,0
+575,26,Not intubated,0,0,0
+575,27,Not intubated,0,0,0
+575,28,Not intubated,0,0,0
+714,0,Not intubated,0,0,0
+714,1,Not intubated,0,0,0
+714,2,Not intubated,0,0,0
+805,0,Not intubated,0,0,0
+805,1,Not intubated,0,0,1
+805,2,Not intubated,0,0,0
+805,3,Not intubated,0,0,0
+805,4,Not intubated,0,0,0
+805,5,Not intubated,0,0,0
+805,6,Not intubated,1,0,0
+805,7,Not intubated,1,0,0
+805,8,Not intubated,1,0,0
+805,9,Not intubated,1,0,0
+805,10,Not intubated,0,0,0
+805,11,Not intubated,0,0,0
+805,12,Not intubated,0,0,0
+805,13,Not intubated,0,0,0
+805,14,Not intubated,0,0,0
+805,15,Not intubated,0,0,0
+805,16,Not intubated,0,1,0
+882,0,Not intubated,0,0,0
+882,1,Not intubated,0,0,0
+882,2,Not intubated,0,0,0
+882,3,Not intubated,0,0,0
+882,4,Not intubated,0,0,0
+317,0,Not intubated,0,0,0
+317,1,Not intubated,0,0,0
+317,2,Not intubated,0,0,0
+729,0,Not intubated,0,0,0
+729,1,Intubated,0,0,1
+729,2,Intubated,0,0,0
+729,3,Intubated,0,0,0
+729,4,Intubated,0,0,0
+729,5,Intubated,0,0,0
+729,6,Not intubated,0,0,0
+729,7,Not intubated,0,0,0
+729,8,Not intubated,0,0,0
+729,9,Not intubated,0,0,0
+729,10,Not intubated,0,0,0
+729,11,Not intubated,0,0,0
+934,0,Not intubated,0,0,0
+934,1,Not intubated,0,0,0
+934,2,Not intubated,0,0,0
+934,3,Not intubated,0,0,0
+934,4,Not intubated,0,0,0
+934,5,Not intubated,0,0,0
+934,6,Not intubated,0,0,0
+267,0,Not intubated,0,0,0
+267,1,Not intubated,0,0,0
+267,2,Not intubated,0,0,0
+267,3,Not intubated,0,0,0
+267,4,Not intubated,0,0,0
+267,5,Not intubated,0,0,1
+267,6,Not intubated,0,0,0
+267,7,Not intubated,0,0,0
+267,8,Not intubated,0,0,0
+267,9,Not intubated,0,0,0
+267,10,Not intubated,0,0,0
+267,11,Not intubated,0,0,0
+267,12,Not intubated,0,0,0
+267,13,Not intubated,0,0,0
+267,14,Not intubated,0,0,0
+121,0,Not intubated,0,0,0
+121,1,Not intubated,0,0,1
+121,2,Not intubated,0,0,0
+121,3,Not intubated,0,0,0
+121,4,Not intubated,0,0,0
+121,5,Not intubated,0,0,0
+121,6,Not intubated,0,0,0
+121,7,Not intubated,0,0,0
+121,8,Not intubated,0,0,0
+121,9,Not intubated,0,0,0
+121,10,Not intubated,0,0,0
+121,11,Not intubated,0,0,0
+121,12,Not intubated,0,0,0
+121,13,Not intubated,0,0,0
+121,14,Not intubated,0,0,0
+121,15,Not intubated,0,0,0
+121,16,Not intubated,0,0,0
+121,17,Not intubated,0,0,0
+121,18,Not intubated,0,0,0
+121,19,Not intubated,0,0,0
+189,0,Not intubated,0,0,0
+189,1,Intubated,0,0,1
+189,2,Intubated,0,0,0
+189,3,Intubated,0,0,0
+189,4,Intubated,0,0,0
+189,5,Intubated,0,0,0
+189,6,Intubated,0,0,0
+189,7,Intubated,0,0,0
+189,8,Intubated,0,0,0
+189,9,Intubated,0,0,0
+189,10,Intubated,0,0,0
+189,11,Intubated,0,0,0
+189,12,Intubated,0,0,0
+189,13,Intubated,0,0,0
+189,14,Intubated,0,0,0
+189,15,Intubated,0,0,0
+189,16,Intubated,0,0,0
+189,17,Intubated,0,0,0
+189,18,Intubated,0,0,0
+189,19,Intubated,0,0,0
+189,20,Intubated,0,0,0
+189,21,Intubated,0,0,0
+189,22,Intubated,0,0,0
+189,23,Intubated,0,0,0
+189,24,Intubated,0,0,0
+189,25,Intubated,0,0,0
+189,26,Intubated,0,0,0
+189,27,Intubated,0,0,0
+189,28,Intubated,0,0,0
+907,0,Not intubated,0,0,0
+907,1,Not intubated,0,0,0
+907,2,Not intubated,0,0,0
+907,3,Not intubated,0,0,0
+907,4,Not intubated,0,0,0
+907,5,Not intubated,0,0,0
+233,0,Intubated,0,0,1
+233,1,Intubated,0,0,0
+233,2,Intubated,0,0,0
+233,3,Intubated,0,0,0
+233,4,Intubated,0,1,0
+499,0,Not intubated,0,0,0
+499,1,Not intubated,0,0,0
+499,2,Not intubated,0,0,0
+499,3,Not intubated,0,0,0
+499,4,Not intubated,0,0,0
+499,5,Not intubated,0,0,0
+499,6,Not intubated,0,0,0
+249,0,Intubated,0,0,1
+249,1,Intubated,0,0,0
+249,2,Intubated,1,0,0
+249,3,Intubated,1,0,0
+249,4,Intubated,1,0,0
+249,5,Intubated,1,0,0
+249,6,Intubated,1,0,0
+249,7,Intubated,0,0,0
+249,8,Intubated,0,0,0
+249,9,Intubated,0,0,0
+249,10,Intubated,0,0,0
+249,11,Intubated,0,0,0
+249,12,Not intubated,0,0,0
+249,13,Not intubated,0,0,0
+249,14,Not intubated,0,0,0
+249,15,Not intubated,0,0,0
+249,16,Not intubated,0,0,0
+249,17,Not intubated,0,0,0
+249,18,Not intubated,0,0,0
+249,19,Not intubated,0,0,0
+249,20,Not intubated,0,0,0
+249,21,Not intubated,0,0,0
+249,22,Not intubated,0,0,0
+249,23,Not intubated,0,0,0
+249,24,Not intubated,0,0,0
+249,25,Not intubated,0,0,0
+249,26,Not intubated,0,0,0
+249,27,Not intubated,0,0,0
+249,28,Not intubated,0,0,0
+286,0,Not intubated,0,0,0
+286,1,Not intubated,0,0,1
+286,2,Not intubated,0,1,0
+632,0,Not intubated,0,0,0
+632,1,Not intubated,0,0,0
+632,2,Not intubated,0,0,0
+632,3,Not intubated,0,0,0
+381,0,Not intubated,0,0,0
+381,1,Not intubated,0,0,0
+381,2,Not intubated,0,0,0
+381,3,Not intubated,0,0,0
+381,4,Not intubated,0,0,0
+314,0,Not intubated,0,0,0
+314,1,Not intubated,0,0,1
+314,2,Not intubated,0,0,0
+314,3,Not intubated,0,0,0
+314,4,Not intubated,0,0,0
+314,5,Not intubated,0,0,0
+314,6,Not intubated,0,0,0
+314,7,Not intubated,0,0,0
+314,8,Not intubated,0,0,0
+314,9,Not intubated,0,0,0
+314,10,Not intubated,0,0,0
+314,11,Not intubated,0,0,0
+314,12,Not intubated,0,0,0
+314,13,Not intubated,0,0,0
+314,14,Intubated,0,0,0
+314,15,Intubated,0,0,0
+314,16,Intubated,0,0,0
+314,17,Intubated,1,0,0
+314,18,Intubated,1,0,0
+314,19,Intubated,1,0,0
+314,20,Intubated,1,0,0
+314,21,Intubated,1,0,0
+314,22,Not intubated,1,0,0
+314,23,Not intubated,0,0,0
+314,24,Not intubated,0,0,0
+314,25,Not intubated,0,0,0
+314,26,Not intubated,0,0,0
+314,27,Not intubated,0,0,0
+314,28,Not intubated,0,0,0
+711,0,Not intubated,0,0,0
+711,1,Not intubated,0,0,0
+711,2,Not intubated,0,0,0
+711,3,Not intubated,0,0,0
+270,0,Not intubated,0,0,0
+270,1,Not intubated,0,0,0
+555,0,Not intubated,0,0,0
+555,1,Not intubated,0,0,0
+555,2,Not intubated,0,0,0
+555,3,Not intubated,0,0,0
+614,0,Not intubated,0,0,0
+614,1,Intubated,0,0,1
+614,2,Intubated,0,0,0
+614,3,Intubated,0,0,0
+614,4,Intubated,0,0,0
+614,5,Intubated,0,0,0
+614,6,Intubated,0,0,0
+614,7,Intubated,0,0,0
+614,8,Intubated,0,0,0
+614,9,Intubated,0,0,0
+614,10,Intubated,0,0,0
+614,11,Intubated,1,0,0
+614,12,Intubated,1,0,0
+614,13,Intubated,1,0,0
+614,14,Intubated,1,0,0
+614,15,Not intubated,1,0,0
+614,16,Not intubated,1,0,0
+614,17,Not intubated,1,0,0
+614,18,Not intubated,1,0,0
+614,19,Not intubated,0,0,0
+614,20,Not intubated,0,0,0
+614,21,Not intubated,0,0,0
+187,0,Not intubated,0,0,0
+187,1,Not intubated,0,0,0
+187,2,Not intubated,0,0,1
+187,3,Not intubated,0,0,0
+187,4,Not intubated,0,0,0
+187,5,Not intubated,0,0,0
+187,6,Not intubated,0,0,0
+187,7,Not intubated,0,0,0
+187,8,Not intubated,0,0,0
+187,9,Not intubated,0,0,0
+187,10,Not intubated,0,0,0
+652,0,Intubated,0,0,1
+652,1,Intubated,0,0,0
+652,2,Intubated,0,0,0
+652,3,Intubated,0,0,0
+652,4,Intubated,0,0,0
+652,5,Intubated,0,0,0
+652,6,Intubated,0,0,0
+652,7,Intubated,0,0,0
+652,8,Intubated,0,0,0
+652,9,Intubated,0,0,0
+652,10,Intubated,0,1,0
+875,0,Not intubated,0,0,0
+875,1,Intubated,0,0,1
+875,2,Intubated,0,0,0
+875,3,Intubated,0,0,0
+875,4,Intubated,0,0,0
+875,5,Intubated,0,0,0
+875,6,Intubated,0,0,0
+875,7,Intubated,0,0,0
+875,8,Intubated,0,0,0
+875,9,Intubated,0,0,0
+875,10,Intubated,0,0,0
+875,11,Intubated,0,0,0
+875,12,Intubated,0,0,0
+875,13,Intubated,0,0,0
+875,14,Intubated,0,0,0
+875,15,Intubated,0,0,0
+875,16,Intubated,0,0,0
+875,17,Intubated,0,0,0
+875,18,Intubated,0,0,0
+875,19,Intubated,0,0,0
+875,20,Intubated,0,0,0
+875,21,Intubated,0,0,0
+875,22,Intubated,0,0,0
+875,23,Intubated,0,0,0
+875,24,Intubated,0,0,0
+875,25,Intubated,0,0,0
+875,26,Intubated,0,0,0
+875,27,Intubated,0,0,0
+875,28,Intubated,0,0,0
+528,0,Not intubated,0,0,0
+528,1,Not intubated,0,0,0
+528,2,Not intubated,0,0,0
+528,3,Not intubated,0,0,0
+528,4,Not intubated,0,0,1
+528,5,Not intubated,0,0,0
+528,6,Not intubated,0,0,0
+528,7,Not intubated,0,0,0
+528,8,Not intubated,0,0,0
+528,9,Not intubated,0,0,0
+528,10,Not intubated,0,0,0
+528,11,Not intubated,0,0,0
+528,12,Not intubated,0,0,0
+528,13,Not intubated,0,0,0
+528,14,Not intubated,0,0,0
+528,15,Not intubated,0,0,0
+528,16,Not intubated,0,1,0
+140,0,Not intubated,0,0,0
+140,1,Not intubated,0,0,0
+140,2,Not intubated,0,0,0
+140,3,Not intubated,0,0,0
+140,4,Not intubated,0,0,0
+642,0,Not intubated,0,0,0
+642,1,Not intubated,0,0,0
+642,2,Not intubated,0,0,1
+642,3,Not intubated,0,0,0
+642,4,Not intubated,0,0,0
+642,5,Not intubated,0,0,0
+642,6,Not intubated,0,0,0
+642,7,Not intubated,0,0,0
+642,8,Not intubated,0,0,0
+642,9,Not intubated,0,0,0
+642,10,Not intubated,0,0,0
+642,11,Not intubated,0,0,0
+642,12,Not intubated,0,0,0
+642,13,Not intubated,0,0,0
+642,14,Not intubated,0,0,0
+642,15,Not intubated,0,0,0
+642,16,Not intubated,0,0,0
+642,17,Not intubated,0,0,0
+642,18,Not intubated,0,0,0
+642,19,Not intubated,0,0,0
+642,20,Not intubated,0,0,0
+642,21,Not intubated,0,0,0
+642,22,Not intubated,0,0,0
+642,23,Not intubated,0,0,0
+642,24,Not intubated,0,0,0
+642,25,Not intubated,0,0,0
+642,26,Not intubated,0,0,0
+642,27,Not intubated,0,0,0
+642,28,Not intubated,0,0,0
+387,0,Not intubated,0,0,1
+387,1,Not intubated,0,0,0
+387,2,Not intubated,0,0,0
+387,3,Not intubated,0,1,0

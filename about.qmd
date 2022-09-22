@@ -1,0 +1,21 @@
+---
+title: "About"
+image: profile.jpg
+theme: sketchy
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/kat_hoffman_
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/katherinelhoffman
+    - icon: github
+      text: Github
+      href: https://github.com/kathoffman
+---
+
+My name is Katherine (Kat) Hoffman. I am a research biostatistician at Weill Cornell Medicine in New York City. I earned an M.S. in Biostatistics from the University of Michigan in 2018, and prior to that I studied biochemistry at the University of Detroit Mercy. My passion for biostatistics is largely driven by my experiences caring for hospitalized patients during and after college.
+
+I began blogging in 2019 with the post [*A Day in the Life of a Biostatistician*](https://www.khstats.com/blog/ditl-biostats/). Since then, I've tried to write about statistics, programming, and career-related topics in ways I think my younger self would have found useful. I am especially interested in creating content which helps bridge the communication gap between statistical methodologists, clinician-researchers, and analysts.

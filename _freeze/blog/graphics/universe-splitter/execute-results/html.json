@@ -1,0 +1,14 @@
+{
+  "hash": "e8e3cdcd7f24043c4bad9477f0a8df7b",
+  "result": {
+    "markdown": "---\ntitle: \"The Universe Splitter\"\nauthor: \"Katherine Hoffman\"\nshowonlyimage: true\ndate: 2019-04-16T21:13:14-05:00\ncategories: [\"career\"]\nimage: /img/universe_comic.jpeg\nweight: 14\n---\n\n\n<!--more-->\n\n<html>\n   <head>\n   </head>\n   <body>\n   <a\n   href=\"https://github.com/kathoffman/causal-inference-visual-guides/blob/master/comics/universe_comic.jpeg\">\n         <img alt=\"the-universe-splitter\" src=\"/img/universe_comic.jpeg\"  >\n   </body>\n</html>",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

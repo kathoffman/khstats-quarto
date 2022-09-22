@@ -1,0 +1,10 @@
+---
+title: "Corticosteroids in COVID-19: Optimizing Observational Research through Target Trial Emulations"
+categories: ["statistics"]
+editor: visual
+description: " "
+date: 2022-09-19
+image: /img/steroids-title.png
+---
+
+Slide deck for a talk corresponding to the paper *Comparison of a Target Trial Emulation Framework to Cox Regression to Estimate the Effect of Corticosteroids on COVID-19 Mortality* (Hoffman et al. 2022) is available [\[here\]](https://github.com/kathoffman/steroids-trial-emulation/blob/main/presentations/hoffman_acic_slides.pdf).

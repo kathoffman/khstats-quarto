@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Katherine Hoffman">
+<meta name="dcterms.date" content="2022-06-08">
+
+<title>KHstats - Using ggplot2 to create Treatment Timelines with Multiple Variables</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">Google Scholar</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Using ggplot2 to create Treatment Timelines with Multiple Variables</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">data visualization</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Katherine Hoffman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 8, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>An R code walkthrough for treatment timelines or “swimmer” plots. These can help visualize treatment or measurement patterns, time-varying covariates, outcomes, and loss to follow-up in longitudinal data settings.</p>
+<!--more-->
+<p><strong><em>June 8, 2022.</em></strong></p>
+<div class="cell-output-display">
+<p><img src="multiple-vars_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>This post walks through code to create a timeline in <code>R</code> using <code>ggplot2</code>. These types of plots can help visualize <strong>treatment or measurement patterns</strong>, <strong>time-varying covariates</strong>, <strong>outcomes</strong>, and <strong>loss to follow-up</strong> in longitudinal data settings.</p>
+<p>You can view a corresponding slide deck I made with {flipbookr} for the 2022 R/Medicine <a href="https://kathoffman.github.io/swimmer-plots/slides.html#1">[here]</a>, or you can <a href="#just-the-code">skip to the end of this post to just see the code</a>.</p>
+<section id="background" class="level1">
+<h1>Background</h1>
+<p>Treatment timelines, or “swimmer plots”, are a visualization technique I find useful in exploring longitudinal data structures. A few years ago I shared how I make treatment timelines for a single treatment (categorical or continuous) in the post <a href="https://www.khstats.com/blog/trt-timelines/trt-timelines/"><strong>Patient Treatment Timelines for Longitudinal Survival Data</strong></a>.</p>
+<p>Sometimes when I share these plots with collaborators, they ask me to <strong>add additional variables to the timelines</strong>. This post shows how to do that.</p>
+<p>I’ll use a toy dataset on hospitalized COVID-19 patients, available to download on this <a href="https://github.com/kathoffman/steroids-trial-emulation">Github repository</a>. It is derived from a dataset from Electronic Health Record data during Spring 2020. This is a time period when there was large variation in provider practice in administering steroids, a type of drug that combats hyper-inflammation. Steroids are usually given to patients which exhibit an inflammatory profile; we will identify this using a threshold for low oxygen levels (severe hypoxia).</p>
+<p>We will look at the treatment patterns of steroids as it relates to the timing of patients (1) reaching severe hypoxia and (2) being put on a ventilator (intubation). We will also include whether patients died. I used a similar figure in a <a href="https://www.medrxiv.org/content/10.1101/2022.05.27.22275037v3">recent manuscript</a> on this topic, if you’re interested in learning more!</p>
+</section>
+<section id="exploring-the-data" class="level1">
+<h1>Exploring the data</h1>
+<p>The data set is in long format with one row per patient. Let’s first load the data set and libraries we’ll need, then look at the first 20 rows:</p>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("tidyverse","gt","RCurl","rmarkdown"))</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>dat_long <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/kathoffman/steroids-trial-emulation/main/data/dat_trt_timeline.csv"</span>, <span class="at">col_types =</span> <span class="fu">list</span>(<span class="at">id  =</span> <span class="st">"c"</span>, <span class="at">steroids =</span> <span class="st">"c"</span>, <span class="at">death =</span> <span class="st">"c"</span>, <span class="at">severe =</span> <span class="st">"c"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If we look at the first patient (id = 797), we can see they were in the hospital for 17 days, never intubated, never receive steroids, and ultimately die (<code>death</code> is <code>1</code> on the last day).</p>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat_long) <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paged_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["chr"],"align":["left"]},{"label":["day"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["intubation_status"],"name":[3],"type":["chr"],"align":["left"]},{"label":["steroids"],"name":[4],"type":["chr"],"align":["left"]},{"label":["death"],"name":[5],"type":["chr"],"align":["left"]},{"label":["severe"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"797","2":"0","3":"Not intubated","4":"0","5":"0","6":"0"},{"1":"797","2":"1","3":"Not intubated","4":"0","5":"0","6":"0"},{"1":"797","2":"2","3":"Not intubated","4":"0","5":"0","6":"1"},{"1":"797","2":"3","3":"Not intubated","4":"0","5":"0","6":"0"},{"1":"797","2":"4","3":"Not intubated","4":"0","5":"0","6":"0"},{"1":"797","2":"5","3":"Not intubated","4":"0","5":"0","6":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>We can plot all patients’ hospital length of stay, colored by intubation status using <code>ggplot2</code>’s <code>geom_line()</code>:</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat_long <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>day, <span class="at">y=</span>id, <span class="at">col =</span> intubation_status, <span class="at">group=</span>id)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-vars_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>We can add our <code>steroids</code> column to the plot by adding a point designating whether <code>steroids</code> exposure was <code>1</code> (yes) or <code>0</code> (no) that day. We can see this results in points of two different colors on the lines of our plot. <a href="https://www.khstats.com/blog/trt-timelines/trt-timelines/">This can work just fine</a>! …unless you want to add another variable to the timeline.</p>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dat_long <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>day, <span class="at">y=</span>id, <span class="at">col =</span> intubation_status, <span class="at">group=</span>id)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(day, id, <span class="at">col =</span> steroids)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-vars_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</section>
+<section id="modify-the-data" class="level1">
+<h1>Modify the data</h1>
+<p>We <em>could</em> edit the colors of the dots we don’t want so that they’re transparent (using <code>NA</code>), but when you have other non-mutually exclusive dots you want to show, it’s simpler to just edit the data instead. So, we will now edit our data so that our three binary columns are turned into three <code>*_this_day</code> column, where:</p>
+<ul>
+<li>The value is <code>NA</code> if the observation did not experience that exposure/outcome that day (remember each day is a new row)</li>
+<li>The value is the <code>day</code> if the observation <em>did</em> experience the exposure/outcome. This is to make our <code>x</code> axis easy to specify in <code>ggplot2</code>.</li>
+</ul>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dat_swim <span class="ot">&lt;-</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  dat_long <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">severe_this_day =</span> <span class="fu">case_when</span>(severe <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> day),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">steroids_this_day =</span> <span class="fu">case_when</span>(steroids <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> day),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_this_day =</span> <span class="fu">case_when</span>(death <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> day))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>While we’re at it, let’s modify the patient’s IDs so that we can rearrange our plot by length of each individual’s timeline. To do this, we will reorder the factored <code>id</code> variable by a new variable <code>max_day</code>, or the length of time that patients are in the study.</p>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dat_swim <span class="ot">&lt;-</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  dat_swim <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">max_day =</span> <span class="fu">max</span>(day)) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">fct_reorder</span>(<span class="fu">factor</span>(id), max_day))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat_swim) <span class="sc">|&gt;</span> <span class="fu">paged_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["fct"],"align":["left"]},{"label":["day"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["intubation_status"],"name":[3],"type":["chr"],"align":["left"]},{"label":["steroids"],"name":[4],"type":["chr"],"align":["left"]},{"label":["death"],"name":[5],"type":["chr"],"align":["left"]},{"label":["severe"],"name":[6],"type":["chr"],"align":["left"]},{"label":["severe_this_day"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["steroids_this_day"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["death_this_day"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["max_day"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"797","2":"0","3":"Not intubated","4":"0","5":"0","6":"0","7":"NA","8":"NA","9":"NA","10":"16"},{"1":"797","2":"1","3":"Not intubated","4":"0","5":"0","6":"0","7":"NA","8":"NA","9":"NA","10":"16"},{"1":"797","2":"2","3":"Not intubated","4":"0","5":"0","6":"1","7":"2","8":"NA","9":"NA","10":"16"},{"1":"797","2":"3","3":"Not intubated","4":"0","5":"0","6":"0","7":"NA","8":"NA","9":"NA","10":"16"},{"1":"797","2":"4","3":"Not intubated","4":"0","5":"0","6":"0","7":"NA","8":"NA","9":"NA","10":"16"},{"1":"797","2":"5","3":"Not intubated","4":"0","5":"0","6":"0","7":"NA","8":"NA","9":"NA","10":"16"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</section>
+<section id="back-to-plotting" class="level1">
+<h1>Back to plotting</h1>
+<p>Now, we can re-plot the steroids and intubation statuses using our new data. This time without all the <code>0</code> values for steroids showing.</p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dat_swim <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>day, <span class="at">y=</span>id, <span class="at">col =</span> intubation_status, <span class="at">group=</span>id)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>steroids_this_day, <span class="at">y=</span>id, <span class="at">col=</span><span class="st">"Steroids"</span>, <span class="at">shape=</span><span class="st">"Steroids"</span>)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Warning: Removed 387 rows containing missing values (geom_point).</code></pre>
+<div class="cell-output-display">
+<p><img src="multiple-vars_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>From this point on I’ll save the plot as <code>p</code> and just keep adding onto it so you can see the new step.</p>
+<p>We’ll see why we’re doing this in a second, but in creating this first iteration of <code>p</code> using <code>geom_line()</code> and <code>geom_point()</code>, we also want to set the <code>col</code> to match how we want the marker for steroids to appear in the legend. I’m also going to make minor edits to the <code>size</code> and <code>shape</code> of the point geometry right now, as well as the width of each timeline itself (also using the <code>size</code> argument).</p>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  dat_swim <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>day, <span class="at">y=</span>id, <span class="at">col =</span> intubation_status, <span class="at">group=</span>id),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">size=</span><span class="fl">1.8</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>steroids_this_day, <span class="at">y=</span>id, <span class="at">col=</span><span class="st">"Steroids"</span>), <span class="at">stroke=</span><span class="dv">2</span>, <span class="at">shape=</span><span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Warning: Removed 387 rows containing missing values (geom_point).</code></pre>
+<div class="cell-output-display">
+<p><img src="multiple-vars_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>Let’s add hypoxia and death to the figure. We’ll use <code>geom_point()</code> again, and again specify legend names for the <code>col</code> and <code>shape</code> arguments, and modify the <code>size</code> and <code>stroke</code> of our point geometries.</p>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>severe_this_day, <span class="at">y=</span>id, <span class="at">col=</span><span class="st">"Severe hypoxia"</span>), <span class="at">size=</span><span class="dv">2</span>, <span class="at">stroke=</span><span class="fl">1.5</span>, <span class="at">shape=</span><span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>death_this_day, <span class="at">y=</span>id, <span class="at">col=</span><span class="st">"Death"</span>), <span class="at">size=</span><span class="dv">2</span>, <span class="at">stroke=</span><span class="fl">1.5</span>, <span class="at">shape=</span><span class="dv">4</span>) </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Warning: Removed 387 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 403 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 414 rows containing missing values (geom_point).</code></pre>
+<div class="cell-output-display">
+<p><img src="multiple-vars_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>Note that we get warning messages that values with <code>NA</code> are removed. This is fine since we just created all those <code>NA</code>s! I’m going to set my options so that warnings are suppressed for future code outputs to keep this post tidy.</p>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">message=</span>F, <span class="at">warning=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="modify-the-colors-and-shapes" class="level1">
+<h1>Modify the colors and shapes</h1>
+<p>Next let’s start changing our color and shape scales. We can change colors using <code>scale_color_manual()</code> and and filling in the <code>values</code> argument with a vector where the <strong>names of the vector match the names in the <code>col</code> in our <code>geom_point()</code> aesthetics.</strong></p>
+<p>I define my <code>cols</code> in a vector outside the plotting code to keep everything cleaner. Note that the order we’re specifying here will continue throughout the rest of the plotting code!</p>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define colors for all geometries with a color argument</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Severe hypoxia"</span> <span class="ot">=</span> <span class="st">"#b24745"</span>, <span class="co"># red</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Intubated"</span> <span class="ot">=</span> <span class="st">"#483d8b"</span>, <span class="co"># navy</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Not intubated"</span> <span class="ot">=</span> <span class="st">"#74aaff"</span>, <span class="co"># lighter blue</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Steroids"</span><span class="ot">=</span><span class="st">"#ffd966"</span>, <span class="co"># gold</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Death"</span> <span class="ot">=</span> <span class="st">"#000000"</span>) <span class="co"># black </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After we set <code>values = cols</code>, the <code>name</code> argument is simply the title we want for our legend (I chose “Patient Status”).</p>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> cols, <span class="at">name=</span><span class="st">"Patient Status"</span>) </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-vars_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</section>
+<section id="fix-the-legend" class="level1">
+<h1>Fix the Legend</h1>
+<p>You’ll notice that our legend does not match the changes we made to the shapes, size, or linetype right now. This is because our legend only contains information on the colors, because that’s all we’re mapping to the aesthetics of our geometries right now (in <code>geom_point</code> and <code>geom_line</code>. We can override the color legend aesthetics and still create a plot that shows correct and useful information.</p>
+<p>We will do this by using the <code>guides()</code> function. We can control each aesthetic here. We will first override the <code>colors</code> legend with the code <code>guide_legend(override.aes = list(...))</code>.</p>
+<p>This allows us to <em>change the shapes of the color legend</em> by specifying a vector with the shapes, size, and line types we want in the order the labels appear in the legend. If we don’t want a characteristic to appear on the legend, we will use <code>NA</code>.</p>
+<p>I only want to show shapes for certain statuses (severe hypoxia, steroid administration, death), and not the intubation status of a patient, so I’ll set up my shape override vector accordingly. Note that the order in the legend follows the order of my color specification vector (<code>cols</code>).</p>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>shape_override <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">15</span>, <span class="dv">4</span>) <span class="co"># order matches `cols`:severe, intubation (yes/no), steroids, death</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">override.aes =</span> <span class="fu">list</span>(</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">shape =</span> shape_override) <span class="co"># modify the color legend to include shapes</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                      )</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>         ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-vars_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>To remove the line through Death, Severe hypoxia, and Steroids in our legend, we can override the aesthetics for <code>linetype</code> with NA’s for those three labels. We will specify the default, <code>linetype=1</code>, for our intubation status color labels.</p>
+<p>We can additionally override the stroke and size arguments to correspond to our point geometries.</p>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>line_override <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="cn">NA</span>,<span class="cn">NA</span>) <span class="co"># order matches `cols`:severe, intubation (yes/no), steroids, death</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>stroke_override <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">1.4</span>) <span class="co"># order matches `cols`:severe, intubation (yes/no), steroids, death</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>size_override <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">2.6</span>,<span class="fl">2.5</span>,<span class="dv">2</span>) <span class="co"># order matches `cols`:severe, intubation (yes/no), steroids, death</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">override.aes =</span> <span class="fu">list</span>(</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">stroke =</span> stroke_override,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                                <span class="at">shape =</span> shape_override,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                                <span class="at">linetype =</span> line_override,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>                                <span class="at">size =</span> size_override)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                                )</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>             )</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-vars_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>Ok, the challenging parts are done! Now we can make some minor aesthetic edits using <code>labs</code>, <code>scale_x_continuous()</code>, and <code>theme()</code>. I won’t go into detail on these edits because they’re fairly self-explanatory, but check out the help files if you’re unsure what these arguments in theme do!</p>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Days since hospitalization"</span>,<span class="at">y=</span><span class="st">"Patient</span><span class="sc">\n</span><span class="st">number"</span>,<span class="at">title=</span><span class="st">"Treatment Timeline for N=30 Patients"</span>) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span> <span class="co"># remove extra white space </span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="co"># text=element_text(family="Poppins", size=11),</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">vjust=</span>.<span class="dv">5</span>, <span class="at">size=</span><span class="dv">12</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">vjust=</span>.<span class="dv">5</span>, <span class="at">size=</span><span class="dv">12</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">face=</span><span class="st">"bold"</span>, <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">0</span>),</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">6</span>, <span class="at">hjust=</span><span class="fl">1.5</span>),</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.3</span>),</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">13</span>, <span class="at">face=</span><span class="dv">4</span>),</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">10</span>),</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">size=</span><span class="fl">0.5</span>, <span class="at">linetype=</span><span class="st">"solid"</span>, <span class="at">colour =</span><span class="st">"gray30"</span>),</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-vars_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>Hope this is helpful! As always let me know if you have any feedback or suggestions. If you’d like to copy-paste the code, here it is:</p>
+</section>
+<section id="just-the-code" class="level1">
+<h1>Just the Code</h1>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>dat_long <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/kathoffman/steroids-trial-emulation/main/data/dat_trt_timeline.csv"</span>, <span class="at">col_types =</span> <span class="fu">list</span>(<span class="at">id  =</span> <span class="st">"c"</span>, <span class="at">steroids =</span> <span class="st">"c"</span>, <span class="at">death =</span> <span class="st">"c"</span>, <span class="at">severe =</span> <span class="st">"c"</span>))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># define colors for all geometries with a color argument</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Severe hypoxia"</span> <span class="ot">=</span> <span class="st">"#b24745"</span>, <span class="co"># red</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Intubated"</span> <span class="ot">=</span> <span class="st">"#483d8b"</span>, <span class="co"># navy</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Not intubated"</span> <span class="ot">=</span> <span class="st">"#74aaff"</span>, <span class="co"># lighter blue</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Steroids"</span><span class="ot">=</span><span class="st">"#ffd966"</span>, <span class="co"># gold</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Death"</span> <span class="ot">=</span> <span class="st">"#000000"</span>) <span class="co"># black </span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>shape_override <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">15</span>, <span class="dv">4</span>) <span class="co"># order matches `cols`:severe, intubation (yes/no), steroids, death</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>line_override <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="cn">NA</span>,<span class="cn">NA</span>) <span class="co"># order matches `cols`:severe, intubation (yes/no), steroids, death</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>stroke_override <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">1.4</span>) <span class="co"># order matches `cols`:severe, intubation (yes/no), steroids, death</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>size_override <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">2.6</span>,<span class="fl">2.5</span>,<span class="dv">2</span>) <span class="co"># order matches `cols`:severe, intubation (yes/no), steroids, death</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># modify swimmer data to 1) only show events if yes 2) have an id ordered by max follow up</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>dat_swim <span class="ot">&lt;-</span> </span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>   dat_long <span class="sc">|&gt;</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">severe_this_day =</span> <span class="fu">case_when</span>(severe <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> day),</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">steroids_this_day =</span> <span class="fu">case_when</span>(steroids <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> day),</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_this_day =</span> <span class="fu">case_when</span>(death <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> day)) <span class="sc">|&gt;</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">|&gt;</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">max_day =</span> <span class="fu">max</span>(day)) <span class="sc">|&gt;</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">fct_reorder</span>(<span class="fu">factor</span>(id), max_day))</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>dat_swim <span class="sc">|&gt;</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>day, <span class="at">y=</span>id, <span class="at">col =</span> intubation_status, <span class="at">group=</span>id),</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">size=</span><span class="fl">1.8</span>) <span class="sc">+</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>steroids_this_day, <span class="at">y=</span>id, <span class="at">col=</span><span class="st">"Steroids"</span>), <span class="at">shape=</span><span class="dv">15</span>, <span class="at">stroke=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>severe_this_day, <span class="at">y=</span>id, <span class="at">col=</span><span class="st">"Severe hypoxia"</span>), <span class="at">size=</span><span class="dv">2</span>, <span class="at">stroke=</span><span class="fl">1.5</span>, <span class="at">shape=</span><span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>death_this_day, <span class="at">y=</span>id, <span class="at">col=</span><span class="st">"Death"</span>), <span class="at">size=</span><span class="dv">2</span>, <span class="at">stroke=</span><span class="fl">1.5</span>, <span class="at">shape=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> cols, <span class="at">name=</span><span class="st">"Patient Status"</span>) <span class="sc">+</span></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(</span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>                        <span class="at">override.aes =</span> <span class="fu">list</span>(</span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>                                <span class="at">stroke =</span> stroke_override,</span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>                                <span class="at">shape =</span> shape_override,</span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>                                <span class="at">linetype =</span> line_override,</span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>                                <span class="at">size =</span> size_override)</span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>                                )</span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>             )<span class="sc">+</span></span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Days since hospitalization"</span>,<span class="at">y=</span><span class="st">"Patient</span><span class="sc">\n</span><span class="st">number"</span>,<span class="at">title=</span><span class="st">"Treatment Timeline for N=30 Patients"</span>) <span class="sc">+</span></span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span> <span class="co"># remove extra white space </span></span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="co"># text=element_text(family="Poppins", size=11),</span></span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">vjust=</span>.<span class="dv">5</span>, <span class="at">size=</span><span class="dv">12</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">vjust=</span>.<span class="dv">5</span>, <span class="at">size=</span><span class="dv">12</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">face=</span><span class="st">"bold"</span>, <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">0</span>),</span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">6</span>, <span class="at">hjust=</span><span class="fl">1.5</span>),</span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.3</span>),</span>
+<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">13</span>, <span class="at">face=</span><span class="dv">4</span>),</span>
+<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">10</span>),</span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">size=</span><span class="fl">0.5</span>, <span class="at">linetype=</span><span class="st">"solid"</span>, <span class="at">colour =</span><span class="st">"gray30"</span>),</span>
+<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="session-info" class="level1">
+<h1>Session Info</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.1.3 (2022-03-10)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] rmarkdown_2.13  gt_0.6.0        forcats_0.5.1   stringr_1.4.1  
+ [5] dplyr_1.0.9     purrr_0.3.4     readr_2.1.2     tidyr_1.2.0    
+ [9] tibble_3.1.8    ggplot2_3.3.6   tidyverse_1.3.1
+
+loaded via a namespace (and not attached):
+ [1] lubridate_1.8.0   assertthat_0.2.1  digest_0.6.29     utf8_1.2.2       
+ [5] R6_2.5.1          cellranger_1.1.0  backports_1.4.1   reprex_2.0.1     
+ [9] evaluate_0.15     httr_1.4.2        pillar_1.8.1      rlang_1.0.4      
+[13] curl_4.3.2        readxl_1.4.0      rstudioapi_0.13   labeling_0.4.2   
+[17] htmlwidgets_1.5.4 bit_4.0.4         munsell_0.5.0     broom_0.8.0      
+[21] compiler_4.1.3    modelr_0.1.8      xfun_0.32         pkgconfig_2.0.3  
+[25] htmltools_0.5.2   tidyselect_1.1.2  fansi_1.0.3       crayon_1.5.1     
+[29] tzdb_0.3.0        dbplyr_2.1.1      withr_2.5.0       cabinets_0.6.0   
+[33] grid_4.1.3        jsonlite_1.8.0    gtable_0.3.0      lifecycle_1.0.1  
+[37] DBI_1.1.2         magrittr_2.0.3    scales_1.2.1      cli_3.3.0        
+[41] stringi_1.7.8     vroom_1.5.7       farver_2.1.1      fs_1.5.2         
+[45] xml2_1.3.3        ellipsis_0.3.2    generics_0.1.3    vctrs_0.4.1      
+[49] tools_4.1.3       bit64_4.0.5       glue_1.6.2        hms_1.1.1        
+[53] parallel_4.1.3    fastmap_1.1.0     yaml_2.3.5        colorspace_2.0-3 
+[57] rvest_1.0.2       knitr_1.38        haven_2.5.0      </code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

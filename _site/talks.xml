@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>KHstats</title>
+<link>https://www.khstats.com/talks.html</link>
+<atom:link href="https://www.khstats.com/talks.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.0.36</generator>
+<lastBuildDate>Mon, 19 Sep 2022 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Corticosteroids in COVID-19: Optimizing Observational Research through Target Trial Emulations</title>
+  <link>https://www.khstats.com/talks/steroids.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>Slide deck for a talk corresponding to the paper <em>Comparison of a Target Trial Emulation Framework to Cox Regression to Estimate the Effect of Corticosteroids on COVID-19 Mortality</em> (Hoffman et al.&nbsp;2022) is available <a href="https://github.com/kathoffman/steroids-trial-emulation/blob/main/presentations/hoffman_acic_slides.pdf">[here]</a>.</p>
+
+
+
+ ]]></description>
+  <category>statistics</category>
+  <guid>https://www.khstats.com/talks/steroids.html</guid>
+  <pubDate>Mon, 19 Sep 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://www.khstats.com/img/steroids-title.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>Swimmer plots for longitudinal data using ggplot2</title>
+  <link>https://www.khstats.com/talks/swimmers.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>The slide deck for my R/medicine talk is available <a href="https://kathoffman.github.io/swimmer-plots/slides.html">[here]</a>.</p>
+<p>A recording is on <a href="https://www.youtube.com/watch?v=s-IYmN1TBJg">Youtube</a>.</p>
+
+
+
+ ]]></description>
+  <category>programming</category>
+  <guid>https://www.khstats.com/talks/swimmers.html</guid>
+  <pubDate>Thu, 25 Aug 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://www.khstats.com/img/graphics/rmed-screenshot.png" medium="image" type="image/png" height="78" width="144"/>
+</item>
+<item>
+  <title>Introduction to Ensemble Learning and Super Learning</title>
+  <link>https://www.khstats.com/talks/ensemble.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>Slide deck available <a href="https://kathoffman.github.io/superlearning-wcm-cc/presentation.html#1">[here]</a>.</p>
+
+
+
+ ]]></description>
+  <category>statistics</category>
+  <guid>https://www.khstats.com/talks/ensemble.html</guid>
+  <pubDate>Tue, 19 Jan 2021 05:00:00 GMT</pubDate>
+  <media:content url="https://www.khstats.com/img/wcm-cc-bagging.png" medium="image" type="image/png" height="90" width="144"/>
+</item>
+</channel>
+</rss>

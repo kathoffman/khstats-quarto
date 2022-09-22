@@ -1,0 +1,175 @@
+---
+title: "Using {sl3} for superlearning"
+author: "Katherine Hoffman"
+date: 2019-09-12T21:13:14-05:00
+categories: ["programming"]
+image: /img/sl3/sl_talk_screenshot.png
+description: " "
+math: true
+weight: 100
+tags: ["R"]
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    smart: false
+    print_df: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![](/img/sl3/slide_deck.png) **January 10, 2020.**
+
+In September 2019, I gave an R-Ladies NYC presentation about using the package `sl3` to implement the superlearner algorithm for predictions. You can download the slides for it [here](https://github.com/kathoffman/sl3-demo/raw/master/superlearning_slides_no_animation.pdf). This post is a modification to the original demo I gave.
+
+For a more in-depth background on what the superlearner algorithm is, please see my more [recent blog post](khstats.com/blog/sl/sl).
+
+# Step 0: Load your libraries, set a seed, and load the data
+
+You'll likely need to install `sl3` from the `tlverse` github page, as it was not yet on CRAN at the time of writing this post.
+
+```{r}
+#devtools::install_github("tlverse/sl3")
+library(sl3)
+library(dplyr)
+library(gt)
+```
+
+```{r}
+set.seed(7)
+```
+
+We will use the same WASH Benefits data set as the TLverse does in their [Hitchhiker's Guide](https://tlverse.org/tlverse-handbook/). We will be predicting children in rural Kenya and Bengladesh's weight to height z-scores.
+
+```{r}
+washb_data <- read.csv("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv")
+```
+
+```{r}
+gt(head(washb_data))
+```
+
+# Step 1: Specify outcome and predictors
+
+We need the columns for the outcome and predictors to be specified as strings.
+
+```{r}
+outcome <- "whz"
+covars <- washb_data %>%
+  select(-whz) %>%
+  names()
+```
+
+# Step 2: Make an sl3 task
+
+This is the object we'll use whenever we want to fit a statistical model in `sl3`.
+
+```{r}
+washb_task <- make_sl3_Task(
+  data = washb_data,
+  covariates = covars,
+  outcome = outcome
+)
+```
+
+Note that we can't have missing data in most statistical learning algorithms, so `sl3`'s default pre-processing imputes at the median and adds a column for missingness (in case the missingness is informative).
+
+```{r}
+washb_task
+```
+
+## An aside: Exploring `sl3`'s many options
+
+There's a ton of different aspects of model fitting `sl3` has the capabilities to address. For example, we can look into algorithms for when the outcome is binomial, categorical, or continuous. There are also options for when you have clustered data, or if you need to preprocess/screen your data before implementing base learners.
+
+```{r}
+sl3_list_properties()
+```
+
+We can learn more about each of these properties on this [reference page](https://tlverse.org/sl3/reference/index.html).
+
+## Another aside: looking at available "learners"
+
+We'll need to pick out base learners for our stack, as well as pick a metalearner. Since we are trying to predict z-scores, a continuous variable, let's look at our potential learners for a continuous variable.
+
+```{r}
+sl3_list_learners("continuous") 
+```
+
+You'll notice each learner starts with `Lrnr` and seems to correspond to a package in `R`.
+
+# Step 3: Choosing the base learners
+
+Let's pick just a few base learners to match the examples in my slides: a random forest, a generalized boosting model, and a generalized linear model. Let's keep their default parameters for now.
+
+`make_learner_stack()` is an easy way to create a stack of default baselearners. It takes the names of the learners as strings and you're good to go!
+
+```{r}
+stack <- make_learner_stack(
+  "Lrnr_randomForest", 
+  "Lrnr_gbm",
+  "Lrnr_glm"
+)
+```
+
+# Step 4: Choose a metalearner
+
+There are many models we can choose from but we'll keep it simple and use a generalized linear model. We are again using the `make_learner()` function.
+
+```{r}
+metalearner <- make_learner(Lrnr_glm)
+```
+
+# Step 5: Make a superlearner object
+
+Remember, under-the-hood `Lrnr_sl` takes the cross-validated predictions from the base models and uses them to predict the true outcome. That prediction model then is used to fit the predictions from base learners fit on the whole data set.
+
+```{r}
+sl <- make_learner(Lrnr_sl, 
+                   learners = stack,
+                   metalearner = metalearner)
+```
+
+A superlearner object has different functions built into it, such as `train()`. We can train our superlearner shell model on the task we made earlier.
+
+# Step 6: Train your superlearner
+
+```{r}
+sl_fit <- sl$train(washb_task)
+```
+
+# Step 7: Examine the results of the superlearner
+
+## Examine coefficients and CV-risk
+
+The default risk is MSE (Mean Squared Error). The coefficients show you how the metalearner decided to weight each base model for the final ensemble.
+
+```{r}
+sl_fit$print() %>% gt()
+```
+
+## Look at the predictions
+
+`predict()` allows you to see what the model predicts on any given task. Here we look at predictions from the same data we trained the superlearner on, so the predicted weight to height z-scores of the first six children in our data set.
+
+```{r}
+sl_fit$predict(washb_task) %>% head()
+```
+
+# Extras
+
+-   Cross validate your entire ensembled superlearner using the cross-validation package `origami`, written by the same authors as `sl3`. Or just hold out a testing data set to evaluate performance.
+
+-   Use `make_learner()` to customize the tuning parameters of your base learners or metalearner. Ex: `lrnr_RF_200trees <- make_lrnr(Lrnr_randomForest, ntree = 200)`
+
+-   Add many layers to your superlearner and organize it into a "pipeline"
+
+**For more demos, check out the following teaching materials from the authors of `sl3`.** My tutorial uses one of their example data sets in case you'd like to extend your learning via their training resources.
+
+-   https://tlverse.org/tlverse-handbook/ensemble-machine-learning.html
+
+-   https://tlverse.org/acic2019-workshop/ensemble-machine-learning.html
+
+-   https://github.com/tlverse/sl3_lecture

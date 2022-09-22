@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Katherine Hoffman">
+<meta name="dcterms.date" content="2022-08-10">
+<meta name="description" content="An introduction to optimizing Individualized Treatment Rules (ITRs) for applied scientists. We walk through the big picture goals then provide code for one way to estimate an ITR.">
+
+<title>KHstats - Building Statistical Intuition for Individualized Treatment Rules</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">Google Scholar</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Building Statistical Intuition for Individualized Treatment Rules</h1>
+                  <div>
+        <div class="description">
+          An introduction to optimizing Individualized Treatment Rules (ITRs) for applied scientists. We walk through the big picture goals then provide code for one way to estimate an ITR.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">statistics</div>
+                <div class="quarto-category">code</div>
+                <div class="quarto-category">g-computation</div>
+                <div class="quarto-category">simulation</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Katherine Hoffman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 10, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Developing and optimizing <strong>individualized treatment rules (ITRs)</strong> is a fast-growing topic in the medical research community. A treatment rule is a <strong>decision for treatment based upon a person’s characteristics</strong>. The intuition behind this is that not all individuals will respond to a treatment in the same way. We can exploit these <strong>heterogeneous effects</strong> and develop personalized rules which provide benefit a greater number of people.</p>
+<p>The methods of ITRs are rooted in <strong>principles of causal inference</strong>, or using data to inform us about what would have happened in a hypothetical world in which different interventions had occurred. This post walks through the basic statistical intuition for ITRs. Each explanation is accompanied by mathematical notation and a small graphic to convey equivalent meaning.</p>
+<blockquote class="blockquote">
+<p>Although this post is introductory, it assumes basic knowledge in causal inference, such as <em>counterfactual outcomes</em>, <em>assumptions for causal identification</em>, <em>Average Treatment Effect</em>, and <a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/G-Computation.pdf"><em>G-computation</em>/<em>g-formula</em></a>.</p>
+</blockquote>
+<section id="table-of-contents" class="level1">
+<h1>Table of Contents</h1>
+<ol type="1">
+<li><p>🗺️ <a href="#the-big-picture-of-itrs">The big-picture approach to ITRs</a></p></li>
+<li><p>📈 <a href="#estimating-the-itr">A simple estimation example</a></p></li>
+<li><p>🖥️ <a href="#r-simulation"><code>R</code> code for a simple estimation example</a></p></li>
+</ol>
+</section>
+<section id="the-big-picture-of-itrs" class="level1">
+<h1>🗺️ The Big Picture of ITRs</h1>
+<p>In this first section, we will translate the concept of developing and optimizing an ITR into mathematical notation.</p>
+<ol type="1">
+<li>We will start with a standard set-up: we have a matrix of observed data <span class="math inline">\(O\)</span> which includes our <strong>outcome</strong> <span class="math inline">\(Y\)</span>, the <strong>exposure</strong> (i.e.&nbsp;treatment, medicine, etc.) we want to study <span class="math inline">\(A\)</span>, and other <strong>covariates</strong> <span class="math inline">\(\textbf{W}\)</span>. Each row is an observation. We can denote these columns of data, which are random variables, as <span class="math inline">\(O = (\textbf{W}, A, Y)\)</span>.</li>
+</ol>
+<p><img src="otr/data_structure.png" class="img-fluid" style="width:80.0%"></p>
+<!-- , and visualize it as the following data set. *Note that we are considering a binary exposure for simplicity.* -->
+<!-- ![](tmle/1_data_structure.png){width=80%} -->
+<ol start="2" type="1">
+<li>Now, consider we create some function, <span class="math inline">\(d\)</span>, which takes baseline confounders <span class="math inline">\(\textbf{W}\)</span> and outputs a treatment assignment <span class="math inline">\(A\)</span>. We can write this mapping function, or <strong>treatment rule</strong>, in mathematical notation as:</li>
+</ol>
+<!-- <p style="margin-left: 40px"> -->
+<p><span class="math display">\[d: \textbf{W} \rightarrow A\]</span> This is equivalent to a function you could write in R or Python which takes a matrix <code>W</code> and outputs a vector of treatment assignments <code>A</code>, which may or may not be the same treatment assignment as what each observation actually received.</p>
+<p><img src="otr/input_output.png" class="img-fluid" style="width:80.0%"></p>
+<!-- <p style="margin-left: 40px">An example in `R` code could be this:</p>  -->
+<!-- <p style="margin-left: 40px"> -->
+<!-- ```{r} -->
+<!-- d <- function(W){ -->
+<!--   # assigned treatment A is a vector of length nrow(W) and depends on values of W -->
+<!--   # for example, the treatment rule could be if W1 is greater than 5, treat, otherwise, don't treat -->
+<!--   A <- ifelse(W[[1]] > 5, 1, 0) -->
+<!--   return(A) -->
+<!-- } -->
+<!-- ``` -->
+<!-- </p>  -->
+<ol start="3" type="1">
+<li>We can then think about the <strong>counterfactual outcome</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> for each row, or observation, under the treatment rule <span class="math inline">\(d\)</span>. In other words, we ask, *“what would have happened in a hypothetical world where the treatment rule* <span class="math inline">\(d\)</span> was applied?”</li>
+</ol>
+<p>Let’s denote this vector of counterfactual outcomes as <span class="math inline">\(Y(d)\)</span>.</p>
+<p><img src="otr/Y_d.png" class="img-fluid" style="width:100.0%"></p>
+<ol start="4" type="1">
+<li>The optimal ITR will <strong>maximize the expected counterfactual outcome</strong>, or <span class="math inline">\(\mathrm{E}[Y(d)]\)</span>, across the entire population. We can write that using <span class="math inline">\(\mathop{\mathrm{arg\,max}}\)</span>, which means we want to know which argument will return the highest value of a function. In this use-case, we want to know what treatment rule <span class="math inline">\(d\)</span> returns the highest expected value of the counterfactual outcome, <span class="math inline">\(\mathrm{E}[Y(d)]\)</span>.</li>
+</ol>
+<p><span class="math display">\[\mathop{\mathrm{arg\,max}}_d \mathrm{E}[Y(d)]\]</span></p>
+<p><img src="otr/argmax.png" class="img-fluid" style="width:70.0%"></p>
+<ol start="5" type="1">
+<li>We can call whatever function <span class="math inline">\(d\)</span>, or <span class="math inline">\(d(\textbf{W})\)</span>, that maximizes this expected counterfactual outcome for the population <span class="math inline">\(d^*\)</span>. <strong>This</strong> <span class="math inline">\(d^*\)</span> is our optimal ITR.</li>
+</ol>
+<p><img src="otr/d_star.png" class="img-fluid" style="width:50.0%"></p>
+</section>
+<section id="estimating-the-itr" class="level1">
+<h1>📈 Estimating the ITR</h1>
+<p>There are many ways to estimate <span class="math inline">\(d^*\)</span>. One of the most common ways begins by estimating the <strong>Conditional Average Treatment Effect (CATE)</strong>.</p>
+<p>You have probably heard of the Average Treatment Effect (ATE), which is the mean difference in outcomes in a world in which every unit receives the exposure compared to a world in which no unit receives the exposure. In potential outcomes notation, <span class="math inline">\(ATE = \mathrm{E}[Y^1-Y^0]\)</span>. The CATE is the same formula and description, but within covariate strata <span class="math inline">\(W\)</span>.</p>
+<p><span class="math display">\[CATE = \mathrm{E}[Y^1-Y^0|\textbf{W}]\]</span></p>
+<p>Under standard causal assumptions<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, the CATE for a binary exposure is identifiable under the following formula:</p>
+<p><span class="math display">\[\mathrm{CATE}(W) = \mathrm{E}[Y|A=1, \textbf{W}] - \mathrm{E}[Y|A=0, \textbf{W}]\]</span> <!-- Compare this to the ATE after identification to clearly see the formula for CATE is the same, minus the outer expectation: --></p>
+<!-- $$\mathrm{ATE}(W) = \mathrm{E}[\mathrm{E}[Y|A=1, W] - \mathrm{E}[Y|A=0, W]]$$ -->
+<p>We could estimate the CATE using <strong>G-computation</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p>
+<ol type="1">
+<li>Fit a regression for <span class="math inline">\(\mathrm{E}[Y|A,\textbf{W}]\)</span>.</li>
+</ol>
+<p><img src="tmle/2_outcome_fit.png" class="img-fluid" style="width:70.0%"></p>
+<ol start="2" type="1">
+<li>Use the model fit from Step 1 to obtain predicted estimates for <span class="math inline">\(Y\)</span>. Use two different datasets: one where all observations are changed to have <span class="math inline">\(A=1\)</span>, and one where all observations are changed to have <span class="math inline">\(A=0\)</span>.</li>
+</ol>
+<p><span class="math display">\[\hat{E}[Y|A=1, \textbf{W}]\]</span></p>
+<p><img src="tmle/4_Q1.png" class="img-fluid" style="width:80.0%"></p>
+<p><span class="math display">\[\hat{E}[Y|A=0, \textbf{W}]\]</span></p>
+<p><img src="tmle/5_Q1.png" class="img-fluid" style="width:80.0%"></p>
+<ol start="3" type="1">
+<li>Compute the difference of the quantities from Step 2.</li>
+</ol>
+<p><span class="math display">\[\widehat{CATE} = \hat{E}[Y|A=1, \textbf{W}] - \hat{E}[Y|A=0, \textbf{W}]\]</span></p>
+<p><img src="otr/cate.png" class="img-fluid" style="width:32.0%"></p>
+<p>Now, we could say our optimal ITR is to <strong>give treatment if the value of</strong> <span class="math inline">\(CATE\)</span> for that person is positive, indicating a positive effect of treatment on the outcome <span class="math inline">\(Y\)</span>. Likewise, if the value is negative or 0, indicating a negative or neutral effect on the outcome <span class="math inline">\(Y\)</span>, that unit would not receive treatment under the ITR.</p>
+<p><span class="math display">\[ITR = \mathbb{1}{ \{CATE &gt; 0} \}\]</span></p>
+<p><img src="otr/cate_assign_legend.png" class="img-fluid" style="width:50.0%"></p>
+</section>
+<section id="r-simulation" class="level1">
+<h1>🖥️ <code>R</code> simulation</h1>
+<p>Let’s take a look an <code>R</code> simulation for the simple estimation of the <span class="math inline">\(d^*\)</span> we just described. We can first simulate data of <code>n</code> = 500 rows, where we have only one confounder <code>W</code>, a binary treatment <code>A</code> which depends on <code>W</code>, and an outcome <code>Y</code> which is continuous and depends on <code>W</code> and <code>A</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">1</span>, <span class="dv">99</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="at">prob =</span> <span class="fu">abs</span>(W<span class="sc">/</span><span class="dv">100</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">10</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">2</span><span class="sc">*</span>A) <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">50</span><span class="sc">*</span>W) <span class="sc">-</span> <span class="fu">rnorm</span>(n, .<span class="dv">1</span><span class="sc">*</span>A<span class="sc">*</span>W)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(W, A, Y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We’ll run a regression for a saturated linear regression model of <span class="math inline">\(\mathrm{E}[Y|A,\textbf{W}]\)</span>, then obtain predictions on datasets where <code>A</code> is changed to <code>1</code> and <code>0</code> for all rows. We can then compute the CATE as the difference between these predictions.</p>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y<span class="sc">~</span>A<span class="sc">*</span>W)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>E_Y1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">A =</span> <span class="dv">1</span>, W))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>E_Y0 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">A =</span> <span class="dv">0</span>, W))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>CATE <span class="ot">&lt;-</span> E_Y1 <span class="sc">-</span> E_Y0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, our optimal treatment rule will be to treat any unit with <code>CATE &gt; 1</code>. If we plot the distribution of CATE in intervals of length 1, we can visually see there is benefit for about 1/4 of units in our simulated population.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(CATE) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d_star =</span> <span class="fu">ifelse</span>(CATE <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"Treat"</span>, <span class="st">"Do not treat"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(CATE,<span class="at">fill=</span>d_star)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_binned</span>() <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#f2696f"</span>,<span class="st">"#4984b0"</span>)) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"CATE"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">"Treatment Rule"</span>, <span class="at">title=</span><span class="st">"Distribution of CATE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="improving-estimation-of-d" class="level1">
+<h1>Improving estimation of <span class="math inline">\(d^*\)</span></h1>
+<p>There are many other ways to estimate the <span class="math inline">\(CATE\)</span> with improved statistical properties, e.g.&nbsp;<strong>double robustness</strong>. We could also estimate <span class="math inline">\(d^*\)</span> directly instead of first estimating the <span class="math inline">\(CATE\)</span>.</p>
+<p>We can extend either of these ideas to longitudinal settings, studies with clustering, etc. I’ve listed some of the resources I’ve used to learn about optimizing ITRs below. As always, I welcome feedback and/or suggestions of additional resources I can include.</p>
+<hr>
+</section>
+<section id="further-reading" class="level1">
+<h1>Further reading</h1>
+<p>These concepts are introductory, so any paper on “optimal treatment rules”, “individualized treatment rules”, or “heterogeneous treatment effects” should review the ideas discussed here in their introductions.</p>
+<ul>
+<li>This <a href="https://www.bios.unc.edu/~dzeng/Pub/EHROLearning1.pdf">Wang et al.&nbsp;paper</a> offers a clear mathematical introduction on ITRs.</li>
+<li><a href="https://www.youtube.com/watch?v=-0-RYxQ0zqM">Brady Neal’s causal course Youtube series</a> (Chapter 6.2) discusses Conditional Outcome Modeling (what the CATE estimator falls under) over a 10 minute video.</li>
+<li>This <a href="https://jamanetwork.com/journals/jama/fullarticle/2787131">Angus and Chang <em>JAMA</em> Statistics and Research Methods paper</a> gives an overview of a few ways to compute heterogeneous treatment effects for individualized treatment rules.</li>
+<li>Lately I’ve been interested in <a href="https://arxiv.org/pdf/2004.14497.pdf">this recent methods paper</a> by Edward Kennedy. It discusses a way to evaluate the CATE using doubly robust estimation, and gives several other foundational papers in the introduction.</li>
+<li><a href="https://egap.org/resource/10-things-to-know-about-heterogeneous-treatment-effects/">This <code>R</code> blog post</a> about heterogeneous treatment effects also may be useful for thinking through these issues with real data.</li>
+</ul>
+<p>I’ll continue to add resources to this list as I discover them. Please reach out if you have recommendations of papers or tutorials (yours or others!) to add to this list.</p>
+<hr>
+<section id="acknowledgments" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
+<p>Thanks to my colleague <a href="https://twitter.com/ildiazm">Iván Díaz</a> for explaining individualized treatment rules to me in this way, and for reviewing this post.</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p>Recall that a counterfactual describes a hypothetical world where a unit received a certain intervention or treatment, which might be different from the treatment they actually received<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>This post is focused on estimation and therefore does not detail the requirements for causal identification, but here I refer to the assumptions of consistency, exchangeability, and positivity.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>If you’d like a review on G-computation, check out this <a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/G-Computation.pdf"><strong>visual guide</strong></a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Katherine Hoffman">
+<meta name="dcterms.date" content="2020-12-11">
+
+<title>KHstats - An Illustrated Guide to TMLE, Part III: Properties, Theory, and Learning More</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  </head><body class="nav-fixed fullcontent">true
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">Google Scholar</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">An Illustrated Guide to TMLE, Part III: Properties, Theory, and Learning More</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">statistics</div>
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Katherine Hoffman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 11, 2020</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>The third and final post in a three-part series to help beginners and/or visual learners understand Targeted Maximum Likelihood Estimation (TMLE). In this section, we discuss more statistical properties of TMLE, offer a brief explanation for the theory behind TMLE, and provide resources for learning more.</p>
+<!--more-->
+<p><strong>December 6, 2020.</strong></p>
+<blockquote class="blockquote">
+<p>The is the third and final post in a three-part series to help beginners and/or visual learners understand Targeted Maximum Likelihood Estimation (TMLE). In this section, I discuss more <a href="#properties-of-tmle"><strong>statistical properties of TMLE</strong></a>, offer a brief <a href="#why-does-tmle-work"><strong>explanation for the theory behind TMLE</strong></a>, and provide <a href="#resources-to-learn-more"><strong>resources for learning more</strong></a>.</p>
+</blockquote>
+<hr>
+<section id="properties-of-tmle" class="level1">
+<h1>Properties of TMLE 📈</h1>
+<p>To reiterate a point from <em>Parts I</em> and <em>II</em>, a main motivation for TMLE is that it <strong>allows the use of machine learning algorithms while still yielding asymptotic properties for inference</strong>. This is notably <em>not</em> true for many estimators.</p>
+<p>For example, in <a href="https://khstats.com/blog/tmle/tutorial-pt2"><em>Part II</em></a> we walked through TMLE for the Average Treatment Effect (ATE). Two frequently used alternatives to estimating the ATE are G-computation and Inverse Probability of Treatment Weighting (see <a href="https://khstats.com/blog/tmle/tutorial-pt2/#step-1-estimate-the-outcome"><em>Part II, Step 1</em></a> and <a href="#resources-to-learn-more"><em>references</em></a>). In general, neither yield valid standard errors unless <em>a-priori</em> specified parametric models are used, and this reliance on parametric assumptions can bias results. There are many simulation studies that show this.</p>
+<p>Another beneficial property of TMLE is that it is a <strong>doubly robust</strong> estimator. This means that if either the regression to estimate the expected outcome, or the regression to estimate the probability of treatment, are correctly specified (formally, their bias goes to zero as sample size grows large, meaning they are <strong>consistent</strong>), the final TMLE estimate will be consistent.</p>
+<p>If both regressions are consistent, the <strong>final estimate will reach the smallest possible variance at a rate of <span class="math inline">\(\sqrt{n}\)</span></strong>, which is the fastest possible rate of convergence and equivalent to parametric maximum likelihood estimation. The reason we use superlearning for estimating the outcome and treatment regressions is to give us the best possible chance of having two correctly specified models and obtaining an <strong>efficient estimate</strong>.</p>
+<p><img src="../../img/tmle_props.png" class="img-fluid"></p>
+<p>Even among other doubly robust estimators, TMLE is appealing because its estimates will always stay within the bounds of the original outcome. This is because it is part of a class of <strong>substitution estimators</strong>. There is another class of doubly robust, semiparametric estimation methods frequently used in causal inference that are referred to as <strong>one-step estimators</strong>, but they can sometimes yield final estimates that are outside the original outcome scale. The one-step estimator for the ATE is called <strong>Augmented Inverse Probability Weighting (AIPW)</strong>.</p>
+</section>
+<section id="why-does-tmle-work" class="level1">
+<h1>Why does TMLE work? ✨</h1>
+<p>Truly understanding why TMLE works requires semiparametric theory that falls far outside the scope of this tutorial. However, the theory is interesting, so I’ll give a brief, high-level explanation, and then you can look at the <a href="#resources-to-learn-more">references</a> if you’re curious to learn more. Importantly, the explanation I outline here is more than sufficient and certainly not necessary to appropriately implement TMLE as an analyst.</p>
+<p><strong>TMLE relies on the following ideas:</strong></p>
+<ol type="1">
+<li><p>Some estimands allow for <strong>asymptotically linear estimation</strong>. This means that estimators can be represented as sample averages (plus a term that converges to zero).</p></li>
+<li><p>The quantities being averaged for asymptotically linear estimators are called <strong>influence functions</strong>. An influence function is a function that quantifies how much influence each observation has on the estimator. For this reason, it is very <strong>useful to characterize the variance of the estimator</strong>. In parametric maximum likelihood estimation, the influence function is related the score function.</p></li>
+<li><p>The <strong>efficient influence function</strong> (EIF) is the influence function that achieves the efficiency bound (think Cramer Rao Lower Bound from parametric maximum likelihood estimation) and <strong>can be used to create efficient estimators.</strong></p></li>
+<li><p>If we want to <strong>construct an estimator that is efficient</strong>, we can take advantage of the EIF to endow the estimator with useful asymptotic properties.</p></li>
+</ol>
+<p>This is the reason TMLE allows us to use machine learning models “under the hood” while still obtaining asymptotic properties for inference: our <strong>estimand</strong> of interest admits <strong>asymptotically linear estimation</strong>, and we are <strong>using properties of the EIF</strong> to <strong>construct an estimator</strong> with <strong>optimal statistical properties</strong> (e.g.&nbsp;double robustness).</p>
+</section>
+<section id="resources-to-learn-more" class="level1">
+<h1>Resources to learn more</h1>
+<!-- ![](/img/tmle/self_portrait.jpg){width=40%} -->
+
+
+
+
+<a href=""> <img src="../../img/tmle/self_portrait.jpg" style="float:right; padding-right:20px; padding-top:-20px; padding-left:20px; padding-bottom:-50px;" width="34%"> </a>
+
+
+<p>I could only cover so much in this post, but here are the resources I’ve used the most to learn about TMLE, semiparametric estimation, and causal inference. If you are new to any or all of it, there is a good chance it will take <em>several</em> reads of these materials before the concepts begin to make any sense. Don’t get discouraged!</p>
+<section id="tmle" class="level3">
+<h3 class="anchored" data-anchor-id="tmle">TMLE</h3>
+<ul>
+<li><p>The paper I referred to most often while learning TMLE was <a href="https://academic.oup.com/aje/article/185/1/65/2662306"><em>Targeted Maximum Likelihood Estimation for Causal Inference in Observational Studies</em></a> by Megan S. Schuler and Sherri Rose. It has a nice step-by-step written explanation and details the statistical advantages of TMLE for an applied thinker.</p></li>
+<li><p>I also really like the written explanations in the <a href="https://link.springer.com/book/10.1007/978-1-4419-9782-1"><em>Targeted Learning</em></a> book (Chapters 4 and 5) by Mark van der Laan and Sherri Rose. The notation was often too difficult for me to follow, but the words themselves make a lot of sense.</p></li>
+<li><p>Miguel Angel Luque-Fernandez wrote an <a href="https://migariane.github.io/TMLE.nb.html">excellent bookdown tutorial on TMLE</a>, also with step-by-step <code>R</code> code. It is more technical and thorough than my post, but still aimed at an applied audience. He also has a tutorial on the <a href="https://migariane.github.io/DeltaMethodEpiTutorial.nb.html">functional delta method</a> which is part of the theory behind the way we compute the standard errors (see <a href="https://khstats.com/blog/tmle/tutorial-pt2/#step-6-calculate-the-standard-errors-for-confidence-intervals-and-p-values"><em>Part II, Step 6</em></a>).</p></li>
+<li><p>Other code-based web-based tutorials on TMLE that are more recent (or recently discovered by me!) include:</p>
+<ul>
+<li><p>David Benkeser and Antoine Chambaz’ <a href="https://achambaz.github.io/tlride/">A Ride in Targeted Learning Territory</a></p></li>
+<li><p>The authors of the <code>R</code> package suite <a href="https://tlverse.org/"><code>tlverse</code></a>’s <a href="https://tlverse.org/tlverse-handbook/tmle3.html">Hitchhiker’s Guide to Targeted Learning: The TMLE Framework</a>.</p></li>
+<li><p>Stitch Fix’s Jasmine Nettiksimmons AND Molly Davies’ blog post: <a href="https://multithreaded.stitchfix.com/blog/2021/07/23/double-robust-estimator/">“Gimme a robust estimator - and make it a double!”</a></p></li>
+</ul></li>
+</ul>
+</section>
+<section id="semiparametric-theory-and-influence-functions" class="level3">
+<h3 class="anchored" data-anchor-id="semiparametric-theory-and-influence-functions">Semiparametric Theory and Influence Functions</h3>
+<ul>
+<li><p>Edward Kennedy has several well-written pieces on semiparametric estimation in causal inference. I recommend starting with:</p>
+<ul>
+<li><p>His introductory paper on <a href="https://arxiv.org/pdf/1709.06418.pdf">Semiparametric Theory</a></p></li>
+<li><p>His <a href="https://www.ehkennedy.com/uploads/5/8/4/5/58450265/tutorial.pdf">slideshow tutorial</a> <em>Nonparametric efficiency theory and machine learning in causal inference</em></p></li>
+</ul></li>
+<li><p>My favorite resource so far for learning specifically about influence functions has been <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2020.1717620">Visually Communicating Influence Functions</a> by Aaron Fisher and Edward Kennedy. However, this paper didn’t make sense to me until I worked through this <a href="https://observablehq.com/@herbps10/one-step-estimators-and-pathwise-derivatives">interactive tutorial</a> by Herb Susmann. I suggest playing around with the interactive examples first, and then trying to work through the paper.</p></li>
+<li><p>Additonal walkthroughs to learn about EIFs include the following:</p>
+<ul>
+<li><p>Alejandro Schuler’s <a href="https://alejandroschuler.github.io/mci/index.html">Modern Causal Inference online book</a> which includes <a href="https://alejandroschuler.github.io/mci/0cb2ffe5e5cc4cf59a5fe6d896d221d1.html">a section on deriving EIFs</a>. His tutorial is a similar, shorter version of the next two resources:</p></li>
+<li><p>Oliver Hines et al.’s <a href="https://arxiv.org/abs/2107.00681">Demystifying statistical learning based on efficient influence functions</a></p></li>
+<li><p>Edward Kennedy’s comprehensive review <a href="https://arxiv.org/pdf/2203.06469.pdf">Semiparametric Doubly Robust Targeted Double Machine Learning: A Review</a></p></li>
+</ul></li>
+</ul>
+<p>Although I did not personally use these last few when I was initially learning about EIFs (since they came out after I wrote this post in Fall 2020), they seem like great resources and intended to be approachable for beginner-to-intermediate learners.</p>
+<!-- - The derivation of the Efficient Influence Function (EIF) in TMLE is in the Appendix of [*Targeted Learning*](https://link.springer.com/book/10.1007/978-1-4419-9782-1). -->
+</section>
+<section id="causal-inference" class="level3">
+<h3 class="anchored" data-anchor-id="causal-inference">Causal Inference</h3>
+<ul>
+<li><p>As emphasized in <em>Part I</em>, TMLE is an estimation technique which <em>can</em> be used for causal inference. If you want to learn about the foundations of causal inference, I suggest two different introductory texts below. Note that these provide fairly different frameworks (notation, descriptions of assumptions) to reach the same conclusions, but both provide useful perspectives.</p>
+<ul>
+<li><p><a href="http://bayes.cs.ucla.edu/PRIMER/"><em>Causal Inference in Statistics: A Primer</em></a> by Judea Pearl. Pearl does not discuss estimation methods, but rather focuses on the assumptions, or identification, side of causal inference. Thus, you will not find TMLE mentioned in this text.</p></li>
+<li><p><a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/"><em>What If</em></a> by Miguel Hernan and James Robins. Notably, Hernan and Robins only discuss parametric estimation methods, so you will also not find TMLE or AIPW in this text.</p></li>
+</ul></li>
+<li><p>I also think the introductory chapters of the previously mentioned <a href="https://link.springer.com/book/10.1007/978-1-4419-9782-1"><em>Targeted Learning</em></a> book (Chapters 1 and 2) do an excellent job of setting up the “roadmap” of causal inference.</p></li>
+</ul>
+<p>I’ll continue to update this page with beginner’s resources as I discover them.</p>
+<p>Feedback or clarifications on this post is welcome, either from the new learners of TMLE or experts in causal inference. The best way to reach me is through <a href="mailto:kathoffman.stats@gmail.com">email</a>.</p>
+</section>
+</section>
+<section id="acknowledgements" class="level1">
+<h1>Acknowledgements</h1>
+<p>This tutorial would not have been possible without my colleague Iván Díaz patiently answering many, many questions on TMLE. I am also very appreciative of Miguel Angel Luque-Fernandez’s helpful feedback on the visual guide.</p>
+<p>Lastly, many thanks to Axel Martin, Nick Williams, Anjile An, Adam Peterson, Alan Wu, and Will Simmons for providing suggestions on various drafts of this art project!</p>
+<!-- ![](/img/tmle/self_portrait.jpg){width=45%} -->
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

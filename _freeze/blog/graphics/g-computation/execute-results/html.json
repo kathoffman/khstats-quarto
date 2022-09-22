@@ -1,0 +1,14 @@
+{
+  "hash": "2313b5ae8763092fae1cdb833805efeb",
+  "result": {
+    "markdown": "---\ntitle: \"A Visual Guide to G-Computation\"\nauthor: \"Katherine Hoffman\"\nshowonlyimage: true\ndate: 2019-04-16T21:13:14-05:00\ncategories: [\"statistics\"]\nimage: /img/graphics/g-computation.png\nweight: 9\n---\n\n\n\n<!--more-->\n\n<html>\n   <head>\n   </head>\n   \n   <body>\n   <a\n   href=\"https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/G-Computation.pdf\">\n         <img alt=\"g-computation\" src=\"/img/graphics/g-computation.png\" >\n      </a>\n   </body>\n</html>",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

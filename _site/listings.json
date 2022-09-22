@@ -1,0 +1,36 @@
+[
+  {
+    "listing": "/talks.html",
+    "items": [
+      "/talks/steroids.html",
+      "/talks/swimmers.html",
+      "/talks/ensemble.html"
+    ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/blog/forest-plots/index.html",
+      "/blog/otr/index.html",
+      "/blog/keyboard/index.html",
+      "/blog/trt-timelines/multiple-vars.html",
+      "/blog/lmtp/lmtp.html",
+      "/blog/sofa/index.html",
+      "/blog/ditl/ditl-followup.html",
+      "/blog/tmle/tutorial-pt3.html",
+      "/blog/tmle/tutorial-pt2.html",
+      "/blog/tmle/tutorial.html",
+      "/blog/sl/superlearning.html",
+      "/blog/covid/index.html",
+      "/blog/corr-plots/index.html",
+      "/blog/iterated-expectations/index.html",
+      "/blog/covid-functions/index.html",
+      "/blog/trt-timelines/trt-timelines.html",
+      "/blog/ditl/pharma-cro.html",
+      "/blog/sl/sl.html",
+      "/blog/nyrconf/index.html",
+      "/blog/ditl/index.html",
+      "/blog/tmle/visual-key.html"
+    ]
+  }
+]

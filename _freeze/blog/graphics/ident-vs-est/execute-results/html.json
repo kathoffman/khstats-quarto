@@ -1,0 +1,14 @@
+{
+  "hash": "7bd1f6228b03766adbfa9a510a56fca0",
+  "result": {
+    "markdown": "---\ntitle: \"Identification vs. Estimation for Causal Inference\"\nauthor: \"Katherine Hoffman\"\nshowonlyimage: true\ndate: 2019-04-16T21:13:14-05:00\ncategories: [\"career\"]\nimage: /img/ident-vs-est.png\nweight: 15\n---\n\n\n\n<!--more-->\n\n<html>\n   <head>\n   </head>\n   \n   <body>\n   <a\n   href=\"https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Identification-vs-Estimation.pdf\">\n         <img alt=\"identification vs estimation in causal inference\" src=\"/img/ident-vs-est.png\" >\n      </a>\n   </body>\n</html>",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

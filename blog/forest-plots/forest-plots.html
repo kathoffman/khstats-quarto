@@ -1,0 +1,280 @@
+---
+title: "Annotated Forest Plots using ggplot2"
+author: "Katherine Hoffman"
+date: 2022-08-12T21:13:14-05:00
+image: img/forest-plots/
+categories: ["R","data visualization"]
+draft: true
+weight: 0
+tags: ["R","ggplot2","forest plots","annotated","effect size"]
+output: 
+  html_document:
+    toc: true
+    df_print: paged
+    toc_float: true
+    smart: false
+---
+
+
+
+<p>A short code walkthrough to make your own annotated forest plots.
+<!--more--></p>
+<p><strong>August 25, 2022.</strong></p>
+<p><img src="/blog/forest-plots/forest-plots_files/figure-html/mainplot-1.png" width="864" />
+This post contains a short R code walkthrough to make annotated forest plots like the one shown above. There are packages to make plots like these such as <a href="https://github.com/rdboyes/forester"><code>forester</code></a>, <a href="https://cran.r-project.org/web/packages/forestplot/vignettes/forestplot.html"><code>forestplot</code></a>, and <a href="https://nightingalehealth.github.io/ggforestplot/index.html"><code>ggforestplot</code></a>, but sometimes I still prefer to make my own.</p>
+<p>The big picture of this is that we’ll be making three separate <code>ggplot2</code> objects and putting them together with <code>patchwork</code>. You could also use packages like <code>cowplot</code>, <code>gridarrange</code> or <code>ggarrange</code> to put the intermediate plot objects together.</p>
+<hr />
+<div id="step-0-load-libraries-and-data" class="section level1">
+<h1>Step 0: Load libraries and data</h1>
+<p>First we will load the necessary libraries and the data set. The data we’ll use for this plot are the effect estimates for 10 Cox regression models. The models, titled A-J, are stored in a data set called <code>res</code>, stored as a csv on my Github.</p>
+<pre class="r"><code>library(tidyverse)
+library(gt)
+
+# Importres</code></pre>
+<p>The <code>res</code>ults object contains:</p>
+<ul>
+<li><code>model</code>: the model label A-J</li>
+<li><code>log.estimate</code>: log hazard ratio, since these were Cox regressions</li>
+<li><code>log.conf.low</code> and <code>log.conf.high</code>: log hazard ratio 95% confidence intervals</li>
+<li><code>estimate</code>: hazard ratio</li>
+<li><code>conf.low</code> and <code>conf.high</code>: hazard ratio 95% confidence intervals</li>
+<li><code>p.value</code>: corresponding p-value</li>
+</ul>
+<pre class="r"><code>glimpse(res)</code></pre>
+<pre><code>## Rows: 10
+## Columns: 8
+## $ model         &lt;chr&gt; &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;
+## $ log.estimate  &lt;dbl&gt; -0.68468788, -0.05255784, -0.08640963, -0.12147024, -0.4…
+## $ log.conf.low  &lt;dbl&gt; -0.8947661, -0.4201151, -0.4567781, -0.5869119, -0.88192…
+## $ log.conf.high &lt;dbl&gt; -0.474609681, 0.314999396, 0.283958850, 0.343971392, 0.0…
+## $ estimate      &lt;dbl&gt; 0.5042476, 0.9487994, 0.9172184, 0.8856174, 0.6559699, 0…
+## $ conf.low      &lt;dbl&gt; 0.4087032, 0.6569712, 0.6333208, 0.5560418, 0.4139865, 0…
+## $ conf.high     &lt;dbl&gt; 0.6221278, 1.3702585, 1.3283783, 1.4105383, 1.0393974, 0…
+## $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-01, …</code></pre>
+</div>
+<div id="step-1-make-point-and-line-range-section-of-the-plot" class="section level1">
+<h1>Step 1: Make point and line range section of the plot</h1>
+<p>We will first work on making the standard “forest plot”, or the middle section of the figure. This section uses points and lines to indicate the estimate and 95% confidence interval around the estimate.</p>
+<p>In my experience, journal editors sometimes ask for these estimates to look a certain way during the revision process. For this graph, the journal editor told me that it was “journal standard to plot relative measures (ratio data), such as ORs, on log scales to preserve the correct spatial relationship between values.” So, I’m going to be visually showing the log hazard ratio, and annotating later with the hazard ratio.</p>
+<p>Let’s look at how we can plot the log hazard ratio estimates. Note that we are going to first get all of our information (point estimate and 95% confidence interval on the graph).</p>
+<pre class="r"><code>res |&gt;
+  ggplot(aes(y = model)) + 
+  theme_classic()</code></pre>
+<p><img src="/blog/forest-plots/forest-plots_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>res |&gt;
+  ggplot(aes(y = model))  +
+  theme_classic() +
+  geom_point(aes(x=log.estimate), shape=15, size=3) +
+  geom_linerange(aes(xmin=log.conf.low, xmax=log.conf.high)) </code></pre>
+<p><img src="/blog/forest-plots/forest-plots_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>res |&gt;
+  ggplot(aes(y = model)) + 
+  theme_classic() +
+  geom_point(aes(x=log.estimate), shape=15, size=3) +
+  geom_linerange(aes(xmin=log.conf.low, xmax=log.conf.high)) +
+  geom_vline(xintercept = 0, linetype=&quot;dashed&quot;) +
+  labs(x=&quot;Log Hazard Ratio&quot;, y=&quot;&quot;) </code></pre>
+<p><img src="/blog/forest-plots/forest-plots_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Next we’ll use <code>coord_cartesian()</code> which will allow us to zoom to the exact height and width we want. I want to zoom out a bit to leave myself room for the text “Corticosteroids protective” vs. “Corticosteroids harmful” so I’m going to set my limits to <code>y=c(1,11)</code>. Each of the models (10 in total) is one unit, so this will give me one extra unit of space at the top of the plot. The x-limit I played around with a bit based upon the range of my log hazard ratios, and I ultimately arrived at <code>xlim=c(-1, .5)</code>.</p>
+<pre class="r"><code>res |&gt;
+  ggplot(aes(y = model)) + 
+  theme_classic() +
+  geom_point(aes(x=log.estimate), shape=15, size=3) +
+  geom_linerange(aes(xmin=log.conf.low, xmax=log.conf.high)) +
+  labs(x=&quot;Log Hazard Ratio&quot;, y=&quot;&quot;) +
+  geom_vline(xintercept = 0, linetype=&quot;dashed&quot;) +
+  coord_cartesian(ylim=c(1,11), xlim=c(-1, .5))</code></pre>
+<p><img src="/blog/forest-plots/forest-plots_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Now we have space to add our text about protective vs. harmful using the <code>annotate</code> layer.</p>
+<pre class="r"><code>res |&gt;
+  ggplot(aes(y = model)) + 
+  theme_classic() +
+  geom_point(aes(x=log.estimate), shape=15, size=3) +
+  geom_linerange(aes(xmin=log.conf.low, xmax=log.conf.high)) +
+  labs(x=&quot;Log Hazard Ratio&quot;) +
+  geom_vline(xintercept = 0, linetype=&quot;dashed&quot;) +
+  coord_cartesian(ylim=c(1,11), xlim=c(-1, .5)) +
+  annotate(&quot;text&quot;, x = -.32, y = 11, label = &quot;Corticosteroids protective&quot;) +
+  annotate(&quot;text&quot;, x = .3, y = 11, label = &quot;Corticosteroids harmful&quot;)</code></pre>
+<p><img src="/blog/forest-plots/forest-plots_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Finally, we will remove everything on the y axis, because this plot is going to align with the next plot we make, showing the hazard ratios.</p>
+<pre class="r"><code>p_mid &lt;-
+  res |&gt;
+  ggplot(aes(y = model)) + 
+  theme_classic() +
+  geom_point(aes(x=log.estimate), shape=15, size=3) +
+  geom_linerange(aes(xmin=log.conf.low, xmax=log.conf.high)) +
+  labs(x=&quot;Log Hazard Ratio&quot;) +
+  geom_vline(xintercept = 0, linetype=&quot;dashed&quot;) +
+  coord_cartesian(ylim=c(1,11), xlim=c(-1, .5)) +
+  annotate(&quot;text&quot;, x = -.32, y = 11, label = &quot;Corticosteroids protective&quot;) +
+  annotate(&quot;text&quot;, x = .3, y = 11, label = &quot;Corticosteroids harmful&quot;) +
+  theme(axis.line.y = element_blank(),
+        axis.ticks.y= element_blank(),
+        axis.text.y= element_blank(),
+        axis.title.y= element_blank())</code></pre>
+<p>We’ll save this <code>ggplot</code> object as <code>p_mid</code> and move on to the next section of the figure.</p>
+</div>
+<div id="step-2-create-estimate-annotations-plot" class="section level1">
+<h1>Step 2: Create estimate annotations plot</h1>
+<p>To plot the hazard ratio estimates, we first need to modify the data set a bit. We’ll start by rounding our estimates to the significant figures the journal requires. For this figure, I need two decimal places.</p>
+<pre class="r"><code># wrangle results into pre-plotting table form
+res_plot &lt;- res |&gt;
+  mutate(across(c(estimate, conf.low, conf.high),
+                ~str_pad(round(.x, 2), width=4, pad=&quot;0&quot;, side=&quot;right&quot;)),
+         estimate_lab = paste0(estimate, &quot; (&quot;, conf.low, &quot;-&quot;, conf.high,&quot;)&quot;)) |&gt;
+  mutate(p.value = case_when(p.value &lt; .001 ~ &quot;&lt;0.01&quot;, p.value &lt; .01 ~ str_pad(as.character(round(p.value, 3)),width=4,pad=&quot;0&quot;,side=&quot;right&quot;), TRUE ~ str_pad(as.character(round(p.value, 2)),width=4,pad=&quot;0&quot;,side=&quot;right&quot;))) |&gt;
+  bind_rows(data.frame(model = &quot;Model&quot;, estimate_lab = &quot;Hazard Ratio (95% CI)&quot;, conf.low = &quot;&quot;, conf.high=&quot;&quot;,p.value=&quot;p-value&quot;)) |&gt;
+  mutate(model = fct_rev(fct_relevel(model, &quot;Model&quot;)))
+
+glimpse(res_plot)</code></pre>
+<pre><code>## Rows: 11
+## Columns: 9
+## $ model         &lt;fct&gt; A, B, C, D, E, F, G, H, I, J, Model
+## $ log.estimate  &lt;dbl&gt; -0.68468788, -0.05255784, -0.08640963, -0.12147024, -0.4…
+## $ log.conf.low  &lt;dbl&gt; -0.8947661, -0.4201151, -0.4567781, -0.5869119, -0.88192…
+## $ log.conf.high &lt;dbl&gt; -0.474609681, 0.314999396, 0.283958850, 0.343971392, 0.0…
+## $ estimate      &lt;chr&gt; &quot;0.50&quot;, &quot;0.95&quot;, &quot;0.92&quot;, &quot;0.89&quot;, &quot;0.66&quot;, &quot;0.77&quot;, &quot;1.05&quot;, …
+## $ conf.low      &lt;chr&gt; &quot;0.41&quot;, &quot;0.66&quot;, &quot;0.63&quot;, &quot;0.56&quot;, &quot;0.41&quot;, &quot;0.60&quot;, &quot;0.77&quot;, …
+## $ conf.high     &lt;chr&gt; &quot;0.62&quot;, &quot;1.37&quot;, &quot;1.33&quot;, &quot;1.41&quot;, &quot;1.04&quot;, &quot;0.99&quot;, &quot;1.45&quot;, …
+## $ p.value       &lt;chr&gt; &quot;&lt;0.01&quot;, &quot;0.78&quot;, &quot;0.65&quot;, &quot;0.61&quot;, &quot;0.07&quot;, &quot;0.05&quot;, &quot;0.75&quot;,…
+## $ estimate_lab  &lt;chr&gt; &quot;0.50 (0.41-0.62)&quot;, &quot;0.95 (0.66-1.37)&quot;, &quot;0.92 (0.63-1.33…</code></pre>
+<pre class="r"><code>p_left &lt;-
+  res_plot  |&gt;
+  ggplot(aes(y = model)) + 
+  geom_text(aes(x=0, label=model), hjust=0, fontface = &quot;bold&quot;) +
+  geom_text(aes(x=1, label=estimate_lab), hjust=0, fontface = ifelse(res_plot$estimate_lab == &quot;Hazard Ratio (95% CI)&quot;, &quot;bold&quot;, &quot;plain&quot;)) +
+  theme_void() +
+  coord_cartesian(xlim=c(0,4))
+
+p_left</code></pre>
+<p><img src="/blog/forest-plots/forest-plots_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="step-3-create-p-value-annotations" class="section level1">
+<h1>Step 3: Create p-value annotations</h1>
+<pre class="r"><code># right side of plot - pvalues
+p_right &lt;-
+  res_plot  |&gt;
+  ggplot() +
+  geom_text(aes(x=0, y=model, label=p.value), hjust=0, fontface = ifelse(res_plot$p.value == &quot;p-value&quot;, &quot;bold&quot;, &quot;plain&quot;)) +
+  theme_void() 
+
+p_right</code></pre>
+<p><img src="/blog/forest-plots/forest-plots_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="step-4-put-the-three-plots-together-with-patchwork" class="section level1">
+<h1>Step 4: Put the three plots together with patchwork</h1>
+<pre class="r"><code>layout &lt;- c(
+  area(t = 0, l = 0, b = 30, r = 3),
+  area(t = 1, l = 4, b = 30, r = 9),
+  area(t = 0, l = 9, b = 30, r = 11)
+)
+# final plot arrangement
+p_left + p_mid + p_right + plot_layout(design = layout)</code></pre>
+<p><img src="/blog/forest-plots/forest-plots_files/figure-html/unnamed-chunk-12-1.png" width="864" /></p>
+</div>
+<div id="step-5-export-your-plot" class="section level1">
+<h1>Step 5: Export your plot!</h1>
+<pre class="r"><code>ggsave(&quot;forest-plot.eps&quot;, width=9, height=4)</code></pre>
+</div>
+<div id="just-the-code" class="section level1">
+<h1>Just the code</h1>
+<pre class="r"><code>## load up the packages we will need: 
+library(tidyverse)
+library(gt)
+library(patchwork)
+## ---------------------------
+## load data
+# load in results generated from Cox PH hazards models
+
+## plotting
+## ---------------------------
+# create forest plot on log scale (middle section of figure)
+p_mid &lt;-
+  res |&gt;
+  ggplot(aes(y = model)) +
+  theme_classic() +
+  geom_point(aes(x=log.estimate), shape=15, size=3) +
+  geom_linerange(aes(xmin=log.conf.low, xmax=log.conf.high)) +
+  labs(x=&quot;Log Hazard Ratio&quot;) +
+  coord_cartesian(ylim=c(1,11), xlim=c(-1, .5))+
+  geom_vline(xintercept = 0, linetype=&quot;dashed&quot;) +
+  annotate(&quot;text&quot;, x = -.32, y = 11, label = &quot;Corticosteroids protective&quot;) +
+  annotate(&quot;text&quot;, x = .3, y = 11, label = &quot;Corticosteroids harmful&quot;) +
+  theme(axis.line.y = element_blank(),
+        axis.ticks.y= element_blank(),
+        axis.text.y= element_blank(),
+        axis.title.y= element_blank())
+# wrangle results into pre-plotting table form
+res_plot &lt;- res |&gt;
+  mutate(across(c(estimate, conf.low, conf.high), ~str_pad(round(.x, 2), width=4, pad=&quot;0&quot;, side=&quot;right&quot;)),
+         estimate_lab = paste0(estimate, &quot; (&quot;, conf.low, &quot;-&quot;, conf.high,&quot;)&quot;),
+         color = rep(c(&quot;gray&quot;,&quot;white&quot;),5)) |&gt;
+  mutate(p.value = case_when(p.value &lt; .01 ~ &quot;&lt;0.01&quot;, TRUE ~ str_pad(as.character(round(p.value, 2)),width=4,pad=&quot;0&quot;,side=&quot;right&quot;))) |&gt;
+  bind_rows(data.frame(model = &quot;Model&quot;, estimate_lab = &quot;Hazard Ratio (95% CI)&quot;, conf.low = &quot;&quot;, conf.high=&quot;&quot;,p.value=&quot;p-value&quot;)) |&gt;
+  mutate(model = fct_rev(fct_relevel(model, &quot;Model&quot;)))
+# left side of plot - hazard ratios
+p_left &lt;-
+  res_plot  |&gt;
+  ggplot(aes(y = model)) + 
+  geom_text(aes(x=0, label=model), hjust=0, fontface = &quot;bold&quot;) +
+  geom_text(aes(x=1, label=estimate_lab), hjust=0, fontface = ifelse(res_plot$estimate_lab == &quot;Hazard Ratio (95% CI)&quot;, &quot;bold&quot;, &quot;plain&quot;)) +
+  theme_void() +
+  coord_cartesian(xlim=c(0,4))
+# right side of plot - pvalues
+p_right &lt;-
+  res_plot  |&gt;
+  ggplot() +
+  geom_text(aes(x=0, y=model, label=p.value), hjust=0, fontface = ifelse(res_plot$p.value == &quot;p-value&quot;, &quot;bold&quot;, &quot;plain&quot;)) +
+  theme_void() 
+# layout design (top, left, bottom, right)
+layout &lt;- c(
+  area(t = 0, l = 0, b = 30, r = 3),
+  area(t = 1, l = 4, b = 30, r = 9),
+  area(t = 0, l = 9, b = 30, r = 11)
+)
+# final plot arrangement
+p_left + p_mid + p_right + plot_layout(design = layout)
+## save final figure
+#ggsave(&quot;forest-plot.eps&quot;, width=9, height=4)</code></pre>
+</div>
+<div id="session-info" class="section level1">
+<h1>Session Info</h1>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>## R version 4.1.3 (2022-03-10)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Catalina 10.15.7
+## 
+## Matrix products: default
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] patchwork_1.1.1 gt_0.6.0        forcats_0.5.1   stringr_1.4.1  
+##  [5] dplyr_1.0.9     purrr_0.3.4     readr_2.1.2     tidyr_1.2.0    
+##  [9] tibble_3.1.8    ggplot2_3.3.6   tidyverse_1.3.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] lubridate_1.8.0  assertthat_0.2.1 digest_0.6.29    utf8_1.2.2      
+##  [5] R6_2.5.1         cellranger_1.1.0 backports_1.4.1  reprex_2.0.1    
+##  [9] evaluate_0.15    highr_0.9        httr_1.4.2       blogdown_1.9    
+## [13] pillar_1.8.1     rlang_1.0.4      readxl_1.4.0     rstudioapi_0.13 
+## [17] jquerylib_0.1.4  rmarkdown_2.13   labeling_0.4.2   bit_4.0.4       
+## [21] munsell_0.5.0    broom_0.8.0      compiler_4.1.3   modelr_0.1.8    
+## [25] xfun_0.32        pkgconfig_2.0.3  htmltools_0.5.2  tidyselect_1.1.2
+## [29] bookdown_0.26    fansi_1.0.3      crayon_1.5.1     tzdb_0.3.0      
+## [33] dbplyr_2.1.1     withr_2.5.0      cabinets_0.6.0   grid_4.1.3      
+## [37] jsonlite_1.8.0   gtable_0.3.0     lifecycle_1.0.1  DBI_1.1.2       
+## [41] magrittr_2.0.3   scales_1.2.1     cli_3.3.0        stringi_1.7.8   
+## [45] vroom_1.5.7      farver_2.1.1     fs_1.5.2         xml2_1.3.3      
+## [49] bslib_0.3.1      ellipsis_0.3.2   generics_0.1.3   vctrs_0.4.1     
+## [53] tools_4.1.3      bit64_4.0.5      glue_1.6.2       hms_1.1.1       
+## [57] parallel_4.1.3   fastmap_1.1.0    yaml_2.3.5       colorspace_2.0-3
+## [61] rvest_1.0.2      knitr_1.38       haven_2.5.0      sass_0.4.1</code></pre>
+</div>

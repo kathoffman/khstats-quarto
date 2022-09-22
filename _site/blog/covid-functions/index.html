@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Katherine Hoffman">
+<meta name="dcterms.date" content="2020-07-10">
+
+<title>KHstats - Silver Linings: five coding tricks learned during Lockdown</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  </head><body class="nav-fixed fullcontent">true
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">Google Scholar</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Silver Linings: five coding tricks learned during Lockdown</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Katherine Hoffman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 10, 2020</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Tips for using {tidylog}, {gtsummary}, {labelled}, {snakecase}, and more.</p>
+<!--more-->
+<p><strong><em>July 10, 2020.</em></strong></p>
+<p>In non-coronavirus times, I am the biostatistician for a team of NYC pulmonologists and intensivists. When the pandemic hit NYC in mid-March, I immediately became a <strike>100%</strike> 200% COVID-19 statistician. I received many analysis requests, though not all of them from official investigators:</p>
+<blockquote class="twitter-tweet blockquote">
+<p lang="en" dir="ltr">
+My family recently learned I am the statistician for my hospital’s pulmonologists and now I get COVID-19 analysis requests from them, too <a href="https://t.co/wlHmUaBh6Y">pic.twitter.com/wlHmUaBh6Y</a>
+</p>
+— Kat Hoffman (<span class="citation" data-cites="rkatlady">@rkatlady</span>) <a href="https://twitter.com/rkatlady/status/1248746176834306056?ref_src=twsrc%5Etfw">April 10, 2020</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Jokes aside, I was really busy during the Spring 2020 outbreak. While doing work for both hospital operations and rapidly moving COVID-19 academic research, it was especially important to code efficiently and accurately while working with a deluge of Electronic Health Record (EHR) data.</p>
+<p>This post contains my favorite (because they were either the most useful or most used) lines of <code>R</code> code for turning very raw-form EHR data into analytical files for descriptive reporting and statistical inference. For the examples, I’ve created data that is a simplified version of my actual data sets – just in case you too would like to pretend you are a COVID-19 biostatistician!</p>
+<p>The first data set contains some basic demographic and clinical outcome information for all COVID-19 positive patients who arrived at a hospital. The second data set contains laboratory results for all patients who arrived at the hospital during a certain window of time. In theory, the first data set (<code>patients</code>) should be a subset of the second (<code>labs</code>).</p>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load tidyverse for data creation and set seed for reproducible data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data set of basic patient demographics</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>patients <span class="ot">&lt;-</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tribble</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>id, <span class="sc">~</span>admit_dt, <span class="sc">~</span>death_or_discharge_dt,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>age, <span class="sc">~</span>sex, <span class="sc">~</span>height, <span class="sc">~</span>weight, <span class="sc">~</span>current_smoker, <span class="sc">~</span>immunosuppressed, </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span>, <span class="st">"2020-03-21 00:10"</span>, <span class="st">"2020-05-13 12:10"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="dv">64</span>, <span class="st">"Male"</span>, <span class="dv">68</span>, <span class="dv">199</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span>, </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="dv">104</span>, <span class="st">"2020-04-03 12:15"</span>, <span class="st">"2020-04-29 18:34"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dv">25</span>, <span class="st">"Male"</span>, <span class="dv">72</span>, <span class="cn">NA</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span>, </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">106</span>, <span class="st">"2020-03-28 12:22"</span>, <span class="st">"2020-04-05 19:18"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="dv">49</span>, <span class="st">"Female"</span>, <span class="dv">64</span>, <span class="dv">189</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span>, </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>     <span class="dv">107</span>, <span class="st">"2020-04-10 18:15"</span>,<span class="st">"2020-04-14 19:12"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a> <span class="dv">88</span>, <span class="st">"Male"</span>, <span class="dv">62</span>, <span class="dv">111</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span>, </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="dv">111</span>, <span class="st">"2020-04-18 00:49"</span>, <span class="st">"2020-04-25 19:18"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="dv">61</span>, <span class="st">"Female"</span>, <span class="dv">67</span>, <span class="dv">156</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set time zone for date time variables</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">ends_with</span>(<span class="st">"_dt"</span>)), <span class="sc">~</span><span class="fu">as.POSIXct</span>(., <span class="at">tz=</span><span class="st">"America/New_York"</span>))</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># generate labs data</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>labs <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="dv">100</span><span class="sc">:</span><span class="dv">110</span>, <span class="cf">function</span>(x){</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  lab_time <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="fu">as.POSIXct</span>(<span class="st">"2020-03-01 00:00"</span>), <span class="fu">as.POSIXct</span>(<span class="st">"2020-05-30 00:00"</span>), <span class="at">by=</span><span class="st">"hours"</span>), <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">50</span>, <span class="dv">200</span>))</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  id <span class="ot">&lt;-</span> <span class="fu">rep</span>(x, <span class="at">length.out=</span><span class="fu">length</span>(lab_time))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  lab_name <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"D-Dimer"</span>,<span class="st">"Platelet Count"</span>,<span class="st">"C-Reactive Protein"</span>,<span class="st">"Lactate Dehydrogenase"</span>,<span class="st">"LYMPHOCYTE PERC"</span>,<span class="st">"Absolute Lymphocyte Count"</span>), <span class="at">size =</span> <span class="fu">length</span>(lab_time), <span class="at">replace =</span> T)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  lab_value <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">length</span>(lab_time), <span class="dv">100</span>, <span class="dv">1200</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  lab_value <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(lab_value <span class="sc">&gt;</span> <span class="dv">1000</span>, <span class="st">"&gt;1000"</span>, <span class="fu">as.character</span>(<span class="fu">round</span>(lab_value)))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(id, lab_time, lab_name, lab_value)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>}) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>patients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="a-tibble-5-9" class="level1">
+<h1>A tibble: 5 × 9</h1>
+<pre><code> id admit_dt            death_or_discharge_dt   age sex    height weight</code></pre>
+<p><dbl> <dttm> <dttm> <dbl> <chr> <dbl> <dbl> 1 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male 68 199 2 104 2020-04-03 12:15:00 2020-04-29 18:34:00 25 Male 72 NA 3 106 2020-03-28 12:22:00 2020-04-05 19:18:00 49 Female 64 189 4 107 2020-04-10 18:15:00 2020-04-14 19:12:00 88 Male 62 111 5 111 2020-04-18 00:49:00 2020-04-25 19:18:00 61 Female 67 156 # … with 2 more variables: current_smoker <chr>, immunosuppressed <chr></chr></chr></dbl></dbl></chr></dbl></dttm></dttm></dbl></p>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>labs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="a-tibble-1623-4" class="level1">
+<h1>A tibble: 1,623 × 4</h1>
+<pre><code>  id lab_time            lab_name                  lab_value</code></pre>
+<p><int> <dttm> <chr> <chr><br>
+1 100 2020-05-02 03:00:00 Platelet Count 245<br>
+2 100 2020-03-20 20:00:00 C-Reactive Protein &gt;1000<br>
+3 100 2020-05-15 07:00:00 C-Reactive Protein 620<br>
+4 100 2020-04-29 00:00:00 Absolute Lymphocyte Count 937<br>
+5 100 2020-05-02 08:00:00 Platelet Count 984<br>
+6 100 2020-04-13 14:00:00 Absolute Lymphocyte Count 177<br>
+7 100 2020-04-30 15:00:00 LYMPHOCYTE PERC 227<br>
+8 100 2020-03-24 19:00:00 LYMPHOCYTE PERC 405<br>
+9 100 2020-03-12 04:00:00 C-Reactive Protein 878<br>
+10 100 2020-04-09 11:00:00 Platelet Count 711<br>
+# … with 1,613 more rows</chr></chr></dttm></int></p>
+</section>
+<section id="tidylog" class="level1">
+<h1>1. <code>tidylog</code></h1>
+<p>The first line of <code>R</code> code I found most useful was actually just loading an entire package. It sounds crazy, but that’s all you have to do! You simply load the package, <code>tidylog</code>, after <code>tidyverse</code> (or <code>dplyr</code> or <code>tidyr</code>):</p>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidylog, <span class="at">warn.conflicts =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, whenever you use one of the previously mentioned packages to wrangle data, <code>tidylog</code> will give you super helpful information about what just happened. For example, if you use <code>mutate</code> on a column, it will tell you how many new <code>NA</code> values were created, if any. It will also remind you which variables you removed, and will give you feedback after you’ve grouped or ungrouped by a certain variable.</p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>patients <span class="ot">&lt;-</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  patients <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute BMI</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bmi =</span> weight <span class="sc">/</span> height<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">703</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove the patients height and weight from the data frame</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>height, <span class="sc">-</span>weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>mutate: new variable 'bmi' (double) with 5 unique values and 20% NA</code></pre>
+<pre><code>select: dropped 2 variables (height, weight)</code></pre>
+<p>It’s especially helpful for joining data, because it will tell you how many rows matched in the right and left hand side of your data. In this example, we can see that about 50% of the lab values in <code>labs</code> have a match in patients – as expected. However, one patient in <code>patients</code> does not have any labs in <code>labs</code> – not good! This would be a scenario I would need to follow up with my data source (the Informatics team I work with) to figure out.</p>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>patient_labs <span class="ot">&lt;-</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  patients <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(labs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Joining, by = "id"
+left_join: added 3 columns (lab_time, lab_name, lab_value)
+&gt; rows only in x 1
+&gt; rows only in y (994)
+&gt; matched rows 629 (includes duplicates)
+&gt; =====
+&gt; rows total 630</code></pre>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>patient_labs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="a-tibble-630-11" class="level1">
+<h1>A tibble: 630 × 11</h1>
+<pre><code>  id admit_dt            death_or_discharge_dt   age sex   current…¹ immun…²</code></pre>
+<p><dbl> <dttm> <dttm> <dbl> <chr> <chr> <chr><br>
+1 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male Yes No<br>
+2 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male Yes No<br>
+3 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male Yes No<br>
+4 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male Yes No<br>
+5 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male Yes No<br>
+6 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male Yes No<br>
+7 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male Yes No<br>
+8 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male Yes No<br>
+9 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male Yes No<br>
+10 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male Yes No<br>
+# … with 620 more rows, 4 more variables: bmi <dbl>, lab_time <dttm>, # lab_name <chr>, lab_value <chr>, and abbreviated variable names # ¹​current_smoker, ²​immunosuppressed</chr></chr></dttm></dbl></chr></chr></chr></dbl></dttm></dttm></dbl></p>
+<p><code>library(tidylog)</code> has singlehandedly helped me detect countless errors while working with rapidly changing COVID-19 data from many different sources. My coworker once summed it up perfectly by saying, “<code>tidylog</code> isn’t just a package, it’s a lifestyle.”</p>
+</section>
+<section id="gtsummarytbl_summary-labelledadd_variable_labels-snakecaseto_title_case" class="level1">
+<h1>2. <code>gtsummary::tbl_summary()</code> + <code>labelled::add_variable_labels</code> + <code>snakecase::to_title_case</code></h1>
+<blockquote class="twitter-tweet blockquote">
+<p lang="en" dir="ltr">
+efficiently labeling variables: a useful skill if you make a lot of <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> tables👩🏼‍💻<br><br>feat. labelled, snakecase, stringr &amp; gtsummary 📦s <a href="https://t.co/YmiYZEjVKS">pic.twitter.com/YmiYZEjVKS</a>
+</p>
+— Kat Hoffman (<span class="citation" data-cites="kat_hoffman_">@kat_hoffman_</span>) <a href="https://twitter.com/kat_hoffman_/status/1305218425732595713?ref_src=twsrc%5Etfw">September 13, 2020</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p><code>gtsummary</code>’s <code>tbl_summary()</code> is hands down my favorite function for making summary tables. It is so smooth and flexible to use, and it works seamlessly with the new <code>gt</code> package for making tables. You simply input a dataset containing the variables you want to summarize, and, optionally, a grouping variable to stratify those summary statistics by, and you’ll immediately have a clean and clear descriptive table!</p>
+<p>In this example, I’ll use <code>tbl_summary()</code> to summarize the median and IQR or number and percent of all the demographic variables in our <code>patients</code> data set. We <em>could</em> use this code: the barebones function truly only needs a data set containing the variables of interest, and then <code>gtsummary</code> does all the formatting work:</p>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>
+Attaching package: 'gtsummary'</code></pre>
+<pre><code>The following objects are masked from 'package:tidylog':
+
+    mutate, select</code></pre>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>patients <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># select vars of interest for tables</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, sex, bmi, current_smoker, immunosuppressed) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># make sure all numeric variables are reported as continuous</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">list</span>(<span class="fu">all_numeric</span>() <span class="sc">~</span> <span class="st">"continuous"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That’d be fine, but what I <em>really</em> found to be useful during the NYC outbreak was the <code>labelled</code> function. Since I was constantly presenting data to clinicians, it was important that the tables and figures I showed were clear and concise. I try to always eliminate the “ugly” variable names from my presentations and reports, as a rule… but while doing that as automatically as possible.</p>
+<p>It was incredibly helpful to use <code>set_variable_labels()</code> from the <code>labelled</code> package to make the variable names ready for reporting. My favorite trick was to combine this function with the <code>to_title_case()</code> function from the <code>snakecase</code> package. The latter will take any variable of the format <strong><code>snake_case</code></strong> (i.e.&nbsp;all lowercase, with underscores between words), remove the underscores, and capitalize the first letter of each word – just like a title.</p>
+<p>If you use <code>to_title_case(names(.))</code> in the <code>.labels</code> global argument of the <code>set_variable_names()</code> function, it’ll clean up most variables in an extremely intuitive and readable way. Then if there are variables (such as acronyms) that are still not labelled the way you’d prefer them to be, you can directly change them by listing the variable name and the character string you’d like it to say instead. We can do this for BMI, so it does not read “Bmi” when <code>to_title_case</code> transforms the label.</p>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>patients <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># select vars of interest for tables</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, sex, bmi, current_smoker, immunosuppressed) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># edit variable names using labelled package</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># change all variable labels to "Title Case"</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.labels =</span> snakecase<span class="sc">::</span><span class="fu">to_title_case</span>(<span class="fu">names</span>(.)),</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># change any extra variables that are not title case, like BMI</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">bmi =</span> <span class="st">"BMI"</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># don't show missing (unknown) values</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing =</span> <span class="st">"no"</span>,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># make sure all numeric variables are reported as continuous</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">list</span>(<span class="fu">all_numeric</span>() <span class="sc">~</span> <span class="st">"continuous"</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># bold the labels</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Warning: `all_numeric()` was deprecated in gtsummary 1.3.6.
+The {tidyselect} and {dplyr} packages have implemented functions to select variables by class and type, and the {gtsummary} version is now deprecated.
+
+Use `where(is.numeric)` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<pre><code>Warning: The `fmt_missing()` function is deprecated and will soon be removed
+* Use the `sub_missing()` function instead</code></pre>
+<div class="cell-output-display">
+
+<div id="uwvdhggpza" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#uwvdhggpza .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#uwvdhggpza .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uwvdhggpza .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#uwvdhggpza .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#uwvdhggpza .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uwvdhggpza .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uwvdhggpza .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#uwvdhggpza .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#uwvdhggpza .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#uwvdhggpza .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#uwvdhggpza .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#uwvdhggpza .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#uwvdhggpza .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#uwvdhggpza .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#uwvdhggpza .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#uwvdhggpza .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#uwvdhggpza .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uwvdhggpza .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#uwvdhggpza .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#uwvdhggpza .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uwvdhggpza .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#uwvdhggpza .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#uwvdhggpza .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uwvdhggpza .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uwvdhggpza .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#uwvdhggpza .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#uwvdhggpza .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uwvdhggpza .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uwvdhggpza .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uwvdhggpza .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uwvdhggpza .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uwvdhggpza .gt_left {
+  text-align: left;
+}
+
+#uwvdhggpza .gt_center {
+  text-align: center;
+}
+
+#uwvdhggpza .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#uwvdhggpza .gt_font_normal {
+  font-weight: normal;
+}
+
+#uwvdhggpza .gt_font_bold {
+  font-weight: bold;
+}
+
+#uwvdhggpza .gt_font_italic {
+  font-style: italic;
+}
+
+#uwvdhggpza .gt_super {
+  font-size: 65%;
+}
+
+#uwvdhggpza .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#uwvdhggpza .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#uwvdhggpza .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#uwvdhggpza .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#uwvdhggpza .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#uwvdhggpza .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 5</strong><sup class="gt_footnote_marks">1</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">Age</td>
+<td class="gt_row gt_center">61 (49, 64)</td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">Sex</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Female</td>
+<td class="gt_row gt_center">2 (40%)</td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Male</td>
+<td class="gt_row gt_center">3 (60%)</td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">BMI</td>
+<td class="gt_row gt_center">27.3 (23.4, 30.8)</td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">Current Smoker</td>
+<td class="gt_row gt_center">2 (40%)</td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">Immunosuppressed</td>
+<td class="gt_row gt_center">3 (60%)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><sup class="gt_footnote_marks">1</sup> Median (IQR); n (%)</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+<p>So clean and readable, with such little effort! A few other lines of code I usually add to make the tables nicer with very little effort are <code>missing = "no"</code> to the main <code>tbl_summary()</code> argument, and <code>bold_labels()</code> after.</p>
+</section>
+<section id="dplyrfilter-stringrstr_detect-tolower" class="level1">
+<h1>3. <code>dplyr::filter()</code> + <code>stringr::str_detect()</code> + <code>tolower()</code></h1>
+<p>This has been <em>such</em> a life saver when searching through very long-form COVID-19 data for a particular lab, vital sign, medication, or order of interest. I often don’t know the exact word, much less capitalization, of the string I’m looking for in a data set, but this combination of functions really saves the day.</p>
+<p>Here we can use it to figure out the name of patients’ absolute lymphocyte count labs. Of course we could just do something like:</p>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(labs<span class="sc">$</span>lab_name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>[1] “Absolute Lymphocyte Count” “C-Reactive Protein”<br>
+[3] “D-Dimer” “Lactate Dehydrogenase”<br>
+[5] “LYMPHOCYTE PERC” “Platelet Count”</p>
+<p>But in my actual data sets of upwards of 50 million rows, this would return thousands of results! I discovered the easiest way to find what I was looking for was to first convert the <code>lab_name</code> to all lowercase using <code>tolower(lab_name)</code>, and then search for strings using <code>str_detect()</code>, only keeping rows that matched using <code>filter()</code> and then looking at <em>those</em> unique values using <code>pull()</code>* and <code>unique()</code>.</p>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>labs <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(<span class="fu">tolower</span>(lab_name), <span class="st">"lymph"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(lab_name) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>filter: removed 1,078 rows (66%), 545 rows remaining</code></pre>
+<p>[1] “Absolute Lymphocyte Count” “LYMPHOCYTE PERC”</p>
+<p>Although you don’t have to use pipes to do this, I often used those filtered rows for other exploratory data checks, such as looking at the units or distributions of the tests, so it was helpful to have it in the “tidy” format.</p>
+<p>*<code>pull()</code> is a somewhat lesser known function of <code>dplyr</code> that extracts a column as a dimensionless vector from a data frame, rather than <code>select</code>ing a single column, which <code>R</code> still treats as a data frame.</p>
+</section>
+<section id="readrparse_number" class="level1">
+<h1>4. <code>readr::parse_number()</code></h1>
+<p>This is handy whenever I’m dealing with test results that can contain values above or below a detection range. Instead of using <code>as.numeric()</code> on a vector, I’ve switched to always using <code>readr</code>’s <code>parse_number()</code> function. This is because <code>as.numeric()</code> will turn values with meaningful information (such as “&gt;1,000”) into <code>NA</code>.</p>
+<p>Let’s look at this with the D-Dimer values in <code>patients_labs</code>. If you’ve been keeping up with any of the cytokine storm in COVID-19 headlines, you’ll know that D-Dimers are often sky-high in severely ill COVID-19 patients. So high, that they’re sometimes out of detectable ranges*!</p>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>patient_labs <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(<span class="fu">tolower</span>(lab_name), <span class="st">"dimer"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lab_name, lab_value) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lab_value_numeric =</span> <span class="fu">as.numeric</span>(lab_value),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">lab_value_parsed_number =</span> readr<span class="sc">::</span><span class="fu">parse_number</span>(lab_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>filter: removed 536 rows (85%), 94 rows remaining</code></pre>
+<pre><code>Warning in mask$eval_all_mutate(quo): NAs introduced by coercion</code></pre>
+</section>
+<section id="a-tibble-94-4" class="level1">
+<h1>A tibble: 94 × 4</h1>
+<p>lab_name lab_value lab_value_numeric lab_value_parsed_number <chr> <chr> <dbl> <dbl> 1 D-Dimer 642 642 642 2 D-Dimer 531 531 531 3 D-Dimer 674 674 674 4 D-Dimer 751 751 751 5 D-Dimer 436 436 436 6 D-Dimer 181 181 181 7 D-Dimer 107 107 107 8 D-Dimer &gt;1000 NA 1000 9 D-Dimer 251 251 251 10 D-Dimer 148 148 148 # … with 84 more rows</dbl></dbl></chr></chr></p>
+<p>When we use <code>as.numeric()</code> to switch the values from strings, we lose those out of range values. Those are our sickest patients, so if we continue with the analysis, we’ll definitely bias our results. However, if we use <code>parse_number()</code> we can at least evaluate those patients conservatively, using the upper bound of the test detection range.</p>
+<p>*Detectable range is usually &gt;55,000 ng/mL, but for the sake of demonstration, let’s pretend it’s &gt;1,000 of the mystery units in my fake data set.</p>
+</section>
+<section id="lubridates-within-interval-hours" class="level1">
+<h1>5. <code>lubridate</code>’s <code>%within%</code> + <code>interval()</code> + <code>hours()</code></h1>
+<p>Last but not least is two beautiful functions from the <code>lubridate</code> package. If you ever find yourself working with time-stamped data, you should definitely check it out. I tried multiple functions and packages at the beginning of the outbreak, and in the end, nothing compared to <code>lubridate</code>, at least for my use-cases.</p>
+<p>The <code>%within%</code> function allows you to determine whether a time value (stored in <code>R</code> as a <code>POSIXct</code> object) falls within a window of time. You can specify this window of time using the <code>interval()</code> function. If you have only the start or the end time of the window of interest, you can add or subtract using supplemental functions like <code>days()</code> or <code>hours()</code>.</p>
+<p>For my COVID-19 research, the pulmonologists were often interested in snapshots of patients relative to a certain time in their disease course, for example, within the first 24 hours after intubation. The <code>lubridate</code> functions made it super easy to extract the labs, vital signs, or other information that happened relative to another date.</p>
+<p>Here’s how we could use the aforementioned functions in the <code>patient_labs</code> dataset we made previously. We can extract all the labs relative to 24 hours after the hospital admission date.</p>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>
+Attaching package: 'lubridate'</code></pre>
+<pre><code>The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union</code></pre>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>patient_labs <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lab_time <span class="sc">%within%</span> <span class="fu">interval</span>(admit_dt, admit_dt <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>filter: removed 623 rows (99%), 7 rows remaining</code></pre>
+</section>
+<section id="a-tibble-7-11" class="level1">
+<h1>A tibble: 7 × 11</h1>
+<pre><code> id admit_dt            death_or_discharge_dt   age sex    current…¹ immun…²</code></pre>
+<p><dbl> <dttm> <dttm> <dbl> <chr> <chr> <chr><br>
+1 100 2020-03-21 00:10:00 2020-05-13 12:10:00 64 Male Yes No<br>
+2 104 2020-04-03 12:15:00 2020-04-29 18:34:00 25 Male Yes No<br>
+3 106 2020-03-28 12:22:00 2020-04-05 19:18:00 49 Female No Yes<br>
+4 106 2020-03-28 12:22:00 2020-04-05 19:18:00 49 Female No Yes<br>
+5 106 2020-03-28 12:22:00 2020-04-05 19:18:00 49 Female No Yes<br>
+6 106 2020-03-28 12:22:00 2020-04-05 19:18:00 49 Female No Yes<br>
+7 107 2020-04-10 18:15:00 2020-04-14 19:12:00 88 Male No Yes<br>
+# … with 4 more variables: bmi <dbl>, lab_time <dttm>, lab_name <chr>, # lab_value <chr>, and abbreviated variable names ¹​current_smoker, # ²​immunosuppressed</chr></chr></dttm></dbl></chr></chr></chr></dbl></dttm></dttm></dbl></p>
+<p>Perfect! I could go on to informatively join this data to another using <code>tidylog</code>, make tables with clean labels using <code>tbl_summary()</code>, <code>set_variable_labels()</code>, and <code>to_title_case()</code>, find further labs of interest with <code>filter()</code>, <code>str_detect()</code>, and <code>tolower()</code>, and make the lab values numeric with <code>parse_number()</code>… the possibilities are endless!</p>
+<p>I hope you enjoyed a quick insight into the data side of COVID-19 research, and/or perhaps picked up some useful function combinations for your own applied work with <code>R</code>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
