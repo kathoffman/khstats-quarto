@@ -13,4 +13,4 @@ page-layout: full
 title-block-banner: true
 ---
 
-Selected slide decks are shown below. A full listing of talks is available on my [CV]().
+Selected slide decks are shown below. A full listing of talks is available on my [CV](static/KatherineHoffman_CV_Sept2022.pdf).
