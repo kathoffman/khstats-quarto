@@ -3,7 +3,7 @@ project:
 
 website:
   title: "KHstats"
-  site-url: "https://www.khstats.com/"
+  site-url: "www.khstats.com"
   navbar:
     background: "#BDB5D5"
     foreground: "#FFFFFF"
@@ -11,10 +11,6 @@ website:
       - blog.qmd
       - talks.qmd
       - illustrations.qmd
-      - text: "CV"
-        href: static/KatherineHoffman_CV_Sept2022.pdf
-      - text: "Google Scholar"
-        href: "https://scholar.google.com/citations?user=73RvTUoAAAAJ&hl=en"
       - icon: github
         href: https://github.com/kathoffman
       - icon: twitter

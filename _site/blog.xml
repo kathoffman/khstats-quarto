@@ -6,22 +6,22 @@
       version="2.0">
 <channel>
 <title>KHstats</title>
-<link>https://www.khstats.com/blog.html</link>
-<atom:link href="https://www.khstats.com/blog.xml" rel="self" type="application/rss+xml"/>
+<link>www.khstats.com/blog.html</link>
+<atom:link href="www.khstats.com/blog.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.0.36</generator>
 <lastBuildDate>Thu, 15 Sep 2022 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Annotated Forest Plots using ggplot2</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/forest-plots/index.html</link>
+  <link>www.khstats.com/blog/forest-plots/index.html</link>
   <description><![CDATA[ 
 
 
 
 
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/forest-plots/index_files/figure-html/mainplot-1.png" class="img-fluid" width="864"></p>
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/mainplot-1.png" class="img-fluid" width="864"></p>
 </div>
 <p>This post contains a short R code walkthrough to make annotated forest plots like the one shown above. There are packages to make plots like these such as <a href="https://github.com/rdboyes/forester"><code>forester</code></a>, <a href="https://cran.r-project.org/web/packages/forestplot/vignettes/forestplot.html"><code>forestplot</code></a>, and <a href="https://nightingalehealth.github.io/ggforestplot/index.html"><code>ggforestplot</code></a>, but sometimes I still prefer to make my own.</p>
 <p>The big picture of this is that we’ll be making three separate <code>ggplot2</code> objects and putting them together with <code>patchwork</code>. You could also use packages like <code>cowplot</code>, <code>gridarrange</code> or <code>ggarrange</code> to put the intermediate plot objects together.</p>
@@ -67,7 +67,7 @@ $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-
 <span id="cb4-2">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(model))) <span class="sc" style="color: #5E5E5E;">+</span> </span>
 <span id="cb4-3">  <span class="fu" style="color: #4758AB;">theme_classic</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Then we show all of our information (point estimate and 95% confidence interval) on the graph.</p>
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
@@ -76,7 +76,7 @@ $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-
 <span id="cb5-4">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>log.estimate), <span class="at" style="color: #657422;">shape=</span><span class="dv" style="color: #AD0000;">15</span>, <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">3</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb5-5">  <span class="fu" style="color: #4758AB;">geom_linerange</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin=</span>log.conf.low, <span class="at" style="color: #657422;">xmax=</span>log.conf.high)) </span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
 <span id="cb6-2">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(model))) <span class="sc" style="color: #5E5E5E;">+</span> </span>
@@ -86,7 +86,7 @@ $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-
 <span id="cb6-6">  <span class="fu" style="color: #4758AB;">geom_vline</span>(<span class="at" style="color: #657422;">xintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">linetype=</span><span class="st" style="color: #20794D;">"dashed"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb6-7">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">"Log Hazard Ratio"</span>, <span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">""</span>) </span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Next we’ll use <code>coord_cartesian()</code> which will allow us to zoom to the exact height and width we want. I want to zoom out a bit to leave myself room for the text “Corticosteroids protective” vs.&nbsp;“Corticosteroids harmful” so I’m going to set my limits to <code>y=c(1,11)</code>. Each of the models (10 in total) is one unit, so this will give me one extra unit of space at the top of the plot. The x-limit I played around with a bit based upon the range of my log hazard ratios, and I ultimately arrived at <code>xlim=c(-1, .5)</code>.</p>
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
@@ -98,7 +98,7 @@ $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-
 <span id="cb7-7">  <span class="fu" style="color: #4758AB;">geom_vline</span>(<span class="at" style="color: #657422;">xintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">linetype=</span><span class="st" style="color: #20794D;">"dashed"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb7-8">  <span class="fu" style="color: #4758AB;">coord_cartesian</span>(<span class="at" style="color: #657422;">ylim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">11</span>), <span class="at" style="color: #657422;">xlim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>, .<span class="dv" style="color: #AD0000;">5</span>))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Now we have space to add our text about protective vs.&nbsp;harmful using the <code>annotate</code> layer.</p>
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
@@ -112,7 +112,7 @@ $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-
 <span id="cb8-9">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> <span class="sc" style="color: #5E5E5E;">-</span>.<span class="dv" style="color: #AD0000;">32</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids protective"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb8-10">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> .<span class="dv" style="color: #AD0000;">3</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids harmful"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Finally, we will remove everything on the y axis, because this plot is going to align with the next plot we make, showing the hazard ratios.</p>
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">p_mid <span class="ot" style="color: #003B4F;">&lt;-</span></span>
@@ -204,7 +204,7 @@ $ estimate_lab  &lt;chr&gt; "0.50 (0.41-0.62)", "0.95 (0.66-1.37)", "0.92 (0.63-
 <span id="cb12-12"></span>
 <span id="cb12-13">p_left</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </section>
 <section id="step-3-create-p-value-annotations" class="level1">
@@ -222,7 +222,7 @@ $ estimate_lab  &lt;chr&gt; "0.50 (0.41-0.62)", "0.95 (0.66-1.37)", "0.92 (0.63-
 <span id="cb13-11"></span>
 <span id="cb13-12">p_right</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </section>
 <section id="step-4-put-the-three-plots-together-with-patchwork" class="level1">
@@ -235,7 +235,7 @@ $ estimate_lab  &lt;chr&gt; "0.50 (0.41-0.62)", "0.95 (0.66-1.37)", "0.92 (0.63-
 <span id="cb14-6"><span class="co" style="color: #5E5E5E;"># final plot arrangement</span></span>
 <span id="cb14-7">p_left <span class="sc" style="color: #5E5E5E;">+</span> p_mid <span class="sc" style="color: #5E5E5E;">+</span> p_right <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">plot_layout</span>(<span class="at" style="color: #657422;">design =</span> layout)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="864"></p>
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="864"></p>
 </div>
 </section>
 <section id="step-5-export-your-plot" class="level1">
@@ -357,14 +357,14 @@ loaded via a namespace (and not attached):
 
  ]]></description>
   <category>programming</category>
-  <guid>https://www.khstats.com/blog/forest-plots/index.html</guid>
+  <guid>www.khstats.com/blog/forest-plots/index.html</guid>
   <pubDate>Thu, 15 Sep 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/forest-plots/image.png" medium="image" type="image/png" height="80" width="144"/>
+  <media:content url="www.khstats.com/blog/forest-plots/image.png" medium="image" type="image/png" height="80" width="144"/>
 </item>
 <item>
   <title>Building Statistical Intuition for Individualized Treatment Rules</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/otr/index.html</link>
+  <link>www.khstats.com/blog/otr/index.html</link>
   <description><![CDATA[ 
 
 
@@ -389,7 +389,7 @@ loaded via a namespace (and not attached):
 <ol type="1">
 <li>We will start with a standard set-up: we have a matrix of observed data <img src="https://latex.codecogs.com/png.latex?O"> which includes our <strong>outcome</strong> <img src="https://latex.codecogs.com/png.latex?Y">, the <strong>exposure</strong> (i.e.&nbsp;treatment, medicine, etc.) we want to study <img src="https://latex.codecogs.com/png.latex?A">, and other <strong>covariates</strong> <img src="https://latex.codecogs.com/png.latex?%5Ctextbf%7BW%7D">. Each row is an observation. We can denote these columns of data, which are random variables, as <img src="https://latex.codecogs.com/png.latex?O%20=%20(%5Ctextbf%7BW%7D,%20A,%20Y)">.</li>
 </ol>
-<p><img src="https://www.khstats.com/blog/otr/otr/data_structure.png" class="img-fluid" style="width:80.0%"></p>
+<p><img src="www.khstats.com/blog/otr/otr/data_structure.png" class="img-fluid" style="width:80.0%"></p>
 <!-- , and visualize it as the following data set. *Note that we are considering a binary exposure for simplicity.* -->
 <!-- ![](tmle/1_data_structure.png){width=80%} -->
 <ol start="2" type="1">
@@ -397,7 +397,7 @@ loaded via a namespace (and not attached):
 </ol>
 <!-- <p style="margin-left: 40px"> -->
 <p><img src="https://latex.codecogs.com/png.latex?d:%20%5Ctextbf%7BW%7D%20%5Crightarrow%20A"> This is equivalent to a function you could write in R or Python which takes a matrix <code>W</code> and outputs a vector of treatment assignments <code>A</code>, which may or may not be the same treatment assignment as what each observation actually received.</p>
-<p><img src="https://www.khstats.com/blog/otr/otr/input_output.png" class="img-fluid" style="width:80.0%"></p>
+<p><img src="www.khstats.com/blog/otr/otr/input_output.png" class="img-fluid" style="width:80.0%"></p>
 <!-- <p style="margin-left: 40px">An example in `R` code could be this:</p>  -->
 <!-- <p style="margin-left: 40px"> -->
 <!-- ```{r} -->
@@ -413,16 +413,16 @@ loaded via a namespace (and not attached):
 <li>We can then think about the <strong>counterfactual outcome</strong><sup>1</sup> for each row, or observation, under the treatment rule <img src="https://latex.codecogs.com/png.latex?d">. In other words, we ask, *“what would have happened in a hypothetical world where the treatment rule* <img src="https://latex.codecogs.com/png.latex?d"> was applied?”</li>
 </ol>
 <p>Let’s denote this vector of counterfactual outcomes as <img src="https://latex.codecogs.com/png.latex?Y(d)">.</p>
-<p><img src="https://www.khstats.com/blog/otr/otr/Y_d.png" class="img-fluid" style="width:100.0%"></p>
+<p><img src="www.khstats.com/blog/otr/otr/Y_d.png" class="img-fluid" style="width:100.0%"></p>
 <ol start="4" type="1">
 <li>The optimal ITR will <strong>maximize the expected counterfactual outcome</strong>, or <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BE%7D%5BY(d)%5D">, across the entire population. We can write that using <img src="https://latex.codecogs.com/png.latex?%5Cmathop%7B%5Cmathrm%7Barg%5C,max%7D%7D">, which means we want to know which argument will return the highest value of a function. In this use-case, we want to know what treatment rule <img src="https://latex.codecogs.com/png.latex?d"> returns the highest expected value of the counterfactual outcome, <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BE%7D%5BY(d)%5D">.</li>
 </ol>
 <p><img src="https://latex.codecogs.com/png.latex?%5Cmathop%7B%5Cmathrm%7Barg%5C,max%7D%7D_d%20%5Cmathrm%7BE%7D%5BY(d)%5D"></p>
-<p><img src="https://www.khstats.com/blog/otr/otr/argmax.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="www.khstats.com/blog/otr/otr/argmax.png" class="img-fluid" style="width:70.0%"></p>
 <ol start="5" type="1">
 <li>We can call whatever function <img src="https://latex.codecogs.com/png.latex?d">, or <img src="https://latex.codecogs.com/png.latex?d(%5Ctextbf%7BW%7D)">, that maximizes this expected counterfactual outcome for the population <img src="https://latex.codecogs.com/png.latex?d%5E*">. <strong>This</strong> <img src="https://latex.codecogs.com/png.latex?d%5E*"> is our optimal ITR.</li>
 </ol>
-<p><img src="https://www.khstats.com/blog/otr/otr/d_star.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="www.khstats.com/blog/otr/otr/d_star.png" class="img-fluid" style="width:50.0%"></p>
 </section>
 <section id="estimating-the-itr" class="level1">
 <h1>📈 Estimating the ITR</h1>
@@ -436,22 +436,22 @@ loaded via a namespace (and not attached):
 <ol type="1">
 <li>Fit a regression for <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BE%7D%5BY%7CA,%5Ctextbf%7BW%7D%5D">.</li>
 </ol>
-<p><img src="https://www.khstats.com/blog/otr/tmle/2_outcome_fit.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="www.khstats.com/blog/otr/tmle/2_outcome_fit.png" class="img-fluid" style="width:70.0%"></p>
 <ol start="2" type="1">
 <li>Use the model fit from Step 1 to obtain predicted estimates for <img src="https://latex.codecogs.com/png.latex?Y">. Use two different datasets: one where all observations are changed to have <img src="https://latex.codecogs.com/png.latex?A=1">, and one where all observations are changed to have <img src="https://latex.codecogs.com/png.latex?A=0">.</li>
 </ol>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BE%7D%5BY%7CA=1,%20%5Ctextbf%7BW%7D%5D"></p>
-<p><img src="https://www.khstats.com/blog/otr/tmle/4_Q1.png" class="img-fluid" style="width:80.0%"></p>
+<p><img src="www.khstats.com/blog/otr/tmle/4_Q1.png" class="img-fluid" style="width:80.0%"></p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BE%7D%5BY%7CA=0,%20%5Ctextbf%7BW%7D%5D"></p>
-<p><img src="https://www.khstats.com/blog/otr/tmle/5_Q1.png" class="img-fluid" style="width:80.0%"></p>
+<p><img src="www.khstats.com/blog/otr/tmle/5_Q1.png" class="img-fluid" style="width:80.0%"></p>
 <ol start="3" type="1">
 <li>Compute the difference of the quantities from Step 2.</li>
 </ol>
 <p><img src="https://latex.codecogs.com/png.latex?%5Cwidehat%7BCATE%7D%20=%20%5Chat%7BE%7D%5BY%7CA=1,%20%5Ctextbf%7BW%7D%5D%20-%20%5Chat%7BE%7D%5BY%7CA=0,%20%5Ctextbf%7BW%7D%5D"></p>
-<p><img src="https://www.khstats.com/blog/otr/otr/cate.png" class="img-fluid" style="width:32.0%"></p>
+<p><img src="www.khstats.com/blog/otr/otr/cate.png" class="img-fluid" style="width:32.0%"></p>
 <p>Now, we could say our optimal ITR is to <strong>give treatment if the value of</strong> <img src="https://latex.codecogs.com/png.latex?CATE"> for that person is positive, indicating a positive effect of treatment on the outcome <img src="https://latex.codecogs.com/png.latex?Y">. Likewise, if the value is negative or 0, indicating a negative or neutral effect on the outcome <img src="https://latex.codecogs.com/png.latex?Y">, that unit would not receive treatment under the ITR.</p>
 <p><img src="https://latex.codecogs.com/png.latex?ITR%20=%20%5Cmathbb%7B1%7D%7B%20%5C%7BCATE%20%3E%200%7D%20%5C%7D"></p>
-<p><img src="https://www.khstats.com/blog/otr/otr/cate_assign_legend.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="www.khstats.com/blog/otr/otr/cate_assign_legend.png" class="img-fluid" style="width:50.0%"></p>
 </section>
 <section id="r-simulation" class="level1">
 <h1>🖥️ <code>R</code> simulation</h1>
@@ -480,7 +480,7 @@ loaded via a namespace (and not attached):
 <span id="cb3-8">  <span class="fu" style="color: #4758AB;">scale_fill_manual</span>(<span class="at" style="color: #657422;">values =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"#f2696f"</span>,<span class="st" style="color: #20794D;">"#4984b0"</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb3-9">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">"CATE"</span>, <span class="at" style="color: #657422;">y =</span> <span class="st" style="color: #20794D;">"Count"</span>, <span class="at" style="color: #657422;">fill =</span> <span class="st" style="color: #20794D;">"Treatment Rule"</span>, <span class="at" style="color: #657422;">title=</span><span class="st" style="color: #20794D;">"Distribution of CATE"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/otr/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/otr/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -520,14 +520,14 @@ loaded via a namespace (and not attached):
 </ol>
 </section></div> ]]></description>
   <category>statistics</category>
-  <guid>https://www.khstats.com/blog/otr/index.html</guid>
+  <guid>www.khstats.com/blog/otr/index.html</guid>
   <pubDate>Wed, 10 Aug 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/otr/image.png" medium="image" type="image/png" height="57" width="144"/>
+  <media:content url="www.khstats.com/blog/otr/image.png" medium="image" type="image/png" height="57" width="144"/>
 </item>
 <item>
   <title>You’re just my type! A beginner’s guide to building a custom mechanical keyboard</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/keyboard/index.html</link>
+  <link>www.khstats.com/blog/keyboard/index.html</link>
   <description><![CDATA[ 
 
 
@@ -536,7 +536,7 @@ loaded via a namespace (and not attached):
 <blockquote class="blockquote">
 <p>This blog post details a DIY project I did last summer – building a mechanical keyboard. I’m no expert, but I enjoyed the process of building the keyboard so much that I thought I would briefly walk through the steps and share helpful resources. Even if you have no interest in building your own, I hope it encourages you to learn something new that you may have initially felt intimidated by!</p>
 </blockquote>
-<p><img src="https://www.khstats.com/blog/keyboard/keyboard/IMG_2826.JPG" class="img-fluid"></p>
+<p><img src="www.khstats.com/blog/keyboard/keyboard/IMG_2826.JPG" class="img-fluid"></p>
 <!-- <iframe src="https://giphy.com/embed/2IGcITcJg09VK" width="480" height="379" frameBorder="0"  allowFullScreen></iframe><p><a href="https://giphy.com/gifs/2IGcITcJg09VK"></a></p> -->
 <section id="whats-a-mechanical-keyboard" class="level1">
 <h1>What’s a mechanical keyboard?</h1>
@@ -547,7 +547,7 @@ loaded via a namespace (and not attached):
 <h1>Why would I want to build a mechanical keyboard?</h1>
 <p>You can buy a mechanical keyboard, and to be honest, it’s a much cheaper monetary and time investment. Practically, the reason to build your own keyboard is customizability. Picking out the components provides freedom in colors, layout, feel/sound of the keys, and more. Yet the primary reason people do it is that it’s fun. If you enjoy DIY projects, you’ll probably enjoy the challenge that comes with building your own keyboard.</p>
 <p>Personally, I decided to build my mechanical keyboard because I was bored during quarantine after catching COVID-19 last summer. I texted my dad at 1AM to see if I could use his soldering iron, and the rest is history.</p>
-<p><img src="https://www.khstats.com/blog/keyboard/keyboard/ss_dad.jpeg" class="img-fluid" style="width:75.0%"></p>
+<p><img src="www.khstats.com/blog/keyboard/keyboard/ss_dad.jpeg" class="img-fluid" style="width:75.0%"></p>
 </section>
 <section id="what-components-do-i-need-to-buy" class="level1">
 <h1>What components do I need to buy?</h1>
@@ -605,7 +605,7 @@ loaded via a namespace (and not attached):
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.khstats.com/blog/keyboard/keyboard/IMG_9073.png" class="img-fluid figure-img"></p>
+<p><img src="www.khstats.com/blog/keyboard/keyboard/IMG_9073.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption"><em>My components and tools, from left to right: a rag for touching up lubricant/solder, silicone lubricant, brass sponge for removing solder, solder wire, soldering iron with stand, scissors, tweezers, toothpicks, switches, stabilizers (black platic feet), screws, soft feet stickers, stabilizers (metal rods), case, key caps, PCB, brass plate, and foam pad. Not pictured: solder sucker that I purchased later.</em></figcaption><p></p>
 </figure>
 </div>
@@ -623,7 +623,7 @@ loaded via a namespace (and not attached):
 <section id="lubricate-the-stabilizers" class="level2">
 <h2 class="anchored" data-anchor-id="lubricate-the-stabilizers">2. Lubricate the stabilizers</h2>
 <p>If your PCB plate is working properly, go ahead and add lubricant and put together your stabilizers. I found the whole process a bit tricky, but <a href="https://www.youtube.com/watch?v=usNx1_d0HbQ">Youtube</a> helped a lot. There are special lubricants made for keyboards, but I was impatient and used silicone lubricant that I already had.</p>
-<p><img src="https://www.khstats.com/blog/keyboard/keyboard/IMG_9074.png" class="img-fluid"></p>
+<p><img src="www.khstats.com/blog/keyboard/keyboard/IMG_9074.png" class="img-fluid"></p>
 </section>
 <section id="place-your-stabilizers-on-the-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="place-your-stabilizers-on-the-pcb">3. Place your stabilizers on the PCB</h2>
@@ -647,7 +647,7 @@ loaded via a namespace (and not attached):
 </video>
 <p>One important note with soldering is that you should wait a day and retest your keys to make sure the conduction stayed. I had an issue where I would successfully test the keys about five minutes after soldering, but the next day the same keys would no longer work. I finally realized this was because I was soldering outside on a summer night (to avoid the fumes). As the sun went down, my soldering iron was no longer as hot as it said it was (~400° Fahrenheit) because the wind/outside air was cooling it down.</p>
 <p>This is what my final soldered PCB and switches looked like. Each of the keys has two small mounds of solder creating an electrical conduction between the switch and the PCB. These look like small silver balls.</p>
-<p><img src="https://www.khstats.com/blog/keyboard/keyboard/final_solder.png" class="img-fluid"></p>
+<p><img src="www.khstats.com/blog/keyboard/keyboard/final_solder.png" class="img-fluid"></p>
 </section>
 <section id="stack-and-screw" class="level2">
 <h2 class="anchored" data-anchor-id="stack-and-screw">6. Stack and screw</h2>
@@ -667,21 +667,21 @@ loaded via a namespace (and not attached):
 <section id="lessons-learned" class="level1">
 <h1>Lessons learned</h1>
 <p>In the end, the process of learning to build a mechanical keyboard felt just like learning any new concept in statistics/data science. The knowledge took some time to find, and the jargon was a bit intimidating, but after spending some time sifting through information I could always find what I needed. The entire process was very enjoyable, and I’m already looking forward to my next build!</p>
-<p><img src="https://www.khstats.com/blog/keyboard/keyboard/IMG_7198.png" class="img-fluid"></p>
+<p><img src="www.khstats.com/blog/keyboard/keyboard/IMG_7198.png" class="img-fluid"></p>
 
 
 </section>
 
  ]]></description>
   <category>miscellaneous</category>
-  <guid>https://www.khstats.com/blog/keyboard/index.html</guid>
+  <guid>www.khstats.com/blog/keyboard/index.html</guid>
   <pubDate>Wed, 15 Jun 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/keyboard/keyboard/IMG_2826.JPG" medium="image"/>
+  <media:content url="www.khstats.com/blog/keyboard/keyboard/IMG_2826.JPG" medium="image"/>
 </item>
 <item>
   <title>Using ggplot2 to create Treatment Timelines with Multiple Variables</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/trt-timelines/multiple-vars.html</link>
+  <link>www.khstats.com/blog/trt-timelines/multiple-vars.html</link>
   <description><![CDATA[ 
 
 
@@ -691,7 +691,7 @@ loaded via a namespace (and not attached):
 <!--more-->
 <p><strong><em>June 8, 2022.</em></strong></p>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>This post walks through code to create a timeline in <code>R</code> using <code>ggplot2</code>. These types of plots can help visualize <strong>treatment or measurement patterns</strong>, <strong>time-varying covariates</strong>, <strong>outcomes</strong>, and <strong>loss to follow-up</strong> in longitudinal data settings.</p>
 <p>You can view a corresponding slide deck I made with {flipbookr} for the 2022 R/Medicine <a href="https://kathoffman.github.io/swimmer-plots/slides.html#1">[here]</a>, or you can skip to the end of this post to just see the code.</p>
@@ -728,7 +728,7 @@ loaded via a namespace (and not attached):
 <span id="cb3-3">  <span class="fu" style="color: #4758AB;">geom_line</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb3-4">  <span class="fu" style="color: #4758AB;">theme_bw</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>We can add our <code>steroids</code> column to the plot by adding a point designating whether <code>steroids</code> exposure was <code>1</code> (yes) or <code>0</code> (no) that day. We can see this results in points of two different colors on the lines of our plot. <a href="https://www.khstats.com/blog/trt-timelines/trt-timelines/">This can work just fine</a>! …unless you want to add another variable to the timeline.</p>
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">dat_long <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
@@ -737,7 +737,7 @@ loaded via a namespace (and not attached):
 <span id="cb4-4">  <span class="fu" style="color: #4758AB;">geom_line</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb4-5">  <span class="fu" style="color: #4758AB;">theme_bw</span>() </span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </section>
 <section id="modify-the-data" class="level1">
@@ -780,7 +780,7 @@ loaded via a namespace (and not attached):
 <span id="cb7-5">  <span class="fu" style="color: #4758AB;">theme_bw</span>()</span></code></pre></div>
 <pre><code>Warning: Removed 387 rows containing missing values (geom_point).</code></pre>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>From this point on I’ll save the plot as <code>p</code> and just keep adding onto it so you can see the new step.</p>
 <p>We’ll see why we’re doing this in a second, but in creating this first iteration of <code>p</code> using <code>geom_line()</code> and <code>geom_point()</code>, we also want to set the <code>col</code> to match how we want the marker for steroids to appear in the legend. I’m also going to make minor edits to the <code>size</code> and <code>shape</code> of the point geometry right now, as well as the width of each timeline itself (also using the <code>size</code> argument).</p>
@@ -794,7 +794,7 @@ loaded via a namespace (and not attached):
 <span id="cb9-8">p</span></code></pre></div>
 <pre><code>Warning: Removed 387 rows containing missing values (geom_point).</code></pre>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Let’s add hypoxia and death to the figure. We’ll use <code>geom_point()</code> again, and again specify legend names for the <code>col</code> and <code>shape</code> arguments, and modify the <code>size</code> and <code>stroke</code> of our point geometries.</p>
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">p <span class="ot" style="color: #003B4F;">&lt;-</span> p <span class="sc" style="color: #5E5E5E;">+</span></span>
@@ -805,7 +805,7 @@ loaded via a namespace (and not attached):
 <pre><code>Warning: Removed 403 rows containing missing values (geom_point).</code></pre>
 <pre><code>Warning: Removed 414 rows containing missing values (geom_point).</code></pre>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Note that we get warning messages that values with <code>NA</code> are removed. This is fine since we just created all those <code>NA</code>s! I’m going to set my options so that warnings are suppressed for future code outputs to keep this post tidy.</p>
 <div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">knitr<span class="sc" style="color: #5E5E5E;">::</span>opts_chunk<span class="sc" style="color: #5E5E5E;">$</span><span class="fu" style="color: #4758AB;">set</span>(<span class="at" style="color: #657422;">message=</span>F, <span class="at" style="color: #657422;">warning=</span>F)</span></code></pre></div>
@@ -825,7 +825,7 @@ loaded via a namespace (and not attached):
 <span id="cb17-2">  <span class="fu" style="color: #4758AB;">scale_color_manual</span>(<span class="at" style="color: #657422;">values =</span> cols, <span class="at" style="color: #657422;">name=</span><span class="st" style="color: #20794D;">"Patient Status"</span>) </span>
 <span id="cb17-3">p</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </section>
 <section id="fix-the-legend" class="level1">
@@ -843,7 +843,7 @@ loaded via a namespace (and not attached):
 <span id="cb18-7">                      )</span>
 <span id="cb18-8">         ) </span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>To remove the line through Death, Severe hypoxia, and Steroids in our legend, we can override the aesthetics for <code>linetype</code> with NA’s for those three labels. We will specify the default, <code>linetype=1</code>, for our intubation status color labels.</p>
 <p>We can additionally override the stroke and size arguments to correspond to our point geometries.</p>
@@ -863,7 +863,7 @@ loaded via a namespace (and not attached):
 <span id="cb19-14">             )</span>
 <span id="cb19-15">p</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Ok, the challenging parts are done! Now we can make some minor aesthetic edits using <code>labs</code>, <code>scale_x_continuous()</code>, and <code>theme()</code>. I won’t go into detail on these edits because they’re fairly self-explanatory, but check out the help files if you’re unsure what these arguments in theme do!</p>
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">p <span class="ot" style="color: #003B4F;">&lt;-</span> p <span class="sc" style="color: #5E5E5E;">+</span></span>
@@ -884,7 +884,7 @@ loaded via a namespace (and not attached):
 <span id="cb20-16">  ) </span>
 <span id="cb20-17">p</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Hope this is helpful! As always let me know if you have any feedback or suggestions. If you’d like to copy-paste the code, here it is:</p>
 </section>
@@ -998,14 +998,14 @@ loaded via a namespace (and not attached):
 
  ]]></description>
   <category>programming</category>
-  <guid>https://www.khstats.com/blog/trt-timelines/multiple-vars.html</guid>
+  <guid>www.khstats.com/blog/trt-timelines/multiple-vars.html</guid>
   <pubDate>Wed, 08 Jun 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/trt-timelines/crop_swimmer.png" medium="image" type="image/png" height="115" width="144"/>
+  <media:content url="www.khstats.com/blog/trt-timelines/crop_swimmer.png" medium="image" type="image/png" height="115" width="144"/>
 </item>
 <item>
   <title>An Illustrated Guide to Modified Treatment Policies, Part 1: Introduction and Motivation</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/lmtp/lmtp.html</link>
+  <link>www.khstats.com/blog/lmtp/lmtp.html</link>
   <description><![CDATA[ 
 
 
@@ -1015,7 +1015,7 @@ loaded via a namespace (and not attached):
 
 
 
-<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="https://www.khstats.com/blog/lmtp/lmtp/mtp_summary.jpg" style="border:1px solid black;" width="100%&quot;"></a></p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg">
+<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="www.khstats.com/blog/lmtp/lmtp/mtp_summary.jpg" style="border:1px solid black;" width="100%&quot;"></a></p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg">
 </a><p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"></a></p>
 
 
@@ -1050,7 +1050,7 @@ HTML Image as link
 </title>
 
 
-<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/comics/universe_comic.jpeg"> <img src="https://www.khstats.com/blog/lmtp/universe_comic.jpeg" style="float:right; padding-left:10px;" width="60%&quot;"> </a>
+<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/comics/universe_comic.jpeg"> <img src="www.khstats.com/blog/lmtp/universe_comic.jpeg" style="float:right; padding-left:10px;" width="60%&quot;"> </a>
 
 
 <p>Most modern causal inference methods utilize the <strong>potential outcomes framework</strong>, which asks questions of <strong>what would happen</strong> in a <strong>hypothetical world</strong> in which we could <strong>manipulate exposures</strong> and then <strong>compare outcomes for the same observations under different exposures</strong>.</p>
@@ -1066,7 +1066,7 @@ HTML Image as link
 
 
 
-<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/comics/positivity_comic.jpeg"> <img src="https://www.khstats.com/blog/lmtp/positivity_comic.jpeg" style="float:right; padding-left:20px;" width="55%&quot;"> </a>
+<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/comics/positivity_comic.jpeg"> <img src="www.khstats.com/blog/lmtp/positivity_comic.jpeg" style="float:right; padding-left:20px;" width="55%&quot;"> </a>
 
 
 <p>As you can imagine, this often does not hold true. Sometimes there are <strong>theoretical positivity violations</strong>: for example, if we are studying the effects of a drug for heart disease, cardiologists might say this drug is never given to people who also have chronic kidney disease because the drug damages the kidneys. The probability of a patient receiving the drug conditional on having kidney disease will be zero in all datasets.</p>
@@ -1083,7 +1083,7 @@ HTML Image as link
 
 
 
-<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="https://www.khstats.com/blog/lmtp/lmtp/static_graph.jpg" width="100%&quot;"> </a></p>
+<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="www.khstats.com/blog/lmtp/lmtp/static_graph.jpg" width="100%&quot;"> </a></p>
 <figcaption>
 <small>A graphical example of a static intervention on the pollution measurement of Air Quality Index (AQI). On the left we see the naturally observed exposure values for one day in the US, and on the right we see what the hypothetical exposure values would look like under a static intervention in which all study subjects had an AQI exposure of 20.</small>
 </figcaption>
@@ -1101,7 +1101,7 @@ HTML Image as link
 
 
 
-<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="https://www.khstats.com/blog/lmtp/lmtp/dynamic_graph.jpg" width="100%&quot;"> </a></p>
+<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="www.khstats.com/blog/lmtp/lmtp/dynamic_graph.jpg" width="100%&quot;"> </a></p>
 <figcaption>
 <small>An example of a naturally observed exposure of AQI in the US (left) and what it would look like under a hypothetical dynamic intervention in which all urban counties have an AQI of 40 and rural counties have an AQI of 20 (right).</small>
 </figcaption>
@@ -1125,7 +1125,7 @@ HTML Image as link
 
 
 
-<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="https://www.khstats.com/blog/lmtp/lmtp/modified_graph.jpg" width="100%&quot;"> </a></p>
+<p><a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Types_of_Interventions.jpg"> <img src="www.khstats.com/blog/lmtp/lmtp/modified_graph.jpg" width="100%&quot;"> </a></p>
 <figcaption>
 <small>An example of a naturally observed exposure of AQI in the US (left) and what it would look like under a hypothetical modified treatment policy in which all observations have an AQI exposure 20% less than what was actually observed (right).</small>
 </figcaption>
@@ -1136,7 +1136,7 @@ HTML Image as link
 
 
 
-<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/comics/climbing_comic.jpg"> <img src="https://www.khstats.com/blog/lmtp/climbing_comic.JPG" style="float:right" width="40%&quot;"> </a>
+<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/comics/climbing_comic.jpg"> <img src="www.khstats.com/blog/lmtp/climbing_comic.JPG" style="float:right" width="40%&quot;"> </a>
 
 
 <ul>
@@ -1167,7 +1167,7 @@ HTML Image as link
 
 
 
-<a href="https://github.com/nt-williams/lmtp"> <img src="https://www.khstats.com/blog/lmtp/lmtp_sticker.png" alt="LMTP sticker" style="float:right; padding-left:20px;" width="40%&quot;"> </a>
+<a href="https://github.com/nt-williams/lmtp"> <img src="www.khstats.com/blog/lmtp/lmtp_sticker.png" alt="LMTP sticker" style="float:right; padding-left:20px;" width="40%&quot;"> </a>
 
 
 <ul>
@@ -1230,14 +1230,14 @@ Survey weights
 
  ]]></description>
   <category>statistics</category>
-  <guid>https://www.khstats.com/blog/lmtp/lmtp.html</guid>
+  <guid>www.khstats.com/blog/lmtp/lmtp.html</guid>
   <pubDate>Thu, 07 Apr 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/lmtp/lmtp/mtp_summary.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="www.khstats.com/blog/lmtp/lmtp/mtp_summary.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>How many ways are there to get a SOFA Score of 10?</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/sofa/index.html</link>
+  <link>www.khstats.com/blog/sofa/index.html</link>
   <description><![CDATA[ 
 
 
@@ -1341,7 +1341,7 @@ Survey weights
 <span id="cb7-24">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title=</span><span class="st" style="color: #20794D;">"Number of subscore combinations per SOFA score"</span>) <span class="sc" style="color: #5E5E5E;">+</span> </span>
 <span id="cb7-25">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"segment"</span>, <span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">6</span>, <span class="at" style="color: #657422;">xend =</span> <span class="dv" style="color: #AD0000;">9</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">1800</span>, <span class="at" style="color: #657422;">yend =</span> <span class="dv" style="color: #AD0000;">1600</span>, <span class="at" style="color: #657422;">colour =</span> <span class="st" style="color: #20794D;">"dodgerblue2"</span>, <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">2</span>, <span class="at" style="color: #657422;">arrow=</span><span class="fu" style="color: #4758AB;">arrow</span>())</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/sofa/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/sofa/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <!-- ## Solving with Combinatorics  -->
@@ -1351,14 +1351,14 @@ Survey weights
 
  ]]></description>
   <category>programming</category>
-  <guid>https://www.khstats.com/blog/sofa/index.html</guid>
+  <guid>www.khstats.com/blog/sofa/index.html</guid>
   <pubDate>Thu, 10 Feb 2022 05:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/img/sofa/sofa-crop.png" medium="image" type="image/png" height="82" width="144"/>
+  <media:content url="www.khstats.com/img/sofa/sofa-crop.png" medium="image" type="image/png" height="82" width="144"/>
 </item>
 <item>
   <title>Becoming a Biostatistician: FAQs for ‘A Day in the Life of a Biostatistician’</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/ditl/ditl-followup.html</link>
+  <link>www.khstats.com/blog/ditl/ditl-followup.html</link>
   <description><![CDATA[ 
 
 
@@ -1410,14 +1410,14 @@ Survey weights
 
  ]]></description>
   <category>career</category>
-  <guid>https://www.khstats.com/blog/ditl/ditl-followup.html</guid>
+  <guid>www.khstats.com/blog/ditl/ditl-followup.html</guid>
   <pubDate>Fri, 15 Jan 2021 05:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/ditl/faq.jpeg" medium="image" type="image/jpeg"/>
+  <media:content url="www.khstats.com/blog/ditl/faq.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>An Illustrated Guide to TMLE, Part III: Properties, Theory, and Learning More</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/tmle/tutorial-pt3.html</link>
+  <link>www.khstats.com/blog/tmle/tutorial-pt3.html</link>
   <description><![CDATA[ 
 
 
@@ -1436,7 +1436,7 @@ Survey weights
 <p>For example, in <a href="https://khstats.com/blog/tmle/tutorial-pt2"><em>Part II</em></a> we walked through TMLE for the Average Treatment Effect (ATE). Two frequently used alternatives to estimating the ATE are G-computation and Inverse Probability of Treatment Weighting (see <a href="https://khstats.com/blog/tmle/tutorial-pt2/#step-1-estimate-the-outcome"><em>Part II, Step 1</em></a> and <em>references</em>). In general, neither yield valid standard errors unless <em>a-priori</em> specified parametric models are used, and this reliance on parametric assumptions can bias results. There are many simulation studies that show this.</p>
 <p>Another beneficial property of TMLE is that it is a <strong>doubly robust</strong> estimator. This means that if either the regression to estimate the expected outcome, or the regression to estimate the probability of treatment, are correctly specified (formally, their bias goes to zero as sample size grows large, meaning they are <strong>consistent</strong>), the final TMLE estimate will be consistent.</p>
 <p>If both regressions are consistent, the <strong>final estimate will reach the smallest possible variance at a rate of <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7Bn%7D"></strong>, which is the fastest possible rate of convergence and equivalent to parametric maximum likelihood estimation. The reason we use superlearning for estimating the outcome and treatment regressions is to give us the best possible chance of having two correctly specified models and obtaining an <strong>efficient estimate</strong>.</p>
-<p><img src="https://www.khstats.com/img/tmle_props.png" class="img-fluid"></p>
+<p><img src="www.khstats.com/img/tmle_props.png" class="img-fluid"></p>
 <p>Even among other doubly robust estimators, TMLE is appealing because its estimates will always stay within the bounds of the original outcome. This is because it is part of a class of <strong>substitution estimators</strong>. There is another class of doubly robust, semiparametric estimation methods frequently used in causal inference that are referred to as <strong>one-step estimators</strong>, but they can sometimes yield final estimates that are outside the original outcome scale. The one-step estimator for the ATE is called <strong>Augmented Inverse Probability Weighting (AIPW)</strong>.</p>
 </section>
 <section id="why-does-tmle-work" class="level1">
@@ -1458,7 +1458,7 @@ Survey weights
 
 
 
-<a href=""> <img src="https://www.khstats.com/img/tmle/self_portrait.jpg" style="float:right; padding-right:20px; padding-top:-20px; padding-left:20px; padding-bottom:-50px;" width="34%"> </a>
+<a href=""> <img src="www.khstats.com/img/tmle/self_portrait.jpg" style="float:right; padding-right:20px; padding-top:-20px; padding-left:20px; padding-bottom:-50px;" width="34%"> </a>
 
 
 <p>I could only cover so much in this post, but here are the resources I’ve used the most to learn about TMLE, semiparametric estimation, and causal inference. If you are new to any or all of it, there is a good chance it will take <em>several</em> reads of these materials before the concepts begin to make any sense. Don’t get discouraged!</p>
@@ -1520,14 +1520,14 @@ Survey weights
 
  ]]></description>
   <category>statistics</category>
-  <guid>https://www.khstats.com/blog/tmle/tutorial-pt3.html</guid>
+  <guid>www.khstats.com/blog/tmle/tutorial-pt3.html</guid>
   <pubDate>Sat, 12 Dec 2020 05:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/tmle/tmle_props.png" medium="image" type="image/png" height="90" width="144"/>
+  <media:content url="www.khstats.com/blog/tmle/tmle_props.png" medium="image" type="image/png" height="90" width="144"/>
 </item>
 <item>
   <title>An Illustrated Guide to TMLE, Part II: The Algorithm</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/tmle/tutorial-pt2.html</link>
+  <link>www.khstats.com/blog/tmle/tutorial-pt2.html</link>
   <description><![CDATA[ 
 
 
@@ -1547,7 +1547,7 @@ HTML Image as link
 </title>
 
 
-<a href="https://github.com/kathoffman/CI-visual-guides/blob/master/visual-guides/TMLE.pdf"> <img alt="cheatsheet" src="https://www.khstats.com/img/tmle/tmle.jpg" width="100%&quot;"> </a>
+<a href="https://github.com/kathoffman/CI-visual-guides/blob/master/visual-guides/TMLE.pdf"> <img alt="cheatsheet" src="www.khstats.com/img/tmle/tmle.jpg" width="100%&quot;"> </a>
 
 
 <hr>
@@ -1597,7 +1597,7 @@ HTML Image as link
 </title>
 
 
-<a href="https://khstats.com/blog/sl/superlearning"> <img alt="cheatsheet" src="https://www.khstats.com/img/Superlearning.jpg" width="50%" style="float:right; padding-left:60px;"> </a>
+<a href="https://khstats.com/blog/sl/superlearning"> <img alt="cheatsheet" src="www.khstats.com/img/Superlearning.jpg" width="50%" style="float:right; padding-left:60px;"> </a>
 
 
 <p>Note that the choice of base learners for superlearning is not the point of this post. In practice we simply want to add flexible machine learning models which we think <strong>may</strong> reflect the underlying data distribution. For a tutorial on superlearning, you can check out one of my <a href="https://khstats.com/blog/sl/superlearning">previous blog posts</a>.</p>
@@ -1613,7 +1613,7 @@ HTML Image as link
 <span id="cb1-5"><span class="fu" style="color: #4758AB;">set.seed</span>(<span class="dv" style="color: #AD0000;">7</span>) <span class="co" style="color: #5E5E5E;"># for reproducible results</span></span></code></pre></div>
 </div>
 <p>Next, let’s simulate a data set for demonstration of the algorithm. This data will have a very simple structure: a binary treatment, <img src="https://latex.codecogs.com/png.latex?A">; binary outcome, <img src="https://latex.codecogs.com/png.latex?Y">; and four confounders: <img src="https://latex.codecogs.com/png.latex?W_1">, <img src="https://latex.codecogs.com/png.latex?W_2">, <img src="https://latex.codecogs.com/png.latex?W_3">, and <img src="https://latex.codecogs.com/png.latex?W_4">.</p>
-<p><img src="https://www.khstats.com/img/tmle/1_data_structure.png" class="img-fluid" style="width:80.0%"></p>
+<p><img src="www.khstats.com/img/tmle/1_data_structure.png" class="img-fluid" style="width:80.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">generate_data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(n){ </span>
 <span id="cb2-2">    W1 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rbinom</span>(n, <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">prob=</span><span class="fl" style="color: #AD0000;">0.2</span>) <span class="co" style="color: #5E5E5E;"># binary confounder</span></span>
@@ -2123,7 +2123,7 @@ HTML Image as link
 <p><img src="https://latex.codecogs.com/png.latex?Q(A,%5Cmathbf%7BW%7D)%20=%20%5Cmathrm%7BE%7D%5BY%7CA,%5Cmathbf%7BW%7D%5D"></p>
 <p>We can use any regression to estimate this conditional expectation, but it is best to use flexible machine learning models so that we don’t have unnecessary assumptions on the underlying distribution of the data.</p>
 <p>We can think about the above equation as some generic regression function in <code>R</code> called <code>fit()</code> with inputs in formula form: <code>outcome ~ predictors</code>:</p>
-<p><img src="https://www.khstats.com/img/tmle/2_outcome_fit.png" class="img-fluid" style="width:70.0%"> In real <code>R</code> code, we’ll use the <code>SuperLearner()</code> function to fit a weighted combination of multiple machine learning models (defined earlier in <code>sl_libs</code>). This function takes the outcome <code>Y</code> as a vector and a data frame <code>X</code> as predictors.</p>
+<p><img src="www.khstats.com/img/tmle/2_outcome_fit.png" class="img-fluid" style="width:70.0%"> In real <code>R</code> code, we’ll use the <code>SuperLearner()</code> function to fit a weighted combination of multiple machine learning models (defined earlier in <code>sl_libs</code>). This function takes the outcome <code>Y</code> as a vector and a data frame <code>X</code> as predictors.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">Y <span class="ot" style="color: #003B4F;">&lt;-</span> dat_obs<span class="sc" style="color: #5E5E5E;">$</span>Y</span>
 <span id="cb4-2">W_A <span class="ot" style="color: #003B4F;">&lt;-</span> dat_obs <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">select</span>(<span class="sc" style="color: #5E5E5E;">-</span>Y) <span class="co" style="color: #5E5E5E;"># remove the outcome to make a matrix of predictors (A, W1, W2, W3, W4) for SuperLearner</span></span>
@@ -2137,14 +2137,14 @@ HTML Image as link
 <p>We can get this expected outcome estimate by simply calling <code>predict()</code> on the model fit without specifying any new data.</p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BQ%7D(A,%5Cmathbf%7BW%7D)%20=%20%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA,%5Cmathbf%7BW%7D%5D"></p>
 <p>We will save that vector of estimates as a new object in <code>R</code>.</p>
-<p><img src="https://www.khstats.com/img/tmle/3_QA.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="www.khstats.com/img/tmle/3_QA.png" class="img-fluid" style="width:50.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">Q_A <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.vector</span>(<span class="fu" style="color: #4758AB;">predict</span>(Q)<span class="sc" style="color: #5E5E5E;">$</span>pred) <span class="co" style="color: #5E5E5E;"># obtain predictions for everyone using the treatment they actually received</span></span></code></pre></div>
 </div>
 <p><strong>2. If every observation received the treatment.</strong></p>
 <p>To do this, we’ll first need to create a data set where every observation received the treatment of interest, whether they actually did or not. Then we can call the <code>predict()</code> function on that data set.</p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BQ%7D(1,%5Cmathbf%7BW%7D)%20=%20%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D"></p>
-<p><img src="https://www.khstats.com/img/tmle/4_Q1.png" class="img-fluid" style="width:80.0%"></p>
+<p><img src="www.khstats.com/img/tmle/4_Q1.png" class="img-fluid" style="width:80.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">W_A1 <span class="ot" style="color: #003B4F;">&lt;-</span> W_A <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">A =</span> <span class="dv" style="color: #AD0000;">1</span>)  <span class="co" style="color: #5E5E5E;"># data set where everyone received treatment</span></span>
 <span id="cb6-2">Q_1 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.vector</span>(<span class="fu" style="color: #4758AB;">predict</span>(Q, <span class="at" style="color: #657422;">newdata =</span> W_A1)<span class="sc" style="color: #5E5E5E;">$</span>pred) <span class="co" style="color: #5E5E5E;"># predict on that everyone-exposed data set</span></span></code></pre></div>
@@ -2152,7 +2152,7 @@ HTML Image as link
 <p><strong>3. If every observation received the control.</strong></p>
 <p>Similarly, we create a data set where every observation did <em>not</em> receive the treatment of interest, whether they actually did or not, and call the <code>predict()</code> function again.</p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BQ%7D(0,%5Cmathbf%7BW%7D)%20=%20%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D"></p>
-<p><img src="https://www.khstats.com/img/tmle/5_Q1.png" class="img-fluid" style="width:80.0%"></p>
+<p><img src="www.khstats.com/img/tmle/5_Q1.png" class="img-fluid" style="width:80.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">W_A0 <span class="ot" style="color: #003B4F;">&lt;-</span> W_A <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">A =</span> <span class="dv" style="color: #AD0000;">0</span>) <span class="co" style="color: #5E5E5E;"># data set where no one received treatment</span></span>
 <span id="cb7-2">Q_0 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.vector</span>(<span class="fu" style="color: #4758AB;">predict</span>(Q, <span class="at" style="color: #657422;">newdata =</span> W_A0)<span class="sc" style="color: #5E5E5E;">$</span>pred)</span></code></pre></div>
@@ -2635,7 +2635,7 @@ HTML Image as link
 <!-- *Also note that our expected outcomes are on the original outcome scale (i.e. probability, rather than the $logit$ probability).* -->
 <p>We could stop here and get our estimate of the ATE by computing the average difference between <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D"> and <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D">, which <em>would</em> be the mean difference in the expected outcomes, conditional on confounders. This estimation method is often called <strong>standardization</strong>, <strong>simple substitution estimation</strong>, <strong>g-formula estimation</strong>, or <strong>G-computation</strong>.</p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BATE%7D_%7BG-comp%7D=%20%5Chat%7B%5CPsi%7D_%7BG-comp%7D%20=%20%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bi=1%7D%5E%7BN%7D(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D-%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D)"></p>
-<p><img src="https://www.khstats.com/img/tmle/ate_gcomp.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="www.khstats.com/img/tmle/ate_gcomp.png" class="img-fluid" style="width:50.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">ate_gcomp <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">mean</span>(dat_tmle<span class="sc" style="color: #5E5E5E;">$</span>Q_1 <span class="sc" style="color: #5E5E5E;">-</span> dat_tmle<span class="sc" style="color: #5E5E5E;">$</span>Q_0)</span>
 <span id="cb9-2">ate_gcomp</span></code></pre></div>
@@ -2650,7 +2650,7 @@ HTML Image as link
 <h2 class="anchored" data-anchor-id="step-2-estimate-the-probability-of-treatment">Step 2: Estimate the Probability of Treatment</h2>
 <p>The next step is to estimate the probability of treatment, given confounders. This quantity is often called the <strong>propensity score</strong>, as in it gives the probability or <em>propensity</em> that an observation will receive a treatment of interest.</p>
 <p><img src="https://latex.codecogs.com/png.latex?g(%5Cmathbf%7BW%7D)%20=%20%5Cmathrm%7BPr%7D(A=1%7C%5Cmathbf%7BW%7D)"></p>
-<p><img src="https://www.khstats.com/img/tmle/6_treatment_fit.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="www.khstats.com/img/tmle/6_treatment_fit.png" class="img-fluid" style="width:60.0%"></p>
 <p>We will estimate <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BPr%7D(A=1%7C%5Cmathbf%7BW%7D)"> in the same way as we estimated <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BE%7D%5BY%7CA,%5Cmathbf%7BW%7D%5D">: using the superlearner algorithm.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">A <span class="ot" style="color: #003B4F;">&lt;-</span> dat_obs<span class="sc" style="color: #5E5E5E;">$</span>A</span>
@@ -2664,7 +2664,7 @@ HTML Image as link
 <p><strong>1. The inverse probability of receiving treatment.</strong></p>
 <p><img src="https://latex.codecogs.com/png.latex?H(1,%5Cmathbf%7BW%7D)%20=%20%5Cfrac%7B1%7D%7Bg(%5Cmathbf%7BW%7D)%7D%20=%20%5Cfrac%7B1%7D%7B%5Cmathrm%7BPr%7D(A=1%7C%5Cmathbf%7BW%7D)%7D"></p>
 <p>We can estimate the probability of receiving treatment for every observation by using the <code>predict()</code> funcion without specifying any new data, and then take the inverse of that.</p>
-<p><img src="https://www.khstats.com/img/tmle/7_H1.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="www.khstats.com/img/tmle/7_H1.png" class="img-fluid" style="width:60.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">g_w <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.vector</span>(<span class="fu" style="color: #4758AB;">predict</span>(g)<span class="sc" style="color: #5E5E5E;">$</span>pred) <span class="co" style="color: #5E5E5E;"># Pr(A=1|W)</span></span>
 <span id="cb12-2">H_1 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">/</span>g_w</span></code></pre></div>
@@ -2672,13 +2672,13 @@ HTML Image as link
 <p><strong>2. The negative inverse probability of not receiving treatment.</strong></p>
 <p><img src="https://latex.codecogs.com/png.latex?H(0,%5Cmathbf%7BW%7D)%20=%20-%5Cfrac%7B1%7D%7B1-g(%5Cmathbf%7BW%7D)%7D=%20-%5Cfrac%7B1%7D%7B%5Cmathrm%7BPr%7D(A=0%7C%5Cmathbf%7BW%7D)%7D"></p>
 <p>The probability of not receiving treatment for a binary treatment is simply 1 minus the probability of treatment.</p>
-<p><img src="https://www.khstats.com/img/tmle/8_H0.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="www.khstats.com/img/tmle/8_H0.png" class="img-fluid" style="width:70.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">H_0 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">/</span>(<span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">-</span>g_w) <span class="co" style="color: #5E5E5E;"># Pr(A=0|W) is 1-Pr(A=1|W)</span></span></code></pre></div>
 </div>
 <p><strong>3. If the observation was treated, the inverse probability of receiving treatment, and if they were not treated, the negative inverse probability of not receiving treatment.</strong> I’ll discuss why later, but in the TMLE literature this is called the <strong>clever covariate</strong>.</p>
 <p><img src="https://latex.codecogs.com/png.latex?H(A,%5Cmathbf%7BW%7D)%20=%20%5Cfrac%7B%5Cmathrm%7BI%7D(A=1)%7D%7B%5Cmathrm%7BPr%7D(A=1%7C%5Cmathbf%7BW%7D)%7D-%5Cfrac%7B%5Cmathrm%7BI%7D(A=0)%7D%7B%5Cmathrm%7BPr%7D(A=0%7C%5Cmathbf%7BW%7D)%7D"></p>
-<p><img src="https://www.khstats.com/img/tmle/9_HA.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="www.khstats.com/img/tmle/9_HA.png" class="img-fluid" style="width:50.0%"></p>
 <p>To calculate the clever covariate, we’ll first add the <img src="https://latex.codecogs.com/png.latex?H(1,%5Cmathbf%7BW%7D)"> and <img src="https://latex.codecogs.com/png.latex?H(0,%5Cmathbf%7BW%7D)"> vectors to our <code>dat_tmle</code> data frame, and then we can use <img src="https://latex.codecogs.com/png.latex?A"> to assign <img src="https://latex.codecogs.com/png.latex?H(A,%5Cmathbf%7BW%7D)">.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">dat_tmle <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="co" style="color: #5E5E5E;"># add clever covariate data to dat_tmle</span></span>
@@ -3193,7 +3193,7 @@ HTML Image as link
 </title>
 
 
-<a href=""> <img alt="cheatsheet" src="https://www.khstats.com/img/bear_with_me.jpg" style="float:right; padding-left:65px;" width="50%&quot;"> </a>
+<a href=""> <img alt="cheatsheet" src="www.khstats.com/img/bear_with_me.jpg" style="float:right; padding-left:65px;" width="50%&quot;"> </a>
 
 
 <p>🚨 <strong><em>Warning:</em></strong> this step is easy to code, but difficult to understand unless you have a background in semiparametric theory. Let’s first look at <em>what</em> we’re doing, and then I’ll discuss at a very high-level why we’re doing that in a later section.</p>
@@ -3209,13 +3209,13 @@ HTML Image as link
 <p>Do you see how our equation also has a vector on the right-hand side, <img src="https://latex.codecogs.com/png.latex?H(A,%5Cmathbf%7BW%7D)">, with a corresponding coefficient, <img src="https://latex.codecogs.com/png.latex?%5Cepsilon">? The only difference is that the “intercept” in our equation, <img src="https://latex.codecogs.com/png.latex?logit(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA,%5Cmathbf%7BW%7D%5D)"> is not a constant value like <img src="https://latex.codecogs.com/png.latex?%5Cbeta_0">; it is a vector of values. We can see it as an <strong>offset</strong> or a <strong>fixed intercept</strong> in a logistic regression, rather than a constant-value intercept.</p>
 <p>Therefore, to accomplish our goal of solving an estimating equation for the EIF we can leverage standard statistical software and fit a logistic regression with one covariate, <img src="https://latex.codecogs.com/png.latex?H(A,%5Cmathbf%7BW%7D)">, and the initial outcome estimate, <img src="https://latex.codecogs.com/png.latex?logit(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA,%5Cmathbf%7BW%7D%5D)">, as a fixed intercept. The outcome of the logistic regression is the observed outcome, <img src="https://latex.codecogs.com/png.latex?Y">.</p>
 <p>Two technical points for application: we use <code>qlogis</code> to transform the probabilities <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA,%5Cmathbf%7BW%7D%5D"> to the <img src="https://latex.codecogs.com/png.latex?logit"> scale. Also, the <code>R</code> code for a fixed intercept is <code>-1 + offset(fixed_intercept)</code>.</p>
-<p><img src="https://www.khstats.com/img/tmle/10_logistic_regression.png" class="img-fluid"></p>
+<p><img src="www.khstats.com/img/tmle/10_logistic_regression.png" class="img-fluid"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">glm_fit <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(Y <span class="sc" style="color: #5E5E5E;">~</span> <span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span> <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">offset</span>(<span class="fu" style="color: #4758AB;">qlogis</span>(Q_A)) <span class="sc" style="color: #5E5E5E;">+</span> H_A, <span class="at" style="color: #657422;">data=</span>dat_tmle, <span class="at" style="color: #657422;">family=</span>binomial)</span></code></pre></div>
 </div>
 <p><em>Note that we are only using a logistic regression because it happens to have the correct form for solving the estimating equation for the EIF for the ATE estimand. It has nothing to do with having a binary outcome, and it isn’t putting any parametric restraints on our data.</em></p>
 <p>Next we need to save the coefficient from that logistic regression, which we will call <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cepsilon%7D">:</p>
-<p><img src="https://www.khstats.com/img/tmle/11_epsilon.png" class="img-fluid" style="width:40.0%"></p>
+<p><img src="www.khstats.com/img/tmle/11_epsilon.png" class="img-fluid" style="width:40.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">eps <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">coef</span>(glm_fit)</span></code></pre></div>
 </div>
@@ -3236,20 +3236,20 @@ HTML Image as link
 <p><em>Note we can use <img src="https://latex.codecogs.com/png.latex?expit"> to show the inverse of the <img src="https://latex.codecogs.com/png.latex?logit"> function, and we will denote updates to the outcome regressions as <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D%5E*"> instead of <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D">.</em></p>
 <p><strong>1. Update the expected outcomes of all observations, given the treatment they actually received and their baseline confounders.</strong></p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D%5E*%5BY%7CA,%5Cmathbf%7BW%7D%5D%20=%20expit(logit(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA,%5Cmathbf%7BW%7D%5D)%20+%20%5Chat%7B%5Cepsilon%7DH(A,%5Cmathbf%7BW%7D))"></p>
-<p><img src="https://www.khstats.com/img/tmle/update_qAW.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="www.khstats.com/img/tmle/update_qAW.png" class="img-fluid" style="width:70.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">H_A <span class="ot" style="color: #003B4F;">&lt;-</span> dat_tmle<span class="sc" style="color: #5E5E5E;">$</span>H_A <span class="co" style="color: #5E5E5E;"># for cleaner code in Q_A_update</span></span>
 <span id="cb18-2">Q_A_update <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">plogis</span>(<span class="fu" style="color: #4758AB;">qlogis</span>(Q_A) <span class="sc" style="color: #5E5E5E;">+</span> eps<span class="sc" style="color: #5E5E5E;">*</span>H_A)</span></code></pre></div>
 </div>
 <p><strong>2. Update the expected outcomes, conditional on baseline confounders and everyone receiving the treatment.</strong></p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D%5E*%5BY%7CA=1,%5Cmathbf%7BW%7D%5D%20=%20expit(logit(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D)%20+%20%5Chat%7B%5Cepsilon%7DH(1,A))"></p>
-<p><img src="https://www.khstats.com/img/tmle/12_update_Q1.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="www.khstats.com/img/tmle/12_update_Q1.png" class="img-fluid" style="width:70.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">Q_1_update <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">plogis</span>(<span class="fu" style="color: #4758AB;">qlogis</span>(Q_1) <span class="sc" style="color: #5E5E5E;">+</span> eps<span class="sc" style="color: #5E5E5E;">*</span>H_1)</span></code></pre></div>
 </div>
 <p><strong>3. Update the expected outcomes, conditional on baseline confounders and no one receiving the treatment.</strong></p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D%5E*%5BY%7CA=0,%5Cmathbf%7BW%7D%5D%20=%20expit(logit(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D)%20+%20%5Chat%7B%5Cepsilon%7DH(0,W))"></p>
-<p><img src="https://www.khstats.com/img/tmle/13_update_Q0.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="www.khstats.com/img/tmle/13_update_Q0.png" class="img-fluid" style="width:70.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">Q_0_update <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">plogis</span>(<span class="fu" style="color: #4758AB;">qlogis</span>(Q_0) <span class="sc" style="color: #5E5E5E;">+</span> eps<span class="sc" style="color: #5E5E5E;">*</span>H_0)</span></code></pre></div>
 </div>
@@ -3259,7 +3259,7 @@ HTML Image as link
 <h2 class="anchored" data-anchor-id="step-5-compute-the-statistical-estimand-of-interest">Step 5: Compute the Statistical Estimand of Interest</h2>
 <p>We now have updated expected outcomes estimates, so we can <strong>compute the ATE as the mean difference in the updated outcome estimates under treatment and no treatment</strong>:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BATE%7D_%7BTMLE%7D%20=%20%5Chat%7B%5CPsi%7D_%7BTMLE%7D%20=%20%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bi=1%7D%5E%7BN%7D%5B%5Chat%7BE%5E*%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D%20-%20%5Chat%7BE%5E*%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D%5D"></p>
-<p><img src="https://www.khstats.com/img/tmle/14_compute_ATE.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="www.khstats.com/img/tmle/14_compute_ATE.png" class="img-fluid" style="width:60.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1">tmle_ate <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">mean</span>(Q_1_update <span class="sc" style="color: #5E5E5E;">-</span> Q_0_update)</span>
 <span id="cb21-2">tmle_ate</span></code></pre></div>
@@ -3282,7 +3282,7 @@ HTML Image as link
 </div>
 <p>Once we have the IF, we can <strong>take the square-root of its variance divided by the number of observations</strong> to get the standard error of our estimate.</p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BSE%7D%20=%20%5Csqrt%7B%5Cfrac%7Bvar(%5Chat%7BIF%7D)%7D%7BN%7D%7D%20"></p>
-<p><img src="https://www.khstats.com/img/tmle/15_ses.png" class="img-fluid" style="width:100.0%"></p>
+<p><img src="www.khstats.com/img/tmle/15_ses.png" class="img-fluid" style="width:100.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1">tmle_se <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">sqrt</span>(<span class="fu" style="color: #4758AB;">var</span>(infl_fn)<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">nrow</span>(dat_obs))</span></code></pre></div>
 </div>
@@ -3915,14 +3915,14 @@ loaded via a namespace (and not attached):
 
  ]]></description>
   <category>statistics</category>
-  <guid>https://www.khstats.com/blog/tmle/tutorial-pt2.html</guid>
+  <guid>www.khstats.com/blog/tmle/tutorial-pt2.html</guid>
   <pubDate>Fri, 11 Dec 2020 05:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/tmle/tmle/tmle_crop.jpeg" medium="image" type="image/jpeg"/>
+  <media:content url="www.khstats.com/blog/tmle/tmle/tmle_crop.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>An Illustrated Guide to TMLE, Part I: Introduction and Motivation</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/tmle/tutorial.html</link>
+  <link>www.khstats.com/blog/tmle/tutorial.html</link>
   <description><![CDATA[ 
 
 
@@ -3978,13 +3978,13 @@ loaded via a namespace (and not attached):
 <p>This mentality changed drastically when I started learning about semiparametric estimation methods like TMLE in the context of causal inference. I quickly realized two flaws in this mental framework.</p>
 <p>First, I was thinking about inference backwards: I was choosing a model based on my outcome type (binary, continuous, time-to-event, repeated measures) and then interpreting specific coefficients as my estimates of interest. Yet it makes way more sense to <em>first</em> determine the statistical quantity, or <strong>estimand</strong>, that best answers a scientific question, and <em>then</em> use the method, or <strong>estimator</strong>, best suited for estimating it. This is the paradigm TMLE is based upon: <strong>we want to build an algorithm, or estimator, targeted to an estimand of interest</strong>.</p>
 <figure class="figure">
-<img src="https://www.khstats.com/img/tmle/estimator.png" width="90%" alt="Estimator and Estimand" class="figure-img">
+<img src="www.khstats.com/img/tmle/estimator.png" width="90%" alt="Estimator and Estimand" class="figure-img">
 <figcaption class="figure-caption">
 <em>An estimand is a quantity that answers a scientific question of interest. Once we figure out the estimand, we can build an estimator, or algorithm, to estimate it. Image courtesy of Dr.&nbsp;Laura Hatfield and <a href="https://diff.healthpolicydatascience.org/">diff.healthpolicydatascience.org</a>.</em>
 </figcaption>
 </figure>
 <p>Second, I thought flexible, data-adaptive models we commonly classify as statistical and/or <strong>machine learning</strong> (e.g.&nbsp;LASSO, random forests, gradient boosting, etc.) could only be used for prediction, since they don’t have <strong>asymptotic properties for inference</strong> (i.e.&nbsp;standard errors). However, certain <strong>semiparametric estimation methods</strong> like TMLE can actually use these models to <strong>obtain a final estimate that is closer to the target quantity</strong> than would be obtained using classic parametric models (e.g.&nbsp;linear and logistic regression). This is because machine learning models are generally designed to accommodate <strong>large numbers of covariates</strong> with <strong>complex, non-linear relationships</strong>.</p>
-<img src="https://www.khstats.com/img/tmle/parametric_assumptions_comic.jpg" width="100%">
+<img src="www.khstats.com/img/tmle/parametric_assumptions_comic.jpg" width="100%">
 <figcaption>
 <em>Semiparametric estimation methods like TMLE can rely on machine learning to avoid making unrealistic parametric assumptions about the underlying distribution of the data (e.g.&nbsp;multivariate normality).</em>
 </figcaption>
@@ -4015,14 +4015,14 @@ loaded via a namespace (and not attached):
 </ol>
 </section></div> ]]></description>
   <category>statistics</category>
-  <guid>https://www.khstats.com/blog/tmle/tutorial.html</guid>
+  <guid>www.khstats.com/blog/tmle/tutorial.html</guid>
   <pubDate>Thu, 10 Dec 2020 05:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/tmle/tmle/parametric_assumptions_comic.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="www.khstats.com/blog/tmle/tmle/parametric_assumptions_comic.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Become a Superlearner! An Illustrated Guide to Superlearning</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/sl/superlearning.html</link>
+  <link>www.khstats.com/blog/sl/superlearning.html</link>
   <description><![CDATA[ 
 
 
@@ -4038,7 +4038,7 @@ HTML Image as link
 </title>
 
 
-<img alt="cheatsheet" src="https://www.khstats.com/img/sl_steps/Superlearning.jpg" width="100%&quot;">
+<img alt="cheatsheet" src="www.khstats.com/img/sl_steps/Superlearning.jpg" width="100%&quot;">
 <figcaption>
 <strong><em>A Visual Guide…</em></strong> Over the winter, I read <a href="https://www.springer.com/gp/book/9781441997814"><em>Targeted Learning</em></a> by Mark van der Laan and Sherri Rose. This “visual guide” I made for <em>Chapter 3: Superlearning</em> by Rose, van der Laan, and Eric Polley is a condensed version of the following tutorial. It is available as an <a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/Superlearner.pdf">8.5x11” pdf on Github</a>, should you wish to print it out for reference (or desk decor).
 </figcaption>
@@ -4054,7 +4054,7 @@ HTML Image as link
 <li>The motivation for this type of “ensembling” is that <strong>a mix of multiple algorithms may be more optimal for a given data set than any single algorithm</strong>. For example, a tree based model averaged with a linear model (e.g.&nbsp;random forests and LASSO) could smooth some of the model’s edges to improve predictive performance.</li>
 <li>Superlearning is also called stacking, stacked generalizations, and weighted ensembling by different specializations within the realms of statistics and data science.</li>
 </ul>
-<p><img src="https://www.khstats.com/img/spiderman_meme.jpg" class="img-fluid" style="width:42.0%"></p>
+<p><img src="www.khstats.com/img/spiderman_meme.jpg" class="img-fluid" style="width:42.0%"></p>
 </section>
 <section id="superlearning-step-by-step" class="level1">
 <h1>Superlearning, step by step</h1>
@@ -4563,7 +4563,7 @@ HTML Image as link
 </strong>
 
 
-<p><img src="https://www.khstats.com/img/sl_steps/step1.png" class="img-fluid" style="width:50.0%"> The superlearner algorithm relies on K-fold cross-validation (CV) to avoid overfitting. We will start this process by splitting the data into 10 folds. The easiest way to do this is by creating indices for each CV fold.</p>
+<p><img src="www.khstats.com/img/sl_steps/step1.png" class="img-fluid" style="width:50.0%"> The superlearner algorithm relies on K-fold cross-validation (CV) to avoid overfitting. We will start this process by splitting the data into 10 folds. The easiest way to do this is by creating indices for each CV fold.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">k <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">10</span> <span class="co" style="color: #5E5E5E;"># 10 fold cv</span></span>
 <span id="cb3-2">cv_index <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">sample</span>(<span class="fu" style="color: #4758AB;">rep</span>(<span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span>k, <span class="at" style="color: #657422;">each =</span> n<span class="sc" style="color: #5E5E5E;">/</span>k)) <span class="co" style="color: #5E5E5E;"># create indices for each CV fold. We need each fold K to contain n (all the rows of our data set) divided by k rows. in our example this is 5000/10 = 500 rows in each fold</span></span></code></pre></div>
@@ -4576,7 +4576,7 @@ HTML Image as link
 </strong>
 
 
-<p><img src="https://www.khstats.com/img/sl_steps/step2.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="www.khstats.com/img/sl_steps/step2.png" class="img-fluid" style="width:50.0%"></p>
 <p>Recall that in K-fold CV, each fold serves as the validation set one time. In this first round of CV, we will train all of our base learners on all the CV folds (k = 1,2,…,9) <em>except</em> for the very last one: <code>cv_index == 10</code>.</p>
 <p>The individual algorithms or <strong>base learners</strong> that we’ll use here are three linear regressions with differently specified parameters:</p>
 <ol type="1">
@@ -4600,7 +4600,7 @@ HTML Image as link
 </strong>
 
 
-<p><img src="https://www.khstats.com/img/sl_steps/step3.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="www.khstats.com/img/sl_steps/step3.png" class="img-fluid" style="width:50.0%"></p>
 <p>We can then get use our validation data, <code>cv_index == 10</code>, to obtain our first set of cross-validated predictions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">cv_valid_1 <span class="ot" style="color: #003B4F;">&lt;-</span> obs[<span class="fu" style="color: #4758AB;">which</span>(cv_index <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">10</span>),] <span class="co" style="color: #5E5E5E;"># make a data set that only contains observations except in k=10</span></span>
@@ -5080,7 +5080,7 @@ HTML Image as link
 </strong>
 
 
-<p><img src="https://www.khstats.com/img/sl_steps/step4.png" class="img-fluid" style="width:32.0%"></p>
+<p><img src="www.khstats.com/img/sl_steps/step4.png" class="img-fluid" style="width:32.0%"></p>
 <p>We’ll want to get those predictions for <em>every</em> fold. So, using your favorite <code>for</code> loop, <code>apply</code> statement, or <code>map</code>ping function, fit the base learners and obtain predictions for each of them, so that there are 1000 predictions – one for every point in <code>obs</code>ervations.</p>
 <p>The way I chose to code this was to make a generic function that combines Step 2 (base learners fit to the training data) and Step 3 (predictions on the validation data), then use <code>map_dfr()</code> from the <code>purrr</code> package to repeat over all 10 CV folds. I saved the results in a new data frame called <code>cv_preds</code>.</p>
 <div class="cell">
@@ -5580,7 +5580,7 @@ HTML Image as link
 </strong>
 
 
-<p><img src="https://www.khstats.com/img/sl_steps/step5.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="www.khstats.com/img/sl_steps/step5.png" class="img-fluid" style="width:60.0%"></p>
 <blockquote class="blockquote">
 <p>This is the key step of the superlearner algorithm: we will use a new learner, a <strong>metalearner</strong>, to take information from all of the base learners and create that new algorithm.</p>
 </blockquote>
@@ -6065,7 +6065,7 @@ HTML Image as link
 </strong>
 
 
-<p><img src="https://www.khstats.com/img/sl_steps/step6.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="www.khstats.com/img/sl_steps/step6.png" class="img-fluid" style="width:50.0%"></p>
 <p>After we fit the metalearner, we officially have our superlearner algorithm, so it’s time to input data and obtain predictions! To implement the algorithm and obtain final predictions, we first need to fit the base learners on the full data set.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">fit_a <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(y <span class="sc" style="color: #5E5E5E;">~</span> x2 <span class="sc" style="color: #5E5E5E;">+</span> x4, <span class="at" style="color: #657422;">data=</span>obs)</span>
@@ -6080,7 +6080,7 @@ HTML Image as link
 </strong>
 
 
-<p><img src="https://www.khstats.com/img/sl_steps/step7.png" class="img-fluid" style="width:40.0%"></p>
+<p><img src="www.khstats.com/img/sl_steps/step7.png" class="img-fluid" style="width:40.0%"></p>
 <p>We’ll use <em>those</em> base learner fits to get predictions from each of the base learners for the entire data set, and then we will plug those predictions into the metalearner fit. Remember, we were previously using cross-validated predictions, rather than fitting the base learners on the whole data set. This was to avoid overfitting.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">pred_a <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">predict</span>(fit_a)</span>
@@ -6096,7 +6096,7 @@ HTML Image as link
 </strong>
 
 
-<p><img src="https://www.khstats.com/img/sl_steps/step8.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="www.khstats.com/img/sl_steps/step8.png" class="img-fluid" style="width:60.0%"></p>
 <p>Once we have the predictions from the full data set, we can input them to the metalearner, where the output will be a final prediction for <code>y</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">sl_predictions <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">predict</span>(sl_fit, <span class="at" style="color: #657422;">newdata =</span> full_data_preds)</span>
@@ -7093,7 +7093,7 @@ HTML Image as link
 </title>
 
 
-<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/TMLE.pdf"> <img alt="cheatsheet" src="https://www.khstats.com/img/TMLE.jpg" width="100%&quot;"> </a>
+<a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/TMLE.pdf"> <img alt="cheatsheet" src="www.khstats.com/img/TMLE.jpg" width="100%&quot;"> </a>
 
 
 </section>
@@ -7126,7 +7126,7 @@ HTML Image as link
 "none")` instead.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/sl/superlearning_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="528"></p>
+<p><img src="www.khstats.com/blog/sl/superlearning_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="528"></p>
 </div>
 </div>
 <p>And then take the mean of those three cross-validated squared error columns, grouped by <code>cv_fold</code>, to get the CV-MSE for each fold.</p>
@@ -7149,7 +7149,7 @@ HTML Image as link
 <span id="cb27-16">    <span class="fu" style="color: #4758AB;">scale_x_continuous</span>(<span class="at" style="color: #657422;">breaks =</span> <span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="dv" style="color: #AD0000;">10</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb27-17">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">x =</span> <span class="st" style="color: #20794D;">"Cross-Validation (CV) Fold"</span>, <span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">"Mean Squared Error (MSE)"</span>, <span class="at" style="color: #657422;">col =</span> <span class="st" style="color: #20794D;">"Base Learner"</span>, <span class="at" style="color: #657422;">title=</span><span class="st" style="color: #20794D;">"CV-MSEs for Base Learners A, B, and C"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/sl/superlearning_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/sl/superlearning_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We see that across each fold, Learner B consistently has an MSE around 0.02, while Learner C hovers around 0.1, and Learner A varies between 0.35 and 0.45. We can take another mean to get the overall CV-MSE for each learner.</p>
@@ -7619,7 +7619,7 @@ HTML Image as link
 <section id="another-visual-guide-for-superlearning" class="level3">
 <h3 class="anchored" data-anchor-id="another-visual-guide-for-superlearning">Another visual guide for superlearning</h3>
 <p>The steps of the superlearner algorithm are summarized nicely in this graphic in Chapter 3 of the <em>Targeted Learning</em> book:</p>
-<p><img src="https://www.khstats.com/img/sl_diagram.png" class="img-fluid"></p>
+<p><img src="www.khstats.com/img/sl_diagram.png" class="img-fluid"></p>
 </section>
 </section>
 <section id="acknowledgments" class="level1">
@@ -7689,14 +7689,14 @@ loaded via a namespace (and not attached):
 
  ]]></description>
   <category>statistics</category>
-  <guid>https://www.khstats.com/blog/sl/superlearning.html</guid>
+  <guid>www.khstats.com/blog/sl/superlearning.html</guid>
   <pubDate>Sun, 11 Oct 2020 02:13:14 GMT</pubDate>
-  <media:content url="https://www.khstats.com/img/sl_steps/Superlearning_crop.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="www.khstats.com/img/sl_steps/Superlearning_crop.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>On the Sidelines: NYC’s COVID-19 Outbreak from the Eyes of a Pulmonary and Critical Care Team’s Biostatistician</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/covid/index.html</link>
+  <link>www.khstats.com/blog/covid/index.html</link>
   <description><![CDATA[ 
 
 
@@ -7713,7 +7713,7 @@ loaded via a namespace (and not attached):
 <p><a href="https://github.com/kathoffman/amateur-art/blob/main/this-will-define-your-life.jpg"></a></p><a href="https://github.com/kathoffman/amateur-art/blob/main/this-will-define-your-life.jpg">
 <title>
 </title>
-<p><img src="https://www.khstats.com/blog/covid/img/this-will-define-your-life.jpg" alt="This will define your life. Kat Hoffman (2020)" width="100%&quot;"> </p>
+<p><img src="www.khstats.com/blog/covid/img/this-will-define-your-life.jpg" alt="This will define your life. Kat Hoffman (2020)" width="100%&quot;"> </p>
 </a><p><a href="https://github.com/kathoffman/amateur-art/blob/main/this-will-define-your-life.jpg"></a></p>
 
 
@@ -7751,14 +7751,14 @@ loaded via a namespace (and not attached):
 
  ]]></description>
   <category>career</category>
-  <guid>https://www.khstats.com/blog/covid/index.html</guid>
+  <guid>www.khstats.com/blog/covid/index.html</guid>
   <pubDate>Sat, 03 Oct 2020 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/covid/image.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="www.khstats.com/blog/covid/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Customizable correlation plots in R</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/corr-plots/index.html</link>
+  <link>www.khstats.com/blog/corr-plots/index.html</link>
   <description><![CDATA[ 
 
 
@@ -8255,7 +8255,7 @@ loaded via a namespace (and not attached):
 </div>
 <p>You can then run <code>ggplot2</code> code on this data to make your own correlation heat maps.</p>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>If you just want the code, skip to the end.</p>
 <hr>
@@ -8264,15 +8264,15 @@ loaded via a namespace (and not attached):
 <p>I really appreciate some of the packages and functions that allow me to make correlation plots super quickly using <code>R</code>. Here are a few examples:</p>
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">corrplot<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">corrplot</span>(<span class="fu" style="color: #4758AB;">cor</span>(mtcars))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">corrgram<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">corrgram</span>(mtcars)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">ggcorrplot<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">ggcorrplot</span>(<span class="fu" style="color: #4758AB;">cor</span>(mtcars))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>All of these are nice, but none of them are ultimately as customizable as I need them to be. I’ll next show how you can bypass using someone else’s function constraints to prepare correlations in your data in a <code>ggplot2</code>-friendly format.</p>
 </section>
@@ -13208,7 +13208,7 @@ loaded via a namespace (and not attached):
 <span id="cb19-2">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> measure1, <span class="at" style="color: #657422;">y =</span> measure2, <span class="at" style="color: #657422;">fill =</span> r)) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb19-3">  <span class="fu" style="color: #4758AB;">geom_tile</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>We can make some minor aesthetic changes, such as the fill coloring scale, titles, and font family.</p>
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><span class="fu" style="color: #4758AB;">formatted_cors</span>(mtcars) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
@@ -13224,7 +13224,7 @@ loaded via a namespace (and not attached):
 <span id="cb20-11">  <span class="co" style="color: #5E5E5E;"># change global font to roboto</span></span>
 <span id="cb20-12">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">text=</span><span class="fu" style="color: #4758AB;">element_text</span>(<span class="at" style="color: #657422;">family=</span><span class="st" style="color: #20794D;">"Roboto"</span>))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>We can add the correlations for extra information. For this particular plot, I only added significant (p-value less than 0.05) correlations, using the column <code>r_if_sig</code> that outputs from <code>formatted_cors()</code>.</p>
 <div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="fu" style="color: #4758AB;">formatted_cors</span>(mtcars) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
@@ -13239,7 +13239,7 @@ loaded via a namespace (and not attached):
 <span id="cb21-10">  <span class="fu" style="color: #4758AB;">scale_y_discrete</span>(<span class="at" style="color: #657422;">expand=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>,<span class="dv" style="color: #AD0000;">0</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb21-11">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">text=</span><span class="fu" style="color: #4758AB;">element_text</span>(<span class="at" style="color: #657422;">family=</span><span class="st" style="color: #20794D;">"Roboto"</span>))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Another version of this could involve squares with different sizes to denote strength of correlation using <code>geom_point</code> with <code>shape</code> set to a value from <a href="http://www.sthda.com/english/wiki/ggplot2-point-shapes">these available <code>geom_shape</code>s</a>. Make sure you take the absolute value of the correlation so that strong negative correlations can also be denoted larger.</p>
 <div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><span class="fu" style="color: #4758AB;">formatted_cors</span>(mtcars) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
@@ -13255,7 +13255,7 @@ font-style: italic;">## to get the rect filled</span></span>
 <span id="cb22-10">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">text=</span><span class="fu" style="color: #4758AB;">element_text</span>(<span class="at" style="color: #657422;">family=</span><span class="st" style="color: #20794D;">"Roboto"</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb22-11">  <span class="fu" style="color: #4758AB;">scale_size</span>(<span class="at" style="color: #657422;">range=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">11</span>), <span class="at" style="color: #657422;">guide=</span><span class="cn" style="color: #8f5902;">NULL</span>) </span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="576"></p>
+<p><img src="www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="576"></p>
 </div>
 <p>Please feel free to reach out with questions or suggestions. Thank you to Elena Leib for spotting a minor bug in a previous version of this post!</p>
 </section>
@@ -13291,7 +13291,7 @@ font-style: italic;">## to get the rect filled</span></span>
 <span id="cb23-28">  <span class="fu" style="color: #4758AB;">scale_y_discrete</span>(<span class="at" style="color: #657422;">expand=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>,<span class="dv" style="color: #AD0000;">0</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb23-29">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">text=</span><span class="fu" style="color: #4758AB;">element_text</span>(<span class="at" style="color: #657422;">family=</span><span class="st" style="color: #20794D;">"Roboto"</span>))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/corr-plots/index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 <section id="session-info" class="level3">
 <h3 class="anchored" data-anchor-id="session-info">Session info</h3>
@@ -13336,14 +13336,14 @@ font-style: italic;">## to get the rect filled</span></span>
 
  ]]></description>
   <category>programming</category>
-  <guid>https://www.khstats.com/blog/corr-plots/index.html</guid>
+  <guid>www.khstats.com/blog/corr-plots/index.html</guid>
   <pubDate>Mon, 24 Aug 2020 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/img/corr-cover-image.png" medium="image" type="image/png" height="103" width="144"/>
+  <media:content url="www.khstats.com/img/corr-cover-image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
   <title>Rethinking Conditional and Iterated Expectations as Linear Regression Models</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/iterated-expectations/index.html</link>
+  <link>www.khstats.com/blog/iterated-expectations/index.html</link>
   <description><![CDATA[ 
 
 
@@ -13817,7 +13817,7 @@ font-style: italic;">## to get the rect filled</span></span>
 </ol>
 <p><strong><em>Skip to the end</em></strong> <strong><em>to see the proof.</em></strong></p>
 <hr>
-<p><img src="https://www.khstats.com/img/expectations.png" class="img-fluid"></p>
+<p><img src="www.khstats.com/img/expectations.png" class="img-fluid"></p>
 <p>I’ll admit I spent many weeks of my first probability theory course struggling to understand when and why my professor was writing <img src="https://latex.codecogs.com/png.latex?X"> versus <img src="https://latex.codecogs.com/png.latex?x">. When I finally learned all the rules for expectations of random variables, I still had zero appreciation for their implications in my future work as an applied statistician.</p>
 <p>I recently found myself in a rabbit hole of expectation properties while trying to write a seemingly simple function in <code>R</code>. Now that I have the output of my function all sorted out, I have a newfound appreciation for how I can use regressions – a framework I’m very comfortable with – to rethink some of the properties I learned in my probability theory courses.</p>
 <p>In the function, I was regressing an outcome on a few variables plus a grouping variable, and then returning the group means of the fitted values. My function kept outputting adjusted group means that were <em>identical</em> to the unadjusted group means.</p>
@@ -14349,14 +14349,14 @@ font-style: italic;">## to get the rect filled</span></span>
 </ol>
 </section></div> ]]></description>
   <category>statistics</category>
-  <guid>https://www.khstats.com/blog/iterated-expectations/index.html</guid>
+  <guid>www.khstats.com/blog/iterated-expectations/index.html</guid>
   <pubDate>Mon, 10 Aug 2020 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/iterated-expectations/expectations.png" medium="image" type="image/png" height="78" width="144"/>
+  <media:content url="www.khstats.com/blog/iterated-expectations/expectations.png" medium="image" type="image/png" height="78" width="144"/>
 </item>
 <item>
   <title>Silver Linings: five coding tricks learned during Lockdown</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/covid-functions/index.html</link>
+  <link>www.khstats.com/blog/covid-functions/index.html</link>
   <description><![CDATA[ 
 
 
@@ -15049,14 +15049,14 @@ Attaching package: 'lubridate'</code></pre>
 
  ]]></description>
   <category>programming</category>
-  <guid>https://www.khstats.com/blog/covid-functions/index.html</guid>
+  <guid>www.khstats.com/blog/covid-functions/index.html</guid>
   <pubDate>Sat, 11 Jul 2020 02:13:14 GMT</pubDate>
-  <media:content url="https://www.khstats.com/img/covid_fx/gtsummary_tweet-crop.png" medium="image" type="image/png" height="74" width="144"/>
+  <media:content url="www.khstats.com/img/covid_fx/gtsummary_tweet-crop.png" medium="image" type="image/png" height="74" width="144"/>
 </item>
 <item>
   <title>Patient Treatment Timelines for Longitudinal Survival Data</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/trt-timelines/trt-timelines.html</link>
+  <link>www.khstats.com/blog/trt-timelines/trt-timelines.html</link>
   <description><![CDATA[ 
 
 
@@ -15068,7 +15068,7 @@ Attaching package: 'lubridate'</code></pre>
 <p>I am a biostatistician at a research university, and I often find myself working with longitudinal survival data. As with any data analysis, I need to examine the quality of my data before deciding which statistical methods to implement.</p>
 <p>This post contains reproducible examples for how I prefer to visually explore survival data containing longitudinal exposures or covariates. I create a “treatment timeline” for each patient, and the end product looks something like this:</p>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="960"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="960"></p>
 </div>
 <p>Each line represents one patient, and each square represents a measurement at a specified point. I find these graphs useful to look for patterns or discrepancies in follow up times, treatment, and missingness. They also allow me to verify that my coding is correct as I move through different data manipulations for my analyses.</p>
 <p>For the following examples I generate longitudinal survival data sets. I skip over how I made this data because it’s not the focus of this post, but if you have questions about the data generation please let me know. In general, I am trying to work from the point in a survival data analysis where you’ve already calculated each individual’s time to event.</p>
@@ -15151,7 +15151,7 @@ Attaching package: 'lubridate'</code></pre>
 <span id="cb4-3">  <span class="fu" style="color: #4758AB;">geom_line</span>()  <span class="sc" style="color: #5E5E5E;">+</span> </span>
 <span id="cb4-4">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="at" style="color: #657422;">shape =</span> <span class="dv" style="color: #AD0000;">15</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Okay, it’s not <em>that</em> cute. But that little bit of code is really the core of the plot! If you want to add markers of death (or any other event) and rearrange by length of follow up time it just takes a little bit of extra data manipulation and one additional line of <code>ggplot2</code> code.</p>
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">dat <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
@@ -15171,7 +15171,7 @@ Attaching package: 'lubridate'</code></pre>
 <span id="cb5-15">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> month_death, <span class="at" style="color: #657422;">y =</span> pt_id), <span class="at" style="color: #657422;">col =</span> <span class="st" style="color: #20794D;">"black"</span>, <span class="at" style="color: #657422;">shape =</span> <span class="dv" style="color: #AD0000;">4</span>) </span></code></pre></div>
 <pre><code>Warning: Removed 515 rows containing missing values (geom_point).</code></pre>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Don’t worry about the warning for removing missing values – it’s because we have <code>NA</code>s at most months for our <code>month_death</code>, so <code>geom_point</code> doesn’t know where to put an ‘x’ marker.</p>
 <p>Finally, let’s work on making the plot a bit nicer to look at:</p>
@@ -15201,7 +15201,7 @@ Attaching package: 'lubridate'</code></pre>
 <span id="cb7-24">  <span class="fu" style="color: #4758AB;">scale_color_manual</span>(<span class="at" style="color: #657422;">values=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"dodgerblue"</span>,<span class="st" style="color: #20794D;">"firebrick1"</span>))</span></code></pre></div>
 <pre><code>Warning: Removed 515 rows containing missing values (geom_point).</code></pre>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>I have never made one of these plots for publication, so I don’t mind that the subtitle contains legend information. If you wanted to have the <code>month_death</code> markers in a legend, you could change:</p>
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;">geom_point</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> month_death, <span class="at" style="color: #657422;">y =</span> pt_id), <span class="at" style="color: #657422;">col =</span> <span class="st" style="color: #20794D;">"black"</span>, <span class="at" style="color: #657422;">shape =</span> <span class="dv" style="color: #AD0000;">4</span>)</span></code></pre></div>
@@ -15312,7 +15312,7 @@ Attaching package: 'lubridate'</code></pre>
 <span id="cb14-22">                       <span class="at" style="color: #657422;">breaks=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">90</span>, <span class="dv" style="color: #AD0000;">120</span>, <span class="dv" style="color: #AD0000;">150</span>, <span class="dv" style="color: #AD0000;">180</span>)) </span></code></pre></div>
 <pre><code>Warning: Removed 143 rows containing missing values (geom_point).</code></pre>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Alternatively, we could rearrange our timelines by the number of measures we have for each patient’s <code>cov</code>ariate of interest by making a new column containing the <code>sum(!is.na(cov))</code> and rearranging our <code>pt_id</code> by that column.</p>
 <div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">dat_cc_miss <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
@@ -15343,7 +15343,7 @@ Attaching package: 'lubridate'</code></pre>
 <span id="cb16-26">                       <span class="at" style="color: #657422;">breaks=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">90</span>, <span class="dv" style="color: #AD0000;">120</span>, <span class="dv" style="color: #AD0000;">150</span>, <span class="dv" style="color: #AD0000;">180</span>)) </span></code></pre></div>
 <pre><code>Warning: Removed 143 rows containing missing values (geom_point).</code></pre>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>From this plot we can start to see that patients with more missing measurements have higher covariate measurements. This becomes clearer if we rearrange patients by their <em>proportion</em> of non-missing measurements.</p>
 <div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">dat_cc_miss <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
@@ -15371,7 +15371,7 @@ Attaching package: 'lubridate'</code></pre>
 <span id="cb18-23">                       <span class="at" style="color: #657422;">breaks=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">90</span>, <span class="dv" style="color: #AD0000;">120</span>, <span class="dv" style="color: #AD0000;">150</span>, <span class="dv" style="color: #AD0000;">180</span>)) </span></code></pre></div>
 <pre><code>Warning: Removed 143 rows containing missing values (geom_point).</code></pre>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="768"></p>
+<p><img src="www.khstats.com/blog/trt-timelines/trt-timelines_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="768"></p>
 </div>
 <p>If this were my real data, I would follow up with my research collaborators for more information on the missingness mechanism.</p>
 <p>Please let me know if you have questions or a suggestion for a data set. Happy treatment timeline plotting!</p>
@@ -15406,14 +15406,14 @@ Attaching package: 'lubridate'</code></pre>
 
  ]]></description>
   <category>programming</category>
-  <guid>https://www.khstats.com/blog/trt-timelines/trt-timelines.html</guid>
+  <guid>www.khstats.com/blog/trt-timelines/trt-timelines.html</guid>
   <pubDate>Thu, 28 Nov 2019 05:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/trt-timelines/swimmer-plot-crop.jpeg" medium="image" type="image/jpeg"/>
+  <media:content url="www.khstats.com/blog/trt-timelines/swimmer-plot-crop.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Stats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/ditl/pharma-cro.html</link>
+  <link>www.khstats.com/blog/ditl/pharma-cro.html</link>
   <description><![CDATA[ 
 
 
@@ -15421,7 +15421,7 @@ Attaching package: 'lubridate'</code></pre>
 
 <p>An interview with my MS Biostatistics classmate Kim Hirschhorn about her experience as a biostatistician at a Contract Research Organization (CRO) for pharmaceutical companies.</p>
 <!--more-->
-<p><img src="https://www.khstats.com/img/kim1.png" class="img-fluid"></p>
+<p><img src="www.khstats.com/img/kim1.png" class="img-fluid"></p>
 <p>Earlier this year I wrote my first blog post, <a href="https://www.khstats.com/blog/ditl-biostats/">“A Day in the Life of a Biostatistician,”</a> documenting the granular details of my work as an early career academic research biostatistician. I’m excited to announce I am turning that post into a “day in the life” series in which I interview other biostatisticians with differing roles. My hope is that it will enlighten anyone interested in the field of biostatistics, and especially help undergraduate and current biostatistics Masters students make informed decisions about their careers.</p>
 <p>My first interviewee is Kim Hirschhorn, a former classmate and good friend from my time at the University of Michigan School of Public Health. Kim is an avid reality TV show watcher, loves Eggo waffles and Hostess Ho-Hos, and is a great statistician; so great, professors were often confused as to why she wasn’t planning to pursue a PhD. Kim, however, has always been adamant that she doesn’t need a PhD to have the career she wants.</p>
 <p>Kim’s determination to find a job which allowed for ample career growth with “only” an MS in Biostatistics paid off. After graduating in 2018, she chose to work as a biostatistician at PRA Health Sciences, a Contract Research Organization (CRO) for pharmaceutical companies. Biostatistician roles at CROs offer excellent career trajectory for Masters-level statisticians and don’t have a job title ceiling as some careers in statistics notoriously do for those without a PhD. Additionally, it’s a lucrative job option for a Masters-level biostatistician. (🤑!) For more information on salaries of early career statisticians you can check out the <a href="https://magazine.amstat.org/blog/2019/08/01/mastergraduate/">American Statistical Association’s recent survey of 2018 Masters in Statistics graduates</a>. But, to learn more about what Kim actually does as a biostatistician at a pharmaceutical CRO, read on!</p>
@@ -15461,14 +15461,14 @@ Attaching package: 'lubridate'</code></pre>
 
  ]]></description>
   <category>career</category>
-  <guid>https://www.khstats.com/blog/ditl/pharma-cro.html</guid>
+  <guid>www.khstats.com/blog/ditl/pharma-cro.html</guid>
   <pubDate>Sun, 06 Oct 2019 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/img/kim1-crop.png" medium="image" type="image/png" height="81" width="144"/>
+  <media:content url="www.khstats.com/img/kim1-crop.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
   <title>Using {sl3} for superlearning</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/sl/sl.html</link>
+  <link>www.khstats.com/blog/sl/sl.html</link>
   <description><![CDATA[ 
 
 
@@ -15476,7 +15476,7 @@ Attaching package: 'lubridate'</code></pre>
 
 <p>A short and sweet guide to using the R package {sl3} for superlearning. This is part of a tutorial created for an R Ladies NYC Talk in 2019.</p>
 <!--more-->
-<p><img src="https://www.khstats.com/img/sl3/slide_deck.png" class="img-fluid"> <strong>January 10, 2020.</strong></p>
+<p><img src="www.khstats.com/img/sl3/slide_deck.png" class="img-fluid"> <strong>January 10, 2020.</strong></p>
 <p>In September 2019, I gave an R-Ladies NYC presentation about using the package <code>sl3</code> to implement the superlearner algorithm for predictions. You can download the slides for it <a href="https://github.com/kathoffman/sl3-demo/raw/master/superlearning_slides_no_animation.pdf">here</a>. This post is a modification to the original demo I gave.</p>
 <p>For a more in-depth background on what the superlearner algorithm is, please see my more <a href="khstats.com/blog/sl/sl">recent blog post</a>.</p>
 <section id="step-0-load-your-libraries-set-a-seed-and-load-the-data" class="level1">
@@ -16862,14 +16862,14 @@ $training_offset
 
  ]]></description>
   <category>programming</category>
-  <guid>https://www.khstats.com/blog/sl/sl.html</guid>
+  <guid>www.khstats.com/blog/sl/sl.html</guid>
   <pubDate>Fri, 13 Sep 2019 02:13:14 GMT</pubDate>
-  <media:content url="https://www.khstats.com/img/sl3/sl_talk_screenshot.png" medium="image" type="image/png" height="80" width="144"/>
+  <media:content url="www.khstats.com/img/sl3/sl_talk_screenshot.png" medium="image" type="image/png" height="80" width="144"/>
 </item>
 <item>
   <title>Tips and Tricks from the 2019 New York R Conference</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/nyrconf/index.html</link>
+  <link>www.khstats.com/blog/nyrconf/index.html</link>
   <description><![CDATA[ 
 
 
@@ -16890,7 +16890,7 @@ $training_offset
 <span id="cb1-4"><span class="fu" style="color: #4758AB;">library</span>(naniar)</span>
 <span id="cb1-5"><span class="fu" style="color: #4758AB;">vis_miss</span>(airquality) <span class="co" style="color: #5E5E5E;"># a base R data set</span></span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/nyrconf/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/nyrconf/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>It returns a <code>ggplot2</code> object so you can edit titles, colors, etc. if necessary. You can also add various sorting and clustering arguments to make it easier to see patterns of missingness in your data.</p>
@@ -16924,8 +16924,8 @@ $training_offset
 <section id="going-from-rmarkdown-to-word-and-back-again-with-redoc" class="level1">
 <h1>Going from RMarkdown to Word, and back again with <code>redoc</code></h1>
 <p>Noam also shared his new package, <code>redoc</code>, which allows you to reload an Rmd-generated word file back into R as a modified Rmd file.</p>
-<p><img src="https://www.khstats.com/blog/nyrconf/redoc.png" class="img-fluid"></p>
-<p>This is part of his goal to decrease the pain of “the valley of heartbreak.” <img src="https://www.khstats.com/blog/nyrconf/valleyofheartbreak.jpg" class="img-fluid"></p>
+<p><img src="www.khstats.com/blog/nyrconf/redoc.png" class="img-fluid"></p>
+<p>This is part of his goal to decrease the pain of “the valley of heartbreak.” <img src="www.khstats.com/blog/nyrconf/valleyofheartbreak.jpg" class="img-fluid"></p>
 <p>Installation command is:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;">#remotes::install_github("noamross/redoc")</span></span></code></pre></div>
@@ -16934,10 +16934,10 @@ $training_offset
 </section>
 <section id="pipelines-in-drake" class="level1">
 <h1>Pipelines in <code>drake</code></h1>
-<p><img src="https://www.khstats.com/blog/nyrconf/drake.jpg" class="img-fluid"></p>
+<p><img src="www.khstats.com/blog/nyrconf/drake.jpg" class="img-fluid"></p>
 <p>This could definitely be an entire computing club presentation… but for long projects that you have to redo with new data often, <code>drake</code> is becoming really popular. Amanda Dobbyn gave an awesome presentation and you can see her slides <a href="https://aedobbyn.github.io/nyr-2019/#1">here</a>.</p>
 <p>A super informative bookdown guide by the authors can be found <a href="https://ropenscilabs.github.io/drake-manual/">here</a>. Essentially their motto is “what gets done stays done” so that you are not redoing work you’ve already done in order to update your results. Yet, you’re still redoing what needs to be done in a reproducible way!</p>
-<p><img src="https://www.khstats.com/blog/nyrconf/drake_pipeline.png" class="img-fluid"></p>
+<p><img src="www.khstats.com/blog/nyrconf/drake_pipeline.png" class="img-fluid"></p>
 </section>
 <section id="git-merge-conflicts" class="level1">
 <h1>Git merge conflicts</h1>
@@ -16967,14 +16967,14 @@ $training_offset
 
  ]]></description>
   <category>programming</category>
-  <guid>https://www.khstats.com/blog/nyrconf/index.html</guid>
+  <guid>www.khstats.com/blog/nyrconf/index.html</guid>
   <pubDate>Mon, 10 Jun 2019 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/blog/nyrconf/redoc.png" medium="image" type="image/png" height="72" width="144"/>
+  <media:content url="www.khstats.com/blog/nyrconf/redoc.png" medium="image" type="image/png" height="72" width="144"/>
 </item>
 <item>
   <title>A short and sweet tutorial on using sl3 for superlearning</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>https://www.khstats.com/blog/ditl/index.html</link>
+  <link>www.khstats.com/blog/ditl/index.html</link>
   <description><![CDATA[ 
 
 
@@ -16987,7 +16987,7 @@ $training_offset
 <p><strong>April 4, 2019.</strong></p>
 <p>It seems fitting that my first blog post is on a topic that I tried and failed to find via Google search a few years ago.</p>
 <p>I’ll back up for a second. A few years ago I was a recent college graduate, and trying hard to “figure out my life.” My major was biochemistry, which is one of those degrees where 99%* of people just keep on going to school.</p>
-<p><img src="https://www.khstats.com/img/ditl/sadcat.png" width="48%" alt="cat" style="float:right; padding-left:65px;"></p>
+<p><img src="www.khstats.com/img/ditl/sadcat.png" width="48%" alt="cat" style="float:right; padding-left:65px;"></p>
 <p>I was working full-time night-shift at a hospital as a nurse technician. The key word in that sentence is “night-shift” which meant that even on my days off, I didn’t sleep at night, but all my friends and family did. So, I was often alone and awake, with a lot of time to think about my future… and surf the web for potential careers.</p>
 <p>I knew I wanted a job in healthcare, but I was confused as to where in medicine would be a good fit for me. I could visualize very clearly what my days at work would look like if I were to become a physician, or a physician assistant, or a registered nurse (all careers I developed lengthy pros and cons lists for).</p>
 <p>However, there was another career involving medicine that I was drawn to but didn’t know enough about. “Biostatistics” was a class biochemistry majors took at my university, but I had been exempted because I took AP Statistics in high school.</p>
@@ -16995,7 +16995,7 @@ $training_offset
 <p>I ultimately lucked out during a conversation with a professor during my senior year of college. I was rambling about my many life plans and he mentioned his cousin was the chair of a well-known Biostatistics program. He encouraged me to email her my questions about biostatistics, and I am so grateful she took time to respond with detailed answers. Her description of life as a biostatistician was enough for me to choose going to graduate school for an MS in biostatistics over medical school/physician assistant school/second-degree nursing.</p>
 <p>I feel wholeheartedly that although I would have enjoyed my life as an MD/PA/RN, biostatistics is the right career for me. So, in honor of my confused younger self, and as a way of paying it forward, I’ve dedicated this topic for my very first blog post!</p>
 <p style="text-align: center; padding-bottom: 15px; padding-left: 15px; float: right; display: block;">
-<img src="https://www.khstats.com/img/ditl/nursing.jpg" width="300"><br><span style="font-size: small;">Hanging out with my mom (an RN of 41 years and counting!) after a particularly exhausting night shift as a nurse technician.</span>
+<img src="www.khstats.com/img/ditl/nursing.jpg" width="300"><br><span style="font-size: small;">Hanging out with my mom (an RN of 41 years and counting!) after a particularly exhausting night shift as a nurse technician.</span>
 </p>
 <p>A disclaimer: what follows is a day in the life of one masters-level, academic research-focused biostatistician and I cannot make claims about the careers of statisticians in industry or pharmaceuticals or hospitals or government. In addition, here’s a bit more background before I get into the granular details of my work:</p>
 <ol type="1">
@@ -17003,36 +17003,36 @@ $training_offset
 <li><p>I will mention R/Rstudio a bit. For those who are not familiar with it, <a href="https://www.r-project.org/">R</a> is an open-source (which means anyone can help contribute) programming language that is well-equipped for statistical analysis. It’s arguably very similar to <a href="https://www.python.org/">Python</a>, which is a more widely used language, but statisticians tend to use R more because its statistical packages are very well-developed. During grad school I used Python because I worked in a computational biology lab, and I learned <a href="https://www.sas.com/en_us/home.html">SAS</a> (another statistical programming language) in some of my classes, but R is what I prefer these days. <a href="https://www.rstudio.com/">Rstudio</a> is a platform that makes it more user friendly to use R.</p></li>
 </ol>
 <p>So, without further ado! An average day**:</p>
-<p><img src="https://www.khstats.com/img/ditl/desk.png" width="500px" height="375px"></p>
+<p><img src="www.khstats.com/img/ditl/desk.png" width="500px" height="375px"></p>
 <p><strong>9:30AM</strong> - I arrive at my office and spend a few minutes chatting with my coworkers. To set the scene for you, I have a fairly spacious cubicle within a group of five other cubicles. I sit next to another research biostatistician, two health informatics professionals, and two clinical trial grant specialists. I’m actually not completely sure what that last pair’s title is, but I know their primary task is to make sure several multi-million dollar clinical trial grants stay funded (woah). Everyone I sit by is young and goofy, but very driven, making for a fun office environment.</p>
 <p><strong>9:45AM</strong> - I check and answer new emails from researchers I collaborate on projects with. I send my availability for a meeting to a group of doctors who want to go over the results of a recent analysis I did on Body Mass Index and death rates in the Intensive Care Unit. In a different thread of emails, I thank several researchers from another university for clarifying their methods and sending me code for an analysis similar to one I will soon work on.</p>
 <p><strong>10:00AM</strong> - I open a manuscript draft for a paper I received yesterday. It’s from a group of residents and medical students I worked with a few months ago. Their study looks at the association between blood levels of a certain biomarker and the time to death in cancer patients. My role in the analysis was to examine the associations between several biomarkers such as phosphorus, phosphate, and calcitriol. I then fit a regression model, just like y=mx+b, but with way more math. For this analysis I used a model for when your y is a time to an event (death, in this case), fittingly called a survival model. After adjusting for confounding factors like age, which affects both tumor progression and biomarker levels, there was a significant association between the biomarker and time to death in cancer patients.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://www.khstats.com/blog/ditl/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/ditl/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><span> <em>An example of a figure for a manuscript. This particular plot suggests that cancer patients with an elevated biomarker died at a faster rate than patients who did not have an elevated biomarker.</em></span></p>
 <p>The researchers have asked for my assistance in writing the methods section. The methods section of a scientific article is the steps the scientists took to analyze data explicitly written out for anyone looking to review or learn about their work. I read through their current draft of the paper carefully, make some edits, and send it back. They are hoping to submit this paper to a peer-reviewed journal within a few weeks.</p>
 <p><strong>10:45AM</strong> - I have a weekly meeting a few blocks from my office with a neurologist I spend a large portion of my time working with. She is a leader in the field of Alzheimer’s research, and I find it very rewarding to work on her data and be a small part of a growing body of research in the field. I am “contracted” out to her research as I am to all of the researchers I work with—it’s how my institution budgets funding for grants. One of the faculty-level biostatisticians in my department—which means he has a PhD and specializes in certain statistical methods—is also part of this contract, and some days, like today, he joins me at these meetings.</p>
 <p><strong>11:00AM</strong> - This week’s meeting is pretty straightforward. We discuss how we can improve one of the neurologist’s National Institute of Health grants from a statistics standpoint. The statistical methods for this project can get complicated, in part because we are looking at the brain scans of women in different stages of menopause over time, and we have to consider age as a confounding factor. We want to convey to the reviewers of our grant how we plan to do this. Since this is a methods-focused meeting, I mostly listen and take notes along with two neurology research coordinators that also attend these weekly meetings. When the meeting concludes I have for less work than usual - I only need to make a few graphs representing our study design and past results for inclusion to the grant.</p>
-<p><img src="https://www.khstats.com/blog/ditl/https:/raw.githubusercontent.com/kathoffman/khoffman_website/master/content/blog/katalan.gif" class="img-fluid"></p>
+<p><img src="www.khstats.com/blog/ditl/https:/raw.githubusercontent.com/kathoffman/khoffman_website/master/content/blog/katalan.gif" class="img-fluid"></p>
 <p><strong>12:00PM</strong> - I head to lunch with a group of coworkers. They have gotten food from a nearby salad place, and we sit in one of our favorite buildings on campus and eat together. Our jokes oscillate from incredibly nerdy to pretty stupid. One of my coworkers points out that our hair is styled the same way for the third day in a row.</p>
 <p><strong>12:45PM</strong> - I get back to my desk and type up my handwritten notes from the neurology meeting and put them in that project’s “Notes” folder. It’s important to me that I keep track of all my meetings electronically - I fear losing my notebooks or someone else having to decipher my cursive should I ever have to pass off a project.</p>
-<p><img src="https://www.khstats.com/img/ditl/notes.jpg" width="50%" style="float:right; padding-left:25px"></p>
+<p><img src="www.khstats.com/img/ditl/notes.jpg" width="50%" style="float:right; padding-left:25px"></p>
 <p><strong>1:00PM</strong> - I start to make a plan for a different analysis I’m working on. This project is something new for me - it involves a protein assay and data for 1000+ different protein expression levels. The researcher I’m working with wants to know which proteins are over- and under-expressed in people with a specific autoimmune disorder and a certain type of lung disease. I’ve recently spoken to some bioinformaticians and have a clearer idea of the analysis I need to do. I draw out a little map of the code organization I think would be the most efficient for this analysis and open up Rstudio.</p>
 <p><strong>1:30PM</strong> - I get to work writing up functions, which is just a fancy programming way of saying your code can do the same thing to multiple data sets (or subsets of patients, as is the case of this protein expression study I’m doing). Sometimes it takes a bit longer to write my functions than it would if I were to just copy and paste my code several different times, but the final code is much more readable and less prone to errors. By the time I’m done working, I have some interactive plots showing the significant and non-significant results. When you hover over them, they show what protein corresponds to which point on the graph. They look like this, except this is not the real data we used in her study.</p>
-<p><img src="https://www.khstats.com/blog/ditl/https:/raw.githubusercontent.com/kathoffman/khoffman_website/master/content/blog/volcano.gif" class="img-fluid"></p>
+<p><img src="www.khstats.com/blog/ditl/https:/raw.githubusercontent.com/kathoffman/khoffman_website/master/content/blog/volcano.gif" class="img-fluid"></p>
 <p>I use Rstudio and its amazing Rmarkdown tool to craft a draft report to the researcher, and I save it with today’s date in my “Reports” folder for that project. The report so far includes unadjusted and adjusted models of all the protein expressions using very small p-values to account for the 1000+ statistical comparisons we’re making. I show the results in various plots such as the one above (called a “volcano plot” for its shape).</p>
 <p>I have also started writing code for models to determine which proteins are most different, or uniquely expressed, between subgroups of patients. Tomorrow, I will use a technique common in machine learning, called clustering, to see if these protein expressions can correctly classify subgroups of patients. The goal is to find a minimum group of proteins to identify patients of interest who have both the autoimmune disorder and the lung disease my collaborator is interested in. One way this research could be impactful is that it may help determine which proteins pharmaceuticals should develop drugs to target.</p>
 <p>I close the report; I will continue working on this analysis tomorrow.</p>
 <p><strong>4:45PM</strong> - It’s time for my last meeting of the day. I head to another floor of my office building and get my laptop set up in a conference room. I await the arrival of several doctors. It will be my first time meeting most of them, and our task today is to discuss the data collection process for a future study involving both genetic mutation data from tumor biopsies and clinical data from electronic health records on thousands of patients with lung cancer.</p>
 <p><strong>5:00PM</strong> - The doctors arrive and, after introductions, we talk about the current stage of the project and what the goals are. We discuss the timing of starting chart reviews of patients, how we will upload the information to a database efficiently, and what might be the best way to condense the highly detailed genetics data into useful information for an analysis. Our solution will likely involve a series of iterative searches through the columns containing genetic information.</p>
-<p><img src="https://www.khstats.com/img/ditl/data_dict.png"></p>
+<p><img src="www.khstats.com/img/ditl/data_dict.png"></p>
 <p><span><em>The start of a database I am helping researchers build to collect data for their study. This is not my favorite part of my job, but it is a crucial step for good scientific research.</em></span></p>
 <p><strong>6:00PM</strong> - The meeting ends, and I go back to my desk to record more handwritten notes. I log the hours I spent on each project that day into Toggl, which is the time-tracking application our team uses. This is so we know how much time we’re spending on each project, and is as much for our own sake as it is anyone else’s. I update my to-do list, which is a giant color-coded excel spreadsheet, and eat a few chocolate covered raisins as my reward for a productive day.</p>
 <p><strong>6:30PM</strong> - I leave work! I typically have some kind of activity, like happy hour (see my cute cubicle buddies below), a sports game, or Spanish class that I’m heading off to. Some days I attend coding workshops hosted by groups such as R-ladies. On nights when I’m feeling especially nerdy, I’ll go home and read a statistics paper or sift through the #rstats tips on twitter.</p>
-<p><img src="https://www.khstats.com/img/ditl/coworkers.jpg" width="500px" height="375px"></p>
+<p><img src="www.khstats.com/img/ditl/coworkers.jpg" width="500px" height="375px"></p>
 <p>…So, there you have it. One average daily experience as an early career masters-level statistician. All in all, I have an excellent work-life balance and overall work environment. Every day I get to learn more about science, medicine, statistics, and the intersection of these wonderful ideas. Although it varies quite a bit, approximately 10% of each day involves writing, 20% interacting with other researchers, and the rest of it is spent thinking critically and finding answers to problems I am passionate about.</p>
 <p>I hope if there are any 22, 42, or 14 year-olds out there considering a career in biostatistics and struggling to figure out what on earth we actually do, that you find this post and it lessens your confusion!</p>
 <p>All the best,</p>
@@ -17047,9 +17047,9 @@ $training_offset
 
  ]]></description>
   <category>career</category>
-  <guid>https://www.khstats.com/blog/ditl/index.html</guid>
+  <guid>www.khstats.com/blog/ditl/index.html</guid>
   <pubDate>Tue, 16 Apr 2019 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/img/climbing_comic-crop.JPG" medium="image"/>
+  <media:content url="www.khstats.com/img/climbing_comic-crop.JPG" medium="image"/>
 </item>
 </channel>
 </rss>

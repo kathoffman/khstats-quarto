@@ -1,1 +1,1 @@
-Sitemap: https://www.khstats.com/sitemap.xml
+Sitemap: www.khstats.com/sitemap.xml

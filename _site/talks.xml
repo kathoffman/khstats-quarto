@@ -6,14 +6,14 @@
       version="2.0">
 <channel>
 <title>KHstats</title>
-<link>https://www.khstats.com/talks.html</link>
-<atom:link href="https://www.khstats.com/talks.xml" rel="self" type="application/rss+xml"/>
+<link>www.khstats.com/talks.html</link>
+<atom:link href="www.khstats.com/talks.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.0.36</generator>
 <lastBuildDate>Mon, 19 Sep 2022 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Corticosteroids in COVID-19: Optimizing Observational Research through Target Trial Emulations</title>
-  <link>https://www.khstats.com/talks/steroids.html</link>
+  <link>www.khstats.com/talks/steroids.html</link>
   <description><![CDATA[ 
 
 
@@ -24,13 +24,13 @@
 
  ]]></description>
   <category>statistics</category>
-  <guid>https://www.khstats.com/talks/steroids.html</guid>
+  <guid>www.khstats.com/talks/steroids.html</guid>
   <pubDate>Mon, 19 Sep 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/img/steroids-title.png" medium="image" type="image/png" height="81" width="144"/>
+  <media:content url="www.khstats.com/img/steroids-title.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
   <title>Swimmer plots for longitudinal data using ggplot2</title>
-  <link>https://www.khstats.com/talks/swimmers.html</link>
+  <link>www.khstats.com/talks/swimmers.html</link>
   <description><![CDATA[ 
 
 
@@ -42,13 +42,13 @@
 
  ]]></description>
   <category>programming</category>
-  <guid>https://www.khstats.com/talks/swimmers.html</guid>
+  <guid>www.khstats.com/talks/swimmers.html</guid>
   <pubDate>Thu, 25 Aug 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/img/graphics/rmed-screenshot.png" medium="image" type="image/png" height="78" width="144"/>
+  <media:content url="www.khstats.com/img/graphics/rmed-screenshot.png" medium="image" type="image/png" height="78" width="144"/>
 </item>
 <item>
   <title>Introduction to Ensemble Learning and Super Learning</title>
-  <link>https://www.khstats.com/talks/ensemble.html</link>
+  <link>www.khstats.com/talks/ensemble.html</link>
   <description><![CDATA[ 
 
 
@@ -59,9 +59,9 @@
 
  ]]></description>
   <category>statistics</category>
-  <guid>https://www.khstats.com/talks/ensemble.html</guid>
+  <guid>www.khstats.com/talks/ensemble.html</guid>
   <pubDate>Tue, 19 Jan 2021 05:00:00 GMT</pubDate>
-  <media:content url="https://www.khstats.com/img/wcm-cc-bagging.png" medium="image" type="image/png" height="90" width="144"/>
+  <media:content url="www.khstats.com/img/wcm-cc-bagging.png" medium="image" type="image/png" height="90" width="144"/>
 </item>
 </channel>
 </rss>
