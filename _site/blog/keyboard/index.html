@@ -36,6 +36,8 @@ ul.task-list{list-style: none;}
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,6 +83,9 @@ ul.task-list{list-style: none;}
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html">Publications</a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
@@ -222,9 +227,7 @@ ul.task-list{list-style: none;}
 <section id="test-your-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="test-your-pcb">1. Test your PCB</h2>
 <p>First you’ll want to download a keyboard programming app like <a href="https://www.caniusevia.com/">VIA</a>, plug your keyboard into your computer, take a pair of tweezers, and test each point of key circuitry on your PCB plate.</p>
-<video width="100%" controls="">
-<source src="keyboard/testing_keys.mp4#t=0.1" type="video/mp4">
-</video>
+<video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="/keyboard/testing_keys.mp4#t=0.1"></video>
 </section>
 <section id="lubricate-the-stabilizers" class="level2">
 <h2 class="anchored" data-anchor-id="lubricate-the-stabilizers">2. Lubricate the stabilizers</h2>
@@ -234,16 +237,12 @@ ul.task-list{list-style: none;}
 <section id="place-your-stabilizers-on-the-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="place-your-stabilizers-on-the-pcb">3. Place your stabilizers on the PCB</h2>
 <p>Time to click the stabilizers into place! You can put the respective keycaps on (space bar, shift, backspace, etc.) and make sure you like the feel at this point.</p>
-<video width="100%" controls="">
-<source src="keyboard/test_stabs.mp4#t=0.1" type="video/mp4">
-</video>
+<video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="keyboard/test_stabs.mp4#t=0.1"></video>
 </section>
 <section id="add-the-plate-and-click-the-key-switches-into-the-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="add-the-plate-and-click-the-key-switches-into-the-pcb">4. Add the plate and click the key switches into the PCB</h2>
 <p>You can now overlay your plate on the PCB and start clicking each key switch’s metal prongs into the small holes on the PCB. You should feel a click when it locks into place, and the switches should not fall out if you flip the board over.</p>
-<video width="100%" controls="">
-<source src="keyboard/clicking_switches.mp4#t=0.1" type="video/mp4">
-</video>
+<video id="video_shortcode_videojs_video3" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="/keyboard/clicking_switches.mp4"></video>
 </section>
 <section id="soldering" class="level2">
 <h2 class="anchored" data-anchor-id="soldering">5. Soldering</h2>
@@ -377,6 +376,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
+<script>videojs(video_shortcode_videojs_video2);</script>
+<script>videojs(video_shortcode_videojs_video3);</script>
 
 
 

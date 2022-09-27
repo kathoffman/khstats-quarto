@@ -87,6 +87,7 @@ local youTubeBuilder = function(params)
     start = params.start and '?start=' .. params.start or ''
   }
   result.type = VIDEO_TYPES.YOUTUBE
+  result.src = params.src
 
   return result
 end
@@ -105,6 +106,7 @@ local brightcoveBuilder = function(params)
   local SNIPPET = [[<iframe src="{src}"{width}{height} allowfullscreen="" title="{title}" allow="encrypted-media"></iframe>]]
   result.snippet = replaceCommonAttributes(SNIPPET, params)
   result.type = VIDEO_TYPES.BRIGHTCOVE
+  result.src = params.src
   return result
 end
 
@@ -123,6 +125,7 @@ local vimeoBuilder = function(params)
 
   result.snippet = replaceCommonAttributes(SNIPPET, params)
   result.type = VIDEO_TYPES.VIMEO
+  result.src = params.src
 
   return result
 end
@@ -144,8 +147,25 @@ local videoJSBuilder = function(params)
   local result = {}
   result.snippet = snippet
   result.type = VIDEO_TYPES.VIDEOJS
+  result.src = params.src
   result.id = id
   return result
+end
+local getSnippetFromBuilders = function(src, height, width, title, start)
+  local builderList = {
+    youTubeBuilder,
+    brightcoveBuilder,
+    vimeoBuilder,
+    videoJSBuilder}
+
+  local params = { src = src, height = height, width = width, title = title, start = start }
+
+  for i = 1, #builderList do
+    local builtSnippet = builderList[i](params)
+    if (builtSnippet) then
+      return builtSnippet
+    end
+  end
 end
 
 local helpers = {
@@ -155,29 +175,13 @@ local helpers = {
   ["videoJSBuilder"] = videoJSBuilder,
   ["wrapForResponsive"] = wrapForResponsive,
   ["VIDEO_TYPES"] = VIDEO_TYPES,
-  ["VIDEO_SHORTCODE_NUM_VIDEOJS"] = VIDEO_SHORTCODE_NUM_VIDEOJS
+  ["VIDEO_SHORTCODE_NUM_VIDEOJS"] = VIDEO_SHORTCODE_NUM_VIDEOJS,
+  ["getSnippetFromBuilders"] = getSnippetFromBuilders
 }
 
 function htmlVideo(src, height, width, title, start, aspectRatio)
 
-  local getSnippetFromBuilders = function()
-    local builderList = {
-      youTubeBuilder,
-      brightcoveBuilder,
-      vimeoBuilder,
-      videoJSBuilder}
-
-    local params = { src = src, height = height, width = width, title = title, start = start }
-
-    for i = 1, #builderList do
-      local builtSnippet = builderList[i](params)
-      if (builtSnippet) then
-        return builtSnippet
-      end
-    end
-  end
-
-  local videoSnippetAndType = getSnippetFromBuilders()
+  local videoSnippetAndType = getSnippetFromBuilders(src, height, width, title, start)
   local videoSnippet
 
   videoSnippet = videoSnippetAndType.snippet
@@ -259,5 +263,5 @@ return {
     end
 
   end,
-  ["video-helpers"] = helpers
+  ["video-helpers"] = helpers,
 }

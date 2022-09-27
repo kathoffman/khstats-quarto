@@ -1,5 +1,6 @@
 ---
-    page-layout: full
+page-layout: full
+editor: source
 ---
 
 ::: grid
@@ -16,8 +17,7 @@ I am a biostatistician who is passionate about meaningful and reproducible medic
 
 **Experience:**<br>Research Biostatistician \| Weill Cornell Medicine \| 2018-present
 
-[[CV]](/static/KatherineHoffman_CV_Sept2022.pdf)  [[Google Scholar]](https://scholar.google.com/citations?user=73RvTUoAAAAJ&hl=en)
-
+[\[CV\]](/static/KatherineHoffman_CV_Sept2022.pdf) [\[Google Scholar\]](https://scholar.google.com/citations?user=73RvTUoAAAAJ&hl=en)
 :::
 :::
 

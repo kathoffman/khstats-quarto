@@ -11,6 +11,7 @@ website:
       - blog.qmd
       - talks.qmd
       - illustrations.qmd
+      - publications.qmd
       - icon: github
         href: https://github.com/kathoffman
       - icon: twitter

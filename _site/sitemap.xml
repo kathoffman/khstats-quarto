@@ -1,123 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>www.khstats.com/bib.html</loc>
-    <lastmod>2022-09-24T20:06:55.454Z</lastmod>
-  </url>
-  <url>
     <loc>www.khstats.com/illustrations.html</loc>
-    <lastmod>2022-09-24T20:06:55.790Z</lastmod>
+    <lastmod>2022-09-27T21:26:21.245Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/talks.html</loc>
-    <lastmod>2022-09-24T20:06:56.242Z</lastmod>
+    <lastmod>2022-09-27T21:26:21.745Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/talks/ensemble.html</loc>
-    <lastmod>2022-09-24T20:06:56.554Z</lastmod>
+    <lastmod>2022-09-27T21:26:22.054Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/talks/steroids.html</loc>
-    <lastmod>2022-09-24T20:06:56.840Z</lastmod>
+    <lastmod>2022-09-27T21:26:22.336Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/talks/swimmers.html</loc>
-    <lastmod>2022-09-24T20:06:57.073Z</lastmod>
+    <lastmod>2022-09-27T21:26:22.613Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/index.html</loc>
-    <lastmod>2022-09-24T20:08:45.956Z</lastmod>
+    <lastmod>2022-09-27T21:45:47.042Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/sl/superlearning.html</loc>
-    <lastmod>2022-09-24T20:06:59.402Z</lastmod>
+    <lastmod>2022-09-27T21:26:25.004Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/sl/sl.html</loc>
-    <lastmod>2022-09-24T20:07:00.073Z</lastmod>
+    <lastmod>2022-09-27T21:26:25.663Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/covid-functions/index.html</loc>
-    <lastmod>2022-09-24T20:07:00.776Z</lastmod>
+    <lastmod>2022-09-27T21:26:26.329Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/lmtp/lmtp.html</loc>
-    <lastmod>2022-09-24T20:07:01.180Z</lastmod>
+    <lastmod>2022-09-27T21:26:26.745Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/tmle/tutorial.html</loc>
-    <lastmod>2022-09-24T20:07:01.584Z</lastmod>
+    <lastmod>2022-09-27T21:26:27.108Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/tmle/tutorial-pt3.html</loc>
-    <lastmod>2022-09-24T20:07:01.971Z</lastmod>
+    <lastmod>2022-09-27T21:26:27.519Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/tmle/tutorial-pt2.html</loc>
-    <lastmod>2022-09-24T20:07:03.262Z</lastmod>
+    <lastmod>2022-09-27T21:26:28.777Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/tmle/visual-key.html</loc>
-    <lastmod>2022-09-24T20:07:03.659Z</lastmod>
+    <lastmod>2022-09-27T21:26:29.149Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/nyrconf/index.html</loc>
-    <lastmod>2022-09-24T20:07:04.146Z</lastmod>
+    <lastmod>2022-09-27T21:26:29.663Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/sofa/index.html</loc>
-    <lastmod>2022-09-24T20:07:04.689Z</lastmod>
+    <lastmod>2022-09-27T21:26:30.145Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/iterated-expectations/index.html</loc>
-    <lastmod>2022-09-24T20:07:05.406Z</lastmod>
+    <lastmod>2022-09-27T21:26:30.811Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/forest-plots/index.html</loc>
-    <lastmod>2022-09-24T20:07:06.191Z</lastmod>
+    <lastmod>2022-09-27T21:26:31.409Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/ditl/pharma-cro.html</loc>
-    <lastmod>2022-09-24T20:07:06.726Z</lastmod>
+    <lastmod>2022-09-27T21:26:31.869Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/ditl/index.html</loc>
-    <lastmod>2022-09-24T20:07:07.240Z</lastmod>
+    <lastmod>2022-09-27T21:26:32.297Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/ditl/ditl-followup.html</loc>
-    <lastmod>2022-09-24T20:07:07.704Z</lastmod>
+    <lastmod>2022-09-27T21:26:32.696Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/otr/index.html</loc>
-    <lastmod>2022-09-24T20:07:08.314Z</lastmod>
+    <lastmod>2022-09-27T21:26:33.254Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/corr-plots/index.html</loc>
-    <lastmod>2022-09-24T20:07:11.354Z</lastmod>
+    <lastmod>2022-09-27T21:26:36.009Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/covid/index.html</loc>
-    <lastmod>2022-09-24T20:07:11.781Z</lastmod>
+    <lastmod>2022-09-27T21:26:36.409Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/keyboard/index.html</loc>
-    <lastmod>2022-09-24T20:07:12.212Z</lastmod>
+    <lastmod>2022-09-27T21:38:34.969Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/trt-timelines/trt-timelines.html</loc>
-    <lastmod>2022-09-24T20:07:13.004Z</lastmod>
+    <lastmod>2022-09-27T21:26:37.426Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/trt-timelines/multiple-vars.html</loc>
-    <lastmod>2022-09-24T20:07:13.955Z</lastmod>
+    <lastmod>2022-09-27T21:26:38.255Z</lastmod>
   </url>
   <url>
-    <loc>www.khstats.com/about.html</loc>
-    <lastmod>2022-09-24T20:07:14.284Z</lastmod>
+    <loc>www.khstats.com/publications.html</loc>
+    <lastmod>2022-09-27T21:26:38.739Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog.html</loc>
-    <lastmod>2022-09-24T20:07:14.861Z</lastmod>
+    <lastmod>2022-09-27T21:38:29.452Z</lastmod>
   </url>
 </urlset>
