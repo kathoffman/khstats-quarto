@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Katherine Hoffman">
-<meta name="dcterms.date" content="2020-12-11">
+<meta name="dcterms.date" content="2020-12-12">
 
 <title>KHstats - An Illustrated Guide to TMLE, Part III: Properties, Theory, and Learning More</title>
 <style>
@@ -109,7 +109,6 @@ ul.task-list{list-style: none;}
       <h1 class="title">An Illustrated Guide to TMLE, Part III: Properties, Theory, and Learning More</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">statistics</div>
-                <div class="quarto-category">R</div>
               </div>
                   </div>
   </div>
@@ -127,7 +126,7 @@ ul.task-list{list-style: none;}
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">December 11, 2020</p>
+        <p class="date">December 12, 2020</p>
       </div>
     </div>
       
@@ -156,8 +155,8 @@ ul.task-list{list-style: none;}
 <p>To reiterate a point from <em>Parts I</em> and <em>II</em>, a main motivation for TMLE is that it <strong>allows the use of machine learning algorithms while still yielding asymptotic properties for inference</strong>. This is notably <em>not</em> true for many estimators.</p>
 <p>For example, in <a href="https://khstats.com/blog/tmle/tutorial-pt2"><em>Part II</em></a> we walked through TMLE for the Average Treatment Effect (ATE). Two frequently used alternatives to estimating the ATE are G-computation and Inverse Probability of Treatment Weighting (see <a href="https://khstats.com/blog/tmle/tutorial-pt2/#step-1-estimate-the-outcome"><em>Part II, Step 1</em></a> and <a href="#resources-to-learn-more"><em>references</em></a>). In general, neither yield valid standard errors unless <em>a-priori</em> specified parametric models are used, and this reliance on parametric assumptions can bias results. There are many simulation studies that show this.</p>
 <p>Another beneficial property of TMLE is that it is a <strong>doubly robust</strong> estimator. This means that if either the regression to estimate the expected outcome, or the regression to estimate the probability of treatment, are correctly specified (formally, their bias goes to zero as sample size grows large, meaning they are <strong>consistent</strong>), the final TMLE estimate will be consistent.</p>
-<p>If both regressions are consistent, the <strong>final estimate will reach the smallest possible variance at a rate of <span class="math inline">\(\sqrt{n}\)</span></strong>, which is the fastest possible rate of convergence and equivalent to parametric maximum likelihood estimation. The reason we use superlearning for estimating the outcome and treatment regressions is to give us the best possible chance of having two correctly specified models and obtaining an <strong>efficient estimate</strong>.</p>
-<p><img src="../../img/tmle_props.png" class="img-fluid"></p>
+<p>If both regressions are consistent, the <strong>final estimate will reach the smallest possible variance at a rate of</strong> <span class="math inline">\(\sqrt{n}\)</span>, which is the fastest possible rate of convergence and equivalent to parametric maximum likelihood estimation. The reason we use superlearning for estimating the outcome and treatment regressions is to give us the best possible chance of having two correctly specified models and obtaining an <strong>efficient estimate</strong>.</p>
+<p><img src="tmle_props.png" class="img-fluid"></p>
 <p>Even among other doubly robust estimators, TMLE is appealing because its estimates will always stay within the bounds of the original outcome. This is because it is part of a class of <strong>substitution estimators</strong>. There is another class of doubly robust, semiparametric estimation methods frequently used in causal inference that are referred to as <strong>one-step estimators</strong>, but they can sometimes yield final estimates that are outside the original outcome scale. The one-step estimator for the ATE is called <strong>Augmented Inverse Probability Weighting (AIPW)</strong>.</p>
 </section>
 <section id="why-does-tmle-work" class="level1">
@@ -174,12 +173,12 @@ ul.task-list{list-style: none;}
 </section>
 <section id="resources-to-learn-more" class="level1">
 <h1>Resources to learn more</h1>
-<!-- ![](/img/tmle/self_portrait.jpg){width=40%} -->
+<!-- ![](tmle/self_portrait.jpg){width=40%} -->
 
 
 
 
-<a href=""> <img src="../../img/tmle/self_portrait.jpg" style="float:right; padding-right:20px; padding-top:-20px; padding-left:20px; padding-bottom:-50px;" width="34%"> </a>
+<a href=""> <img src="tmle/self_portrait.jpg" style="float:right; padding-right:20px; padding-top:-20px; padding-left:20px; padding-bottom:-50px;" width="34%"> </a>
 
 
 <p>I could only cover so much in this post, but here are the resources I’ve used the most to learn about TMLE, semiparametric estimation, and causal inference. If you are new to any or all of it, there is a good chance it will take <em>several</em> reads of these materials before the concepts begin to make any sense. Don’t get discouraged!</p>
@@ -234,7 +233,7 @@ ul.task-list{list-style: none;}
 <h1>Acknowledgements</h1>
 <p>This tutorial would not have been possible without my colleague Iván Díaz patiently answering many, many questions on TMLE. I am also very appreciative of Miguel Angel Luque-Fernandez’s helpful feedback on the visual guide.</p>
 <p>Lastly, many thanks to Axel Martin, Nick Williams, Anjile An, Adam Peterson, Alan Wu, and Will Simmons for providing suggestions on various drafts of this art project!</p>
-<!-- ![](/img/tmle/self_portrait.jpg){width=45%} -->
+<!-- ![](tmle/self_portrait.jpg){width=45%} -->
 
 
 </section>

@@ -364,7 +364,7 @@ loaded via a namespace (and not attached):
 <item>
   <title>Building Statistical Intuition for Individualized Treatment Rules</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>www.khstats.com/blog/otr/index.html</link>
+  <link>www.khstats.com/blog/otr/otr.html</link>
   <description><![CDATA[ 
 
 
@@ -480,7 +480,7 @@ loaded via a namespace (and not attached):
 <span id="cb3-8">  <span class="fu" style="color: #4758AB;">scale_fill_manual</span>(<span class="at" style="color: #657422;">values =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"#f2696f"</span>,<span class="st" style="color: #20794D;">"#4984b0"</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb3-9">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">"CATE"</span>, <span class="at" style="color: #657422;">y =</span> <span class="st" style="color: #20794D;">"Count"</span>, <span class="at" style="color: #657422;">fill =</span> <span class="st" style="color: #20794D;">"Treatment Rule"</span>, <span class="at" style="color: #657422;">title=</span><span class="st" style="color: #20794D;">"Distribution of CATE"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="www.khstats.com/blog/otr/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/otr/otr_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -520,7 +520,7 @@ loaded via a namespace (and not attached):
 </ol>
 </section></div> ]]></description>
   <category>statistics</category>
-  <guid>www.khstats.com/blog/otr/index.html</guid>
+  <guid>www.khstats.com/blog/otr/otr.html</guid>
   <pubDate>Wed, 10 Aug 2022 04:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/blog/otr/image.png" medium="image" type="image/png" height="57" width="144"/>
 </item>
@@ -1429,8 +1429,8 @@ Survey weights
 <p>To reiterate a point from <em>Parts I</em> and <em>II</em>, a main motivation for TMLE is that it <strong>allows the use of machine learning algorithms while still yielding asymptotic properties for inference</strong>. This is notably <em>not</em> true for many estimators.</p>
 <p>For example, in <a href="https://khstats.com/blog/tmle/tutorial-pt2"><em>Part II</em></a> we walked through TMLE for the Average Treatment Effect (ATE). Two frequently used alternatives to estimating the ATE are G-computation and Inverse Probability of Treatment Weighting (see <a href="https://khstats.com/blog/tmle/tutorial-pt2/#step-1-estimate-the-outcome"><em>Part II, Step 1</em></a> and <em>references</em>). In general, neither yield valid standard errors unless <em>a-priori</em> specified parametric models are used, and this reliance on parametric assumptions can bias results. There are many simulation studies that show this.</p>
 <p>Another beneficial property of TMLE is that it is a <strong>doubly robust</strong> estimator. This means that if either the regression to estimate the expected outcome, or the regression to estimate the probability of treatment, are correctly specified (formally, their bias goes to zero as sample size grows large, meaning they are <strong>consistent</strong>), the final TMLE estimate will be consistent.</p>
-<p>If both regressions are consistent, the <strong>final estimate will reach the smallest possible variance at a rate of <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7Bn%7D"></strong>, which is the fastest possible rate of convergence and equivalent to parametric maximum likelihood estimation. The reason we use superlearning for estimating the outcome and treatment regressions is to give us the best possible chance of having two correctly specified models and obtaining an <strong>efficient estimate</strong>.</p>
-<p><img src="www.khstats.com/img/tmle_props.png" class="img-fluid"></p>
+<p>If both regressions are consistent, the <strong>final estimate will reach the smallest possible variance at a rate of</strong> <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7Bn%7D">, which is the fastest possible rate of convergence and equivalent to parametric maximum likelihood estimation. The reason we use superlearning for estimating the outcome and treatment regressions is to give us the best possible chance of having two correctly specified models and obtaining an <strong>efficient estimate</strong>.</p>
+<p><img src="www.khstats.com/blog/tmle/tmle_props.png" class="img-fluid"></p>
 <p>Even among other doubly robust estimators, TMLE is appealing because its estimates will always stay within the bounds of the original outcome. This is because it is part of a class of <strong>substitution estimators</strong>. There is another class of doubly robust, semiparametric estimation methods frequently used in causal inference that are referred to as <strong>one-step estimators</strong>, but they can sometimes yield final estimates that are outside the original outcome scale. The one-step estimator for the ATE is called <strong>Augmented Inverse Probability Weighting (AIPW)</strong>.</p>
 </section>
 <section id="why-does-tmle-work" class="level1">
@@ -1447,12 +1447,12 @@ Survey weights
 </section>
 <section id="resources-to-learn-more" class="level1">
 <h1>Resources to learn more</h1>
-<!-- ![](/img/tmle/self_portrait.jpg){width=40%} -->
+<!-- ![](tmle/self_portrait.jpg){width=40%} -->
 
 
 
 
-<a href=""> <img src="www.khstats.com/img/tmle/self_portrait.jpg" style="float:right; padding-right:20px; padding-top:-20px; padding-left:20px; padding-bottom:-50px;" width="34%"> </a>
+<a href=""> <img src="www.khstats.com/blog/tmle/tmle/self_portrait.jpg" style="float:right; padding-right:20px; padding-top:-20px; padding-left:20px; padding-bottom:-50px;" width="34%"> </a>
 
 
 <p>I could only cover so much in this post, but here are the resources I’ve used the most to learn about TMLE, semiparametric estimation, and causal inference. If you are new to any or all of it, there is a good chance it will take <em>several</em> reads of these materials before the concepts begin to make any sense. Don’t get discouraged!</p>
@@ -1507,7 +1507,7 @@ Survey weights
 <h1>Acknowledgements</h1>
 <p>This tutorial would not have been possible without my colleague Iván Díaz patiently answering many, many questions on TMLE. I am also very appreciative of Miguel Angel Luque-Fernandez’s helpful feedback on the visual guide.</p>
 <p>Lastly, many thanks to Axel Martin, Nick Williams, Anjile An, Adam Peterson, Alan Wu, and Will Simmons for providing suggestions on various drafts of this art project!</p>
-<!-- ![](/img/tmle/self_portrait.jpg){width=45%} -->
+<!-- ![](tmle/self_portrait.jpg){width=45%} -->
 
 
 </section>
@@ -1527,9 +1527,6 @@ Survey weights
 
 
 
-<p>The second post of a three-part series to help beginners and/or visual learners understand Targeted Maximum Likelihood Estimation (TMLE). This section walks through the <strong>TMLE algorithm for the mean difference in outcomes for a binary treatment and binary outcome</strong>.</p>
-<!--more-->
-<p><strong><em>December 6, 2020.</em></strong></p>
 
 <link rel="stylesheet" href="../../style.css">
 
@@ -1541,7 +1538,7 @@ HTML Image as link
 </title>
 
 
-<a href="https://github.com/kathoffman/CI-visual-guides/blob/master/visual-guides/TMLE.pdf"> <img alt="cheatsheet" src="www.khstats.com/img/tmle/tmle.jpg" width="100%&quot;"> </a>
+<a href="https://github.com/kathoffman/CI-visual-guides/blob/master/visual-guides/TMLE.pdf"> <img src="www.khstats.com/img/tmle/tmle.jpg" alt="cheatsheet" width="100%&quot;"> </a>
 
 
 <hr>
@@ -1591,7 +1588,7 @@ HTML Image as link
 </title>
 
 
-<a href="https://khstats.com/blog/sl/superlearning"> <img alt="cheatsheet" src="www.khstats.com/img/Superlearning.jpg" width="50%" style="float:right; padding-left:60px;"> </a>
+<a href="https://khstats.com/blog/sl/superlearning"> <img src="www.khstats.com/img/Superlearning.jpg" alt="cheatsheet" width="50%" style="float:right; padding-left:60px;"> </a>
 
 
 <p>Note that the choice of base learners for superlearning is not the point of this post. In practice we simply want to add flexible machine learning models which we think <strong>may</strong> reflect the underlying data distribution. For a tutorial on superlearning, you can check out one of my <a href="https://khstats.com/blog/sl/superlearning">previous blog posts</a>.</p>
@@ -2103,8 +2100,7 @@ HTML Image as link
 </div>
 <p>As mentioned earlier, TMLE can estimate many different statistical estimands of interest. In this example, our statistical estimand is the mean difference in outcomes between those who received the treatment and those who did not, adjusting for confounders.</p>
 <p>Under causal assumptions, this could be <em>identifiable</em> as the Average Treatment Effect (ATE). I won’t go through the identification process here (see <a href="https://khstats.com/blog/tmle/tutorial-pt3/#resources-to-learn-more"><em>Part III, References</em></a>), but since TMLE is often used for causal inference, let’s pretend for this example that we previously met causal assumptions and call our statistical estimand, <img src="https://latex.codecogs.com/png.latex?%5CPsi">, the ATE.</p>
-<p><img src="https://latex.codecogs.com/png.latex?ATE%20=%20%5CPsi%20=%20E_W%5B%5Cmathrm%7BE%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D%20-%20%5Cmathrm%7BE%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D%5D"></p>
-<p>The ATE, once we estimate it, will be interpretable as the mean difference in outcomes in a hypothetical world where everyone received the treatment compared to a hypothetical world where no one received the treatment.</p>
+<p><img src="https://latex.codecogs.com/png.latex?ATE%20=%20%5CPsi%20=%20E_W%5B%5Cmathrm%7BE%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D%20-%20%5Cmathrm%7BE%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D%5D"> The ATE, once we estimate it, will be interpretable as the mean difference in outcomes in a hypothetical world where everyone received the treatment compared to a hypothetical world where no one received the treatment.</p>
 <p>At this point in set-up, we should also pick our base machine learning algorithms to combine via superlearning to estimate the expected outcome and probability of treatment. Let’s use LASSO (<code>glmnet</code>), random forests (<code>ranger</code>), Multivariate Adaptive Regression Splines (MARS) (<code>earth</code>), and a generalized linear model (<code>glm</code>) for demonstration.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">sl_libs <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">'SL.glmnet'</span>, <span class="st" style="color: #20794D;">'SL.ranger'</span>, <span class="st" style="color: #20794D;">'SL.earth'</span>, <span class="st" style="color: #20794D;">'SL.glm'</span>) <span class="co" style="color: #5E5E5E;"># a library of machine learning algorithms (penalized regression, random forests, and multivariate adaptive regression splines)</span></span></code></pre></div>
@@ -2114,8 +2110,7 @@ HTML Image as link
 <h2 class="anchored" data-anchor-id="step-1-estimate-the-outcome">Step 1: Estimate the Outcome</h2>
 <p>The very first step of TMLE is to <strong>estimate the expected value of the outcome</strong> using treatment and confounders as predictors.</p>
 <p>This is what that looks like in mathematical notation. There is some function <img src="https://latex.codecogs.com/png.latex?Q"> which takes <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BW%7D"> as inputs and yields the conditional expectation of <img src="https://latex.codecogs.com/png.latex?Y">:</p>
-<p><img src="https://latex.codecogs.com/png.latex?Q(A,%5Cmathbf%7BW%7D)%20=%20%5Cmathrm%7BE%7D%5BY%7CA,%5Cmathbf%7BW%7D%5D"></p>
-<p>We can use any regression to estimate this conditional expectation, but it is best to use flexible machine learning models so that we don’t have unnecessary assumptions on the underlying distribution of the data.</p>
+<p><img src="https://latex.codecogs.com/png.latex?Q(A,%5Cmathbf%7BW%7D)%20=%20%5Cmathrm%7BE%7D%5BY%7CA,%5Cmathbf%7BW%7D%5D"> We can use any regression to estimate this conditional expectation, but it is best to use flexible machine learning models so that we don’t have unnecessary assumptions on the underlying distribution of the data.</p>
 <p>We can think about the above equation as some generic regression function in <code>R</code> called <code>fit()</code> with inputs in formula form: <code>outcome ~ predictors</code>:</p>
 <p><img src="www.khstats.com/img/tmle/2_outcome_fit.png" class="img-fluid" style="width:70.0%"> In real <code>R</code> code, we’ll use the <code>SuperLearner()</code> function to fit a weighted combination of multiple machine learning models (defined earlier in <code>sl_libs</code>). This function takes the outcome <code>Y</code> as a vector and a data frame <code>X</code> as predictors.</p>
 <div class="cell">
@@ -2628,8 +2623,7 @@ HTML Image as link
 </div>
 <!-- *Also note that our expected outcomes are on the original outcome scale (i.e. probability, rather than the $logit$ probability).* -->
 <p>We could stop here and get our estimate of the ATE by computing the average difference between <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D"> and <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D">, which <em>would</em> be the mean difference in the expected outcomes, conditional on confounders. This estimation method is often called <strong>standardization</strong>, <strong>simple substitution estimation</strong>, <strong>g-formula estimation</strong>, or <strong>G-computation</strong>.</p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BATE%7D_%7BG-comp%7D=%20%5Chat%7B%5CPsi%7D_%7BG-comp%7D%20=%20%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bi=1%7D%5E%7BN%7D(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D-%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D)"></p>
-<p><img src="www.khstats.com/img/tmle/ate_gcomp.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BATE%7D_%7BG-comp%7D=%20%5Chat%7B%5CPsi%7D_%7BG-comp%7D%20=%20%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bi=1%7D%5E%7BN%7D(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D-%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D)"> <img src="www.khstats.com/img/tmle/ate_gcomp.png" class="img-fluid" style="width:50.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">ate_gcomp <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">mean</span>(dat_tmle<span class="sc" style="color: #5E5E5E;">$</span>Q_1 <span class="sc" style="color: #5E5E5E;">-</span> dat_tmle<span class="sc" style="color: #5E5E5E;">$</span>Q_0)</span>
 <span id="cb9-2">ate_gcomp</span></code></pre></div>
@@ -2643,8 +2637,7 @@ HTML Image as link
 <section id="step-2-estimate-the-probability-of-treatment" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-estimate-the-probability-of-treatment">Step 2: Estimate the Probability of Treatment</h2>
 <p>The next step is to estimate the probability of treatment, given confounders. This quantity is often called the <strong>propensity score</strong>, as in it gives the probability or <em>propensity</em> that an observation will receive a treatment of interest.</p>
-<p><img src="https://latex.codecogs.com/png.latex?g(%5Cmathbf%7BW%7D)%20=%20%5Cmathrm%7BPr%7D(A=1%7C%5Cmathbf%7BW%7D)"></p>
-<p><img src="www.khstats.com/img/tmle/6_treatment_fit.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="https://latex.codecogs.com/png.latex?g(%5Cmathbf%7BW%7D)%20=%20%5Cmathrm%7BPr%7D(A=1%7C%5Cmathbf%7BW%7D)"> <img src="www.khstats.com/img/tmle/6_treatment_fit.png" class="img-fluid" style="width:60.0%"></p>
 <p>We will estimate <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BPr%7D(A=1%7C%5Cmathbf%7BW%7D)"> in the same way as we estimated <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BE%7D%5BY%7CA,%5Cmathbf%7BW%7D%5D">: using the superlearner algorithm.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">A <span class="ot" style="color: #003B4F;">&lt;-</span> dat_obs<span class="sc" style="color: #5E5E5E;">$</span>A</span>
@@ -2656,16 +2649,14 @@ HTML Image as link
 </div>
 <p>Then we need to compute three different quantities from this model fit:</p>
 <p><strong>1. The inverse probability of receiving treatment.</strong></p>
-<p><img src="https://latex.codecogs.com/png.latex?H(1,%5Cmathbf%7BW%7D)%20=%20%5Cfrac%7B1%7D%7Bg(%5Cmathbf%7BW%7D)%7D%20=%20%5Cfrac%7B1%7D%7B%5Cmathrm%7BPr%7D(A=1%7C%5Cmathbf%7BW%7D)%7D"></p>
-<p>We can estimate the probability of receiving treatment for every observation by using the <code>predict()</code> funcion without specifying any new data, and then take the inverse of that.</p>
+<p><img src="https://latex.codecogs.com/png.latex?H(1,%5Cmathbf%7BW%7D)%20=%20%5Cfrac%7B1%7D%7Bg(%5Cmathbf%7BW%7D)%7D%20=%20%5Cfrac%7B1%7D%7B%5Cmathrm%7BPr%7D(A=1%7C%5Cmathbf%7BW%7D)%7D"> We can estimate the probability of receiving treatment for every observation by using the <code>predict()</code> funcion without specifying any new data, and then take the inverse of that.</p>
 <p><img src="www.khstats.com/img/tmle/7_H1.png" class="img-fluid" style="width:60.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">g_w <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.vector</span>(<span class="fu" style="color: #4758AB;">predict</span>(g)<span class="sc" style="color: #5E5E5E;">$</span>pred) <span class="co" style="color: #5E5E5E;"># Pr(A=1|W)</span></span>
 <span id="cb12-2">H_1 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">/</span>g_w</span></code></pre></div>
 </div>
 <p><strong>2. The negative inverse probability of not receiving treatment.</strong></p>
-<p><img src="https://latex.codecogs.com/png.latex?H(0,%5Cmathbf%7BW%7D)%20=%20-%5Cfrac%7B1%7D%7B1-g(%5Cmathbf%7BW%7D)%7D=%20-%5Cfrac%7B1%7D%7B%5Cmathrm%7BPr%7D(A=0%7C%5Cmathbf%7BW%7D)%7D"></p>
-<p>The probability of not receiving treatment for a binary treatment is simply 1 minus the probability of treatment.</p>
+<p><img src="https://latex.codecogs.com/png.latex?H(0,%5Cmathbf%7BW%7D)%20=%20-%5Cfrac%7B1%7D%7B1-g(%5Cmathbf%7BW%7D)%7D=%20-%5Cfrac%7B1%7D%7B%5Cmathrm%7BPr%7D(A=0%7C%5Cmathbf%7BW%7D)%7D"> The probability of not receiving treatment for a binary treatment is simply 1 minus the probability of treatment.</p>
 <p><img src="www.khstats.com/img/tmle/8_H0.png" class="img-fluid" style="width:70.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">H_0 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">/</span>(<span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">-</span>g_w) <span class="co" style="color: #5E5E5E;"># Pr(A=0|W) is 1-Pr(A=1|W)</span></span></code></pre></div>
@@ -3187,7 +3178,7 @@ HTML Image as link
 </title>
 
 
-<a href=""> <img alt="cheatsheet" src="www.khstats.com/img/bear_with_me.jpg" style="float:right; padding-left:65px;" width="50%&quot;"> </a>
+<a href=""> <img src="www.khstats.com/img/bear_with_me.jpg" alt="cheatsheet" style="float:right; padding-left:65px;" width="50%&quot;"> </a>
 
 
 <p>🚨 <strong><em>Warning:</em></strong> this step is easy to code, but difficult to understand unless you have a background in semiparametric theory. Let’s first look at <em>what</em> we’re doing, and then I’ll discuss at a very high-level why we’re doing that in a later section.</p>
@@ -3226,8 +3217,8 @@ HTML Image as link
 <li><p>Then, in Step 3, we used quantities from Step 1 and Step 2 to <strong>solve an estimating equation for the EIF</strong>. We didn’t talk about <em>why</em> this works; we simply accepted for now that this is how we can target our estimand of interest (the ATE).</p></li>
 <li><p>Now, we will <strong>update our initial outcome estimates</strong> from Step 1 using information from Step 2 and 3 to obtain the correct bias-variance tradeoff for the ATE.</p></li>
 </ul>
-<p>To update our expected outcome estimates, we first need to <strong>put the initial expected outcome estimates on the <img src="https://latex.codecogs.com/png.latex?logit"> scale</strong> using <code>qlogis()</code> because that’s the scale we used to solve our estimating equation for the EIF in Step 3. Then we can <strong>calculate how much we need to fluctuate our initial estimates</strong> using the product of the clever covariate and fluctuation parameter: <img src="https://latex.codecogs.com/png.latex?H(A,%5Cmathbf%7BW%7D)%20%5Ctimes%20%5Chat%7B%5Cepsilon%7D">. These are our outputs of Step 2 and 3, respectively. We will <strong>add that quantity to the initial outcome estimates to create updated outcome estimates</strong>. Finally, we can <strong>put the updated estimates back on the true outcome scale</strong> using <code>plogis()</code>.</p>
-<p><em>Note we can use <img src="https://latex.codecogs.com/png.latex?expit"> to show the inverse of the <img src="https://latex.codecogs.com/png.latex?logit"> function, and we will denote updates to the outcome regressions as <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D%5E*"> instead of <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D">.</em></p>
+<p>To update our expected outcome estimates, we first need to <strong>put the initial expected outcome estimates on the</strong> <img src="https://latex.codecogs.com/png.latex?logit"> scale using <code>qlogis()</code> because that’s the scale we used to solve our estimating equation for the EIF in Step 3. Then we can <strong>calculate how much we need to fluctuate our initial estimates</strong> using the product of the clever covariate and fluctuation parameter: <img src="https://latex.codecogs.com/png.latex?H(A,%5Cmathbf%7BW%7D)%20%5Ctimes%20%5Chat%7B%5Cepsilon%7D">. These are our outputs of Step 2 and 3, respectively. We will <strong>add that quantity to the initial outcome estimates to create updated outcome estimates</strong>. Finally, we can <strong>put the updated estimates back on the true outcome scale</strong> using <code>plogis()</code>.</p>
+<p><em>Note we can use</em> <img src="https://latex.codecogs.com/png.latex?expit"> to show the inverse of the <img src="https://latex.codecogs.com/png.latex?logit"> function, and we will denote updates to the outcome regressions as <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D%5E*"> instead of <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D">.</p>
 <p><strong>1. Update the expected outcomes of all observations, given the treatment they actually received and their baseline confounders.</strong></p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D%5E*%5BY%7CA,%5Cmathbf%7BW%7D%5D%20=%20expit(logit(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA,%5Cmathbf%7BW%7D%5D)%20+%20%5Chat%7B%5Cepsilon%7DH(A,%5Cmathbf%7BW%7D))"></p>
 <p><img src="www.khstats.com/img/tmle/update_qAW.png" class="img-fluid" style="width:70.0%"></p>
@@ -3236,14 +3227,12 @@ HTML Image as link
 <span id="cb18-2">Q_A_update <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">plogis</span>(<span class="fu" style="color: #4758AB;">qlogis</span>(Q_A) <span class="sc" style="color: #5E5E5E;">+</span> eps<span class="sc" style="color: #5E5E5E;">*</span>H_A)</span></code></pre></div>
 </div>
 <p><strong>2. Update the expected outcomes, conditional on baseline confounders and everyone receiving the treatment.</strong></p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D%5E*%5BY%7CA=1,%5Cmathbf%7BW%7D%5D%20=%20expit(logit(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D)%20+%20%5Chat%7B%5Cepsilon%7DH(1,A))"></p>
-<p><img src="www.khstats.com/img/tmle/12_update_Q1.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D%5E*%5BY%7CA=1,%5Cmathbf%7BW%7D%5D%20=%20expit(logit(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D)%20+%20%5Chat%7B%5Cepsilon%7DH(1,A))"> <img src="www.khstats.com/img/tmle/12_update_Q1.png" class="img-fluid" style="width:70.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">Q_1_update <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">plogis</span>(<span class="fu" style="color: #4758AB;">qlogis</span>(Q_1) <span class="sc" style="color: #5E5E5E;">+</span> eps<span class="sc" style="color: #5E5E5E;">*</span>H_1)</span></code></pre></div>
 </div>
 <p><strong>3. Update the expected outcomes, conditional on baseline confounders and no one receiving the treatment.</strong></p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D%5E*%5BY%7CA=0,%5Cmathbf%7BW%7D%5D%20=%20expit(logit(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D)%20+%20%5Chat%7B%5Cepsilon%7DH(0,W))"></p>
-<p><img src="www.khstats.com/img/tmle/13_update_Q0.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cmathrm%7BE%7D%7D%5E*%5BY%7CA=0,%5Cmathbf%7BW%7D%5D%20=%20expit(logit(%5Cmathrm%7B%5Chat%7BE%7D%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D)%20+%20%5Chat%7B%5Cepsilon%7DH(0,W))"> <img src="www.khstats.com/img/tmle/13_update_Q0.png" class="img-fluid" style="width:70.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">Q_0_update <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">plogis</span>(<span class="fu" style="color: #4758AB;">qlogis</span>(Q_0) <span class="sc" style="color: #5E5E5E;">+</span> eps<span class="sc" style="color: #5E5E5E;">*</span>H_0)</span></code></pre></div>
 </div>
@@ -3922,9 +3911,6 @@ loaded via a namespace (and not attached):
 
 
 
-<p>The introductory post of a three-part series to help beginners understand Targeted Maximum Likelihood Estimation (TMLE). This section contains a brief overview of the targeted learning framework and motivation for semiparametric estimation methods for inference, including causal inference.</p>
-<!--more-->
-<p><strong><em>December 6, 2020</em></strong></p>
 <blockquote class="blockquote">
 <p>The <strong>introductory post</strong> of a three-part series to help beginners understand Targeted Maximum Likelihood Estimation (TMLE). This section contains a brief overview of the <strong>targeted learning framework</strong> and motivation for <strong>semiparametric estimation methods for inference</strong>, including causal inference.</p>
 </blockquote>
@@ -3972,13 +3958,13 @@ loaded via a namespace (and not attached):
 <p>This mentality changed drastically when I started learning about semiparametric estimation methods like TMLE in the context of causal inference. I quickly realized two flaws in this mental framework.</p>
 <p>First, I was thinking about inference backwards: I was choosing a model based on my outcome type (binary, continuous, time-to-event, repeated measures) and then interpreting specific coefficients as my estimates of interest. Yet it makes way more sense to <em>first</em> determine the statistical quantity, or <strong>estimand</strong>, that best answers a scientific question, and <em>then</em> use the method, or <strong>estimator</strong>, best suited for estimating it. This is the paradigm TMLE is based upon: <strong>we want to build an algorithm, or estimator, targeted to an estimand of interest</strong>.</p>
 <figure class="figure">
-<img src="www.khstats.com/img/tmle/estimator.png" width="90%" alt="Estimator and Estimand" class="figure-img">
+<p><img src="www.khstats.com/blog/tmle/tmle/estimator.png" alt="Estimator and Estimand" width="90%" class="figure-img"></p>
 <figcaption class="figure-caption">
 <em>An estimand is a quantity that answers a scientific question of interest. Once we figure out the estimand, we can build an estimator, or algorithm, to estimate it. Image courtesy of Dr.&nbsp;Laura Hatfield and <a href="https://diff.healthpolicydatascience.org/">diff.healthpolicydatascience.org</a>.</em>
 </figcaption>
 </figure>
 <p>Second, I thought flexible, data-adaptive models we commonly classify as statistical and/or <strong>machine learning</strong> (e.g.&nbsp;LASSO, random forests, gradient boosting, etc.) could only be used for prediction, since they don’t have <strong>asymptotic properties for inference</strong> (i.e.&nbsp;standard errors). However, certain <strong>semiparametric estimation methods</strong> like TMLE can actually use these models to <strong>obtain a final estimate that is closer to the target quantity</strong> than would be obtained using classic parametric models (e.g.&nbsp;linear and logistic regression). This is because machine learning models are generally designed to accommodate <strong>large numbers of covariates</strong> with <strong>complex, non-linear relationships</strong>.</p>
-<img src="www.khstats.com/img/tmle/parametric_assumptions_comic.jpg" width="100%">
+<p><img src="www.khstats.com/blog/tmle/tmle/parametric_assumptions_comic.jpg" width="100%"></p>
 <figcaption>
 <em>Semiparametric estimation methods like TMLE can rely on machine learning to avoid making unrealistic parametric assumptions about the underlying distribution of the data (e.g.&nbsp;multivariate normality).</em>
 </figcaption>

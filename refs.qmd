@@ -1,0 +1,13 @@
+---
+title: "Publications"
+editor: source
+biblio-style: natbib-plainnat-author-date.csl
+bibliography: mypubs.bib
+nocite: |
+  @*
+---
+
+### References
+
+::: {#refs}
+:::

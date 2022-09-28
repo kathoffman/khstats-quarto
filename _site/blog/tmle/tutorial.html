@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Katherine Hoffman">
-<meta name="dcterms.date" content="2020-12-11">
+<meta name="dcterms.date" content="2020-12-10">
 
 <title>KHstats - An Illustrated Guide to TMLE, Part I: Introduction and Motivation</title>
 <style>
@@ -109,7 +109,6 @@ ul.task-list{list-style: none;}
       <h1 class="title">An Illustrated Guide to TMLE, Part I: Introduction and Motivation</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">statistics</div>
-                <div class="quarto-category">R</div>
               </div>
                   </div>
   </div>
@@ -127,7 +126,7 @@ ul.task-list{list-style: none;}
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">December 11, 2020</p>
+        <p class="date">December 10, 2020</p>
       </div>
     </div>
       
@@ -144,9 +143,6 @@ ul.task-list{list-style: none;}
 
 
 
-<p>The introductory post of a three-part series to help beginners understand Targeted Maximum Likelihood Estimation (TMLE). This section contains a brief overview of the targeted learning framework and motivation for semiparametric estimation methods for inference, including causal inference.</p>
-<!--more-->
-<p><strong><em>December 6, 2020</em></strong></p>
 <blockquote class="blockquote">
 <p>The <strong>introductory post</strong> of a three-part series to help beginners understand Targeted Maximum Likelihood Estimation (TMLE). This section contains a brief overview of the <strong>targeted learning framework</strong> and motivation for <strong>semiparametric estimation methods for inference</strong>, including causal inference.</p>
 </blockquote>
@@ -194,13 +190,13 @@ ul.task-list{list-style: none;}
 <p>This mentality changed drastically when I started learning about semiparametric estimation methods like TMLE in the context of causal inference. I quickly realized two flaws in this mental framework.</p>
 <p>First, I was thinking about inference backwards: I was choosing a model based on my outcome type (binary, continuous, time-to-event, repeated measures) and then interpreting specific coefficients as my estimates of interest. Yet it makes way more sense to <em>first</em> determine the statistical quantity, or <strong>estimand</strong>, that best answers a scientific question, and <em>then</em> use the method, or <strong>estimator</strong>, best suited for estimating it. This is the paradigm TMLE is based upon: <strong>we want to build an algorithm, or estimator, targeted to an estimand of interest</strong>.</p>
 <figure class="figure">
-<img src="../../img/tmle/estimator.png" width="90%" alt="Estimator and Estimand" class="figure-img">
+<p><img src="tmle/estimator.png" alt="Estimator and Estimand" width="90%" class="figure-img"></p>
 <figcaption class="figure-caption">
 <em>An estimand is a quantity that answers a scientific question of interest. Once we figure out the estimand, we can build an estimator, or algorithm, to estimate it. Image courtesy of Dr.&nbsp;Laura Hatfield and <a href="https://diff.healthpolicydatascience.org/">diff.healthpolicydatascience.org</a>.</em>
 </figcaption>
 </figure>
 <p>Second, I thought flexible, data-adaptive models we commonly classify as statistical and/or <strong>machine learning</strong> (e.g.&nbsp;LASSO, random forests, gradient boosting, etc.) could only be used for prediction, since they don’t have <strong>asymptotic properties for inference</strong> (i.e.&nbsp;standard errors). However, certain <strong>semiparametric estimation methods</strong> like TMLE can actually use these models to <strong>obtain a final estimate that is closer to the target quantity</strong> than would be obtained using classic parametric models (e.g.&nbsp;linear and logistic regression). This is because machine learning models are generally designed to accommodate <strong>large numbers of covariates</strong> with <strong>complex, non-linear relationships</strong>.</p>
-<img src="../../img/tmle/parametric_assumptions_comic.jpg" width="100%">
+<p><img src="tmle/parametric_assumptions_comic.jpg" width="100%"></p>
 <figcaption>
 <em>Semiparametric estimation methods like TMLE can rely on machine learning to avoid making unrealistic parametric assumptions about the underlying distribution of the data (e.g.&nbsp;multivariate normality).</em>
 </figcaption>

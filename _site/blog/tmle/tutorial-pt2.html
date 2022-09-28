@@ -172,7 +172,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <h1 class="title">An Illustrated Guide to TMLE, Part II: The Algorithm</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">statistics</div>
-                <div class="quarto-category">R</div>
               </div>
                   </div>
   </div>
@@ -207,9 +206,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p>The second post of a three-part series to help beginners and/or visual learners understand Targeted Maximum Likelihood Estimation (TMLE). This section walks through the <strong>TMLE algorithm for the mean difference in outcomes for a binary treatment and binary outcome</strong>.</p>
-<!--more-->
-<p><strong><em>December 6, 2020.</em></strong></p>
 
 <link rel="stylesheet" href="../../style.css">
 
@@ -221,7 +217,7 @@ HTML Image as link
 </title>
 
 
-<a href="https://github.com/kathoffman/CI-visual-guides/blob/master/visual-guides/TMLE.pdf"> <img alt="cheatsheet" src="../../img/tmle/tmle.jpg" width="100%&quot;"> </a>
+<a href="https://github.com/kathoffman/CI-visual-guides/blob/master/visual-guides/TMLE.pdf"> <img src="../../img/tmle/tmle.jpg" alt="cheatsheet" width="100%&quot;"> </a>
 
 
 <hr>
@@ -271,7 +267,7 @@ HTML Image as link
 </title>
 
 
-<a href="https://khstats.com/blog/sl/superlearning"> <img alt="cheatsheet" src="../../img/Superlearning.jpg" width="50%" style="float:right; padding-left:60px;"> </a>
+<a href="https://khstats.com/blog/sl/superlearning"> <img src="../../img/Superlearning.jpg" alt="cheatsheet" width="50%" style="float:right; padding-left:60px;"> </a>
 
 
 <p>Note that the choice of base learners for superlearning is not the point of this post. In practice we simply want to add flexible machine learning models which we think <strong>may</strong> reflect the underlying data distribution. For a tutorial on superlearning, you can check out one of my <a href="https://khstats.com/blog/sl/superlearning">previous blog posts</a>.</p>
@@ -783,8 +779,7 @@ HTML Image as link
 </div>
 <p>As mentioned earlier, TMLE can estimate many different statistical estimands of interest. In this example, our statistical estimand is the mean difference in outcomes between those who received the treatment and those who did not, adjusting for confounders.</p>
 <p>Under causal assumptions, this could be <em>identifiable</em> as the Average Treatment Effect (ATE). I won’t go through the identification process here (see <a href="https://khstats.com/blog/tmle/tutorial-pt3/#resources-to-learn-more"><em>Part III, References</em></a>), but since TMLE is often used for causal inference, let’s pretend for this example that we previously met causal assumptions and call our statistical estimand, <span class="math inline">\(\Psi\)</span>, the ATE.</p>
-<p><span class="math display">\[ATE = \Psi = E_W[\mathrm{E}[Y|A=1,\mathbf{W}] - \mathrm{E}[Y|A=0,\mathbf{W}]]\]</span></p>
-<p>The ATE, once we estimate it, will be interpretable as the mean difference in outcomes in a hypothetical world where everyone received the treatment compared to a hypothetical world where no one received the treatment.</p>
+<p><span class="math display">\[ATE = \Psi = E_W[\mathrm{E}[Y|A=1,\mathbf{W}] - \mathrm{E}[Y|A=0,\mathbf{W}]]\]</span> The ATE, once we estimate it, will be interpretable as the mean difference in outcomes in a hypothetical world where everyone received the treatment compared to a hypothetical world where no one received the treatment.</p>
 <p>At this point in set-up, we should also pick our base machine learning algorithms to combine via superlearning to estimate the expected outcome and probability of treatment. Let’s use LASSO (<code>glmnet</code>), random forests (<code>ranger</code>), Multivariate Adaptive Regression Splines (MARS) (<code>earth</code>), and a generalized linear model (<code>glm</code>) for demonstration.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sl_libs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'SL.glmnet'</span>, <span class="st">'SL.ranger'</span>, <span class="st">'SL.earth'</span>, <span class="st">'SL.glm'</span>) <span class="co"># a library of machine learning algorithms (penalized regression, random forests, and multivariate adaptive regression splines)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -794,8 +789,7 @@ HTML Image as link
 <h2 class="anchored" data-anchor-id="step-1-estimate-the-outcome">Step 1: Estimate the Outcome</h2>
 <p>The very first step of TMLE is to <strong>estimate the expected value of the outcome</strong> using treatment and confounders as predictors.</p>
 <p>This is what that looks like in mathematical notation. There is some function <span class="math inline">\(Q\)</span> which takes <span class="math inline">\(A\)</span> and <span class="math inline">\(\mathbf{W}\)</span> as inputs and yields the conditional expectation of <span class="math inline">\(Y\)</span>:</p>
-<p><span class="math display">\[Q(A,\mathbf{W}) = \mathrm{E}[Y|A,\mathbf{W}]\]</span></p>
-<p>We can use any regression to estimate this conditional expectation, but it is best to use flexible machine learning models so that we don’t have unnecessary assumptions on the underlying distribution of the data.</p>
+<p><span class="math display">\[Q(A,\mathbf{W}) = \mathrm{E}[Y|A,\mathbf{W}]\]</span> We can use any regression to estimate this conditional expectation, but it is best to use flexible machine learning models so that we don’t have unnecessary assumptions on the underlying distribution of the data.</p>
 <p>We can think about the above equation as some generic regression function in <code>R</code> called <code>fit()</code> with inputs in formula form: <code>outcome ~ predictors</code>:</p>
 <p><img src="../../img/tmle/2_outcome_fit.png" class="img-fluid" style="width:70.0%"> In real <code>R</code> code, we’ll use the <code>SuperLearner()</code> function to fit a weighted combination of multiple machine learning models (defined earlier in <code>sl_libs</code>). This function takes the outcome <code>Y</code> as a vector and a data frame <code>X</code> as predictors.</p>
 <div class="cell">
@@ -1308,8 +1302,7 @@ HTML Image as link
 </div>
 <!-- *Also note that our expected outcomes are on the original outcome scale (i.e. probability, rather than the $logit$ probability).* -->
 <p>We could stop here and get our estimate of the ATE by computing the average difference between <span class="math inline">\(\mathrm{\hat{E}}[Y|A=1,\mathbf{W}]\)</span> and <span class="math inline">\(\mathrm{\hat{E}}[Y|A=0,\mathbf{W}]\)</span>, which <em>would</em> be the mean difference in the expected outcomes, conditional on confounders. This estimation method is often called <strong>standardization</strong>, <strong>simple substitution estimation</strong>, <strong>g-formula estimation</strong>, or <strong>G-computation</strong>.</p>
-<p><span class="math display">\[\hat{ATE}_{G-comp}= \hat{\Psi}_{G-comp} = \frac{1}{N}\sum_{i=1}^{N}(\mathrm{\hat{E}}[Y|A=1,\mathbf{W}]-\mathrm{\hat{E}}[Y|A=0,\mathbf{W}])\]</span></p>
-<p><img src="../../img/tmle/ate_gcomp.png" class="img-fluid" style="width:50.0%"></p>
+<p><span class="math display">\[\hat{ATE}_{G-comp}= \hat{\Psi}_{G-comp} = \frac{1}{N}\sum_{i=1}^{N}(\mathrm{\hat{E}}[Y|A=1,\mathbf{W}]-\mathrm{\hat{E}}[Y|A=0,\mathbf{W}])\]</span> <img src="../../img/tmle/ate_gcomp.png" class="img-fluid" style="width:50.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ate_gcomp <span class="ot">&lt;-</span> <span class="fu">mean</span>(dat_tmle<span class="sc">$</span>Q_1 <span class="sc">-</span> dat_tmle<span class="sc">$</span>Q_0)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ate_gcomp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1323,8 +1316,7 @@ HTML Image as link
 <section id="step-2-estimate-the-probability-of-treatment" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-estimate-the-probability-of-treatment">Step 2: Estimate the Probability of Treatment</h2>
 <p>The next step is to estimate the probability of treatment, given confounders. This quantity is often called the <strong>propensity score</strong>, as in it gives the probability or <em>propensity</em> that an observation will receive a treatment of interest.</p>
-<p><span class="math display">\[g(\mathbf{W}) = \mathrm{Pr}(A=1|\mathbf{W})\]</span></p>
-<p><img src="../../img/tmle/6_treatment_fit.png" class="img-fluid" style="width:60.0%"></p>
+<p><span class="math display">\[g(\mathbf{W}) = \mathrm{Pr}(A=1|\mathbf{W})\]</span> <img src="../../img/tmle/6_treatment_fit.png" class="img-fluid" style="width:60.0%"></p>
 <p>We will estimate <span class="math inline">\(\mathrm{Pr}(A=1|\mathbf{W})\)</span> in the same way as we estimated <span class="math inline">\(\mathrm{E}[Y|A,\mathbf{W}]\)</span>: using the superlearner algorithm.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> dat_obs<span class="sc">$</span>A</span>
@@ -1336,16 +1328,14 @@ HTML Image as link
 </div>
 <p>Then we need to compute three different quantities from this model fit:</p>
 <p><strong>1. The inverse probability of receiving treatment.</strong></p>
-<p><span class="math display">\[H(1,\mathbf{W}) = \frac{1}{g(\mathbf{W})} = \frac{1}{\mathrm{Pr}(A=1|\mathbf{W})}\]</span></p>
-<p>We can estimate the probability of receiving treatment for every observation by using the <code>predict()</code> funcion without specifying any new data, and then take the inverse of that.</p>
+<p><span class="math display">\[H(1,\mathbf{W}) = \frac{1}{g(\mathbf{W})} = \frac{1}{\mathrm{Pr}(A=1|\mathbf{W})}\]</span> We can estimate the probability of receiving treatment for every observation by using the <code>predict()</code> funcion without specifying any new data, and then take the inverse of that.</p>
 <p><img src="../../img/tmle/7_H1.png" class="img-fluid" style="width:60.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>g_w <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">predict</span>(g)<span class="sc">$</span>pred) <span class="co"># Pr(A=1|W)</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>H_1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>g_w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>2. The negative inverse probability of not receiving treatment.</strong></p>
-<p><span class="math display">\[H(0,\mathbf{W}) = -\frac{1}{1-g(\mathbf{W})}= -\frac{1}{\mathrm{Pr}(A=0|\mathbf{W})}\]</span></p>
-<p>The probability of not receiving treatment for a binary treatment is simply 1 minus the probability of treatment.</p>
+<p><span class="math display">\[H(0,\mathbf{W}) = -\frac{1}{1-g(\mathbf{W})}= -\frac{1}{\mathrm{Pr}(A=0|\mathbf{W})}\]</span> The probability of not receiving treatment for a binary treatment is simply 1 minus the probability of treatment.</p>
 <p><img src="../../img/tmle/8_H0.png" class="img-fluid" style="width:70.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>H_0 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>g_w) <span class="co"># Pr(A=0|W) is 1-Pr(A=1|W)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1867,7 +1857,7 @@ HTML Image as link
 </title>
 
 
-<a href=""> <img alt="cheatsheet" src="../../img/bear_with_me.jpg" style="float:right; padding-left:65px;" width="50%&quot;"> </a>
+<a href=""> <img src="../../img/bear_with_me.jpg" alt="cheatsheet" style="float:right; padding-left:65px;" width="50%&quot;"> </a>
 
 
 <p>🚨 <strong><em>Warning:</em></strong> this step is easy to code, but difficult to understand unless you have a background in semiparametric theory. Let’s first look at <em>what</em> we’re doing, and then I’ll discuss at a very high-level why we’re doing that in a <a href="#why-does-tmle-work">later section</a>.</p>
@@ -1906,8 +1896,8 @@ HTML Image as link
 <li><p>Then, in <a href="#estimate-the-fluctuation-parameter">Step 3</a>, we used quantities from Step 1 and Step 2 to <strong>solve an estimating equation for the EIF</strong>. We didn’t talk about <em>why</em> this works; we simply accepted for now that this is how we can target our estimand of interest (the ATE).</p></li>
 <li><p>Now, we will <strong>update our initial outcome estimates</strong> from Step 1 using information from Step 2 and 3 to obtain the correct bias-variance tradeoff for the ATE.</p></li>
 </ul>
-<p>To update our expected outcome estimates, we first need to <strong>put the initial expected outcome estimates on the <span class="math inline">\(logit\)</span> scale</strong> using <code>qlogis()</code> because that’s the scale we used to solve our estimating equation for the EIF in Step 3. Then we can <strong>calculate how much we need to fluctuate our initial estimates</strong> using the product of the clever covariate and fluctuation parameter: <span class="math inline">\(H(A,\mathbf{W}) \times \hat{\epsilon}\)</span>. These are our outputs of Step 2 and 3, respectively. We will <strong>add that quantity to the initial outcome estimates to create updated outcome estimates</strong>. Finally, we can <strong>put the updated estimates back on the true outcome scale</strong> using <code>plogis()</code>.</p>
-<p><em>Note we can use <span class="math inline">\(expit\)</span> to show the inverse of the <span class="math inline">\(logit\)</span> function, and we will denote updates to the outcome regressions as <span class="math inline">\(\hat{\mathrm{E}}^*\)</span> instead of <span class="math inline">\(\hat{\mathrm{E}}\)</span>.</em></p>
+<p>To update our expected outcome estimates, we first need to <strong>put the initial expected outcome estimates on the</strong> <span class="math inline">\(logit\)</span> scale using <code>qlogis()</code> because that’s the scale we used to solve our estimating equation for the EIF in Step 3. Then we can <strong>calculate how much we need to fluctuate our initial estimates</strong> using the product of the clever covariate and fluctuation parameter: <span class="math inline">\(H(A,\mathbf{W}) \times \hat{\epsilon}\)</span>. These are our outputs of Step 2 and 3, respectively. We will <strong>add that quantity to the initial outcome estimates to create updated outcome estimates</strong>. Finally, we can <strong>put the updated estimates back on the true outcome scale</strong> using <code>plogis()</code>.</p>
+<p><em>Note we can use</em> <span class="math inline">\(expit\)</span> to show the inverse of the <span class="math inline">\(logit\)</span> function, and we will denote updates to the outcome regressions as <span class="math inline">\(\hat{\mathrm{E}}^*\)</span> instead of <span class="math inline">\(\hat{\mathrm{E}}\)</span>.</p>
 <p><strong>1. Update the expected outcomes of all observations, given the treatment they actually received and their baseline confounders.</strong></p>
 <p><span class="math display">\[\hat{\mathrm{E}}^*[Y|A,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A,\mathbf{W}]) + \hat{\epsilon}H(A,\mathbf{W}))\]</span></p>
 <p><img src="../../img/tmle/update_qAW.png" class="img-fluid" style="width:70.0%"></p>
@@ -1916,14 +1906,12 @@ HTML Image as link
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Q_A_update <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">qlogis</span>(Q_A) <span class="sc">+</span> eps<span class="sc">*</span>H_A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>2. Update the expected outcomes, conditional on baseline confounders and everyone receiving the treatment.</strong></p>
-<p><span class="math display">\[\hat{\mathrm{E}}^*[Y|A=1,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A=1,\mathbf{W}]) + \hat{\epsilon}H(1,A))\]</span></p>
-<p><img src="../../img/tmle/12_update_Q1.png" class="img-fluid" style="width:70.0%"></p>
+<p><span class="math display">\[\hat{\mathrm{E}}^*[Y|A=1,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A=1,\mathbf{W}]) + \hat{\epsilon}H(1,A))\]</span> <img src="../../img/tmle/12_update_Q1.png" class="img-fluid" style="width:70.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Q_1_update <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">qlogis</span>(Q_1) <span class="sc">+</span> eps<span class="sc">*</span>H_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>3. Update the expected outcomes, conditional on baseline confounders and no one receiving the treatment.</strong></p>
-<p><span class="math display">\[\hat{\mathrm{E}}^*[Y|A=0,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A=0,\mathbf{W}]) + \hat{\epsilon}H(0,W))\]</span></p>
-<p><img src="../../img/tmle/13_update_Q0.png" class="img-fluid" style="width:70.0%"></p>
+<p><span class="math display">\[\hat{\mathrm{E}}^*[Y|A=0,\mathbf{W}] = expit(logit(\mathrm{\hat{E}}[Y|A=0,\mathbf{W}]) + \hat{\epsilon}H(0,W))\]</span> <img src="../../img/tmle/13_update_Q0.png" class="img-fluid" style="width:70.0%"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Q_0_update <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">qlogis</span>(Q_0) <span class="sc">+</span> eps<span class="sc">*</span>H_0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
