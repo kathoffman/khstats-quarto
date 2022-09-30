@@ -10,17 +10,47 @@ website:
     right:
       - blog.qmd
       - talks.qmd
-      - illustrations.qmd
-      - publications.qmd
+      - sidebar:art
+      - sidebar:research
+      - text: CV
+        file: /static/KatherineHoffman_CV_Sept2022.pdf
       - icon: github
         href: https://github.com/kathoffman
       - icon: twitter
         href: https://twitter.com/kat_hoffman_
+
+
+  sidebar:
+    - id: research
+      collapse-level: 1
+      title: "Research"
+      style: "docked"
+      background: light
+      contents:
+        - text: "Statistics Methods"
+          file: pubs_methods.qmd
+        - text: "Clinical Applications"
+          file: pubs_applications.qmd
+        - text: "Google Scholar Profile"
+          href: https://scholar.google.com/citations?user=73RvTUoAAAAJ&hl=en
+    - id: art
+      collapse-level: 1
+      title: "Visuals"
+      subtitle: "test"
+      style: "docked"
+      background: dark
+      foreground: light
+      contents:
+        - text: "Visual Guides for Causal Inference"
+          file: illustrations_viz.qmd
+        - text: "Educational Illustrations"
+          file: illustrations_draw.qmd
+
 format:
   html:
     theme: [minty, styles.css]
     highlight-style: zenburn
 
 
-editor: visual
+editor: source
 
