@@ -2,8 +2,8 @@
 title: "Clinical Applications"
 page-layout: full
 editor: source
-csl: csl/academic-medicine.csl
-bibliography: pubs/pubs_applications.bib
+csl: ../csl/academic-medicine.csl
+bibliography: ../pubs/pubs_applications.bib
 nocite: |
   @*
 ---

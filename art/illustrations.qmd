@@ -1,6 +1,5 @@
 ---
-title: "All"
-page-layout: full
+title: "Illustrations"
 ---
 
 I enjoy making educational visualizations, including technical guides, summary graphics, and comics. These are all available on [Github](https://github.com/kathoffman/causal-inference-visual-guides) and free to use under a CC-BY license. Please provide attribution (Kat Hoffman).
@@ -11,35 +10,35 @@ I enjoy making educational visualizations, including technical guides, summary g
 
 ::: grid
 ::: {.g-col-12 .g-col-md-8}
-![](img/gcomp.jpeg)
+![](../img/gcomp.jpeg)
 :::
 
 ::: {.g-col-12 .g-col-md-8}
 ### Inverse Probability Weighting
 
-![](img/ipw.jpeg)
+![](../img/ipw.jpeg)
 :::
 :::
 
 ### Targeted Maximum Likelihood Estimation
 
-![](img/tmle.jpeg)
+![](../img/tmle.jpeg)
 
 ### Superlearning
 
-![](img/superlearning.jpeg)
+![](../img/superlearning.jpeg)
 
 ::: grid
 ::: {.g-col-12 .g-col-md-10}
 ### Identification vs. Estimation in Causal Inference
 
-![](img/ident-vs-est.png)
+![](../img/ident-vs-est.png)
 :::
 
 ::: {.g-col-12 .g-col-md-10}
 ### Static, Dynamic, and Modified Treatment Policies
 
-![](img/lmtp/mtp_summary.jpg)
+![](../img/lmtp/mtp_summary.jpg)
 :::
 :::
 
@@ -47,18 +46,18 @@ I enjoy making educational visualizations, including technical guides, summary g
 
 ::: grid
 ::: {.g-col-12 .g-col-md-4}
-![](img/climbing_comic.jpg)
+![](../img/climbing_comic.jpg)
 :::
 
 ::: {.g-col-12 .g-col-md-4}
-![](img/universe_comic.jpeg)
+![](../img/universe_comic.jpeg)
 :::
 
 ::: {.g-col-12 .g-col-md-4}
-![](img/positivity_comic.jpeg)
+![](../img/positivity_comic.jpeg)
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-![](img/underlying_distributions.jpeg)
+![](../img/underlying_distributions.jpeg)
 :::
 :::

@@ -2,8 +2,8 @@
 title: "Methods"
 page-layout: full
 editor: source
-csl: csl/academic-medicine.csl
-bibliography: pubs/pubs_methods.bib
+csl: ../csl/academic-medicine.csl
+bibliography: ../pubs/pubs_methods.bib
 nocite: |
   @*
 ---

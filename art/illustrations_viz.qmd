@@ -11,20 +11,20 @@ These guides are available on [Github](https://github.com/kathoffman/causal-infe
 
 ::: grid
 ::: {.g-col-12 .g-col-md-8}
-![](img/gcomp.jpeg)
+![](../img/gcomp.jpeg)
 :::
 
 ::: {.g-col-12 .g-col-md-8}
 ### Inverse Probability Weighting
 
-![](img/ipw.jpeg)
+![](../img/ipw.jpeg)
 :::
 :::
 
 ### Targeted Maximum Likelihood Estimation
 
-![](img/tmle.jpeg)
+![](../img/tmle.jpeg)
 
 ### Superlearning
 
-![](img/superlearning.jpeg)
+![](../img/superlearning.jpeg)

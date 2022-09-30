@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>KHstats - Blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-date','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      page: 18,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-136820093-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="alternate" type="application/rss+xml" title="KHstats" href="blog.xml"></head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./blog.html" aria-current="page">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./talks.html">Talks</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-visuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Visuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-visuals">    
+        <li>
+    <a class="dropdown-item" href="./art/illustrations_viz.html">
+ <span class="dropdown-text">Visual Guides for Causal Inference</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./art/illustrations_draw.html">
+ <span class="dropdown-text">Educational Illustrations</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="button" data-bs-toggle="dropdown" aria-expanded="false">Research</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-research">    
+        <li>
+    <a class="dropdown-item" href="./pubs/pubs_methods.html">
+ <span class="dropdown-text">Statistics Methods</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pubs/pubs_applications.html">
+ <span class="dropdown-text">Clinical Applications</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">
+ <span class="dropdown-text">Google Scholar Profile</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Blog</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(21)</span></div><div class="category" data-category="career">career <span class="quarto-category-count">(4)</span></div><div class="category" data-category="miscellaneous">miscellaneous <span class="quarto-category-count">(1)</span></div><div class="category" data-category="programming">programming <span class="quarto-category-count">(8)</span></div><div class="category" data-category="statistics">statistics <span class="quarto-category-count">(8)</span></div></div></div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="programming" data-listing-date-sort="1663214400000" data-listing-file-modified-sort="1663734150802" data-listing-reading-time-sort="9.705">
+<a href="./blog/forest-plots/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/forest-plots/image.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Annotated Forest Plots using ggplot2
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Sep 15, 2022
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="statistics" data-listing-date-sort="1660104000000" data-listing-file-modified-sort="1664566476355" data-listing-reading-time-sort="7.145">
+<a href="./blog/otr/otr.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/otr/image.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Building Statistical Intuition for Individualized Treatment Rules
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Aug 10, 2022
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="miscellaneous" data-listing-date-sort="1655265600000" data-listing-file-modified-sort="1664313943100" data-listing-reading-time-sort="7.69">
+<a href="./blog/keyboard/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/keyboard/keyboard/IMG_2826.JPG" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+You’re just my type! A beginner’s guide to building a custom mechanical keyboard
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Jun 15, 2022
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="programming" data-listing-date-sort="1654660800000" data-listing-file-modified-sort="1663595786463" data-listing-reading-time-sort="17.47">
+<a href="./blog/trt-timelines/multiple-vars.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/trt-timelines/crop_swimmer.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Using ggplot2 to create Treatment Timelines with Multiple Variables
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Jun 8, 2022
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="statistics" data-listing-date-sort="1649304000000" data-listing-file-modified-sort="1663470574745" data-listing-reading-time-sort="10.36">
+<a href="./blog/lmtp/lmtp.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/lmtp/lmtp/mtp_summary.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+An Illustrated Guide to Modified Treatment Policies, Part 1: Introduction and Motivation
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Apr 7, 2022
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="programming" data-listing-date-sort="1644469200000" data-listing-file-modified-sort="1663734007119" data-listing-reading-time-sort="4.39">
+<a href="./blog/sofa/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./img/sofa/sofa-crop.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+How many ways are there to get a SOFA Score of 10?
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Feb 10, 2022
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="career" data-listing-date-sort="1610686800000" data-listing-file-modified-sort="1663431480920" data-listing-reading-time-sort="8.95">
+<a href="./blog/ditl/ditl-followup.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/ditl/faq.jpeg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Becoming a Biostatistician: FAQs for ‘A Day in the Life of a Biostatistician’
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Jan 15, 2021
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="statistics" data-listing-date-sort="1607749200000" data-listing-file-modified-sort="1663432242915" data-listing-reading-time-sort="7.555">
+<a href="./blog/tmle/tutorial-pt3.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/tmle/tmle_props.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+An Illustrated Guide to TMLE, Part III: Properties, Theory, and Learning More
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Dec 12, 2020
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="8" data-categories="statistics" data-listing-date-sort="1607662800000" data-listing-file-modified-sort="1663431848798" data-listing-reading-time-sort="21.845">
+<a href="./blog/tmle/tutorial-pt2.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/tmle/tmle/tmle_crop.jpeg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+An Illustrated Guide to TMLE, Part II: The Algorithm
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Dec 11, 2020
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="9" data-categories="statistics" data-listing-date-sort="1607576400000" data-listing-file-modified-sort="1664388026147" data-listing-reading-time-sort="4.445">
+<a href="./blog/tmle/tutorial.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/tmle/tmle/parametric_assumptions_comic.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+An Illustrated Guide to TMLE, Part I: Introduction and Motivation
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Dec 10, 2020
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="10" data-categories="statistics" data-listing-date-sort="1602382394000" data-listing-file-modified-sort="1663682198608" data-listing-reading-time-sort="16.83">
+<a href="./blog/sl/superlearning.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./img/sl_steps/Superlearning_crop.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Become a Superlearner! An Illustrated Guide to Superlearning
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Oct 10, 2020
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="11" data-categories="career" data-listing-date-sort="1601697600000" data-listing-file-modified-sort="1663425928882" data-listing-reading-time-sort="11.665">
+<a href="./blog/covid/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/covid/image.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+On the Sidelines: NYC’s COVID-19 Outbreak from the Eyes of a Pulmonary and Critical Care Team’s Biostatistician
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Oct 3, 2020
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="12" data-categories="programming" data-listing-date-sort="1598241600000" data-listing-file-modified-sort="1663682162227" data-listing-reading-time-sort="8.425">
+<a href="./blog/corr-plots/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./img/corr-cover-image.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Customizable correlation plots in R
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Aug 24, 2020
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="13" data-categories="statistics" data-listing-date-sort="1597032000000" data-listing-file-modified-sort="1663425944620" data-listing-reading-time-sort="6.18">
+<a href="./blog/iterated-expectations/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/iterated-expectations/expectations.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Rethinking Conditional and Iterated Expectations as Linear Regression Models
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Aug 10, 2020
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="14" data-categories="programming" data-listing-date-sort="1594433594000" data-listing-file-modified-sort="1663437984999" data-listing-reading-time-sort="9.87">
+<a href="./blog/covid-functions/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./img/covid_fx/gtsummary_tweet-crop.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Silver Linings: five coding tricks learned during Lockdown
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Jul 10, 2020
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="15" data-categories="programming" data-listing-date-sort="1574917200000" data-listing-file-modified-sort="1663682212461" data-listing-reading-time-sort="15.83">
+<a href="./blog/trt-timelines/trt-timelines.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./blog/trt-timelines/swimmer-plot-crop.jpeg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Patient Treatment Timelines for Longitudinal Survival Data
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 28, 2019
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="16" data-categories="career" data-listing-date-sort="1570334400000" data-listing-file-modified-sort="1663470875037" data-listing-reading-time-sort="10.97">
+<a href="./blog/ditl/pharma-cro.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./img/kim1-crop.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Stats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Oct 6, 2019
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="17" data-categories="programming" data-listing-date-sort="1568340794000" data-listing-file-modified-sort="1663556094490" data-listing-reading-time-sort="3.81">
+<a href="./blog/sl/sl.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./img/sl3/sl_talk_screenshot.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Using {sl3} for superlearning
+</h5>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Sep 12, 2019
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="18" data-categories="programming" data-listing-date-sort="1560139200000" data-listing-file-modified-sort="1663430092457" data-listing-reading-time-sort="3.98">
+<a href="./blog/nyrconf/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img data-src="./blog/nyrconf/redoc.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Tips and Tricks from the 2019 New York R Conference
+</h5>
+<div class="card-text listing-description">
+My favorite takeaways from attending the 2019 New York R Conference.
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Jun 10, 2019
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="19" data-categories="career" data-listing-date-sort="1555387200000" data-listing-file-modified-sort="1663556516497" data-listing-reading-time-sort="13.535">
+<a href="./blog/ditl/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img data-src="./img/climbing_comic-crop.JPG" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+A Day in the Life of a Biostatistician
+</h5>
+<div class="card-text listing-description">
+<em>April 4, 2019. It seems fitting that my first blog post is on a topic that I tried and failed to find via Google search a few years ago. I’ll back up for a second.</em>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Apr 16, 2019
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="20" data-categories="statistics" data-listing-date-sort="1547010000000" data-listing-file-modified-sort="1663595798758" data-listing-reading-time-sort="2.365">
+<a href="./blog/tmle/visual-key.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img data-src="./blog/tmle/tmle/1_data_structure.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+A Condensed Key for A Visual Guide to Targeted Maximum Likelihood Estimation (TMLE)
+</h5>
+<div class="card-text listing-description">
+A helper post to <em>TMLE Part II: The Algorithm</em> containing only formulas and graphics.
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Jan 9, 2019
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
+</div><p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

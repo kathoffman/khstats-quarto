@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>KHstats - Clinical Applications</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-136820093-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">KHstats</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-visuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Visuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-visuals">    
+        <li>
+    <a class="dropdown-item" href="../art/illustrations_viz.html">
+ <span class="dropdown-text">Visual Guides for Causal Inference</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../art/illustrations_draw.html">
+ <span class="dropdown-text">Educational Illustrations</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="button" data-bs-toggle="dropdown" aria-expanded="false">Research</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-research">    
+        <li>
+    <a class="dropdown-item" href="../pubs/pubs_methods.html">
+ <span class="dropdown-text">Statistics Methods</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../pubs/pubs_applications.html">
+ <span class="dropdown-text">Clinical Applications</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">
+ <span class="dropdown-text">Google Scholar Profile</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Clinical Applications</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pubs/pubs_methods.html" class="sidebar-item-text sidebar-link">Statistics Methods</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pubs/pubs_applications.html" class="sidebar-item-text sidebar-link active">Clinical Applications</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en" class="sidebar-item-text sidebar-link">Google Scholar Profile</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Clinical Applications</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>This is a selected list of clinical application manuscripts. A full list of manuscripts and pre-prints is available on my <a href="../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>.</p>
+<p>*Indicates authors contributed equally to the work.</p>
+<section id="select-clinical-application-manuscripts" class="level1">
+
+
+
+
+</section>
+
+<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Select Clinical Application Manuscripts</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-schenck_comparative_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">*Schenck EJ, *Hoffman KL, Oromendia C, et al. A <span>Comparative</span> <span>Analysis</span> of the <span>Respiratory</span> <span>Subscore</span> of the <span>Sequential</span> <span>Organ</span> <span>Failure</span> <span>Assessment</span> <span>Scoring</span> <span>System</span>. <em>Annals of the American Thoracic Society</em>. 2021;18(11):1849-1860. doi:<a href="https://doi.org/10.1513/AnnalsATS.202004-399OC">10.1513/AnnalsATS.202004-399OC</a></div>
+</div>
+<div id="ref-gomez-escobar_cytokine_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">*Gómez-Escobar LG, *Hoffman KL, Choi JJ, et al. Cytokine signatures of end organ injury in <span>COVID</span>-19. <em>Scientific Reports</em>. 2021;11(1):12606. doi:<a href="https://doi.org/10.1038/s41598-021-91859-z">10.1038/s41598-021-91859-z</a></div>
+</div>
+<div id="ref-schenck_respiratory_2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Schenck EJ, Hoffman K, Goyal P, et al. Respiratory <span>Mechanics</span> and <span>Gas</span> <span>Exchange</span> in <span>COVID</span>-19–associated <span>Respiratory</span> <span>Failure</span>. <em>Annals of the American Thoracic Society</em>. 2020;17(9):1158-1161. doi:<a href="https://doi.org/10.1513/AnnalsATS.202005-427RL">10.1513/AnnalsATS.202005-427RL</a></div>
+</div>
+<div id="ref-torres_attributable_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Torres LK, Hoffman KL, Oromendia C, et al. Attributable mortality of acute respiratory distress syndrome: A systematic review, meta-analysis and survival analysis using targeted minimum loss-based estimation. <em>Thorax</em>. 2021;76(12):1176-1185. doi:<a href="https://doi.org/10.1136/thoraxjnl-2020-215950">10.1136/thoraxjnl-2020-215950</a></div>
+</div>
+<div id="ref-price_effect_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Price DR, Hoffman KL, Oromendia C, et al. Effect of <span>Neutropenic</span> <span>Critical</span> <span>Illness</span> on <span>Development</span> and <span>Prognosis</span> of <span>Acute</span> <span>Respiratory</span> <span>Distress</span> <span>Syndrome</span>. <em>American Journal of Respiratory and Critical Care Medicine</em>. 2021;203(4):504-508. doi:<a href="https://doi.org/10.1164/rccm.202003-0753LE">10.1164/rccm.202003-0753LE</a></div>
+</div>
+<div id="ref-price_temporal_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Price DR, Hoffman KL, Sanchez E, Choi AMK, Siempos II. Temporal trends of outcomes of neutropenic patients with <span>ARDS</span> enrolled in therapeutic clinical trials. <em>Intensive Care Medicine</em>. 2021;47(1):122-123. doi:<a href="https://doi.org/10.1007/s00134-020-06263-4">10.1007/s00134-020-06263-4</a></div>
+</div>
+<div id="ref-zhang_association_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Zhang WZ, Hoffman KL, Schiffer KT, et al. Association of plasma mitochondrial <span>DNA</span> with <span>COPD</span> severity and progression in the <span>SPIROMICS</span> cohort. <em>Respiratory Research</em>. 2021;22(1):126. doi:<a href="https://doi.org/10.1186/s12931-021-01707-x">10.1186/s12931-021-01707-x</a></div>
+</div>
+<div id="ref-schenck_critical_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Schenck EJ, Hoffman KL, Cusick M, Kabariti J, Sholle ET, Campion TR. Critical <span class="nocase">carE</span> <span>Database</span> for <span>Advanced</span> <span>Research</span> (<span>CEDAR</span>): <span>An</span> automated method to support intensive care units with electronic health record data. <em>Journal of Biomedical Informatics</em>. 2021;118:103789. doi:<a href="https://doi.org/10.1016/j.jbi.2021.103789">10.1016/j.jbi.2021.103789</a></div>
+</div>
+<div id="ref-rahman_sex-driven_2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Rahman A, Schelbaum E, Hoffman K, et al. Sex-driven modifiers of <span>Alzheimer</span> risk: <span>A</span> multimodality brain imaging study. <em>Neurology</em>. 2020;95(2):e166-e178. doi:<a href="https://doi.org/10.1212/WNL.0000000000009781">10.1212/WNL.0000000000009781</a></div>
+</div>
+<div id="ref-price_angiopoietin_2022" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">*Price DR, *Benedetti E, Hoffman KL, et al. Angiopoietin 2 <span>Is</span> <span>Associated</span> with <span>Vascular</span> <span>Necroptosis</span> <span>Induction</span> in <span>Coronavirus</span> <span>Disease</span> 2019 <span>Acute</span> <span>Respiratory</span> <span>Distress</span> <span>Syndrome</span>. <em>The American Journal of Pathology</em>. 2022;192(7):1001-1015. doi:<a href="https://doi.org/10.1016/j.ajpath.2022.04.002">10.1016/j.ajpath.2022.04.002</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
