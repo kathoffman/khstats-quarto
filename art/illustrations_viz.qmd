@@ -1,0 +1,30 @@
+---
+title: "Visual Guides for Causal Inference"
+page-layout: full
+---
+
+This visual guides for causal inference series describes the estimation procedure for a mean difference in outcomes under a binary exposure for four estimation methods: g-computation, inverse probability weighting, one-step estimation (coming soon!), and targeted maximum likelihood estimation. The latter two methods are doubly robust and can be used with machine learning regressions such as the ensemble learning method superlearning.
+
+These guides are available on [Github](https://github.com/kathoffman/causal-inference-visual-guides) as pdfs and high resolution jpgs. They are free to use under a CC-BY license. Please provide attribution (Kat Hoffman).
+
+### G-computation
+
+::: grid
+::: {.g-col-12 .g-col-md-8}
+![](img/gcomp.jpeg)
+:::
+
+::: {.g-col-12 .g-col-md-8}
+### Inverse Probability Weighting
+
+![](img/ipw.jpeg)
+:::
+:::
+
+### Targeted Maximum Likelihood Estimation
+
+![](img/tmle.jpeg)
+
+### Superlearning
+
+![](img/superlearning.jpeg)

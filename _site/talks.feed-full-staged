@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>KHstats</title>
+<link>www.khstats.com/talks.html</link>
+<atom:link href="www.khstats.com/talks.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.0.36</generator>
+<lastBuildDate>Mon, 19 Sep 2022 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>{B4F502887207:/talks/steroids.html}</title>
+  <link>www.khstats.com/talks/steroids.html</link>
+  <description>{B4F502887207:/talks/steroids.html}</description>
+  <category>statistics</category>
+  <guid>www.khstats.com/talks/steroids.html</guid>
+  <pubDate>Mon, 19 Sep 2022 04:00:00 GMT</pubDate>
+  <media:content url="www.khstats.com/img/steroids-title.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/talks/swimmers.html}</title>
+  <link>www.khstats.com/talks/swimmers.html</link>
+  <description>{B4F502887207:/talks/swimmers.html}</description>
+  <category>programming</category>
+  <guid>www.khstats.com/talks/swimmers.html</guid>
+  <pubDate>Thu, 25 Aug 2022 04:00:00 GMT</pubDate>
+  <media:content url="www.khstats.com/img/graphics/rmed-screenshot.png" medium="image" type="image/png" height="78" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/talks/ensemble.html}</title>
+  <link>www.khstats.com/talks/ensemble.html</link>
+  <description>{B4F502887207:/talks/ensemble.html}</description>
+  <category>statistics</category>
+  <guid>www.khstats.com/talks/ensemble.html</guid>
+  <pubDate>Tue, 19 Jan 2021 05:00:00 GMT</pubDate>
+  <media:content url="www.khstats.com/img/wcm-cc-bagging.png" medium="image" type="image/png" height="90" width="144"/>
+</item>
+</channel>
+</rss>

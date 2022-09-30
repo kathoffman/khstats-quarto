@@ -11,7 +11,7 @@ editor: source
 ::: {.g-col-12 .g-col-md-8}
 # Katherine (Kat) Hoffman
 
-I am a biostatistician who is passionate about meaningful and reproducible medical research. Outside of my research collaborations, I enjoy creating educational materials about statistics, programming, and career-related topics. I post about new content on [Twitter](https://twitter.com/kat_hoffman_), and I am always open to hearing feedback via <a href = "mailto: kathoffman.stats@gmail.com">email</a>.
+I am a biostatistician who is passionate about meaningful and reproducible medical research. In addition to my research collaborations, I enjoy creating educational materials about statistics, programming, and career-related topics. I post about new content on [Twitter](https://twitter.com/kat_hoffman_), and I am always open to hearing feedback via <a href = "mailto: kathoffman.stats@gmail.com">email</a>.
 
 **Education:**<br> M.S. Biostatistics \| University of Michigan \| 2018<br> B.S. Biochemistry \| University of Detroit Mercy \| 2015
 

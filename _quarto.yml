@@ -3,7 +3,9 @@ project:
 
 website:
   title: "KHstats"
+  google-analytics: "UA-136820093-1"
   site-url: "www.khstats.com"
+  body-footer: <small><br>&copy; Katherine Hoffman 2022. Website created with Quarto -- source code on [Github](https://github.com/kathoffman/khstats-quarto).</small>
   navbar:
     background: "#BDB5D5"
     foreground: "#FFFFFF"
@@ -28,9 +30,9 @@ website:
       background: light
       contents:
         - text: "Statistics Methods"
-          file: pubs_methods.qmd
+          file: pubs/pubs_methods.qmd
         - text: "Clinical Applications"
-          file: pubs_applications.qmd
+          file: pubs/pubs_applications.qmd
         - text: "Google Scholar Profile"
           href: https://scholar.google.com/citations?user=73RvTUoAAAAJ&hl=en
     - id: art
@@ -42,9 +44,9 @@ website:
       foreground: light
       contents:
         - text: "Visual Guides for Causal Inference"
-          file: illustrations_viz.qmd
+          file: art/illustrations_viz.qmd
         - text: "Educational Illustrations"
-          file: illustrations_draw.qmd
+          file: art/illustrations_draw.qmd
 
 format:
   html:
