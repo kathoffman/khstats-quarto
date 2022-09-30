@@ -9,13 +9,13 @@ I enjoy creating educational illustrations and comics. These are all available o
 ::: {.g-col-12 .g-col-md-10}
 ### Identification vs. Estimation in Causal Inference
 
-![](img/ident-vs-est.png)
+![](../img/ident-vs-est.png)
 :::
 
 ::: {.g-col-12 .g-col-md-10}
 ### Static, Dynamic, and Modified Treatment Policies
 
-![](img/lmtp/mtp_summary.jpg)
+![](../img/lmtp/mtp_summary.jpg)
 :::
 :::
 
@@ -23,18 +23,18 @@ I enjoy creating educational illustrations and comics. These are all available o
 
 ::: grid
 ::: {.g-col-12 .g-col-md-4}
-![](img/climbing_comic.jpg)
+![](../img/climbing_comic.jpg)
 :::
 
 ::: {.g-col-12 .g-col-md-4}
-![](img/universe_comic.jpeg)
+![](../img/universe_comic.jpeg)
 :::
 
 ::: {.g-col-12 .g-col-md-4}
-![](img/positivity_comic.jpeg)
+![](../img/positivity_comic.jpeg)
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-![](img/underlying_distributions.jpeg)
+![](../img/underlying_distributions.jpeg)
 :::
 :::
