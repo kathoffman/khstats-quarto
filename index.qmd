@@ -11,13 +11,12 @@ editor: source
 ::: {.g-col-12 .g-col-md-8}
 # Katherine (Kat) Hoffman
 
-I am a biostatistician who is passionate about meaningful and reproducible medical research. I enjoy [writing](/blog), [speaking](/talks), and creating [illustrations](/illustrations) about statistics, programming, and career-related topics. I post new content on [Twitter](https://twitter.com/kat_hoffman_), and I am always open to hearing feedback via <a href = "mailto: kathoffman.stats@gmail.com">email</a>.
+I am a biostatistician who is passionate about meaningful and reproducible medical research. Outside of my research collaborations, I enjoy creating educational materials about statistics, programming, and career-related topics. I post about new content on [Twitter](https://twitter.com/kat_hoffman_), and I am always open to hearing feedback via <a href = "mailto: kathoffman.stats@gmail.com">email</a>.
 
 **Education:**<br> M.S. Biostatistics \| University of Michigan \| 2018<br> B.S. Biochemistry \| University of Detroit Mercy \| 2015
 
 **Experience:**<br>Research Biostatistician \| Weill Cornell Medicine \| 2018-present
 
-[\[CV\]](/static/KatherineHoffman_CV_Sept2022.pdf) [\[Google Scholar\]](https://scholar.google.com/citations?user=73RvTUoAAAAJ&hl=en)
 :::
 :::
 
@@ -28,8 +27,8 @@ I am a biostatistician who is passionate about meaningful and reproducible medic
 ### Statistics
 
 -   [An Introduction to Modified Treatment Policies](/blog/lmtp/lmtp.html)
--   [Building Statistical Intuition For Optimizing Individualized Treatment Rules](/blog/otr)
--   [\[SERIES\] An Introduction to Targeted Maximum Likelihood Estimation (TMLE)](/blog/tmle/tutorial.html)
+-   [Building Intuition For Optimizing Individualized Treatment Rules](/blog/otr)
+-   [An Introduction to Targeted Maximum Likelihood Estimation (TMLE)](/blog/tmle/tutorial.html)
 :::
 
 ::: {.g-col-12 .g-col-md-4}

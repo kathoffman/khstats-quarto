@@ -1,0 +1,11 @@
+---
+title: "Methods"
+page-layout: full
+editor: source
+csl: csl/academic-medicine.csl
+bibliography: pubs_methods.bib
+nocite: |
+  @*
+---
+
+# Statistical and Epidemiological Methods Manuscripts and Pre-prints

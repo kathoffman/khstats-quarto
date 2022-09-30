@@ -8,7 +8,6 @@
 
 <meta name="author" content="Katherine Hoffman">
 <meta name="dcterms.date" content="2022-08-10">
-<meta name="description" content="An introduction to optimizing Individualized Treatment Rules (ITRs) for applied scientists. We walk through the big picture goals then provide code for one way to estimate an ITR.">
 
 <title>KHstats - Building Statistical Intuition for Individualized Treatment Rules</title>
 <style>
@@ -144,11 +143,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li class="nav-item">
     <a class="nav-link" href="../../talks.html">Talks</a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../illustrations.html">Illustrations</a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-visuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Visuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-visuals">    
+        <li>
+    <a class="dropdown-item" href="../../illustrations_viz.html">
+ <span class="dropdown-text">Visual Guides for Causal Inference</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../illustrations_draw.html">
+ <span class="dropdown-text">Educational Illustrations</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="button" data-bs-toggle="dropdown" aria-expanded="false">Research</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-research">    
+        <li>
+    <a class="dropdown-item" href="../../pubs_methods.html">
+ <span class="dropdown-text">Statistics Methods</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../pubs_applications.html">
+ <span class="dropdown-text">Clinical Applications</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">
+ <span class="dropdown-text">Google Scholar Profile</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../publications.html">Publications</a>
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
@@ -171,16 +197,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Building Statistical Intuition for Individualized Treatment Rules</h1>
-                  <div>
-        <div class="description">
-          An introduction to optimizing Individualized Treatment Rules (ITRs) for applied scientists. We walk through the big picture goals then provide code for one way to estimate an ITR.
-        </div>
-      </div>
-                          <div class="quarto-categories">
+                                <div class="quarto-categories">
                 <div class="quarto-category">statistics</div>
-                <div class="quarto-category">code</div>
-                <div class="quarto-category">g-computation</div>
-                <div class="quarto-category">simulation</div>
               </div>
                   </div>
   </div>
@@ -339,6 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Further reading</h1>
 <p>These concepts are introductory, so any paper on “optimal treatment rules”, “individualized treatment rules”, or “heterogeneous treatment effects” should review the ideas discussed here in their introductions.</p>
 <ul>
+<li>This <a href="https://onlinelibrary.wiley.com/doi/10.1002/sim.9154">Hoogland et al.&nbsp;tutorial</a> gives an introduction and code for ITRs.</li>
 <li>This <a href="https://www.bios.unc.edu/~dzeng/Pub/EHROLearning1.pdf">Wang et al.&nbsp;paper</a> offers a clear mathematical introduction on ITRs.</li>
 <li><a href="https://www.youtube.com/watch?v=-0-RYxQ0zqM">Brady Neal’s causal course Youtube series</a> (Chapter 6.2) discusses Conditional Outcome Modeling (what the CATE estimator falls under) over a 10 minute video.</li>
 <li>This <a href="https://jamanetwork.com/journals/jama/fullarticle/2787131">Angus and Chang <em>JAMA</em> Statistics and Research Methods paper</a> gives an overview of a few ways to compute heterogeneous treatment effects for individualized treatment rules.</li>

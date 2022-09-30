@@ -1,0 +1,10 @@
+---
+title: "Two bibliography entries"
+output: html_document
+biblio-title: "TEST"
+bibliography:
+  - pubs_methods.bib
+  - pubs_applications.bib
+nocite: |
+  @*
+---

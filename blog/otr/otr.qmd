@@ -184,6 +184,7 @@ We can extend either of these ideas to longitudinal settings, studies with clust
 
 These concepts are introductory, so any paper on "optimal treatment rules", "individualized treatment rules", or "heterogeneous treatment effects" should review the ideas discussed here in their introductions.
 
+-   This [Hoogland et al. tutorial](https://onlinelibrary.wiley.com/doi/10.1002/sim.9154) gives an introduction and code for ITRs.
 -   This [Wang et al. paper](https://www.bios.unc.edu/~dzeng/Pub/EHROLearning1.pdf) offers a clear mathematical introduction on ITRs.
 -   [Brady Neal's causal course Youtube series](https://www.youtube.com/watch?v=-0-RYxQ0zqM) (Chapter 6.2) discusses Conditional Outcome Modeling (what the CATE estimator falls under) over a 10 minute video.
 -   This [Angus and Chang *JAMA* Statistics and Research Methods paper](https://jamanetwork.com/journals/jama/fullarticle/2787131) gives an overview of a few ways to compute heterogeneous treatment effects for individualized treatment rules.

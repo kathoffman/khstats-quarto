@@ -494,6 +494,7 @@ loaded via a namespace (and not attached):
 <h1>Further reading</h1>
 <p>These concepts are introductory, so any paper on “optimal treatment rules”, “individualized treatment rules”, or “heterogeneous treatment effects” should review the ideas discussed here in their introductions.</p>
 <ul>
+<li>This <a href="https://onlinelibrary.wiley.com/doi/10.1002/sim.9154">Hoogland et al.&nbsp;tutorial</a> gives an introduction and code for ITRs.</li>
 <li>This <a href="https://www.bios.unc.edu/~dzeng/Pub/EHROLearning1.pdf">Wang et al.&nbsp;paper</a> offers a clear mathematical introduction on ITRs.</li>
 <li><a href="https://www.youtube.com/watch?v=-0-RYxQ0zqM">Brady Neal’s causal course Youtube series</a> (Chapter 6.2) discusses Conditional Outcome Modeling (what the CATE estimator falls under) over a 10 minute video.</li>
 <li>This <a href="https://jamanetwork.com/journals/jama/fullarticle/2787131">Angus and Chang <em>JAMA</em> Statistics and Research Methods paper</a> gives an overview of a few ways to compute heterogeneous treatment effects for individualized treatment rules.</li>
