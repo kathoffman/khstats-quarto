@@ -8,9 +8,9 @@ nocite: |
   @*
 ---
 
-The majority of my research collaborations to date are with researchers on the Pulmonary and Critical Care Medicine team at Weill Cornell Medicine. I also have substantial experience working on applications within neurology (cognitive decline/brain volumes), neuroepigenetics (effects of sugar consumption), canine genomics, and associations with air pollution and kidney disease.
+The majority of my research collaborations to date are with researchers on the Pulmonary and Critical Care Medicine team at Weill Cornell Medicine (WCM). I also collaborated on several short-term contracts through WCM's Clinical Translational Science Center. Other long-term research experiences includes applications within neurology (cognitive decline/brain volumes), neuroepigenetics (effects of sugar consumption), canine genomics, and associations with air pollution and kidney disease.
 
-This is a selected list of clinical application manuscripts I've co-authored. A full list of published manuscripts and papers-under-review is available on my [CV](/static/KatherineHoffman_CV_Sept2022.pdf).
+This is a selected list of clinical application manuscripts I've co-authored. A full list of published manuscripts and papers-under-review is available on my [CV](/static/KatherineHoffman_CV_Oct2022.pdf).
 
 *Indicates authors contributed equally to the work.
 
