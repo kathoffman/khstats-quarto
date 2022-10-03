@@ -21,7 +21,7 @@ I am a biostatistician who is passionate about meaningful and reproducible medic
 :::
 :::
 
-## Featured blog posts
+## Featured [blog](/blog.html) posts
 
 ::: grid
 ::: {.g-col-12 .g-col-md-4}

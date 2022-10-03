@@ -1,5 +1,8 @@
 /* css styles */
 
+$primary: #a0abc7 !default;
+$secondary:     #b0c4de !default;
+
 /*-- scss:defaults --*/
 
 // Nav bar
@@ -10,7 +13,7 @@
 }
 
 .dropdown-text {
-  color: "#FFFFFF";
+  color: "#b0c4de";
 }
 
 
@@ -54,8 +57,6 @@ color: #f8f9fa !important;
  -webkit-transition: all 0.2s ease-in-out;
  -moz-transition: all 0.2s ease-in-out;
  transition: all 0.2s ease-in-out; }
-
-
 
 
 //** Global textual link color.

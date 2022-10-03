@@ -7,7 +7,6 @@ website:
   google-analytics: "UA-136820093-1"
   site-url: "www.khstats.com"
   navbar:
-    background: "#a0abc7"
     left:
       - blog.qmd
       - talks.qmd
@@ -27,7 +26,7 @@ website:
   sidebar:
     - id: research
       collapse-level: 1
-      foreground: secondary
+      foreground: dark
       title: "Publications"
       style: "docked"
       background: light
