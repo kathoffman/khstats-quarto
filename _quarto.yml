@@ -3,29 +3,32 @@ project:
 
 website:
   title: "KHstats"
+  page-navigation: true
   google-analytics: "UA-136820093-1"
   site-url: "www.khstats.com"
-  body-footer: <small><br>&copy; Katherine Hoffman 2022. Website created with Quarto -- source code on [Github](https://github.com/kathoffman/khstats-quarto).</small>
   navbar:
-    background: "#BDB5D5"
-    foreground: "#FFFFFF"
-    right:
+    background: "#a0abc7"
+    left:
       - blog.qmd
       - talks.qmd
       - sidebar:art
       - sidebar:research
-      - text: CV
-        file: /static/KatherineHoffman_CV_Sept2022.pdf
-      - icon: github
-        href: https://github.com/kathoffman
+    right:
       - icon: twitter
         href: https://twitter.com/kat_hoffman_
+      - icon: github
+        href: https://github.com/kathoffman
+      - text: CV
+        file: /static/KatherineHoffman_CV_Sept2022.pdf
+      - icon: envelope
+        href: mailto:kathoffman.stats@gmail.com
 
 
   sidebar:
     - id: research
       collapse-level: 1
-      title: "Research"
+      foreground: secondary
+      title: "Publications"
       style: "docked"
       background: light
       contents:
@@ -37,15 +40,13 @@ website:
           href: https://scholar.google.com/citations?user=73RvTUoAAAAJ&hl=en
     - id: art
       collapse-level: 1
-      title: "Visuals"
+      title: "Illustrations"
       subtitle: "test"
       style: "docked"
-      background: dark
-      foreground: light
       contents:
         - text: "Visual Guides for Causal Inference"
           file: art/illustrations_viz.qmd
-        - text: "Educational Illustrations"
+        - text: "Educational Drawings and Comics"
           file: art/illustrations_draw.qmd
 
 format:

@@ -8,8 +8,8 @@ nocite: |
   @*
 ---
 
-This is a selected list of clinical application manuscripts. A full list of manuscripts and pre-prints is available on my [CV](/static/KatherineHoffman_CV_Sept2022.pdf).
+This is a selected list of clinical application publications. A full list of published manuscripts and papers-under-review is available on my [CV](/static/KatherineHoffman_CV_Sept2022.pdf).
 
 *Indicates authors contributed equally to the work.
 
-# Select Clinical Application Manuscripts
+# Selected Clinical Application Publications

@@ -110,7 +110,7 @@ I close the report; I will continue working on this analysis tomorrow.
 
 **5:00PM** - The doctors arrive and, after introductions, we talk about the current stage of the project and what the goals are. We discuss the timing of starting chart reviews of patients, how we will upload the information to a database efficiently, and what might be the best way to condense the highly detailed genetics data into useful information for an analysis. Our solution will likely involve a series of iterative searches through the columns containing genetic information.
 
-<img src="/img/ditl/data_dict.png"/>
+![](/img/ditl/data_dict.png")
 
 *The start of a database I am helping researchers build to collect data for their study. This is not my favorite part of my job, but it is a crucial step for good scientific research.*
 

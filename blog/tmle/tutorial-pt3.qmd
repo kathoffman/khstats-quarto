@@ -18,12 +18,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-The third and final post in a three-part series to help beginners and/or visual learners understand Targeted Maximum Likelihood Estimation (TMLE). In this section, we discuss more statistical properties of TMLE, offer a brief explanation for the theory behind TMLE, and provide resources for learning more.
-
-<!--more-->
-
-**December 6, 2020.**
-
 > The is the third and final post in a three-part series to help beginners and/or visual learners understand Targeted Maximum Likelihood Estimation (TMLE). In this section, I discuss more [**statistical properties of TMLE**](#properties-of-tmle), offer a brief [**explanation for the theory behind TMLE**](#why-does-tmle-work), and provide [**resources for learning more**](#resources-to-learn-more).
 
 ------------------------------------------------------------------------

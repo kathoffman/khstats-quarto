@@ -32,7 +32,13 @@
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(gt)</span>
 <span id="cb1-3"></span>
-<span id="cb1-4"><span class="co" style="color: #5E5E5E;"># Importres</span></span></code></pre></div>
+<span id="cb1-4">res_log <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_csv</span>(<span class="st" style="color: #20794D;">"https://raw.githubusercontent.com/kathoffman/steroids-trial-emulation/main/output/res_log.csv"</span>)</span>
+<span id="cb1-5">res <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_csv</span>(<span class="st" style="color: #20794D;">"https://raw.githubusercontent.com/kathoffman/steroids-trial-emulation/main/output/res.csv"</span>)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">res <span class="ot" style="color: #003B4F;">&lt;-</span> res_log <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb1-8">      <span class="fu" style="color: #4758AB;">rename_with</span>(<span class="sc" style="color: #5E5E5E;">~</span><span class="fu" style="color: #4758AB;">str_c</span>(<span class="st" style="color: #20794D;">"log."</span>, .), estimate<span class="sc" style="color: #5E5E5E;">:</span>conf.high) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb1-9">  <span class="fu" style="color: #4758AB;">select</span>(<span class="sc" style="color: #5E5E5E;">-</span>p.value) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb1-10">  <span class="fu" style="color: #4758AB;">full_join</span>(res)</span></code></pre></div>
 <p>The <code>res</code>ults object contains:</p>
 <ul>
 <li><code>model</code>: the model label A-J</li>
@@ -63,73 +69,55 @@ $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-
 <p>We will first work on making the standard “forest plot”, or the middle section of the figure. This section uses points and lines to indicate the estimate and 95% confidence interval around the estimate.</p>
 <p>In my experience, journal editors sometimes ask for these estimates to look a certain way during the revision process. For this graph, the journal editor told me that it was “journal standard to plot relative measures (ratio data), such as ORs, on log scales to preserve the correct spatial relationship between values.” So, I’m going to be visually showing the log hazard ratio, and annotating later with the hazard ratio.</p>
 <p>Let’s look at how we can plot the log hazard ratio estimates. We first want the models to show in alphabetical order from the top to the bottom of the graph.</p>
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb4-2">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(model))) <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb4-3">  <span class="fu" style="color: #4758AB;">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">p <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb4-2">  res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb4-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(model))) <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb4-4">  <span class="fu" style="color: #4758AB;">theme_classic</span>()</span>
+<span id="cb4-5">p</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Then we show all of our information (point estimate and 95% confidence interval) on the graph.</p>
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb5-2">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(model))) <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb5-3">  <span class="fu" style="color: #4758AB;">theme_classic</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb5-4">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>log.estimate), <span class="at" style="color: #657422;">shape=</span><span class="dv" style="color: #AD0000;">15</span>, <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">3</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb5-5">  <span class="fu" style="color: #4758AB;">geom_linerange</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin=</span>log.conf.low, <span class="at" style="color: #657422;">xmax=</span>log.conf.high)) </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">p <span class="ot" style="color: #003B4F;">&lt;-</span> p <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-2">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>log.estimate), <span class="at" style="color: #657422;">shape=</span><span class="dv" style="color: #AD0000;">15</span>, <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">3</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-3">  <span class="fu" style="color: #4758AB;">geom_linerange</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin=</span>log.conf.low, <span class="at" style="color: #657422;">xmax=</span>log.conf.high)) </span>
+<span id="cb5-4">p</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb6-2">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(model))) <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb6-3">  <span class="fu" style="color: #4758AB;">theme_classic</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-4">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>log.estimate), <span class="at" style="color: #657422;">shape=</span><span class="dv" style="color: #AD0000;">15</span>, <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">3</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-5">  <span class="fu" style="color: #4758AB;">geom_linerange</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin=</span>log.conf.low, <span class="at" style="color: #657422;">xmax=</span>log.conf.high)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-6">  <span class="fu" style="color: #4758AB;">geom_vline</span>(<span class="at" style="color: #657422;">xintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">linetype=</span><span class="st" style="color: #20794D;">"dashed"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-7">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">"Log Hazard Ratio"</span>, <span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">""</span>) </span></code></pre></div>
+<p>We can now add a vertical line at 0 with <code>geom_vline</code> and rename the x axis.</p>
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">p <span class="ot" style="color: #003B4F;">&lt;-</span> p <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;">geom_vline</span>(<span class="at" style="color: #657422;">xintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">linetype=</span><span class="st" style="color: #20794D;">"dashed"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb6-3">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">"Log Hazard Ratio"</span>, <span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">""</span>)</span>
+<span id="cb6-4">p</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Next we’ll use <code>coord_cartesian()</code> which will allow us to zoom to the exact height and width we want. I want to zoom out a bit to leave myself room for the text “Corticosteroids protective” vs.&nbsp;“Corticosteroids harmful” so I’m going to set my limits to <code>y=c(1,11)</code>. Each of the models (10 in total) is one unit, so this will give me one extra unit of space at the top of the plot. The x-limit I played around with a bit based upon the range of my log hazard ratios, and I ultimately arrived at <code>xlim=c(-1, .5)</code>.</p>
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb7-2">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(model))) <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb7-3">  <span class="fu" style="color: #4758AB;">theme_classic</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-4">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>log.estimate), <span class="at" style="color: #657422;">shape=</span><span class="dv" style="color: #AD0000;">15</span>, <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">3</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-5">  <span class="fu" style="color: #4758AB;">geom_linerange</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin=</span>log.conf.low, <span class="at" style="color: #657422;">xmax=</span>log.conf.high)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-6">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">"Log Hazard Ratio"</span>, <span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">""</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-7">  <span class="fu" style="color: #4758AB;">geom_vline</span>(<span class="at" style="color: #657422;">xintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">linetype=</span><span class="st" style="color: #20794D;">"dashed"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-8">  <span class="fu" style="color: #4758AB;">coord_cartesian</span>(<span class="at" style="color: #657422;">ylim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">11</span>), <span class="at" style="color: #657422;">xlim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>, .<span class="dv" style="color: #AD0000;">5</span>))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">p <span class="ot" style="color: #003B4F;">&lt;-</span> p <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-2">  <span class="fu" style="color: #4758AB;">coord_cartesian</span>(<span class="at" style="color: #657422;">ylim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">11</span>), <span class="at" style="color: #657422;">xlim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>, .<span class="dv" style="color: #AD0000;">5</span>))</span>
+<span id="cb7-3">p</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Now we have space to add our text about protective vs.&nbsp;harmful using the <code>annotate</code> layer.</p>
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb8-2">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(model))) <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb8-3">  <span class="fu" style="color: #4758AB;">theme_classic</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-4">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>log.estimate), <span class="at" style="color: #657422;">shape=</span><span class="dv" style="color: #AD0000;">15</span>, <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">3</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-5">  <span class="fu" style="color: #4758AB;">geom_linerange</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin=</span>log.conf.low, <span class="at" style="color: #657422;">xmax=</span>log.conf.high)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-6">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">"Log Hazard Ratio"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-7">  <span class="fu" style="color: #4758AB;">geom_vline</span>(<span class="at" style="color: #657422;">xintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">linetype=</span><span class="st" style="color: #20794D;">"dashed"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-8">  <span class="fu" style="color: #4758AB;">coord_cartesian</span>(<span class="at" style="color: #657422;">ylim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">11</span>), <span class="at" style="color: #657422;">xlim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>, .<span class="dv" style="color: #AD0000;">5</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-9">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> <span class="sc" style="color: #5E5E5E;">-</span>.<span class="dv" style="color: #AD0000;">32</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids protective"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-10">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> .<span class="dv" style="color: #AD0000;">3</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids harmful"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">p <span class="ot" style="color: #003B4F;">&lt;-</span> p <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-2">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> <span class="sc" style="color: #5E5E5E;">-</span>.<span class="dv" style="color: #AD0000;">32</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids protective"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-3">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> .<span class="dv" style="color: #AD0000;">3</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids harmful"</span>)</span>
+<span id="cb8-4">p</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Finally, we will remove everything on the y axis, because this plot is going to align with the next plot we make, showing the hazard ratios.</p>
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">p_mid <span class="ot" style="color: #003B4F;">&lt;-</span></span>
-<span id="cb9-2">  res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb9-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(model))) <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb9-4">  <span class="fu" style="color: #4758AB;">theme_classic</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb9-5">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>log.estimate), <span class="at" style="color: #657422;">shape=</span><span class="dv" style="color: #AD0000;">15</span>, <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">3</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb9-6">  <span class="fu" style="color: #4758AB;">geom_linerange</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin=</span>log.conf.low, <span class="at" style="color: #657422;">xmax=</span>log.conf.high)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb9-7">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">"Log Hazard Ratio"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb9-8">  <span class="fu" style="color: #4758AB;">geom_vline</span>(<span class="at" style="color: #657422;">xintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">linetype=</span><span class="st" style="color: #20794D;">"dashed"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb9-9">  <span class="fu" style="color: #4758AB;">coord_cartesian</span>(<span class="at" style="color: #657422;">ylim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">11</span>), <span class="at" style="color: #657422;">xlim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>, .<span class="dv" style="color: #AD0000;">5</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb9-10">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> <span class="sc" style="color: #5E5E5E;">-</span>.<span class="dv" style="color: #AD0000;">32</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids protective"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb9-11">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> .<span class="dv" style="color: #AD0000;">3</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids harmful"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb9-12">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">axis.line.y =</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
-<span id="cb9-13">        <span class="at" style="color: #657422;">axis.ticks.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
-<span id="cb9-14">        <span class="at" style="color: #657422;">axis.text.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
-<span id="cb9-15">        <span class="at" style="color: #657422;">axis.title.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">p_mid <span class="ot" style="color: #003B4F;">&lt;-</span> p <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb9-2">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">axis.line.y =</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
+<span id="cb9-3">        <span class="at" style="color: #657422;">axis.ticks.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
+<span id="cb9-4">        <span class="at" style="color: #657422;">axis.text.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
+<span id="cb9-5">        <span class="at" style="color: #657422;">axis.title.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>())</span>
+<span id="cb9-6">p</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
 <p>We’ll save this <code>ggplot</code> object as <code>p_mid</code> and move on to the next section of the figure.</p>
 </section>
 <section id="step-2-create-estimate-annotations-plot" class="level1">
@@ -190,129 +178,158 @@ $ p.value       &lt;chr&gt; "&lt;0.001", "0.78", "0.65", "0.61", "0.07", "0.045"
 $ estimate_lab  &lt;chr&gt; "0.50 (0.41-0.62)", "0.95 (0.66-1.37)", "0.92 (0.63-1.33…</code></pre>
 </div>
 </div>
+<p>Creating the hazard ratios isn’t very difficult. We’ll take the modified data frame and again organize the model order on the y axis. Note that this time, I modified model within the data frame, which we could have done for the middle plot instead of modifying it within the <code>aes</code>thetic argument.</p>
 <div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">p_left <span class="ot" style="color: #003B4F;">&lt;-</span></span>
 <span id="cb12-2">  res_plot  <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb12-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> model)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb12-4">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">label =</span> model), <span class="at" style="color: #657422;">hjust =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">fontface =</span> <span class="st" style="color: #20794D;">"bold"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb12-5">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
-<span id="cb12-6">    <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">label =</span> estimate_lab),</span>
-<span id="cb12-7">    <span class="at" style="color: #657422;">hjust =</span> <span class="dv" style="color: #AD0000;">0</span>,</span>
-<span id="cb12-8">    <span class="at" style="color: #657422;">fontface =</span> <span class="fu" style="color: #4758AB;">ifelse</span>(res_plot<span class="sc" style="color: #5E5E5E;">$</span>estimate_lab <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"Hazard Ratio (95% CI)"</span>, <span class="st" style="color: #20794D;">"bold"</span>, <span class="st" style="color: #20794D;">"plain"</span>)</span>
-<span id="cb12-9">  ) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb12-10">  <span class="fu" style="color: #4758AB;">theme_void</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb12-11">  <span class="fu" style="color: #4758AB;">coord_cartesian</span>(<span class="at" style="color: #657422;">xlim =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>, <span class="dv" style="color: #AD0000;">4</span>))</span>
-<span id="cb12-12"></span>
-<span id="cb12-13">p_left</span></code></pre></div>
+<span id="cb12-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> model))</span>
+<span id="cb12-4">p_left</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>Next, we will add the model as text (instead of as a label on the y axis) using <code>geom_text</code>.</p>
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">p_left <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb13-2">  p_left <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb13-3">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">label =</span> model), <span class="at" style="color: #657422;">hjust =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">fontface =</span> <span class="st" style="color: #20794D;">"bold"</span>)</span>
+<span id="cb13-4">p_left</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>We can use the same idea to add the hazard ratios and their confidence intervals.</p>
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">p_left <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb14-2">  p_left <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb14-3">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
+<span id="cb14-4">    <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">label =</span> estimate_lab),</span>
+<span id="cb14-5">    <span class="at" style="color: #657422;">hjust =</span> <span class="dv" style="color: #AD0000;">0</span>,</span>
+<span id="cb14-6">    <span class="at" style="color: #657422;">fontface =</span> <span class="fu" style="color: #4758AB;">ifelse</span>(res_plot<span class="sc" style="color: #5E5E5E;">$</span>estimate_lab <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"Hazard Ratio (95% CI)"</span>, <span class="st" style="color: #20794D;">"bold"</span>, <span class="st" style="color: #20794D;">"plain"</span>)</span>
+<span id="cb14-7">  )</span>
+<span id="cb14-8"></span>
+<span id="cb14-9">p_left</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>Finally we can remove the background and edit the sizing so that this left size of the plot will match up neatly with the middle and right sides of the plot.</p>
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">p_left <span class="ot" style="color: #003B4F;">&lt;-</span></span>
+<span id="cb15-2">  p_left <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb15-3">  <span class="fu" style="color: #4758AB;">theme_void</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb15-4">  <span class="fu" style="color: #4758AB;">coord_cartesian</span>(<span class="at" style="color: #657422;">xlim =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>, <span class="dv" style="color: #AD0000;">4</span>))</span>
+<span id="cb15-5"></span>
+<span id="cb15-6">p_left</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </section>
 <section id="step-3-create-p-value-annotations" class="level1">
 <h1>Step 3: Create p-value annotations</h1>
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="co" style="color: #5E5E5E;"># right side of plot - pvalues</span></span>
-<span id="cb13-2">p_right <span class="ot" style="color: #003B4F;">&lt;-</span></span>
-<span id="cb13-3">  res_plot  <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb13-4">  <span class="fu" style="color: #4758AB;">ggplot</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb13-5">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
-<span id="cb13-6">    <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">y =</span> model, <span class="at" style="color: #657422;">label =</span> p.value),</span>
-<span id="cb13-7">    <span class="at" style="color: #657422;">hjust =</span> <span class="dv" style="color: #AD0000;">0</span>,</span>
-<span id="cb13-8">    <span class="at" style="color: #657422;">fontface =</span> <span class="fu" style="color: #4758AB;">ifelse</span>(res_plot<span class="sc" style="color: #5E5E5E;">$</span>p.value <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"p-value"</span>, <span class="st" style="color: #20794D;">"bold"</span>, <span class="st" style="color: #20794D;">"plain"</span>)</span>
-<span id="cb13-9">  ) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb13-10">  <span class="fu" style="color: #4758AB;">theme_void</span>() </span>
-<span id="cb13-11"></span>
-<span id="cb13-12">p_right</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="co" style="color: #5E5E5E;"># right side of plot - pvalues</span></span>
+<span id="cb16-2">p_right <span class="ot" style="color: #003B4F;">&lt;-</span></span>
+<span id="cb16-3">  res_plot  <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb16-4">  <span class="fu" style="color: #4758AB;">ggplot</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb16-5">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
+<span id="cb16-6">    <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">y =</span> model, <span class="at" style="color: #657422;">label =</span> p.value),</span>
+<span id="cb16-7">    <span class="at" style="color: #657422;">hjust =</span> <span class="dv" style="color: #AD0000;">0</span>,</span>
+<span id="cb16-8">    <span class="at" style="color: #657422;">fontface =</span> <span class="fu" style="color: #4758AB;">ifelse</span>(res_plot<span class="sc" style="color: #5E5E5E;">$</span>p.value <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"p-value"</span>, <span class="st" style="color: #20794D;">"bold"</span>, <span class="st" style="color: #20794D;">"plain"</span>)</span>
+<span id="cb16-9">  ) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb16-10">  <span class="fu" style="color: #4758AB;">theme_void</span>() </span>
+<span id="cb16-11"></span>
+<span id="cb16-12">p_right</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </section>
 <section id="step-4-put-the-three-plots-together-with-patchwork" class="level1">
 <h1>Step 4: Put the three plots together with patchwork</h1>
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">layout <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
-<span id="cb14-2">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">3</span>),</span>
-<span id="cb14-3">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">4</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">9</span>),</span>
-<span id="cb14-4">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">9</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">11</span>)</span>
-<span id="cb14-5">)</span>
-<span id="cb14-6"><span class="co" style="color: #5E5E5E;"># final plot arrangement</span></span>
-<span id="cb14-7">p_left <span class="sc" style="color: #5E5E5E;">+</span> p_mid <span class="sc" style="color: #5E5E5E;">+</span> p_right <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">plot_layout</span>(<span class="at" style="color: #657422;">design =</span> layout)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">layout <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
+<span id="cb17-2">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">3</span>),</span>
+<span id="cb17-3">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">4</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">9</span>),</span>
+<span id="cb17-4">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">9</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">11</span>)</span>
+<span id="cb17-5">)</span>
+<span id="cb17-6"><span class="co" style="color: #5E5E5E;"># final plot arrangement</span></span>
+<span id="cb17-7">p_left <span class="sc" style="color: #5E5E5E;">+</span> p_mid <span class="sc" style="color: #5E5E5E;">+</span> p_right <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">plot_layout</span>(<span class="at" style="color: #657422;">design =</span> layout)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="864"></p>
+<p><img src="www.khstats.com/blog/forest-plots/index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="864"></p>
 </div>
 </section>
 <section id="step-5-export-your-plot" class="level1">
 <h1>Step 5: Export your plot!</h1>
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="fu" style="color: #4758AB;">ggsave</span>(<span class="st" style="color: #20794D;">"forest-plot.eps"</span>, <span class="at" style="color: #657422;">width=</span><span class="dv" style="color: #AD0000;">9</span>, <span class="at" style="color: #657422;">height=</span><span class="dv" style="color: #AD0000;">4</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><span class="fu" style="color: #4758AB;">ggsave</span>(<span class="st" style="color: #20794D;">"forest-plot.eps"</span>, <span class="at" style="color: #657422;">width=</span><span class="dv" style="color: #AD0000;">9</span>, <span class="at" style="color: #657422;">height=</span><span class="dv" style="color: #AD0000;">4</span>)</span></code></pre></div>
 </section>
 <section id="just-the-code" class="level1">
 <h1>Just the code</h1>
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="do" style="color: #5E5E5E;
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="do" style="color: #5E5E5E;
 font-style: italic;">## load up the packages we will need: </span></span>
-<span id="cb16-2"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
-<span id="cb16-3"><span class="fu" style="color: #4758AB;">library</span>(gt)</span>
-<span id="cb16-4"><span class="fu" style="color: #4758AB;">library</span>(patchwork)</span>
-<span id="cb16-5"><span class="do" style="color: #5E5E5E;
+<span id="cb19-2"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb19-3"><span class="fu" style="color: #4758AB;">library</span>(gt)</span>
+<span id="cb19-4"><span class="fu" style="color: #4758AB;">library</span>(patchwork)</span>
+<span id="cb19-5"><span class="do" style="color: #5E5E5E;
 font-style: italic;">## ---------------------------</span></span>
-<span id="cb16-6"><span class="do" style="color: #5E5E5E;
+<span id="cb19-6"><span class="do" style="color: #5E5E5E;
 font-style: italic;">## load data</span></span>
-<span id="cb16-7"><span class="co" style="color: #5E5E5E;"># load in results generated from Cox PH hazards models</span></span>
-<span id="cb16-8"></span>
-<span id="cb16-9"><span class="do" style="color: #5E5E5E;
+<span id="cb19-7"><span class="co" style="color: #5E5E5E;"># load in results generated from Cox PH hazards models</span></span>
+<span id="cb19-8">res_log <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_csv</span>(<span class="st" style="color: #20794D;">"model-first-results-log.csv"</span>)</span>
+<span id="cb19-9">res <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_csv</span>(<span class="st" style="color: #20794D;">"model-first-results.csv"</span>)</span>
+<span id="cb19-10">res <span class="ot" style="color: #003B4F;">&lt;-</span> res_log <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb19-11">      <span class="fu" style="color: #4758AB;">rename_with</span>(<span class="sc" style="color: #5E5E5E;">~</span><span class="fu" style="color: #4758AB;">str_c</span>(<span class="st" style="color: #20794D;">"log."</span>, .), estimate<span class="sc" style="color: #5E5E5E;">:</span>conf.high) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb19-12">  <span class="fu" style="color: #4758AB;">select</span>(<span class="sc" style="color: #5E5E5E;">-</span>p.value) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb19-13">  <span class="fu" style="color: #4758AB;">full_join</span>(res)</span>
+<span id="cb19-14"></span>
+<span id="cb19-15"><span class="do" style="color: #5E5E5E;
 font-style: italic;">## plotting</span></span>
-<span id="cb16-10"><span class="do" style="color: #5E5E5E;
+<span id="cb19-16"><span class="do" style="color: #5E5E5E;
 font-style: italic;">## ---------------------------</span></span>
-<span id="cb16-11"><span class="co" style="color: #5E5E5E;"># create forest plot on log scale (middle section of figure)</span></span>
-<span id="cb16-12">p_mid <span class="ot" style="color: #003B4F;">&lt;-</span></span>
-<span id="cb16-13">  res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb16-14">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(model))) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-15">  <span class="fu" style="color: #4758AB;">theme_classic</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-16">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>log.estimate), <span class="at" style="color: #657422;">shape=</span><span class="dv" style="color: #AD0000;">15</span>, <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">3</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-17">  <span class="fu" style="color: #4758AB;">geom_linerange</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin=</span>log.conf.low, <span class="at" style="color: #657422;">xmax=</span>log.conf.high)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-18">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">"Log Hazard Ratio"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-19">  <span class="fu" style="color: #4758AB;">coord_cartesian</span>(<span class="at" style="color: #657422;">ylim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">11</span>), <span class="at" style="color: #657422;">xlim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>, .<span class="dv" style="color: #AD0000;">5</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-20">  <span class="fu" style="color: #4758AB;">geom_vline</span>(<span class="at" style="color: #657422;">xintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">linetype=</span><span class="st" style="color: #20794D;">"dashed"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-21">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> <span class="sc" style="color: #5E5E5E;">-</span>.<span class="dv" style="color: #AD0000;">32</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids protective"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-22">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> .<span class="dv" style="color: #AD0000;">3</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids harmful"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-23">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">axis.line.y =</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
-<span id="cb16-24">        <span class="at" style="color: #657422;">axis.ticks.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
-<span id="cb16-25">        <span class="at" style="color: #657422;">axis.text.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
-<span id="cb16-26">        <span class="at" style="color: #657422;">axis.title.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>())</span>
-<span id="cb16-27"><span class="co" style="color: #5E5E5E;"># wrangle results into pre-plotting table form</span></span>
-<span id="cb16-28">res_plot <span class="ot" style="color: #003B4F;">&lt;-</span> res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb16-29">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="fu" style="color: #4758AB;">across</span>(<span class="fu" style="color: #4758AB;">c</span>(estimate, conf.low, conf.high), <span class="sc" style="color: #5E5E5E;">~</span><span class="fu" style="color: #4758AB;">str_pad</span>(<span class="fu" style="color: #4758AB;">round</span>(.x, <span class="dv" style="color: #AD0000;">2</span>), <span class="at" style="color: #657422;">width=</span><span class="dv" style="color: #AD0000;">4</span>, <span class="at" style="color: #657422;">pad=</span><span class="st" style="color: #20794D;">"0"</span>, <span class="at" style="color: #657422;">side=</span><span class="st" style="color: #20794D;">"right"</span>)),</span>
-<span id="cb16-30">         <span class="at" style="color: #657422;">estimate_lab =</span> <span class="fu" style="color: #4758AB;">paste0</span>(estimate, <span class="st" style="color: #20794D;">" ("</span>, conf.low, <span class="st" style="color: #20794D;">"-"</span>, conf.high,<span class="st" style="color: #20794D;">")"</span>),</span>
-<span id="cb16-31">         <span class="at" style="color: #657422;">color =</span> <span class="fu" style="color: #4758AB;">rep</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"gray"</span>,<span class="st" style="color: #20794D;">"white"</span>),<span class="dv" style="color: #AD0000;">5</span>)) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb16-32">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">p.value =</span> <span class="fu" style="color: #4758AB;">case_when</span>(p.value <span class="sc" style="color: #5E5E5E;">&lt;</span> .<span class="dv" style="color: #AD0000;">01</span> <span class="sc" style="color: #5E5E5E;">~</span> <span class="st" style="color: #20794D;">"&lt;0.01"</span>, <span class="cn" style="color: #8f5902;">TRUE</span> <span class="sc" style="color: #5E5E5E;">~</span> <span class="fu" style="color: #4758AB;">str_pad</span>(<span class="fu" style="color: #4758AB;">as.character</span>(<span class="fu" style="color: #4758AB;">round</span>(p.value, <span class="dv" style="color: #AD0000;">2</span>)),<span class="at" style="color: #657422;">width=</span><span class="dv" style="color: #AD0000;">4</span>,<span class="at" style="color: #657422;">pad=</span><span class="st" style="color: #20794D;">"0"</span>,<span class="at" style="color: #657422;">side=</span><span class="st" style="color: #20794D;">"right"</span>))) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb16-33">  <span class="fu" style="color: #4758AB;">bind_rows</span>(<span class="fu" style="color: #4758AB;">data.frame</span>(<span class="at" style="color: #657422;">model =</span> <span class="st" style="color: #20794D;">"Model"</span>, <span class="at" style="color: #657422;">estimate_lab =</span> <span class="st" style="color: #20794D;">"Hazard Ratio (95% CI)"</span>, <span class="at" style="color: #657422;">conf.low =</span> <span class="st" style="color: #20794D;">""</span>, <span class="at" style="color: #657422;">conf.high=</span><span class="st" style="color: #20794D;">""</span>,<span class="at" style="color: #657422;">p.value=</span><span class="st" style="color: #20794D;">"p-value"</span>)) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb16-34">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">model =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(<span class="fu" style="color: #4758AB;">fct_relevel</span>(model, <span class="st" style="color: #20794D;">"Model"</span>)))</span>
-<span id="cb16-35"><span class="co" style="color: #5E5E5E;"># left side of plot - hazard ratios</span></span>
-<span id="cb16-36">p_left <span class="ot" style="color: #003B4F;">&lt;-</span></span>
-<span id="cb16-37">  res_plot  <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb16-38">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> model)) <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb16-39">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span><span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">label=</span>model), <span class="at" style="color: #657422;">hjust=</span><span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">fontface =</span> <span class="st" style="color: #20794D;">"bold"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-40">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span><span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">label=</span>estimate_lab), <span class="at" style="color: #657422;">hjust=</span><span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">fontface =</span> <span class="fu" style="color: #4758AB;">ifelse</span>(res_plot<span class="sc" style="color: #5E5E5E;">$</span>estimate_lab <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"Hazard Ratio (95% CI)"</span>, <span class="st" style="color: #20794D;">"bold"</span>, <span class="st" style="color: #20794D;">"plain"</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-41">  <span class="fu" style="color: #4758AB;">theme_void</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-42">  <span class="fu" style="color: #4758AB;">coord_cartesian</span>(<span class="at" style="color: #657422;">xlim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>,<span class="dv" style="color: #AD0000;">4</span>))</span>
-<span id="cb16-43"><span class="co" style="color: #5E5E5E;"># right side of plot - pvalues</span></span>
-<span id="cb16-44">p_right <span class="ot" style="color: #003B4F;">&lt;-</span></span>
-<span id="cb16-45">  res_plot  <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb16-46">  <span class="fu" style="color: #4758AB;">ggplot</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-47">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span><span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">y=</span>model, <span class="at" style="color: #657422;">label=</span>p.value), <span class="at" style="color: #657422;">hjust=</span><span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">fontface =</span> <span class="fu" style="color: #4758AB;">ifelse</span>(res_plot<span class="sc" style="color: #5E5E5E;">$</span>p.value <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"p-value"</span>, <span class="st" style="color: #20794D;">"bold"</span>, <span class="st" style="color: #20794D;">"plain"</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-48">  <span class="fu" style="color: #4758AB;">theme_void</span>() </span>
-<span id="cb16-49"><span class="co" style="color: #5E5E5E;"># layout design (top, left, bottom, right)</span></span>
-<span id="cb16-50">layout <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
-<span id="cb16-51">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">3</span>),</span>
-<span id="cb16-52">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">4</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">9</span>),</span>
-<span id="cb16-53">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">9</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">11</span>)</span>
-<span id="cb16-54">)</span>
-<span id="cb16-55"><span class="co" style="color: #5E5E5E;"># final plot arrangement</span></span>
-<span id="cb16-56">p_left <span class="sc" style="color: #5E5E5E;">+</span> p_mid <span class="sc" style="color: #5E5E5E;">+</span> p_right <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">plot_layout</span>(<span class="at" style="color: #657422;">design =</span> layout)</span>
-<span id="cb16-57"><span class="do" style="color: #5E5E5E;
+<span id="cb19-17"><span class="co" style="color: #5E5E5E;"># create forest plot on log scale (middle section of figure)</span></span>
+<span id="cb19-18">p_mid <span class="ot" style="color: #003B4F;">&lt;-</span></span>
+<span id="cb19-19">  res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb19-20">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(model))) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-21">  <span class="fu" style="color: #4758AB;">theme_classic</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-22">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>log.estimate), <span class="at" style="color: #657422;">shape=</span><span class="dv" style="color: #AD0000;">15</span>, <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">3</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-23">  <span class="fu" style="color: #4758AB;">geom_linerange</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin=</span>log.conf.low, <span class="at" style="color: #657422;">xmax=</span>log.conf.high)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-24">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">"Log Hazard Ratio"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-25">  <span class="fu" style="color: #4758AB;">coord_cartesian</span>(<span class="at" style="color: #657422;">ylim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">11</span>), <span class="at" style="color: #657422;">xlim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>, .<span class="dv" style="color: #AD0000;">5</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-26">  <span class="fu" style="color: #4758AB;">geom_vline</span>(<span class="at" style="color: #657422;">xintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">linetype=</span><span class="st" style="color: #20794D;">"dashed"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-27">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> <span class="sc" style="color: #5E5E5E;">-</span>.<span class="dv" style="color: #AD0000;">32</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids protective"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-28">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"text"</span>, <span class="at" style="color: #657422;">x =</span> .<span class="dv" style="color: #AD0000;">3</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">11</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"Corticosteroids harmful"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-29">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">axis.line.y =</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
+<span id="cb19-30">        <span class="at" style="color: #657422;">axis.ticks.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
+<span id="cb19-31">        <span class="at" style="color: #657422;">axis.text.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>(),</span>
+<span id="cb19-32">        <span class="at" style="color: #657422;">axis.title.y=</span> <span class="fu" style="color: #4758AB;">element_blank</span>())</span>
+<span id="cb19-33"><span class="co" style="color: #5E5E5E;"># wrangle results into pre-plotting table form</span></span>
+<span id="cb19-34">res_plot <span class="ot" style="color: #003B4F;">&lt;-</span> res <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb19-35">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="fu" style="color: #4758AB;">across</span>(<span class="fu" style="color: #4758AB;">c</span>(estimate, conf.low, conf.high), <span class="sc" style="color: #5E5E5E;">~</span><span class="fu" style="color: #4758AB;">str_pad</span>(<span class="fu" style="color: #4758AB;">round</span>(.x, <span class="dv" style="color: #AD0000;">2</span>), <span class="at" style="color: #657422;">width=</span><span class="dv" style="color: #AD0000;">4</span>, <span class="at" style="color: #657422;">pad=</span><span class="st" style="color: #20794D;">"0"</span>, <span class="at" style="color: #657422;">side=</span><span class="st" style="color: #20794D;">"right"</span>)),</span>
+<span id="cb19-36">         <span class="at" style="color: #657422;">estimate_lab =</span> <span class="fu" style="color: #4758AB;">paste0</span>(estimate, <span class="st" style="color: #20794D;">" ("</span>, conf.low, <span class="st" style="color: #20794D;">"-"</span>, conf.high,<span class="st" style="color: #20794D;">")"</span>),</span>
+<span id="cb19-37">         <span class="at" style="color: #657422;">color =</span> <span class="fu" style="color: #4758AB;">rep</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"gray"</span>,<span class="st" style="color: #20794D;">"white"</span>),<span class="dv" style="color: #AD0000;">5</span>)) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb19-38">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">p.value =</span> <span class="fu" style="color: #4758AB;">case_when</span>(p.value <span class="sc" style="color: #5E5E5E;">&lt;</span> .<span class="dv" style="color: #AD0000;">01</span> <span class="sc" style="color: #5E5E5E;">~</span> <span class="st" style="color: #20794D;">"&lt;0.01"</span>, <span class="cn" style="color: #8f5902;">TRUE</span> <span class="sc" style="color: #5E5E5E;">~</span> <span class="fu" style="color: #4758AB;">str_pad</span>(<span class="fu" style="color: #4758AB;">as.character</span>(<span class="fu" style="color: #4758AB;">round</span>(p.value, <span class="dv" style="color: #AD0000;">2</span>)),<span class="at" style="color: #657422;">width=</span><span class="dv" style="color: #AD0000;">4</span>,<span class="at" style="color: #657422;">pad=</span><span class="st" style="color: #20794D;">"0"</span>,<span class="at" style="color: #657422;">side=</span><span class="st" style="color: #20794D;">"right"</span>))) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb19-39">  <span class="fu" style="color: #4758AB;">bind_rows</span>(<span class="fu" style="color: #4758AB;">data.frame</span>(<span class="at" style="color: #657422;">model =</span> <span class="st" style="color: #20794D;">"Model"</span>, <span class="at" style="color: #657422;">estimate_lab =</span> <span class="st" style="color: #20794D;">"Hazard Ratio (95% CI)"</span>, <span class="at" style="color: #657422;">conf.low =</span> <span class="st" style="color: #20794D;">""</span>, <span class="at" style="color: #657422;">conf.high=</span><span class="st" style="color: #20794D;">""</span>,<span class="at" style="color: #657422;">p.value=</span><span class="st" style="color: #20794D;">"p-value"</span>)) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb19-40">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">model =</span> <span class="fu" style="color: #4758AB;">fct_rev</span>(<span class="fu" style="color: #4758AB;">fct_relevel</span>(model, <span class="st" style="color: #20794D;">"Model"</span>)))</span>
+<span id="cb19-41"><span class="co" style="color: #5E5E5E;"># left side of plot - hazard ratios</span></span>
+<span id="cb19-42">p_left <span class="ot" style="color: #003B4F;">&lt;-</span></span>
+<span id="cb19-43">  res_plot  <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb19-44">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> model)) <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb19-45">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span><span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">label=</span>model), <span class="at" style="color: #657422;">hjust=</span><span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">fontface =</span> <span class="st" style="color: #20794D;">"bold"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-46">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span><span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">label=</span>estimate_lab), <span class="at" style="color: #657422;">hjust=</span><span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">fontface =</span> <span class="fu" style="color: #4758AB;">ifelse</span>(res_plot<span class="sc" style="color: #5E5E5E;">$</span>estimate_lab <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"Hazard Ratio (95% CI)"</span>, <span class="st" style="color: #20794D;">"bold"</span>, <span class="st" style="color: #20794D;">"plain"</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-47">  <span class="fu" style="color: #4758AB;">theme_void</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-48">  <span class="fu" style="color: #4758AB;">coord_cartesian</span>(<span class="at" style="color: #657422;">xlim=</span><span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>,<span class="dv" style="color: #AD0000;">4</span>))</span>
+<span id="cb19-49"><span class="co" style="color: #5E5E5E;"># right side of plot - pvalues</span></span>
+<span id="cb19-50">p_right <span class="ot" style="color: #003B4F;">&lt;-</span></span>
+<span id="cb19-51">  res_plot  <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb19-52">  <span class="fu" style="color: #4758AB;">ggplot</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-53">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span><span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">y=</span>model, <span class="at" style="color: #657422;">label=</span>p.value), <span class="at" style="color: #657422;">hjust=</span><span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">fontface =</span> <span class="fu" style="color: #4758AB;">ifelse</span>(res_plot<span class="sc" style="color: #5E5E5E;">$</span>p.value <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"p-value"</span>, <span class="st" style="color: #20794D;">"bold"</span>, <span class="st" style="color: #20794D;">"plain"</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-54">  <span class="fu" style="color: #4758AB;">theme_void</span>() </span>
+<span id="cb19-55"><span class="co" style="color: #5E5E5E;"># layout design (top, left, bottom, right)</span></span>
+<span id="cb19-56">layout <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
+<span id="cb19-57">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">3</span>),</span>
+<span id="cb19-58">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">4</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">9</span>),</span>
+<span id="cb19-59">  <span class="fu" style="color: #4758AB;">area</span>(<span class="at" style="color: #657422;">t =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">l =</span> <span class="dv" style="color: #AD0000;">9</span>, <span class="at" style="color: #657422;">b =</span> <span class="dv" style="color: #AD0000;">30</span>, <span class="at" style="color: #657422;">r =</span> <span class="dv" style="color: #AD0000;">11</span>)</span>
+<span id="cb19-60">)</span>
+<span id="cb19-61"><span class="co" style="color: #5E5E5E;"># final plot arrangement</span></span>
+<span id="cb19-62">p_left <span class="sc" style="color: #5E5E5E;">+</span> p_mid <span class="sc" style="color: #5E5E5E;">+</span> p_right <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">plot_layout</span>(<span class="at" style="color: #657422;">design =</span> layout)</span>
+<span id="cb19-63"><span class="do" style="color: #5E5E5E;
 font-style: italic;">## save final figure</span></span>
-<span id="cb16-58"><span class="co" style="color: #5E5E5E;">#ggsave("forest-plot.eps", width=9, height=4)</span></span></code></pre></div>
+<span id="cb19-64"><span class="co" style="color: #5E5E5E;">#ggsave("forest-plot.eps", width=9, height=4)</span></span></code></pre></div>
 </section>
 <section id="session-info" class="level1">
 <h1>Session Info</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><span class="fu" style="color: #4758AB;">sessionInfo</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.1.3 (2022-03-10)
 Platform: x86_64-apple-darwin17.0 (64-bit)
@@ -337,25 +354,25 @@ loaded via a namespace (and not attached):
  [1] lubridate_1.8.0   assertthat_0.2.1  digest_0.6.29     utf8_1.2.2       
  [5] R6_2.5.1          cellranger_1.1.0  backports_1.4.1   reprex_2.0.1     
  [9] evaluate_0.15     httr_1.4.2        pillar_1.8.1      rlang_1.0.4      
-[13] readxl_1.4.0      rstudioapi_0.13   rmarkdown_2.13    labeling_0.4.2   
-[17] htmlwidgets_1.5.4 bit_4.0.4         munsell_0.5.0     broom_0.8.0      
-[21] compiler_4.1.3    modelr_0.1.8      xfun_0.32         pkgconfig_2.0.3  
-[25] htmltools_0.5.2   tidyselect_1.1.2  fansi_1.0.3       crayon_1.5.1     
-[29] tzdb_0.3.0        dbplyr_2.1.1      withr_2.5.0       cabinets_0.6.0   
-[33] grid_4.1.3        jsonlite_1.8.0    gtable_0.3.0      lifecycle_1.0.1  
-[37] DBI_1.1.2         magrittr_2.0.3    scales_1.2.1      cli_3.3.0        
-[41] stringi_1.7.8     vroom_1.5.7       farver_2.1.1      fs_1.5.2         
-[45] xml2_1.3.3        ellipsis_0.3.2    generics_0.1.3    vctrs_0.4.1      
-[49] tools_4.1.3       bit64_4.0.5       glue_1.6.2        hms_1.1.1        
-[53] parallel_4.1.3    fastmap_1.1.0     yaml_2.3.5        colorspace_2.0-3 
-[57] rvest_1.0.2       knitr_1.38        haven_2.5.0      </code></pre>
+[13] curl_4.3.2        readxl_1.4.0      rstudioapi_0.13   rmarkdown_2.13   
+[17] labeling_0.4.2    htmlwidgets_1.5.4 bit_4.0.4         munsell_0.5.0    
+[21] broom_0.8.0       compiler_4.1.3    modelr_0.1.8      xfun_0.32        
+[25] pkgconfig_2.0.3   htmltools_0.5.2   tidyselect_1.1.2  fansi_1.0.3      
+[29] crayon_1.5.1      tzdb_0.3.0        dbplyr_2.1.1      withr_2.5.0      
+[33] cabinets_0.6.0    grid_4.1.3        jsonlite_1.8.0    gtable_0.3.0     
+[37] lifecycle_1.0.1   DBI_1.1.2         magrittr_2.0.3    scales_1.2.1     
+[41] cli_3.4.1         stringi_1.7.8     vroom_1.5.7       farver_2.1.1     
+[45] fs_1.5.2          xml2_1.3.3        ellipsis_0.3.2    generics_0.1.3   
+[49] vctrs_0.4.1       tools_4.1.3       bit64_4.0.5       glue_1.6.2       
+[53] hms_1.1.1         parallel_4.1.3    fastmap_1.1.0     yaml_2.3.5       
+[57] colorspace_2.0-3  rvest_1.0.2       knitr_1.38        haven_2.5.0      </code></pre>
 </div>
 </div>
 
 
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>programming</category>
   <guid>www.khstats.com/blog/forest-plots/index.html</guid>
   <pubDate>Thu, 15 Sep 2022 04:00:00 GMT</pubDate>
@@ -512,7 +529,7 @@ loaded via a namespace (and not attached):
 </section>
 
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p><div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>Recall that a counterfactual describes a hypothetical world where a unit received a certain intervention or treatment, which might be different from the treatment they actually received↩︎</p></li>
@@ -627,7 +644,7 @@ loaded via a namespace (and not attached):
 <section id="place-your-stabilizers-on-the-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="place-your-stabilizers-on-the-pcb">3. Place your stabilizers on the PCB</h2>
 <p>Time to click the stabilizers into place! You can put the respective keycaps on (space bar, shift, backspace, etc.) and make sure you like the feel at this point.</p>
-<video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="keyboard/test_stabs.mp4#t=0.1"></video>
+<video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="/keyboard/test_stabs.mp4#t=0.1"></video>
 </section>
 <section id="add-the-plate-and-click-the-key-switches-into-the-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="add-the-plate-and-click-the-key-switches-into-the-pcb">4. Add the plate and click the key switches into the PCB</h2>
@@ -667,7 +684,7 @@ loaded via a namespace (and not attached):
 
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>miscellaneous</category>
   <guid>www.khstats.com/blog/keyboard/index.html</guid>
   <pubDate>Wed, 15 Jun 2022 04:00:00 GMT</pubDate>
@@ -991,7 +1008,7 @@ loaded via a namespace (and not attached):
 
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>programming</category>
   <guid>www.khstats.com/blog/trt-timelines/multiple-vars.html</guid>
   <pubDate>Wed, 08 Jun 2022 04:00:00 GMT</pubDate>
@@ -1223,7 +1240,7 @@ Survey weights
 
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>statistics</category>
   <guid>www.khstats.com/blog/lmtp/lmtp.html</guid>
   <pubDate>Thu, 07 Apr 2022 04:00:00 GMT</pubDate>
@@ -1344,7 +1361,7 @@ Survey weights
 
 
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>programming</category>
   <guid>www.khstats.com/blog/sofa/index.html</guid>
   <pubDate>Thu, 10 Feb 2022 05:00:00 GMT</pubDate>
@@ -1403,7 +1420,7 @@ Survey weights
 
 
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>career</category>
   <guid>www.khstats.com/blog/ditl/ditl-followup.html</guid>
   <pubDate>Fri, 15 Jan 2021 05:00:00 GMT</pubDate>
@@ -1418,9 +1435,6 @@ Survey weights
 
 
 
-<p>The third and final post in a three-part series to help beginners and/or visual learners understand Targeted Maximum Likelihood Estimation (TMLE). In this section, we discuss more statistical properties of TMLE, offer a brief explanation for the theory behind TMLE, and provide resources for learning more.</p>
-<!--more-->
-<p><strong>December 6, 2020.</strong></p>
 <blockquote class="blockquote">
 <p>The is the third and final post in a three-part series to help beginners and/or visual learners understand Targeted Maximum Likelihood Estimation (TMLE). In this section, I discuss more <strong>statistical properties of TMLE</strong>, offer a brief <strong>explanation for the theory behind TMLE</strong>, and provide <strong>resources for learning more</strong>.</p>
 </blockquote>
@@ -1513,7 +1527,7 @@ Survey weights
 
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>statistics</category>
   <guid>www.khstats.com/blog/tmle/tutorial-pt3.html</guid>
   <pubDate>Sat, 12 Dec 2020 05:00:00 GMT</pubDate>
@@ -3757,7 +3771,6 @@ HTML Image as link
 <p>We can get the same result (variation due to randomness in the machine learning models) in just a few lines of code: the estimate using the original <code>tmle</code> package is 0.192 (95% CI: 0.134, 0.25).</p>
 <hr>
 <p>To learn more about the statistical properties of TMLE and the underlying theory, <a href="https://khstats.com/blog/tmle/tutorial-pt3"><em>continue on to Part III</em></a>. Alternatively, return to the motivation in <a href="https://khstats.com/blog/tmle/tutorial/"><em>Part I</em></a>, or see the full tutorial code below.</p>
-<p>⤴️<em>Back to the top</em></p>
 <hr>
 </section>
 <section id="full-tutorial-code" class="level1">
@@ -3893,11 +3906,12 @@ loaded via a namespace (and not attached):
 [69] dbplyr_2.1.1       tidyselect_1.1.2   xfun_0.32         </code></pre>
 </div>
 </div>
+<p>⬅️️<a href="https://khstats.com/blog/tmle/tutorial"><em>Back to Part I: Motivation</em></a> ⤴️<em>Back to the top</em> ➡️<a href="https://khstats.com/blog/tmle/tutorial-pt2/"><em>Continue to Part II: The Algorithm</em></a></p>
 
 
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>statistics</category>
   <guid>www.khstats.com/blog/tmle/tutorial-pt2.html</guid>
   <pubDate>Fri, 11 Dec 2020 05:00:00 GMT</pubDate>
@@ -3958,12 +3972,10 @@ loaded via a namespace (and not attached):
 </ol>
 <p>This mentality changed drastically when I started learning about semiparametric estimation methods like TMLE in the context of causal inference. I quickly realized two flaws in this mental framework.</p>
 <p>First, I was thinking about inference backwards: I was choosing a model based on my outcome type (binary, continuous, time-to-event, repeated measures) and then interpreting specific coefficients as my estimates of interest. Yet it makes way more sense to <em>first</em> determine the statistical quantity, or <strong>estimand</strong>, that best answers a scientific question, and <em>then</em> use the method, or <strong>estimator</strong>, best suited for estimating it. This is the paradigm TMLE is based upon: <strong>we want to build an algorithm, or estimator, targeted to an estimand of interest</strong>.</p>
-<figure class="figure">
-<p><img src="www.khstats.com/blog/tmle/tmle/estimator.png" alt="Estimator and Estimand" width="90%" class="figure-img"></p>
-<figcaption class="figure-caption">
-<em>An estimand is a quantity that answers a scientific question of interest. Once we figure out the estimand, we can build an estimator, or algorithm, to estimate it. Image courtesy of Dr.&nbsp;Laura Hatfield and <a href="https://diff.healthpolicydatascience.org/">diff.healthpolicydatascience.org</a>.</em>
-</figcaption>
-</figure>
+<!-- <figure> -->
+<!-- <img src="tmle/estimator.png" alt="Estimator and Estimand" width="90%"/> -->
+<!-- <figcaption>*An estimand is a quantity that answers a scientific question of interest. Once we figure out the estimand, we can build an estimator, or algorithm, to estimate it. Image courtesy of Dr. Laura Hatfield and [diff.healthpolicydatascience.org](https://diff.healthpolicydatascience.org/).*</figcaption> -->
+<!-- </figure> -->
 <p>Second, I thought flexible, data-adaptive models we commonly classify as statistical and/or <strong>machine learning</strong> (e.g.&nbsp;LASSO, random forests, gradient boosting, etc.) could only be used for prediction, since they don’t have <strong>asymptotic properties for inference</strong> (i.e.&nbsp;standard errors). However, certain <strong>semiparametric estimation methods</strong> like TMLE can actually use these models to <strong>obtain a final estimate that is closer to the target quantity</strong> than would be obtained using classic parametric models (e.g.&nbsp;linear and logistic regression). This is because machine learning models are generally designed to accommodate <strong>large numbers of covariates</strong> with <strong>complex, non-linear relationships</strong>.</p>
 <p><img src="www.khstats.com/blog/tmle/tmle/parametric_assumptions_comic.jpg" width="100%"></p>
 <figcaption>
@@ -3976,6 +3988,7 @@ loaded via a namespace (and not attached):
 <h1>Is TMLE Causal Inference? 🤔</h1>
 <p>If you’ve heard about TMLE before, it was likely in the context of <strong>causal inference</strong>. Although TMLE was developed for causal inference due to its many attractive properties, it cannot be considered causal inference by itself. Causal inference is a two-step process that first requires <strong>causal assumptions</strong><sup>1</sup> before a statistical estimand can be interpreted causally.</p>
 <p><strong>TMLE can be used to estimate various statistical estimands</strong> (odds ratio, risk ratio, mean outcome difference, etc.) <strong>even when causal assumptions are not met</strong>. TMLE is, as its name implies, simply a tool for estimation.</p>
+<p><img src="www.khstats.com/img/ident-vs-est.png" class="img-fluid"></p>
 <p>In <a href="https://khstats.com/blog/tmle/tutorial-pt2/"><em>Part II</em></a>, I’ll walk step-by-step through a basic version of the TMLE algorithm: estimating the mean difference in outcomes, adjusted for confounders, for a binary outcome and binary treatment. If causal assumptions are met, this is called the <strong>Average Treatment Effect (ATE)</strong>, or the mean difference in outcomes in a world in which everyone had received the treatment compared to a world in which everyone had not.</p>
 <p>⤴️<em>Back to the top</em></p>
 <p>➡️<a href="https://khstats.com/blog/tmle/tutorial-pt2/"><em>Continue to Part II: The Algorithm</em></a></p>
@@ -3989,7 +4002,7 @@ loaded via a namespace (and not attached):
 </section>
 
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p><div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>I won’t discuss causal assumptions in these posts, but this is referring to fundamental assumptions in causal inference like consistency, exchangeability, and positivity. A primary motivation for using TMLE and other semiparametric estimation methods for causal inference is that if you’ve already taken the time to carefully evaluate <em>causal</em> assumptions, it does not make sense to then damage an otherwise well-designed analysis by making unrealistic <em>statistical</em> assumptions.↩︎</p></li>
@@ -7668,7 +7681,7 @@ loaded via a namespace (and not attached):
 
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>statistics</category>
   <guid>www.khstats.com/blog/sl/superlearning.html</guid>
   <pubDate>Sun, 11 Oct 2020 02:13:14 GMT</pubDate>
@@ -7730,7 +7743,7 @@ loaded via a namespace (and not attached):
 
 
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>career</category>
   <guid>www.khstats.com/blog/covid/index.html</guid>
   <pubDate>Sat, 03 Oct 2020 04:00:00 GMT</pubDate>
@@ -13315,7 +13328,7 @@ font-style: italic;">## to get the rect filled</span></span>
 </section>
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>programming</category>
   <guid>www.khstats.com/blog/corr-plots/index.html</guid>
   <pubDate>Mon, 24 Aug 2020 04:00:00 GMT</pubDate>
@@ -14315,7 +14328,7 @@ font-style: italic;">## to get the rect filled</span></span>
 </section>
 
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p><div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>Because we’re making our outer expectation conditional on <img src="https://latex.codecogs.com/png.latex?Z=z">, we can also move <img src="https://latex.codecogs.com/png.latex?Z=z"> into our inner expectation. This becomes obvious in the <code>penguins</code> example, since we only use the fitted values from one category of <code>species</code> to get the adjusted group mean for that category.↩︎</p></li>
@@ -15028,7 +15041,7 @@ Attaching package: 'lubridate'</code></pre>
 
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>programming</category>
   <guid>www.khstats.com/blog/covid-functions/index.html</guid>
   <pubDate>Sat, 11 Jul 2020 02:13:14 GMT</pubDate>
@@ -15385,7 +15398,7 @@ Attaching package: 'lubridate'</code></pre>
 </section>
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>programming</category>
   <guid>www.khstats.com/blog/trt-timelines/trt-timelines.html</guid>
   <pubDate>Thu, 28 Nov 2019 05:00:00 GMT</pubDate>
@@ -15440,7 +15453,7 @@ Attaching package: 'lubridate'</code></pre>
 
 
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>career</category>
   <guid>www.khstats.com/blog/ditl/pharma-cro.html</guid>
   <pubDate>Sun, 06 Oct 2019 04:00:00 GMT</pubDate>
@@ -16841,7 +16854,7 @@ $training_offset
 
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>programming</category>
   <guid>www.khstats.com/blog/sl/sl.html</guid>
   <pubDate>Fri, 13 Sep 2019 02:13:14 GMT</pubDate>
@@ -16946,14 +16959,14 @@ $training_offset
 
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>programming</category>
   <guid>www.khstats.com/blog/nyrconf/index.html</guid>
   <pubDate>Mon, 10 Jun 2019 04:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/blog/nyrconf/redoc.png" medium="image" type="image/png" height="72" width="144"/>
 </item>
 <item>
-  <title>A short and sweet tutorial on using sl3 for superlearning</title>
+  <title>A Day in the Life of a Biostatistician</title>
   <dc:creator>Katherine Hoffman</dc:creator>
   <link>www.khstats.com/blog/ditl/index.html</link>
   <description><![CDATA[ 
@@ -16961,14 +16974,9 @@ $training_offset
 
 
 
-<p><em>April 4, 2019. It seems fitting that my first blog post is on a topic that I tried and failed to find via Google search a few years ago. I’ll back up for a second.</em></p>
-<p><em>A few years ago I was a recent college graduate, and trying hard to “figure out my life.” My major was biochemistry, which is one of those degrees where 99% of people just keep on going to school…</em></p>
-<!--more-->
-<!--more-->
-<p><strong>April 4, 2019.</strong></p>
 <p>It seems fitting that my first blog post is on a topic that I tried and failed to find via Google search a few years ago.</p>
 <p>I’ll back up for a second. A few years ago I was a recent college graduate, and trying hard to “figure out my life.” My major was biochemistry, which is one of those degrees where 99%* of people just keep on going to school.</p>
-<p><img src="www.khstats.com/img/ditl/sadcat.png" width="48%" alt="cat" style="float:right; padding-left:65px;"></p>
+<p><img src="www.khstats.com/img/ditl/sadcat.png" alt="cat" width="48%" style="float:right; padding-left:65px;"></p>
 <p>I was working full-time night-shift at a hospital as a nurse technician. The key word in that sentence is “night-shift” which meant that even on my days off, I didn’t sleep at night, but all my friends and family did. So, I was often alone and awake, with a lot of time to think about my future… and surf the web for potential careers.</p>
 <p>I knew I wanted a job in healthcare, but I was confused as to where in medicine would be a good fit for me. I could visualize very clearly what my days at work would look like if I were to become a physician, or a physician assistant, or a registered nurse (all careers I developed lengthy pros and cons lists for).</p>
 <p>However, there was another career involving medicine that I was drawn to but didn’t know enough about. “Biostatistics” was a class biochemistry majors took at my university, but I had been exempted because I took AP Statistics in high school.</p>
@@ -16976,8 +16984,8 @@ $training_offset
 <p>I ultimately lucked out during a conversation with a professor during my senior year of college. I was rambling about my many life plans and he mentioned his cousin was the chair of a well-known Biostatistics program. He encouraged me to email her my questions about biostatistics, and I am so grateful she took time to respond with detailed answers. Her description of life as a biostatistician was enough for me to choose going to graduate school for an MS in biostatistics over medical school/physician assistant school/second-degree nursing.</p>
 <p>I feel wholeheartedly that although I would have enjoyed my life as an MD/PA/RN, biostatistics is the right career for me. So, in honor of my confused younger self, and as a way of paying it forward, I’ve dedicated this topic for my very first blog post!</p>
 <p style="text-align: center; padding-bottom: 15px; padding-left: 15px; float: right; display: block;">
-<img src="www.khstats.com/img/ditl/nursing.jpg" width="300"><br><span style="font-size: small;">Hanging out with my mom (an RN of 41 years and counting!) after a particularly exhausting night shift as a nurse technician.</span>
-</p>
+</p><p><img src="www.khstats.com/img/ditl/nursing.jpg" width="300"><br><span style="font-size: small;">Hanging out with my mom (an RN of 41 years and counting!) after a particularly exhausting night shift as a nurse technician.</span></p>
+<p></p>
 <p>A disclaimer: what follows is a day in the life of one masters-level, academic research-focused biostatistician and I cannot make claims about the careers of statisticians in industry or pharmaceuticals or hospitals or government. In addition, here’s a bit more background before I get into the granular details of my work:</p>
 <ol type="1">
 <li><p>My official job description is to assist investigators (i.e.&nbsp;physicians or PhD-level researchers with a scientific question) throughout all stages of the scientific research process. This means helping with study design, data collection, data cleaning (also known as getting the data in the right form for analysis and making sure nothing is obviously incorrect), data visualization, statistical analysis, reporting and explaining my results, and writing methods and results sections for scientific papers. You will soon see that on any given day I am working on multiple projects at various stages of this process.</p></li>
@@ -16993,7 +17001,7 @@ $training_offset
 <p><img src="www.khstats.com/blog/ditl/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><span> <em>An example of a figure for a manuscript. This particular plot suggests that cancer patients with an elevated biomarker died at a faster rate than patients who did not have an elevated biomarker.</em></span></p>
+<p><em>An example of a figure for a manuscript. This particular plot suggests that cancer patients with an elevated biomarker died at a faster rate than patients who did not have an elevated biomarker.</em></p>
 <p>The researchers have asked for my assistance in writing the methods section. The methods section of a scientific article is the steps the scientists took to analyze data explicitly written out for anyone looking to review or learn about their work. I read through their current draft of the paper carefully, make some edits, and send it back. They are hoping to submit this paper to a peer-reviewed journal within a few weeks.</p>
 <p><strong>10:45AM</strong> - I have a weekly meeting a few blocks from my office with a neurologist I spend a large portion of my time working with. She is a leader in the field of Alzheimer’s research, and I find it very rewarding to work on her data and be a small part of a growing body of research in the field. I am “contracted” out to her research as I am to all of the researchers I work with—it’s how my institution budgets funding for grants. One of the faculty-level biostatisticians in my department—which means he has a PhD and specializes in certain statistical methods—is also part of this contract, and some days, like today, he joins me at these meetings.</p>
 <p><strong>11:00AM</strong> - This week’s meeting is pretty straightforward. We discuss how we can improve one of the neurologist’s National Institute of Health grants from a statistics standpoint. The statistical methods for this project can get complicated, in part because we are looking at the brain scans of women in different stages of menopause over time, and we have to consider age as a confounding factor. We want to convey to the reviewers of our grant how we plan to do this. Since this is a methods-focused meeting, I mostly listen and take notes along with two neurology research coordinators that also attend these weekly meetings. When the meeting concludes I have for less work than usual - I only need to make a few graphs representing our study design and past results for inclusion to the grant.</p>
@@ -17009,8 +17017,8 @@ $training_offset
 <p>I close the report; I will continue working on this analysis tomorrow.</p>
 <p><strong>4:45PM</strong> - It’s time for my last meeting of the day. I head to another floor of my office building and get my laptop set up in a conference room. I await the arrival of several doctors. It will be my first time meeting most of them, and our task today is to discuss the data collection process for a future study involving both genetic mutation data from tumor biopsies and clinical data from electronic health records on thousands of patients with lung cancer.</p>
 <p><strong>5:00PM</strong> - The doctors arrive and, after introductions, we talk about the current stage of the project and what the goals are. We discuss the timing of starting chart reviews of patients, how we will upload the information to a database efficiently, and what might be the best way to condense the highly detailed genetics data into useful information for an analysis. Our solution will likely involve a series of iterative searches through the columns containing genetic information.</p>
-<p><img src="www.khstats.com/img/ditl/data_dict.png"></p>
-<p><span><em>The start of a database I am helping researchers build to collect data for their study. This is not my favorite part of my job, but it is a crucial step for good scientific research.</em></span></p>
+<p><img src="www.khstats.com/img/ditl/data_dict.png&quot;" class="img-fluid"></p>
+<p><em>The start of a database I am helping researchers build to collect data for their study. This is not my favorite part of my job, but it is a crucial step for good scientific research.</em></p>
 <p><strong>6:00PM</strong> - The meeting ends, and I go back to my desk to record more handwritten notes. I log the hours I spent on each project that day into Toggl, which is the time-tracking application our team uses. This is so we know how much time we’re spending on each project, and is as much for our own sake as it is anyone else’s. I update my to-do list, which is a giant color-coded excel spreadsheet, and eat a few chocolate covered raisins as my reward for a productive day.</p>
 <p><strong>6:30PM</strong> - I leave work! I typically have some kind of activity, like happy hour (see my cute cubicle buddies below), a sports game, or Spanish class that I’m heading off to. Some days I attend coding workshops hosted by groups such as R-ladies. On nights when I’m feeling especially nerdy, I’ll go home and read a statistics paper or sift through the #rstats tips on twitter.</p>
 <p><img src="www.khstats.com/img/ditl/coworkers.jpg" width="500px" height="375px"></p>
@@ -17026,7 +17034,7 @@ $training_offset
 
 
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p> ]]></description>
+ ]]></description>
   <category>career</category>
   <guid>www.khstats.com/blog/ditl/index.html</guid>
   <pubDate>Tue, 16 Apr 2019 04:00:00 GMT</pubDate>

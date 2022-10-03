@@ -150,7 +150,7 @@ ga('send', {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../blog.html">Blog</a>
   </li>  
@@ -158,8 +158,8 @@ ga('send', {
     <a class="nav-link" href="../../talks.html">Talks</a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-visuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Visuals</a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-visuals">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-illustrations" role="button" data-bs-toggle="dropdown" aria-expanded="false">Illustrations</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-illustrations">    
         <li>
     <a class="dropdown-item" href="../../art/illustrations_viz.html">
  <span class="dropdown-text">Visual Guides for Causal Inference</span></a>
@@ -172,7 +172,7 @@ ga('send', {
   </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="button" data-bs-toggle="dropdown" aria-expanded="false">Research</a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-research">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
         <li>
     <a class="dropdown-item" href="../../pubs/pubs_methods.html">
  <span class="dropdown-text">Statistics Methods</span></a>
@@ -187,16 +187,23 @@ ga('send', {
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
 </i> 
  </a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Sept2022.pdf">CV</a>
+  </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="mailto:kathoffman.stats@gmail.com"><i class="bi bi-envelope" role="img">
 </i> 
  </a>
   </li>  
@@ -2476,7 +2483,6 @@ HTML Image as link
 <p>We can get the same result (variation due to randomness in the machine learning models) in just a few lines of code: the estimate using the original <code>tmle</code> package is 0.192 (95% CI: 0.134, 0.25).</p>
 <hr>
 <p>To learn more about the statistical properties of TMLE and the underlying theory, <a href="https://khstats.com/blog/tmle/tutorial-pt3"><em>continue on to Part III</em></a>. Alternatively, return to the motivation in <a href="https://khstats.com/blog/tmle/tutorial/"><em>Part I</em></a>, or see the full tutorial code below.</p>
-<p>⤴️<a href="#part-ii-the-algorithm"><em>Back to the top</em></a></p>
 <hr>
 </section>
 <section id="full-tutorial-code" class="level1">
@@ -2606,11 +2612,12 @@ loaded via a namespace (and not attached):
 [69] dbplyr_2.1.1       tidyselect_1.1.2   xfun_0.32         </code></pre>
 </div>
 </div>
+<p>⬅️️<a href="https://khstats.com/blog/tmle/tutorial"><em>Back to Part I: Motivation</em></a> ⤴️<a href="#part-ii-the-algorithm"><em>Back to the top</em></a> ➡️<a href="https://khstats.com/blog/tmle/tutorial-pt2/"><em>Continue to Part II: The Algorithm</em></a></p>
 
 
 </section>
 
-<p><small><br>© Katherine Hoffman 2022. Website created with Quarto – source code on <a href="https://github.com/kathoffman/khstats-quarto">Github</a>.</small></p></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

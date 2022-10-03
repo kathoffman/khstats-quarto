@@ -1,9 +1,9 @@
 ---
-title: "Educational Illustrations and Comics"
+title: "Educational Drawings and Comics"
 page-layout: full
 ---
 
-I enjoy creating educational illustrations and comics. These are all available on [Github](https://github.com/kathoffman/causal-inference-visual-guides) and free to use under a CC-BY license. Please provide attribution (Kat Hoffman).
+These educational illustrations and comics are all available on [Github](https://github.com/kathoffman/causal-inference-visual-guides) and free to use under a CC-BY license. Please provide attribution (Kat Hoffman).
 
 ::: grid
 ::: {.g-col-12 .g-col-md-10}

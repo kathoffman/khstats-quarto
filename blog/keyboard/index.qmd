@@ -107,13 +107,13 @@ If your PCB plate is working properly, go ahead and add lubricant and put togeth
 
 Time to click the stabilizers into place! You can put the respective keycaps on (space bar, shift, backspace, etc.) and make sure you like the feel at this point.
 
-{{< video   src="keyboard/test_stabs.mp4#t=0.1" >}}
+{{< video src="/keyboard/test_stabs.mp4#t=0.1" >}}
 
 ## 4. Add the plate and click the key switches into the PCB
 
 You can now overlay your plate on the PCB and start clicking each key switch's metal prongs into the small holes on the PCB. You should feel a click when it locks into place, and the switches should not fall out if you flip the board over.
 
-{{< video src="/keyboard/clicking_switches.mp4"  type = "mp4" >}}
+{{< video src="/keyboard/clicking_switches.mp4">}}
 
 ## 5. Soldering
 

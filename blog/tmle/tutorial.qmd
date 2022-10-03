@@ -61,13 +61,13 @@ This mentality changed drastically when I started learning about semiparametric 
 
 First, I was thinking about inference backwards: I was choosing a model based on my outcome type (binary, continuous, time-to-event, repeated measures) and then interpreting specific coefficients as my estimates of interest. Yet it makes way more sense to *first* determine the statistical quantity, or **estimand**, that best answers a scientific question, and *then* use the method, or **estimator**, best suited for estimating it. This is the paradigm TMLE is based upon: **we want to build an algorithm, or estimator, targeted to an estimand of interest**.
 
-<figure>
+<!-- <figure> -->
 
-<img src="tmle/estimator.png" alt="Estimator and Estimand" width="90%"/>
+<!-- <img src="tmle/estimator.png" alt="Estimator and Estimand" width="90%"/> -->
 
-<figcaption>*An estimand is a quantity that answers a scientific question of interest. Once we figure out the estimand, we can build an estimator, or algorithm, to estimate it. Image courtesy of Dr. Laura Hatfield and [diff.healthpolicydatascience.org](https://diff.healthpolicydatascience.org/).*</figcaption>
+<!-- <figcaption>*An estimand is a quantity that answers a scientific question of interest. Once we figure out the estimand, we can build an estimator, or algorithm, to estimate it. Image courtesy of Dr. Laura Hatfield and [diff.healthpolicydatascience.org](https://diff.healthpolicydatascience.org/).*</figcaption> -->
 
-</figure>
+<!-- </figure> -->
 
 Second, I thought flexible, data-adaptive models we commonly classify as statistical and/or **machine learning** (e.g. LASSO, random forests, gradient boosting, etc.) could only be used for prediction, since they don't have **asymptotic properties for inference** (i.e. standard errors). However, certain **semiparametric estimation methods** like TMLE can actually use these models to **obtain a final estimate that is closer to the target quantity** than would be obtained using classic parametric models (e.g. linear and logistic regression). This is because machine learning models are generally designed to accommodate **large numbers of covariates** with **complex, non-linear relationships**.
 
@@ -86,6 +86,8 @@ If you've heard about TMLE before, it was likely in the context of **causal infe
 [^1]: I won't discuss causal assumptions in these posts, but this is referring to fundamental assumptions in causal inference like consistency, exchangeability, and positivity. A primary motivation for using TMLE and other semiparametric estimation methods for causal inference is that if you've already taken the time to carefully evaluate *causal* assumptions, it does not make sense to then damage an otherwise well-designed analysis by making unrealistic *statistical* assumptions.
 
 **TMLE can be used to estimate various statistical estimands** (odds ratio, risk ratio, mean outcome difference, etc.) **even when causal assumptions are not met**. TMLE is, as its name implies, simply a tool for estimation.
+
+![](/img/ident-vs-est.png)
 
 In [*Part II*](https://khstats.com/blog/tmle/tutorial-pt2/), I'll walk step-by-step through a basic version of the TMLE algorithm: estimating the mean difference in outcomes, adjusted for confounders, for a binary outcome and binary treatment. If causal assumptions are met, this is called the **Average Treatment Effect (ATE)**, or the mean difference in outcomes in a world in which everyone had received the treatment compared to a world in which everyone had not.
 

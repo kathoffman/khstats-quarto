@@ -6,7 +6,7 @@
 // Nav bar
 
 .li.a.dropdown-item {
-  color: "#2B2423";
+  color: "#b0c4de";
 }
 
 .dropdown-text {
@@ -42,9 +42,24 @@ ul {
   color: #FFFFFF;
 }
 
+.dropdown-menu a{
+ color: #111111 !important;
+}
+.dropdown-menu a:hover{
+ background: #014464!important;
+ background: linear-gradient(left, #b0c4de, #b0c4de);
+ background: -moz-linear-gradient(left, #b0c4de, #b0c4de)!important;
+ background: -webkit-gradient(linear, 100% 100%, 0% 0%, from(#b0c4de), to(#b0c4de))!important;
+color: #f8f9fa !important;
+ -webkit-transition: all 0.2s ease-in-out;
+ -moz-transition: all 0.2s ease-in-out;
+ transition: all 0.2s ease-in-out; }
+
+
+
 
 //** Global textual link color.
-$link-color:            #a499be !default;
+$link-color:            #7383ac !default;
 //** Link hover color set via `darken()` function.
 $link-hover-color:      darken($link-color, 15%) !default;
 //** Link decoration.

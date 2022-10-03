@@ -8,4 +8,4 @@ nocite: |
   @*
 ---
 
-# Statistical and Epidemiological Methods Manuscripts and Pre-prints
+# Statistical and Epidemiological Research Methods Manuscripts and Pre-prints

@@ -89,11 +89,17 @@ The big picture of this is that we'll be making three separate `ggplot2` objects
 
 First we will load the necessary libraries and the data set. The data we'll use for this plot are the effect estimates for 10 Cox regression models. The models, titled A-J, are stored in a data set called `res`, stored as a csv on my Github.
 
-```{r results = "asis"}
+```{r results = "asis", warning=F, message=F}
 library(tidyverse)
 library(gt)
 
-# Importres
+res_log <- read_csv("https://raw.githubusercontent.com/kathoffman/steroids-trial-emulation/main/output/res_log.csv")
+res <- read_csv("https://raw.githubusercontent.com/kathoffman/steroids-trial-emulation/main/output/res.csv")
+
+res <- res_log |>
+      rename_with(~str_c("log.", .), estimate:conf.high) |>
+  select(-p.value) |>
+  full_join(res)
 ```
 
 The `res`ults object contains:
@@ -118,76 +124,56 @@ In my experience, journal editors sometimes ask for these estimates to look a ce
 Let's look at how we can plot the log hazard ratio estimates. We first want the models to show in alphabetical order from the top to the bottom of the graph. 
 
 ```{r}
-res |>
+p <- 
+  res |>
   ggplot(aes(y = fct_rev(model))) + 
   theme_classic()
+p
 ```
 Then we show all of our information (point estimate and 95% confidence interval) on the graph.
 
 ```{r}
-res |>
-  ggplot(aes(y = fct_rev(model))) + 
-  theme_classic() +
+p <- p +
   geom_point(aes(x=log.estimate), shape=15, size=3) +
   geom_linerange(aes(xmin=log.conf.low, xmax=log.conf.high)) 
+p
 ```
 
+We can now add a vertical line at 0 with `geom_vline` and rename the x axis.
+
 ```{r}
-res |>
-  ggplot(aes(y = fct_rev(model))) + 
-  theme_classic() +
-  geom_point(aes(x=log.estimate), shape=15, size=3) +
-  geom_linerange(aes(xmin=log.conf.low, xmax=log.conf.high)) +
+p <- p +
   geom_vline(xintercept = 0, linetype="dashed") +
-  labs(x="Log Hazard Ratio", y="") 
+  labs(x="Log Hazard Ratio", y="")
+p
 ```
 
 Next we'll use `coord_cartesian()` which will allow us to zoom to the exact height and width we want. I want to zoom out a bit to leave myself room for the text "Corticosteroids protective" vs. "Corticosteroids harmful" so I'm going to set my limits to `y=c(1,11)`. Each of the models (10 in total) is one unit, so this will give me one extra unit of space at the top of the plot. The x-limit I played around with a bit based upon the range of my log hazard ratios, and I ultimately arrived at `xlim=c(-1, .5)`.
 
 ```{r}
-res |>
-  ggplot(aes(y = fct_rev(model))) + 
-  theme_classic() +
-  geom_point(aes(x=log.estimate), shape=15, size=3) +
-  geom_linerange(aes(xmin=log.conf.low, xmax=log.conf.high)) +
-  labs(x="Log Hazard Ratio", y="") +
-  geom_vline(xintercept = 0, linetype="dashed") +
+p <- p +
   coord_cartesian(ylim=c(1,11), xlim=c(-1, .5))
+p
 ```
 
 Now we have space to add our text about protective vs. harmful using the `annotate` layer.
 
 ```{r}
-res |>
-  ggplot(aes(y = fct_rev(model))) + 
-  theme_classic() +
-  geom_point(aes(x=log.estimate), shape=15, size=3) +
-  geom_linerange(aes(xmin=log.conf.low, xmax=log.conf.high)) +
-  labs(x="Log Hazard Ratio") +
-  geom_vline(xintercept = 0, linetype="dashed") +
-  coord_cartesian(ylim=c(1,11), xlim=c(-1, .5)) +
+p <- p +
   annotate("text", x = -.32, y = 11, label = "Corticosteroids protective") +
   annotate("text", x = .3, y = 11, label = "Corticosteroids harmful")
+p
 ```
 
 Finally, we will remove everything on the y axis, because this plot is going to align with the next plot we make, showing the hazard ratios.
 
 ```{r}
-p_mid <-
-  res |>
-  ggplot(aes(y = fct_rev(model))) + 
-  theme_classic() +
-  geom_point(aes(x=log.estimate), shape=15, size=3) +
-  geom_linerange(aes(xmin=log.conf.low, xmax=log.conf.high)) +
-  labs(x="Log Hazard Ratio") +
-  geom_vline(xintercept = 0, linetype="dashed") +
-  coord_cartesian(ylim=c(1,11), xlim=c(-1, .5)) +
-  annotate("text", x = -.32, y = 11, label = "Corticosteroids protective") +
-  annotate("text", x = .3, y = 11, label = "Corticosteroids harmful") +
+p_mid <- p + 
   theme(axis.line.y = element_blank(),
         axis.ticks.y= element_blank(),
         axis.text.y= element_blank(),
         axis.title.y= element_blank())
+p
 ```
 
 We'll save this `ggplot` object as `p_mid` and move on to the next section of the figure.
@@ -239,16 +225,43 @@ res_plot <- res |>
 glimpse(res_plot)
 ```
 
+Creating the hazard ratios isn't very difficult. We'll take the modified data frame and again organize the model order on the y axis. Note that this time, I modified model within the data frame, which we could have done for the middle plot instead of modifying it within the `aes`thetic argument.
+
 ```{r}
 p_left <-
   res_plot  |>
-  ggplot(aes(y = model)) +
-  geom_text(aes(x = 0, label = model), hjust = 0, fontface = "bold") +
+  ggplot(aes(y = model))
+p_left
+```
+
+Next, we will add the model as text (instead of as a label on the y axis) using `geom_text`.
+
+```{r}
+p_left <- 
+  p_left +
+  geom_text(aes(x = 0, label = model), hjust = 0, fontface = "bold")
+p_left
+```
+
+We can use the same idea to add the hazard ratios and their confidence intervals.
+
+```{r}
+p_left <- 
+  p_left +
   geom_text(
     aes(x = 1, label = estimate_lab),
     hjust = 0,
     fontface = ifelse(res_plot$estimate_lab == "Hazard Ratio (95% CI)", "bold", "plain")
-  ) +
+  )
+
+p_left
+```
+
+Finally we can remove the background and edit the sizing so that this left size of the plot will match up neatly with the middle and right sides of the plot.
+
+```{r}
+p_left <-
+  p_left +
   theme_void() +
   coord_cartesian(xlim = c(0, 4))
 
@@ -300,6 +313,12 @@ library(patchwork)
 ## ---------------------------
 ## load data
 # load in results generated from Cox PH hazards models
+res_log <- read_csv("model-first-results-log.csv")
+res <- read_csv("model-first-results.csv")
+res <- res_log |>
+      rename_with(~str_c("log.", .), estimate:conf.high) |>
+  select(-p.value) |>
+  full_join(res)
 
 ## plotting
 ## ---------------------------

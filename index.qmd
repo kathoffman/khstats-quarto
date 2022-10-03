@@ -11,7 +11,8 @@ editor: source
 ::: {.g-col-12 .g-col-md-8}
 # Katherine (Kat) Hoffman
 
-I am a biostatistician who is passionate about meaningful and reproducible medical research. In addition to my research collaborations, I enjoy creating educational materials about statistics, programming, and career-related topics. I post about new content on [Twitter](https://twitter.com/kat_hoffman_), and I am always open to hearing feedback via <a href = "mailto: kathoffman.stats@gmail.com">email</a>.
+I am a biostatistician who is passionate about meaningful and reproducible medical research. In addition to my research collaborations, I enjoy creating educational materials about statistics, programming, and career-related topics.
+<!-- I post about new content on [Twitter](https://twitter.com/kat_hoffman_), and I am always open to hearing feedback via <a href = "mailto: kathoffman.stats@gmail.com">email</a>. -->
 
 **Education:**<br> M.S. Biostatistics \| University of Michigan \| 2018<br> B.S. Biochemistry \| University of Detroit Mercy \| 2015
 
@@ -47,3 +48,21 @@ I am a biostatistician who is passionate about meaningful and reproducible medic
 -   [On the Sidelines: NYC's COVID-19 Surge through the eyes of a pulmonary and critical care team's biostatistician](/blog/covid)
 :::
 :::
+
+<!-- ## Featured illustrations -->
+
+
+<!-- ::: grid -->
+<!-- ::: {.g-col-12 .g-col-md-4} -->
+<!-- ![](img/ident-vs-est.png) -->
+<!-- ::: -->
+
+<!-- ::: {.g-col-12 .g-col-md-4} -->
+<!-- ![](img/TMLE.jpg) -->
+<!-- ::: -->
+<!-- ::: {.g-col-12 .g-col-md-4} -->
+<!-- ![](img/lmtp/mtp_summary.jpg) -->
+<!-- ::: -->
+
+<!-- ::: -->
+

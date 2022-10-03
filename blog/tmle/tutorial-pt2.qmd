@@ -493,7 +493,6 @@ We can get the same result (variation due to randomness in the machine learning 
 
 To learn more about the statistical properties of TMLE and the underlying theory, [*continue on to Part III*](https://khstats.com/blog/tmle/tutorial-pt3). Alternatively, return to the motivation in [*Part I*](https://khstats.com/blog/tmle/tutorial/), or see the full tutorial code below.
 
-⤴️[*Back to the top*](#part-ii-the-algorithm)
 
 ------------------------------------------------------------------------
 
@@ -582,3 +581,8 @@ conf_high
 ```{r}
 sessionInfo()
 ```
+
+⬅️️[*Back to Part I: Motivation*](https://khstats.com/blog/tmle/tutorial)
+⤴️[*Back to the top*](#part-ii-the-algorithm)
+➡️[*Continue to Part II: The Algorithm*](https://khstats.com/blog/tmle/tutorial-pt2/)
+
