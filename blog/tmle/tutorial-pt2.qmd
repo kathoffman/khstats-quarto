@@ -4,8 +4,6 @@ author: "Katherine Hoffman"
 date: 2020-12-11
 image: tmle/tmle_crop.jpeg
 categories: ["statistics"]
-math: true
-tags: ["statistics","causal inference","R","lmtp","TMLE","Targeted Maximum Likelihood Estimation","introduction to TMLE","targeted learning"]
 description: " "
 output:
   blogdown::html_page:
@@ -144,7 +142,9 @@ As mentioned earlier, TMLE can estimate many different statistical estimands of 
 
 Under causal assumptions, this could be *identifiable* as the Average Treatment Effect (ATE). I won't go through the identification process here (see [*Part III, References*](https://khstats.com/blog/tmle/tutorial-pt3/#resources-to-learn-more)), but since TMLE is often used for causal inference, let's pretend for this example that we previously met causal assumptions and call our statistical estimand, $\Psi$, the ATE.
 
-$$ATE = \Psi = E_W[\mathrm{E}[Y|A=1,\mathbf{W}] - \mathrm{E}[Y|A=0,\mathbf{W}]]$$ The ATE, once we estimate it, will be interpretable as the mean difference in outcomes in a hypothetical world where everyone received the treatment compared to a hypothetical world where no one received the treatment.
+$$ATE = \Psi = E_W[\mathrm{E}[Y|A=1,\mathbf{W}] - \mathrm{E}[Y|A=0,\mathbf{W}]]$$
+
+The ATE, once we estimate it, will be interpretable as the mean difference in outcomes in a hypothetical world where everyone received the treatment compared to a hypothetical world where no one received the treatment.
 
 At this point in set-up, we should also pick our base machine learning algorithms to combine via superlearning to estimate the expected outcome and probability of treatment. Let's use LASSO (`glmnet`), random forests (`ranger`), Multivariate Adaptive Regression Splines (MARS) (`earth`), and a generalized linear model (`glm`) for demonstration.
 

@@ -1462,13 +1462,6 @@ Survey weights
 </section>
 <section id="resources-to-learn-more" class="level1">
 <h1>Resources to learn more</h1>
-
-
-
-
-<a href=""> <img src="www.khstats.com/blog/tmle/tmle/self_portrait.jpg" style="float:right; padding-right:20px; padding-top:-20px; padding-left:20px; padding-bottom:-50px;" width="34%"> </a>
-
-
 <p>I could only cover so much in this post, but here are the resources I’ve used the most to learn about TMLE, semiparametric estimation, and causal inference. If you are new to any or all of it, there is a good chance it will take <em>several</em> reads of these materials before the concepts begin to make any sense. Don’t get discouraged!</p>
 <section id="tmle" class="level3">
 <h3 class="anchored" data-anchor-id="tmle">TMLE</h3>
@@ -1521,7 +1514,6 @@ Survey weights
 <h1>Acknowledgements</h1>
 <p>This tutorial would not have been possible without my colleague Iván Díaz patiently answering many, many questions on TMLE. I am also very appreciative of Miguel Angel Luque-Fernandez’s helpful feedback on the visual guide.</p>
 <p>Lastly, many thanks to Axel Martin, Nick Williams, Anjile An, Adam Peterson, Alan Wu, and Will Simmons for providing suggestions on various drafts of this art project!</p>
-<!-- ![](tmle/self_portrait.jpg){width=45%} -->
 
 
 </section>
@@ -2114,7 +2106,8 @@ HTML Image as link
 </div>
 <p>As mentioned earlier, TMLE can estimate many different statistical estimands of interest. In this example, our statistical estimand is the mean difference in outcomes between those who received the treatment and those who did not, adjusting for confounders.</p>
 <p>Under causal assumptions, this could be <em>identifiable</em> as the Average Treatment Effect (ATE). I won’t go through the identification process here (see <a href="https://khstats.com/blog/tmle/tutorial-pt3/#resources-to-learn-more"><em>Part III, References</em></a>), but since TMLE is often used for causal inference, let’s pretend for this example that we previously met causal assumptions and call our statistical estimand, <img src="https://latex.codecogs.com/png.latex?%5CPsi">, the ATE.</p>
-<p><img src="https://latex.codecogs.com/png.latex?ATE%20=%20%5CPsi%20=%20E_W%5B%5Cmathrm%7BE%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D%20-%20%5Cmathrm%7BE%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D%5D"> The ATE, once we estimate it, will be interpretable as the mean difference in outcomes in a hypothetical world where everyone received the treatment compared to a hypothetical world where no one received the treatment.</p>
+<p><img src="https://latex.codecogs.com/png.latex?ATE%20=%20%5CPsi%20=%20E_W%5B%5Cmathrm%7BE%7D%5BY%7CA=1,%5Cmathbf%7BW%7D%5D%20-%20%5Cmathrm%7BE%7D%5BY%7CA=0,%5Cmathbf%7BW%7D%5D%5D"></p>
+<p>The ATE, once we estimate it, will be interpretable as the mean difference in outcomes in a hypothetical world where everyone received the treatment compared to a hypothetical world where no one received the treatment.</p>
 <p>At this point in set-up, we should also pick our base machine learning algorithms to combine via superlearning to estimate the expected outcome and probability of treatment. Let’s use LASSO (<code>glmnet</code>), random forests (<code>ranger</code>), Multivariate Adaptive Regression Splines (MARS) (<code>earth</code>), and a generalized linear model (<code>glm</code>) for demonstration.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">sl_libs <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">'SL.glmnet'</span>, <span class="st" style="color: #20794D;">'SL.ranger'</span>, <span class="st" style="color: #20794D;">'SL.earth'</span>, <span class="st" style="color: #20794D;">'SL.glm'</span>) <span class="co" style="color: #5E5E5E;"># a library of machine learning algorithms (penalized regression, random forests, and multivariate adaptive regression splines)</span></span></code></pre></div>
@@ -3892,7 +3885,7 @@ loaded via a namespace (and not attached):
 [17] htmltools_0.5.2    Matrix_1.4-0       pkgconfig_2.0.3    broom_0.8.0       
 [21] earth_5.3.1        haven_2.5.0        scales_1.2.1       ranger_0.14.1     
 [25] TeachingDemos_2.12 tzdb_0.3.0         generics_0.1.3     ellipsis_0.3.2    
-[29] withr_2.5.0        ROCR_1.0-11        cli_3.3.0          survival_3.2-13   
+[29] withr_2.5.0        ROCR_1.0-11        cli_3.4.1          survival_3.2-13   
 [33] magrittr_2.0.3     crayon_1.5.1       readxl_1.4.0       evaluate_0.15     
 [37] fs_1.5.2           fansi_1.0.3        xml2_1.3.3         cabinets_0.6.0    
 [41] tools_4.1.3        hms_1.1.1          lifecycle_1.0.1    munsell_0.5.0     
