@@ -1462,7 +1462,6 @@ Survey weights
 </section>
 <section id="resources-to-learn-more" class="level1">
 <h1>Resources to learn more</h1>
-<!-- ![](tmle/self_portrait.jpg){width=40%} -->
 
 
 
@@ -1531,7 +1530,7 @@ Survey weights
   <category>statistics</category>
   <guid>www.khstats.com/blog/tmle/tutorial-pt3.html</guid>
   <pubDate>Sat, 12 Dec 2020 05:00:00 GMT</pubDate>
-  <media:content url="www.khstats.com/blog/tmle/tmle_props.png" medium="image" type="image/png" height="90" width="144"/>
+  <media:content url="www.khstats.com/blog/tmle/tmle_props.png" medium="image" type="image/png" height="86" width="144"/>
 </item>
 <item>
   <title>An Illustrated Guide to TMLE, Part II: The Algorithm</title>

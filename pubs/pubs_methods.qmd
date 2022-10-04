@@ -8,6 +8,4 @@ nocite: |
   @*
 ---
 
-My main statistical methods collaboration thus far is with [Ivan Diaz](https://www.idiaz.xyz/) on causal inference methodology.
-
 # Statistical and Epidemiological Research Methods Manuscripts and Pre-prints

@@ -27,7 +27,7 @@ website:
     - id: research
       collapse-level: 1
       foreground: dark
-      title: "Publications"
+      title: "Research"
       style: "docked"
       background: light
       contents:

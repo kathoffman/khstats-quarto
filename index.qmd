@@ -21,15 +21,15 @@ I am a biostatistician who is passionate about meaningful and reproducible medic
 :::
 :::
 
-## Featured [blog](/blog.html) posts
+## Featured blog posts
 
 ::: grid
 ::: {.g-col-12 .g-col-md-4}
 ### Statistics
 
--   [An Introduction to Modified Treatment Policies](/blog/lmtp/lmtp.html)
--   [Building Intuition For Optimizing Individualized Treatment Rules](/blog/otr)
--   [An Introduction to Targeted Maximum Likelihood Estimation (TMLE)](/blog/tmle/tutorial.html)
+-   [Illustration Introduction to Modified Treatment Policies](/blog/lmtp/lmtp.html)
+-   [Building Intuition For Individualized Treatment Rules](/blog/otr)
+-   [Illustrated Introduction to Targeted Maximum Likelihood Estimation (TMLE)](/blog/tmle/tutorial.html)
 :::
 
 ::: {.g-col-12 .g-col-md-4}

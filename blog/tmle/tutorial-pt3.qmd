@@ -54,8 +54,6 @@ This is the reason TMLE allows us to use machine learning models "under the hood
 
 # Resources to learn more {#resources-to-learn-more}
 
-<!-- ![](tmle/self_portrait.jpg){width=40%} -->
-
 <html>
 
 <head>
