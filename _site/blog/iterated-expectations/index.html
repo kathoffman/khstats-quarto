@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -14,10 +14,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -56,7 +61,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -69,7 +74,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -144,9 +149,11 @@ ga('send', {
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../../index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">KHstats</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -290,7 +297,7 @@ ga('send', {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#pktqjpkmae .gt_table {
+:where(#pktqjpkmae) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -315,7 +322,7 @@ ga('send', {
   border-left-color: #D3D3D3;
 }
 
-#pktqjpkmae .gt_heading {
+:where(#pktqjpkmae) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -327,7 +334,7 @@ ga('send', {
   border-right-color: #D3D3D3;
 }
 
-#pktqjpkmae .gt_title {
+:where(#pktqjpkmae) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -339,7 +346,7 @@ ga('send', {
   border-bottom-width: 0;
 }
 
-#pktqjpkmae .gt_subtitle {
+:where(#pktqjpkmae) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -351,13 +358,13 @@ ga('send', {
   border-top-width: 0;
 }
 
-#pktqjpkmae .gt_bottom_border {
+:where(#pktqjpkmae) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pktqjpkmae .gt_col_headings {
+:where(#pktqjpkmae) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -372,7 +379,7 @@ ga('send', {
   border-right-color: #D3D3D3;
 }
 
-#pktqjpkmae .gt_col_heading {
+:where(#pktqjpkmae) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -392,7 +399,7 @@ ga('send', {
   overflow-x: hidden;
 }
 
-#pktqjpkmae .gt_column_spanner_outer {
+:where(#pktqjpkmae) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -404,15 +411,15 @@ ga('send', {
   padding-right: 4px;
 }
 
-#pktqjpkmae .gt_column_spanner_outer:first-child {
+:where(#pktqjpkmae) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pktqjpkmae .gt_column_spanner_outer:last-child {
+:where(#pktqjpkmae) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pktqjpkmae .gt_column_spanner {
+:where(#pktqjpkmae) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -424,7 +431,7 @@ ga('send', {
   width: 100%;
 }
 
-#pktqjpkmae .gt_group_heading {
+:where(#pktqjpkmae) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -449,7 +456,7 @@ ga('send', {
   vertical-align: middle;
 }
 
-#pktqjpkmae .gt_empty_group_heading {
+:where(#pktqjpkmae) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -464,15 +471,15 @@ ga('send', {
   vertical-align: middle;
 }
 
-#pktqjpkmae .gt_from_md > :first-child {
+:where(#pktqjpkmae) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pktqjpkmae .gt_from_md > :last-child {
+:where(#pktqjpkmae) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pktqjpkmae .gt_row {
+:where(#pktqjpkmae) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -491,7 +498,7 @@ ga('send', {
   overflow-x: hidden;
 }
 
-#pktqjpkmae .gt_stub {
+:where(#pktqjpkmae) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -504,7 +511,7 @@ ga('send', {
   padding-right: 5px;
 }
 
-#pktqjpkmae .gt_stub_row_group {
+:where(#pktqjpkmae) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -518,11 +525,11 @@ ga('send', {
   vertical-align: top;
 }
 
-#pktqjpkmae .gt_row_group_first td {
+:where(#pktqjpkmae) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pktqjpkmae .gt_summary_row {
+:where(#pktqjpkmae) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -532,16 +539,16 @@ ga('send', {
   padding-right: 5px;
 }
 
-#pktqjpkmae .gt_first_summary_row {
+:where(#pktqjpkmae) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pktqjpkmae .gt_first_summary_row.thick {
+:where(#pktqjpkmae) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pktqjpkmae .gt_last_summary_row {
+:where(#pktqjpkmae) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -551,7 +558,7 @@ ga('send', {
   border-bottom-color: #D3D3D3;
 }
 
-#pktqjpkmae .gt_grand_summary_row {
+:where(#pktqjpkmae) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -561,7 +568,7 @@ ga('send', {
   padding-right: 5px;
 }
 
-#pktqjpkmae .gt_first_grand_summary_row {
+:where(#pktqjpkmae) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -571,11 +578,11 @@ ga('send', {
   border-top-color: #D3D3D3;
 }
 
-#pktqjpkmae .gt_striped {
+:where(#pktqjpkmae) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pktqjpkmae .gt_table_body {
+:where(#pktqjpkmae) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -584,7 +591,7 @@ ga('send', {
   border-bottom-color: #D3D3D3;
 }
 
-#pktqjpkmae .gt_footnotes {
+:where(#pktqjpkmae) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -598,7 +605,7 @@ ga('send', {
   border-right-color: #D3D3D3;
 }
 
-#pktqjpkmae .gt_footnote {
+:where(#pktqjpkmae) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -607,7 +614,7 @@ ga('send', {
   padding-right: 5px;
 }
 
-#pktqjpkmae .gt_sourcenotes {
+:where(#pktqjpkmae) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -621,7 +628,7 @@ ga('send', {
   border-right-color: #D3D3D3;
 }
 
-#pktqjpkmae .gt_sourcenote {
+:where(#pktqjpkmae) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -629,36 +636,36 @@ ga('send', {
   padding-right: 5px;
 }
 
-#pktqjpkmae .gt_left {
+:where(#pktqjpkmae) .gt_left {
   text-align: left;
 }
 
-#pktqjpkmae .gt_center {
+:where(#pktqjpkmae) .gt_center {
   text-align: center;
 }
 
-#pktqjpkmae .gt_right {
+:where(#pktqjpkmae) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pktqjpkmae .gt_font_normal {
+:where(#pktqjpkmae) .gt_font_normal {
   font-weight: normal;
 }
 
-#pktqjpkmae .gt_font_bold {
+:where(#pktqjpkmae) .gt_font_bold {
   font-weight: bold;
 }
 
-#pktqjpkmae .gt_font_italic {
+:where(#pktqjpkmae) .gt_font_italic {
   font-style: italic;
 }
 
-#pktqjpkmae .gt_super {
+:where(#pktqjpkmae) .gt_super {
   font-size: 65%;
 }
 
-#pktqjpkmae .gt_two_val_uncert {
+:where(#pktqjpkmae) .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -667,31 +674,31 @@ ga('send', {
   margin-left: 0.1em;
 }
 
-#pktqjpkmae .gt_footnote_marks {
+:where(#pktqjpkmae) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#pktqjpkmae .gt_asterisk {
+:where(#pktqjpkmae) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pktqjpkmae .gt_slash_mark {
+:where(#pktqjpkmae) .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#pktqjpkmae .gt_fraction_numerator {
+:where(#pktqjpkmae) .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#pktqjpkmae .gt_fraction_denominator {
+:where(#pktqjpkmae) .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -750,7 +757,7 @@ ga('send', {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#pdkvokftyu .gt_table {
+:where(#pdkvokftyu) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -775,7 +782,7 @@ ga('send', {
   border-left-color: #D3D3D3;
 }
 
-#pdkvokftyu .gt_heading {
+:where(#pdkvokftyu) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -787,7 +794,7 @@ ga('send', {
   border-right-color: #D3D3D3;
 }
 
-#pdkvokftyu .gt_title {
+:where(#pdkvokftyu) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -799,7 +806,7 @@ ga('send', {
   border-bottom-width: 0;
 }
 
-#pdkvokftyu .gt_subtitle {
+:where(#pdkvokftyu) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -811,13 +818,13 @@ ga('send', {
   border-top-width: 0;
 }
 
-#pdkvokftyu .gt_bottom_border {
+:where(#pdkvokftyu) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pdkvokftyu .gt_col_headings {
+:where(#pdkvokftyu) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -832,7 +839,7 @@ ga('send', {
   border-right-color: #D3D3D3;
 }
 
-#pdkvokftyu .gt_col_heading {
+:where(#pdkvokftyu) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -852,7 +859,7 @@ ga('send', {
   overflow-x: hidden;
 }
 
-#pdkvokftyu .gt_column_spanner_outer {
+:where(#pdkvokftyu) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -864,15 +871,15 @@ ga('send', {
   padding-right: 4px;
 }
 
-#pdkvokftyu .gt_column_spanner_outer:first-child {
+:where(#pdkvokftyu) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pdkvokftyu .gt_column_spanner_outer:last-child {
+:where(#pdkvokftyu) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pdkvokftyu .gt_column_spanner {
+:where(#pdkvokftyu) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -884,7 +891,7 @@ ga('send', {
   width: 100%;
 }
 
-#pdkvokftyu .gt_group_heading {
+:where(#pdkvokftyu) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -909,7 +916,7 @@ ga('send', {
   vertical-align: middle;
 }
 
-#pdkvokftyu .gt_empty_group_heading {
+:where(#pdkvokftyu) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -924,15 +931,15 @@ ga('send', {
   vertical-align: middle;
 }
 
-#pdkvokftyu .gt_from_md > :first-child {
+:where(#pdkvokftyu) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pdkvokftyu .gt_from_md > :last-child {
+:where(#pdkvokftyu) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pdkvokftyu .gt_row {
+:where(#pdkvokftyu) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -951,7 +958,7 @@ ga('send', {
   overflow-x: hidden;
 }
 
-#pdkvokftyu .gt_stub {
+:where(#pdkvokftyu) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -964,7 +971,7 @@ ga('send', {
   padding-right: 5px;
 }
 
-#pdkvokftyu .gt_stub_row_group {
+:where(#pdkvokftyu) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -978,11 +985,11 @@ ga('send', {
   vertical-align: top;
 }
 
-#pdkvokftyu .gt_row_group_first td {
+:where(#pdkvokftyu) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pdkvokftyu .gt_summary_row {
+:where(#pdkvokftyu) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -992,16 +999,16 @@ ga('send', {
   padding-right: 5px;
 }
 
-#pdkvokftyu .gt_first_summary_row {
+:where(#pdkvokftyu) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pdkvokftyu .gt_first_summary_row.thick {
+:where(#pdkvokftyu) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pdkvokftyu .gt_last_summary_row {
+:where(#pdkvokftyu) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1011,7 +1018,7 @@ ga('send', {
   border-bottom-color: #D3D3D3;
 }
 
-#pdkvokftyu .gt_grand_summary_row {
+:where(#pdkvokftyu) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1021,7 +1028,7 @@ ga('send', {
   padding-right: 5px;
 }
 
-#pdkvokftyu .gt_first_grand_summary_row {
+:where(#pdkvokftyu) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1031,11 +1038,11 @@ ga('send', {
   border-top-color: #D3D3D3;
 }
 
-#pdkvokftyu .gt_striped {
+:where(#pdkvokftyu) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pdkvokftyu .gt_table_body {
+:where(#pdkvokftyu) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1044,7 +1051,7 @@ ga('send', {
   border-bottom-color: #D3D3D3;
 }
 
-#pdkvokftyu .gt_footnotes {
+:where(#pdkvokftyu) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1058,7 +1065,7 @@ ga('send', {
   border-right-color: #D3D3D3;
 }
 
-#pdkvokftyu .gt_footnote {
+:where(#pdkvokftyu) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1067,7 +1074,7 @@ ga('send', {
   padding-right: 5px;
 }
 
-#pdkvokftyu .gt_sourcenotes {
+:where(#pdkvokftyu) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1081,7 +1088,7 @@ ga('send', {
   border-right-color: #D3D3D3;
 }
 
-#pdkvokftyu .gt_sourcenote {
+:where(#pdkvokftyu) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1089,36 +1096,36 @@ ga('send', {
   padding-right: 5px;
 }
 
-#pdkvokftyu .gt_left {
+:where(#pdkvokftyu) .gt_left {
   text-align: left;
 }
 
-#pdkvokftyu .gt_center {
+:where(#pdkvokftyu) .gt_center {
   text-align: center;
 }
 
-#pdkvokftyu .gt_right {
+:where(#pdkvokftyu) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pdkvokftyu .gt_font_normal {
+:where(#pdkvokftyu) .gt_font_normal {
   font-weight: normal;
 }
 
-#pdkvokftyu .gt_font_bold {
+:where(#pdkvokftyu) .gt_font_bold {
   font-weight: bold;
 }
 
-#pdkvokftyu .gt_font_italic {
+:where(#pdkvokftyu) .gt_font_italic {
   font-style: italic;
 }
 
-#pdkvokftyu .gt_super {
+:where(#pdkvokftyu) .gt_super {
   font-size: 65%;
 }
 
-#pdkvokftyu .gt_two_val_uncert {
+:where(#pdkvokftyu) .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -1127,31 +1134,31 @@ ga('send', {
   margin-left: 0.1em;
 }
 
-#pdkvokftyu .gt_footnote_marks {
+:where(#pdkvokftyu) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#pdkvokftyu .gt_asterisk {
+:where(#pdkvokftyu) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pdkvokftyu .gt_slash_mark {
+:where(#pdkvokftyu) .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#pdkvokftyu .gt_fraction_numerator {
+:where(#pdkvokftyu) .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#pdkvokftyu .gt_fraction_denominator {
+:where(#pdkvokftyu) .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1245,18 +1252,18 @@ ga('send', {
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1" role="doc-endnote"><p>Because we’re making our outer expectation conditional on <span class="math inline">\(Z=z\)</span>, we can also move <span class="math inline">\(Z=z\)</span> into our inner expectation. This becomes obvious in the <code>penguins</code> example, since we only use the fitted values from one category of <code>species</code> to get the adjusted group mean for that category.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>We can rewrite <span class="math inline">\(E[Y|X,Z=z]\)</span> as the weighted summation of all possible values <span class="math inline">\(X\)</span> can take. <span class="math inline">\(E[Y|X,Z=z]\)</span> will only ever be able to take values of <span class="math inline">\(X\)</span> that vary over the range of <span class="math inline">\(x\)</span>, <span class="math inline">\(E[Y|X=x,Z=z]\)</span> since our value <span class="math inline">\(z\)</span> is already fixed. We can weight each of these possible <span class="math inline">\(E[Y|X=x,Z=z]\)</span> values by <span class="math inline">\(P(X=x|Z=z)\)</span>, since that’s the probabilty <span class="math inline">\(X\)</span> will take value <span class="math inline">\(x\)</span> at our already-fixed <span class="math inline">\(z\)</span>. Thus, we can start to find <span class="math inline">\(E[E[Y|X,Z=z]|Z=z]\)</span> by weighting each <span class="math inline">\(E[Y|X=x,Z=z]\)</span> by <span class="math inline">\(P(X=x|Z=z)\)</span> and adding them all up (see Partition Theorem).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>We can get the expectation of <span class="math inline">\(Y\)</span> at each of those possible values of <span class="math inline">\(X\)</span> by a similar process as step 2 (weighting each <span class="math inline">\(y\)</span> by <span class="math inline">\(P(Y=y|X=x, Z=z)\)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p>By the Law of Conditional Probability, we can rewrite our conditional probabilities as joint distributions.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p>The denominator of the first fraction cancels out with the numerator of the second fraction.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6" role="doc-endnote"><p>We can switch the summations around so that <span class="math inline">\(y\)</span> is outside the summation over all values of <span class="math inline">\(X\)</span>. This lets us get the joint distribution of only <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7" role="doc-endnote"><p>This is a conditional expectation, written in the form of a joint distribution.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8" role="doc-endnote"><p>By the Partition Theorem.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9" role="doc-endnote"><p>Rewriting the previous equation as an expectation.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Because we’re making our outer expectation conditional on <span class="math inline">\(Z=z\)</span>, we can also move <span class="math inline">\(Z=z\)</span> into our inner expectation. This becomes obvious in the <code>penguins</code> example, since we only use the fitted values from one category of <code>species</code> to get the adjusted group mean for that category.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>We can rewrite <span class="math inline">\(E[Y|X,Z=z]\)</span> as the weighted summation of all possible values <span class="math inline">\(X\)</span> can take. <span class="math inline">\(E[Y|X,Z=z]\)</span> will only ever be able to take values of <span class="math inline">\(X\)</span> that vary over the range of <span class="math inline">\(x\)</span>, <span class="math inline">\(E[Y|X=x,Z=z]\)</span> since our value <span class="math inline">\(z\)</span> is already fixed. We can weight each of these possible <span class="math inline">\(E[Y|X=x,Z=z]\)</span> values by <span class="math inline">\(P(X=x|Z=z)\)</span>, since that’s the probabilty <span class="math inline">\(X\)</span> will take value <span class="math inline">\(x\)</span> at our already-fixed <span class="math inline">\(z\)</span>. Thus, we can start to find <span class="math inline">\(E[E[Y|X,Z=z]|Z=z]\)</span> by weighting each <span class="math inline">\(E[Y|X=x,Z=z]\)</span> by <span class="math inline">\(P(X=x|Z=z)\)</span> and adding them all up (see Partition Theorem).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>We can get the expectation of <span class="math inline">\(Y\)</span> at each of those possible values of <span class="math inline">\(X\)</span> by a similar process as step 2 (weighting each <span class="math inline">\(y\)</span> by <span class="math inline">\(P(Y=y|X=x, Z=z)\)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>By the Law of Conditional Probability, we can rewrite our conditional probabilities as joint distributions.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>The denominator of the first fraction cancels out with the numerator of the second fraction.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>We can switch the summations around so that <span class="math inline">\(y\)</span> is outside the summation over all values of <span class="math inline">\(X\)</span>. This lets us get the joint distribution of only <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>This is a conditional expectation, written in the form of a joint distribution.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>By the Partition Theorem.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Rewriting the previous equation as an expectation.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1328,7 +1335,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

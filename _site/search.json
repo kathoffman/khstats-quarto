@@ -81,14 +81,14 @@
     "href": "index.html",
     "title": "KHstats",
     "section": "",
-    "text": "I am a biostatistician who is passionate about meaningful and reproducible medical research. In addition to my research collaborations, I enjoy creating educational materials about statistics, programming, and career-related topics. \nEducation: M.S. Biostatistics | University of Michigan | 2018 B.S. Biochemistry | University of Detroit Mercy | 2015\nExperience:Research Biostatistician | Weill Cornell Medicine | 2018-present"
+    "text": "I am a biostatistician who is passionate about meaningful and reproducible medical research. In addition to my research collaborations, I enjoy creating educational materials about statistics, programming, and career-related topics. \nEducation: M.S. Biostatistics | University of Michigan | 2018 B.S. Biochemistry | University of Detroit Mercy | 2015\nExperience:Columbia University Medical Center | 2022-presentWeill Cornell Medicine | 2018-2022"
   },
   {
     "objectID": "index.html#featured-blog-posts",
     "href": "index.html#featured-blog-posts",
     "title": "KHstats",
     "section": "Featured blog posts",
-    "text": "Featured blog posts\n\n\nStatistics\n\nIllustration Introduction to Modified Treatment Policies\nBuilding Intuition For Individualized Treatment Rules\nIllustrated Introduction to Targeted Maximum Likelihood Estimation (TMLE)\n\n\n\nProgramming\n\nTreatment Timelines for Multiple Variables with {ggplot2}\nAnnotated Effect Size Plots with {ggplot2}\nCustomizable Correlation Plots in R\n\n\n\nCareer\n\nA Day in the Life of a Biostatistician\nStats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician\nOn the Sidelines: NYC’s COVID-19 Surge through the eyes of a pulmonary and critical care team’s biostatistician"
+    "text": "Featured blog posts\n\n\nStatistics\n\nAn Introduction to Modified Treatment Policies\nBuilding Statistical Intuition For Optimal Treatment Rules\nIllustrated Guide to Targeted Maximum Likelihood Estimation (TMLE)\n\n\n\nProgramming\n\nTreatment Timelines for Multiple Variables with {ggplot2}\nAnnotated Effect Size Plots with {ggplot2}\nCustomizable Correlation Plots in R\n\n\n\nCareer\n\nA Day in the Life of a Biostatistician\nStats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician\nOn the Sidelines: NYC’s COVID-19 Surge through the eyes of a pulmonary and critical care team’s biostatistician"
   },
   {
     "objectID": "blog/sl/superlearning.html",
@@ -331,16 +331,16 @@
   {
     "objectID": "blog/otr/otr.html",
     "href": "blog/otr/otr.html",
-    "title": "Building Statistical Intuition for Individualized Treatment Rules",
+    "title": "Building Statistical Intuition for Optimal Treatment Rules",
     "section": "",
-    "text": "Developing and optimizing individualized treatment rules (ITRs) is a fast-growing topic in the medical research community. A treatment rule is a decision for treatment based upon a person’s characteristics. The intuition behind this is that not all individuals will respond to a treatment in the same way. We can exploit these heterogeneous effects and develop personalized rules which provide benefit a greater number of people.\nThe methods of ITRs are rooted in principles of causal inference, or using data to inform us about what would have happened in a hypothetical world in which different interventions had occurred. This post walks through the basic statistical intuition for ITRs. Each explanation is accompanied by mathematical notation and a small graphic to convey equivalent meaning."
+    "text": "Developing and optimizing optimal treatment rules (OTRs) is a fast-growing topic in the medical research community. A treatment rule is a decision for treatment based upon a person’s characteristics. The intuition behind this is that not all individuals will respond to a treatment in the same way. We can exploit these heterogeneous effects and develop personalized rules which provide benefit a greater number of people.\nThe methods of OTRs are rooted in principles of causal inference, or using data to inform us about what would have happened in a hypothetical world in which different interventions had occurred. This post walks through the basic statistical intuition for OTRs. Each explanation is accompanied by mathematical notation and a small graphic to convey equivalent meaning."
   },
   {
     "objectID": "blog/otr/otr.html#acknowledgments",
     "href": "blog/otr/otr.html#acknowledgments",
-    "title": "Building Statistical Intuition for Individualized Treatment Rules",
+    "title": "Building Statistical Intuition for Optimal Treatment Rules",
     "section": "Acknowledgments",
-    "text": "Acknowledgments\nThanks to my colleague Iván Díaz for explaining individualized treatment rules to me in this way, and for reviewing this post."
+    "text": "Acknowledgments\nThanks to my colleague Iván Díaz for explaining OTRs to me in this way, and for reviewing this post."
   },
   {
     "objectID": "blog/corr-plots/index.html",

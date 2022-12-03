@@ -2,21 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Katherine Hoffman">
 <meta name="dcterms.date" content="2022-08-10">
 
-<title>KHstats - Building Statistical Intuition for Individualized Treatment Rules</title>
+<title>KHstats - Building Statistical Intuition for Optimal Treatment Rules</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -55,7 +60,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -68,7 +73,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -143,9 +148,11 @@ ga('send', {
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../../index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">KHstats</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -217,7 +224,7 @@ ga('send', {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Building Statistical Intuition for Individualized Treatment Rules</h1>
+      <h1 class="title">Building Statistical Intuition for Optimal Treatment Rules</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">statistics</div>
               </div>
@@ -254,22 +261,22 @@ ga('send', {
 
 
 
-<p>Developing and optimizing <strong>individualized treatment rules (ITRs)</strong> is a fast-growing topic in the medical research community. A treatment rule is a <strong>decision for treatment based upon a person’s characteristics</strong>. The intuition behind this is that not all individuals will respond to a treatment in the same way. We can exploit these <strong>heterogeneous effects</strong> and develop personalized rules which provide benefit a greater number of people.</p>
-<p>The methods of ITRs are rooted in <strong>principles of causal inference</strong>, or using data to inform us about what would have happened in a hypothetical world in which different interventions had occurred. This post walks through the basic statistical intuition for ITRs. Each explanation is accompanied by mathematical notation and a small graphic to convey equivalent meaning.</p>
+<p>Developing and optimizing <strong>optimal treatment rules (OTRs)</strong> is a fast-growing topic in the medical research community. A treatment rule is a <strong>decision for treatment based upon a person’s characteristics</strong>. The intuition behind this is that not all individuals will respond to a treatment in the same way. We can exploit these <strong>heterogeneous effects</strong> and develop personalized rules which provide benefit a greater number of people.</p>
+<p>The methods of OTRs are rooted in <strong>principles of causal inference</strong>, or using data to inform us about what would have happened in a hypothetical world in which different interventions had occurred. This post walks through the basic statistical intuition for OTRs. Each explanation is accompanied by mathematical notation and a small graphic to convey equivalent meaning.</p>
 <blockquote class="blockquote">
 <p>Although this post is introductory, it assumes basic knowledge in causal inference, such as <em>counterfactual outcomes</em>, <em>assumptions for causal identification</em>, <em>Average Treatment Effect</em>, and <a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/G-Computation.pdf"><em>G-computation</em>/<em>g-formula</em></a>.</p>
 </blockquote>
 <section id="table-of-contents" class="level1">
 <h1>Table of Contents</h1>
 <ol type="1">
-<li><p>🗺️ <a href="#the-big-picture-of-itrs">The big-picture approach to ITRs</a></p></li>
-<li><p>📈 <a href="#estimating-the-itr">A simple estimation example</a></p></li>
+<li><p>🗺️ <a href="#the-big-picture-of-otrs">The big-picture approach to OTRs</a></p></li>
+<li><p>📈 <a href="#estimating-the-otr">A simple estimation example</a></p></li>
 <li><p>🖥️ <a href="#r-simulation"><code>R</code> code for a simple estimation example</a></p></li>
 </ol>
 </section>
-<section id="the-big-picture-of-itrs" class="level1">
-<h1>🗺️ The Big Picture of ITRs</h1>
-<p>In this first section, we will translate the concept of developing and optimizing an ITR into mathematical notation.</p>
+<section id="the-big-picture-of-otrs" class="level1">
+<h1>🗺️ The Big Picture of OTRs</h1>
+<p>In this first section, we will translate the concept of developing and optimizing an OTR into mathematical notation.</p>
 <ol type="1">
 <li>We will start with a standard set-up: we have a matrix of observed data <span class="math inline">\(O\)</span> which includes our <strong>outcome</strong> <span class="math inline">\(Y\)</span>, the <strong>exposure</strong> (i.e.&nbsp;treatment, medicine, etc.) we want to study <span class="math inline">\(A\)</span>, and other <strong>covariates</strong> <span class="math inline">\(\textbf{W}\)</span>. Each row is an observation. We can denote these columns of data, which are random variables, as <span class="math inline">\(O = (\textbf{W}, A, Y)\)</span>.</li>
 </ol>
@@ -299,17 +306,17 @@ ga('send', {
 <p>Let’s denote this vector of counterfactual outcomes as <span class="math inline">\(Y(d)\)</span>.</p>
 <p><img src="otr/Y_d.png" class="img-fluid" style="width:100.0%"></p>
 <ol start="4" type="1">
-<li>The optimal ITR will <strong>maximize the expected counterfactual outcome</strong>, or <span class="math inline">\(\mathrm{E}[Y(d)]\)</span>, across the entire population. We can write that using <span class="math inline">\(\mathop{\mathrm{arg\,max}}\)</span>, which means we want to know which argument will return the highest value of a function. In this use-case, we want to know what treatment rule <span class="math inline">\(d\)</span> returns the highest expected value of the counterfactual outcome, <span class="math inline">\(\mathrm{E}[Y(d)]\)</span>.</li>
+<li>The optimal OTR will <strong>maximize the expected counterfactual outcome</strong>, or <span class="math inline">\(\mathrm{E}[Y(d)]\)</span>, across the entire population. We can write that using <span class="math inline">\(\mathop{\mathrm{arg\,max}}\)</span>, which means we want to know which argument will return the highest value of a function. In this use-case, we want to know what treatment rule <span class="math inline">\(d\)</span> returns the highest expected value of the counterfactual outcome, <span class="math inline">\(\mathrm{E}[Y(d)]\)</span>.</li>
 </ol>
 <p><span class="math display">\[\mathop{\mathrm{arg\,max}}_d \mathrm{E}[Y(d)]\]</span></p>
 <p><img src="otr/argmax.png" class="img-fluid" style="width:70.0%"></p>
 <ol start="5" type="1">
-<li>We can call whatever function <span class="math inline">\(d\)</span>, or <span class="math inline">\(d(\textbf{W})\)</span>, that maximizes this expected counterfactual outcome for the population <span class="math inline">\(d^*\)</span>. <strong>This</strong> <span class="math inline">\(d^*\)</span> is our optimal ITR.</li>
+<li>We can call whatever function <span class="math inline">\(d\)</span>, or <span class="math inline">\(d(\textbf{W})\)</span>, that maximizes this expected counterfactual outcome for the population <span class="math inline">\(d^*\)</span>. <strong>This</strong> <span class="math inline">\(d^*\)</span> is our OTR.</li>
 </ol>
 <p><img src="otr/d_star.png" class="img-fluid" style="width:50.0%"></p>
 </section>
-<section id="estimating-the-itr" class="level1">
-<h1>📈 Estimating the ITR</h1>
+<section id="estimating-the-otr" class="level1">
+<h1>📈 Estimating the OTR</h1>
 <p>There are many ways to estimate <span class="math inline">\(d^*\)</span>. One of the most common ways begins by estimating the <strong>Conditional Average Treatment Effect (CATE)</strong>.</p>
 <p>You have probably heard of the Average Treatment Effect (ATE), which is the mean difference in outcomes in a world in which every unit receives the exposure compared to a world in which no unit receives the exposure. In potential outcomes notation, <span class="math inline">\(ATE = \mathrm{E}[Y^1-Y^0]\)</span>. The CATE is the same formula and description, but within covariate strata <span class="math inline">\(W\)</span>.</p>
 <p><span class="math display">\[CATE = \mathrm{E}[Y^1-Y^0|\textbf{W}]\]</span></p>
@@ -333,8 +340,8 @@ ga('send', {
 </ol>
 <p><span class="math display">\[\widehat{CATE} = \hat{E}[Y|A=1, \textbf{W}] - \hat{E}[Y|A=0, \textbf{W}]\]</span></p>
 <p><img src="otr/cate.png" class="img-fluid" style="width:32.0%"></p>
-<p>Now, we could say our optimal ITR is to <strong>give treatment if the value of</strong> <span class="math inline">\(CATE\)</span> for that person is positive, indicating a positive effect of treatment on the outcome <span class="math inline">\(Y\)</span>. Likewise, if the value is negative or 0, indicating a negative or neutral effect on the outcome <span class="math inline">\(Y\)</span>, that unit would not receive treatment under the ITR.</p>
-<p><span class="math display">\[ITR = \mathbb{1}{ \{CATE &gt; 0} \}\]</span></p>
+<p>Now, we could say our optimal treatment rule is to <strong>give treatment if the value of</strong> <span class="math inline">\(CATE\)</span> for that person is positive, indicating a positive effect of treatment on the outcome <span class="math inline">\(Y\)</span>. Likewise, if the value is negative or 0, indicating a negative or neutral effect on the outcome <span class="math inline">\(Y\)</span>, that unit would not receive treatment under the OTR.</p>
+<p><span class="math display">\[\text{Treatment rule} = \mathbb{1}{ \{CATE &gt; 0} \}\]</span></p>
 <p><img src="otr/cate_assign_legend.png" class="img-fluid" style="width:50.0%"></p>
 </section>
 <section id="r-simulation" class="level1">
@@ -364,44 +371,46 @@ ga('send', {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#f2696f"</span>,<span class="st">"#4984b0"</span>)) <span class="sc">+</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"CATE"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">"Treatment Rule"</span>, <span class="at">title=</span><span class="st">"Distribution of CATE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="otr_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="otr_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="improving-estimation-of-d" class="level1">
 <h1>Improving estimation of <span class="math inline">\(d^*\)</span></h1>
 <p>There are many other ways to estimate the <span class="math inline">\(CATE\)</span> with improved statistical properties, e.g.&nbsp;<strong>double robustness</strong>. We could also estimate <span class="math inline">\(d^*\)</span> directly instead of first estimating the <span class="math inline">\(CATE\)</span>.</p>
-<p>We can extend either of these ideas to longitudinal settings, studies with clustering, etc. I’ve listed some of the resources I’ve used to learn about optimizing ITRs below. As always, I welcome feedback and/or suggestions of additional resources I can include.</p>
+<p>We can extend either of these ideas to longitudinal settings, studies with clustering, etc. I’ve listed some of the resources I’ve used to learn about developing OTRs below. As always, I welcome feedback and/or suggestions of additional resources I can include.</p>
 <hr>
 </section>
 <section id="further-reading" class="level1">
 <h1>Further reading</h1>
 <p>These concepts are introductory, so any paper on “optimal treatment rules”, “individualized treatment rules”, or “heterogeneous treatment effects” should review the ideas discussed here in their introductions.</p>
 <ul>
-<li>This <a href="https://onlinelibrary.wiley.com/doi/10.1002/sim.9154">Hoogland et al.&nbsp;tutorial</a> gives an introduction and code for ITRs.</li>
-<li>This <a href="https://www.bios.unc.edu/~dzeng/Pub/EHROLearning1.pdf">Wang et al.&nbsp;paper</a> offers a clear mathematical introduction on ITRs.</li>
+<li>This <a href="https://onlinelibrary.wiley.com/doi/10.1002/sim.9154">Hoogland et al.&nbsp;tutorial</a> gives an introduction and code for OTRs.</li>
+<li>This <a href="https://www.bios.unc.edu/~dzeng/Pub/EHROLearning1.pdf">Wang et al.&nbsp;paper</a> offers a clear mathematical introduction on OTRs.</li>
 <li><a href="https://www.youtube.com/watch?v=-0-RYxQ0zqM">Brady Neal’s causal course Youtube series</a> (Chapter 6.2) discusses Conditional Outcome Modeling (what the CATE estimator falls under) over a 10 minute video.</li>
 <li>This <a href="https://jamanetwork.com/journals/jama/fullarticle/2787131">Angus and Chang <em>JAMA</em> Statistics and Research Methods paper</a> gives an overview of a few ways to compute heterogeneous treatment effects for individualized treatment rules.</li>
 <li>Lately I’ve been interested in <a href="https://arxiv.org/pdf/2004.14497.pdf">this recent methods paper</a> by Edward Kennedy. It discusses a way to evaluate the CATE using doubly robust estimation, and gives several other foundational papers in the introduction.</li>
 <li><a href="https://egap.org/resource/10-things-to-know-about-heterogeneous-treatment-effects/">This <code>R</code> blog post</a> about heterogeneous treatment effects also may be useful for thinking through these issues with real data.</li>
+<li><pre><code>[Lina Montoya](http://lina-montoya.com/)'s [paper](https://arxiv.org/abs/2101.12326) on using the [Superlearner algorithm](https://www.khstats.com/blog/sl/superlearning.html) to estimate the CATE is super interesting and contains many great references to other OTR papers</code></pre></li>
+<li>This <a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2773970">Pirracchio et al.&nbsp;paper</a> is an interesting application of the Superlearner optimal treatment rule in a critical care setting (one of my favorite areas of research!)</li>
 </ul>
 <p>I’ll continue to add resources to this list as I discover them. Please reach out if you have recommendations of papers or tutorials (yours or others!) to add to this list.</p>
 <hr>
 <section id="acknowledgments" class="level2">
 <h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
-<p>Thanks to my colleague <a href="https://twitter.com/ildiazm">Iván Díaz</a> for explaining individualized treatment rules to me in this way, and for reviewing this post.</p>
+<p>Thanks to my colleague <a href="https://twitter.com/ildiazm">Iván Díaz</a> for explaining OTRs to me in this way, and for reviewing this post.</p>
 
 
 </section>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1" role="doc-endnote"><p>Recall that a counterfactual describes a hypothetical world where a unit received a certain intervention or treatment, which might be different from the treatment they actually received<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>This post is focused on estimation and therefore does not detail the requirements for causal identification, but here I refer to the assumptions of consistency, exchangeability, and positivity.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>If you’d like a review on G-computation, check out this <a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/G-Computation.pdf"><strong>visual guide</strong></a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Recall that a counterfactual describes a hypothetical world where a unit received a certain intervention or treatment, which might be different from the treatment they actually received<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This post is focused on estimation and therefore does not detail the requirements for causal identification, but here I refer to the assumptions of consistency, exchangeability, and positivity.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>If you’d like a review on G-computation, check out this <a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/G-Computation.pdf"><strong>visual guide</strong></a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -473,7 +482,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

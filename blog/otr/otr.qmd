@@ -1,5 +1,5 @@
 ---
-title: "Building Statistical Intuition for Individualized Treatment Rules"
+title: "Building Statistical Intuition for Optimal Treatment Rules"
 author: "Katherine Hoffman"
 date: "2022-08-10"
 categories: [statistics]
@@ -15,23 +15,23 @@ description: " "
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Developing and optimizing **individualized treatment rules (ITRs)** is a fast-growing topic in the medical research community. A treatment rule is a **decision for treatment based upon a person's characteristics**. The intuition behind this is that not all individuals will respond to a treatment in the same way. We can exploit these **heterogeneous effects** and develop personalized rules which provide benefit a greater number of people.
+Developing and optimizing **optimal treatment rules (OTRs)** is a fast-growing topic in the medical research community. A treatment rule is a **decision for treatment based upon a person's characteristics**. The intuition behind this is that not all individuals will respond to a treatment in the same way. We can exploit these **heterogeneous effects** and develop personalized rules which provide benefit a greater number of people.
 
-The methods of ITRs are rooted in **principles of causal inference**, or using data to inform us about what would have happened in a hypothetical world in which different interventions had occurred. This post walks through the basic statistical intuition for ITRs. Each explanation is accompanied by mathematical notation and a small graphic to convey equivalent meaning.
+The methods of OTRs are rooted in **principles of causal inference**, or using data to inform us about what would have happened in a hypothetical world in which different interventions had occurred. This post walks through the basic statistical intuition for OTRs. Each explanation is accompanied by mathematical notation and a small graphic to convey equivalent meaning.
 
 > Although this post is introductory, it assumes basic knowledge in causal inference, such as *counterfactual outcomes*, *assumptions for causal identification*, *Average Treatment Effect*, and [*G-computation*/*g-formula*](https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/G-Computation.pdf).
 
 # Table of Contents
 
-1.  🗺️ [The big-picture approach to ITRs](#the-big-picture-of-itrs)
+1.  🗺️ [The big-picture approach to OTRs](#the-big-picture-of-otrs)
 
-2.  📈 [A simple estimation example](#estimating-the-itr)
+2.  📈 [A simple estimation example](#estimating-the-otr)
 
 3.  🖥️ [`R` code for a simple estimation example](#r-simulation)
 
-# 🗺️ The Big Picture of ITRs {#the-big-picture-of-itrs}
+# 🗺️ The Big Picture of OTRs {#the-big-picture-of-otrs}
 
-In this first section, we will translate the concept of developing and optimizing an ITR into mathematical notation.
+In this first section, we will translate the concept of developing and optimizing an OTR into mathematical notation.
 
 1.  We will start with a standard set-up: we have a matrix of observed data $O$ which includes our **outcome** $Y$, the **exposure** (i.e. treatment, medicine, etc.) we want to study $A$, and other **covariates** $\textbf{W}$. Each row is an observation. We can denote these columns of data, which are random variables, as $O = (\textbf{W}, A, Y)$.
 
@@ -79,17 +79,17 @@ Let's denote this vector of counterfactual outcomes as $Y(d)$.
 
 ![](otr/Y_d.png){width="100%"}
 
-4.  The optimal ITR will **maximize the expected counterfactual outcome**, or $\mathrm{E}[Y(d)]$, across the entire population. We can write that using $\mathop{\mathrm{arg\,max}}$, which means we want to know which argument will return the highest value of a function. In this use-case, we want to know what treatment rule $d$ returns the highest expected value of the counterfactual outcome, $\mathrm{E}[Y(d)]$.
+4.  The optimal OTR will **maximize the expected counterfactual outcome**, or $\mathrm{E}[Y(d)]$, across the entire population. We can write that using $\mathop{\mathrm{arg\,max}}$, which means we want to know which argument will return the highest value of a function. In this use-case, we want to know what treatment rule $d$ returns the highest expected value of the counterfactual outcome, $\mathrm{E}[Y(d)]$.
 
 $$\mathop{\mathrm{arg\,max}}_d \mathrm{E}[Y(d)]$$
 
 ![](otr/argmax.png){width="70%"}
 
-5.  We can call whatever function $d$, or $d(\textbf{W})$, that maximizes this expected counterfactual outcome for the population $d^*$. **This** $d^*$ is our optimal ITR.
+5.  We can call whatever function $d$, or $d(\textbf{W})$, that maximizes this expected counterfactual outcome for the population $d^*$. **This** $d^*$ is our OTR.
 
 ![](otr/d_star.png){width="50%"}
 
-# 📈 Estimating the ITR {#estimating-the-itr}
+# 📈 Estimating the OTR {#estimating-the-otr}
 
 There are many ways to estimate $d^*$. One of the most common ways begins by estimating the **Conditional Average Treatment Effect (CATE)**.
 
@@ -129,11 +129,11 @@ $$\widehat{CATE} = \hat{E}[Y|A=1, \textbf{W}] - \hat{E}[Y|A=0, \textbf{W}]$$
 
 ![](otr/cate.png){width="32%"}
 
-Now, we could say our optimal ITR is to **give treatment if the value of** $CATE$ for that person is positive, indicating a positive effect of treatment on the outcome $Y$. Likewise, if the value is negative or 0, indicating a negative or neutral effect on the outcome $Y$, that unit would not receive treatment under the ITR.
+Now, we could say our optimal treatment rule is to **give treatment if the value of** $CATE$ for that person is positive, indicating a positive effect of treatment on the outcome $Y$. Likewise, if the value is negative or 0, indicating a negative or neutral effect on the outcome $Y$, that unit would not receive treatment under the OTR.
 
 \usepackage{bbm}
 
-$$ITR = \mathbb{1}{ \{CATE > 0} \}$$
+$$\text{Treatment rule} = \mathbb{1}{ \{CATE > 0} \}$$
 
 ![](otr/cate_assign_legend.png){width="50%"}
 
@@ -176,7 +176,7 @@ data.frame(CATE) |>
 
 There are many other ways to estimate the $CATE$ with improved statistical properties, e.g. **double robustness**. We could also estimate $d^*$ directly instead of first estimating the $CATE$.
 
-We can extend either of these ideas to longitudinal settings, studies with clustering, etc. I've listed some of the resources I've used to learn about optimizing ITRs below. As always, I welcome feedback and/or suggestions of additional resources I can include.
+We can extend either of these ideas to longitudinal settings, studies with clustering, etc. I've listed some of the resources I've used to learn about developing OTRs below. As always, I welcome feedback and/or suggestions of additional resources I can include.
 
 ------------------------------------------------------------------------
 
@@ -184,12 +184,14 @@ We can extend either of these ideas to longitudinal settings, studies with clust
 
 These concepts are introductory, so any paper on "optimal treatment rules", "individualized treatment rules", or "heterogeneous treatment effects" should review the ideas discussed here in their introductions.
 
--   This [Hoogland et al. tutorial](https://onlinelibrary.wiley.com/doi/10.1002/sim.9154) gives an introduction and code for ITRs.
--   This [Wang et al. paper](https://www.bios.unc.edu/~dzeng/Pub/EHROLearning1.pdf) offers a clear mathematical introduction on ITRs.
+-   This [Hoogland et al. tutorial](https://onlinelibrary.wiley.com/doi/10.1002/sim.9154) gives an introduction and code for OTRs.
+-   This [Wang et al. paper](https://www.bios.unc.edu/~dzeng/Pub/EHROLearning1.pdf) offers a clear mathematical introduction on OTRs.
 -   [Brady Neal's causal course Youtube series](https://www.youtube.com/watch?v=-0-RYxQ0zqM) (Chapter 6.2) discusses Conditional Outcome Modeling (what the CATE estimator falls under) over a 10 minute video.
 -   This [Angus and Chang *JAMA* Statistics and Research Methods paper](https://jamanetwork.com/journals/jama/fullarticle/2787131) gives an overview of a few ways to compute heterogeneous treatment effects for individualized treatment rules.
 -   Lately I've been interested in [this recent methods paper](https://arxiv.org/pdf/2004.14497.pdf) by Edward Kennedy. It discusses a way to evaluate the CATE using doubly robust estimation, and gives several other foundational papers in the introduction.
 -   [This `R` blog post](https://egap.org/resource/10-things-to-know-about-heterogeneous-treatment-effects/) about heterogeneous treatment effects also may be useful for thinking through these issues with real data.
+-     [Lina Montoya](http://lina-montoya.com/)'s [paper](https://arxiv.org/abs/2101.12326) on using the [Superlearner algorithm](https://www.khstats.com/blog/sl/superlearning.html) to estimate the CATE is super interesting and contains many great references to other OTR papers
+- This [Pirracchio et al. paper](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2773970) is an interesting application of the Superlearner optimal treatment rule in a critical care setting (one of my favorite areas of research!)
 
 I'll continue to add resources to this list as I discover them. Please reach out if you have recommendations of papers or tutorials (yours or others!) to add to this list.
 
@@ -197,4 +199,5 @@ I'll continue to add resources to this list as I discover them. Please reach out
 
 ## Acknowledgments
 
-Thanks to my colleague [Iván Díaz](https://twitter.com/ildiazm) for explaining individualized treatment rules to me in this way, and for reviewing this post.
+Thanks to my colleague [Iván Díaz](https://twitter.com/ildiazm) for explaining OTRs to me in this way, and for reviewing this post.
+

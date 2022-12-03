@@ -16,7 +16,7 @@ I am a biostatistician who is passionate about meaningful and reproducible medic
 
 **Education:**<br> M.S. Biostatistics \| University of Michigan \| 2018<br> B.S. Biochemistry \| University of Detroit Mercy \| 2015
 
-**Experience:**<br>Research Biostatistician \| Weill Cornell Medicine \| 2018-present
+**Experience:**<br>Columbia University Medical Center \| 2022-present<br>Weill Cornell Medicine \| 2018-2022
 
 :::
 :::
@@ -27,9 +27,9 @@ I am a biostatistician who is passionate about meaningful and reproducible medic
 ::: {.g-col-12 .g-col-md-4}
 ### Statistics
 
--   [Illustration Introduction to Modified Treatment Policies](/blog/lmtp/lmtp.html)
--   [Building Intuition For Individualized Treatment Rules](/blog/otr)
--   [Illustrated Introduction to Targeted Maximum Likelihood Estimation (TMLE)](/blog/tmle/tutorial.html)
+-   [An Introduction to Modified Treatment Policies](/blog/lmtp/lmtp.html)
+-   [Building Statistical Intuition For Optimal Treatment Rules](/blog/otr)
+-   [Illustrated Guide to Targeted Maximum Likelihood Estimation (TMLE)](/blog/tmle/tutorial.html)
 :::
 
 ::: {.g-col-12 .g-col-md-4}
