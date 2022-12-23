@@ -1,7 +1,7 @@
 ---
 title: "Annotated Forest Plots using ggplot2"
 author: "Katherine Hoffman"
-date: 2022-09-15
+date: 2022-12-12
 image: image.png
 categories: ["programming"]
 description: " "
@@ -81,13 +81,13 @@ p_left + p_mid + p_right + plot_layout(design = layout)
 
 This post contains a short R code walkthrough to make annotated forest plots like the one shown above. There are packages to make plots like these such as [`forester`](https://github.com/rdboyes/forester), [`forestplot`](https://cran.r-project.org/web/packages/forestplot/vignettes/forestplot.html), and [`ggforestplot`](https://nightingalehealth.github.io/ggforestplot/index.html), but sometimes I still prefer to make my own.
 
-The big picture of this is that we'll be making three separate `ggplot2` objects and putting them together with `patchwork`. You could also use packages like `cowplot`, `gridarrange` or `ggarrange` to put the intermediate plot objects together.
+The big picture of this is that we'll be making three separate `ggplot2` objects and putting them together with `patchwork`. You could also use packages like `cowplot`, `gridarrange` or `ggarrange` to put the intermediate plot objects together. You can [skip to the end](#just-the-code) to see the full code.
 
 ------------------------------------------------------------------------
 
 # Step 0: Load libraries and data
 
-First we will load the necessary libraries and the data set. The data we'll use for this plot are the effect estimates for 10 Cox regression models. The models, titled A-J, are stored in a data set called `res`, stored as a csv on my Github.
+First we will load the necessary libraries and the data set. The data we'll use for this plot are the effect estimates for 10 Cox regression models. The models, titled A-J, are stored in data sets called `res` and `res_log`, stored as csvs on my Github. We'll combine these data and then begin plotting.
 
 ```{r results = "asis", warning=F, message=F}
 library(tidyverse)
@@ -173,18 +173,23 @@ p_mid <- p +
         axis.ticks.y= element_blank(),
         axis.text.y= element_blank(),
         axis.title.y= element_blank())
-p
+p_mid
 ```
 
 We'll save this `ggplot` object as `p_mid` and move on to the next section of the figure.
 
 # Step 2: Create estimate annotations plot
 
-To plot the hazard ratio estimates, we first need to modify the data set a bit. We'll start by rounding our estimates to the significant figures the journal requires. For this figure, I need two decimal places.
+To plot the hazard ratio estimates, we first need to modify the data set a bit. We'll start by rounding our estimates to the significant figures the journal requires. For this figure, I need two decimal places. I'll round the numbers to two decimal places (except for p-values that are < 0.01), and then "pad" the numbers as strings so that they take up 4 characters. In other words, we will turn a p-value that reads 0.2 into 0.20, which has four characters (three numbers and a decimal point).
+
+I'll also paste the low and high confidence intervals for my hazard ratio estimates together with a hyphen, and call this variable `estimate_lab`.
+
+Finally, I'll bind a row of data that shows what I want the column names of my annotations to read as (e.g. Model, Hazard Ratio). The real column names of this data frame won't appear on my plot, but the data in the rows themselves will. This should become clearer as we create the annotation sections of the plots.
 
 ```{r results="markup"}
 # wrangle results into pre-plotting table form
 res_plot <- res |>
+  # round estimates and 95% CIs to 2 decimal places for journal specifications
   mutate(across(
     c(estimate, conf.low, conf.high),
     ~ str_pad(
@@ -194,23 +199,26 @@ res_plot <- res |>
       side = "right"
     )
   ),
+  # add an "-" between HR estimate confidence intervals
   estimate_lab = paste0(estimate, " (", conf.low, "-", conf.high, ")")) |>
+  # round p-values to two decimal places, except in cases where p < .001
   mutate(p.value = case_when(
     p.value < .001 ~ "<0.001",
     round(p.value, 2) == .05 ~ as.character(round(p.value,3)),
-    p.value < .01 ~ str_pad(
+    p.value < .01 ~ str_pad( # if less than .01, go one more decimal place
       as.character(round(p.value, 3)),
       width = 4,
       pad = "0",
       side = "right"
     ),
-    TRUE ~ str_pad(
+    TRUE ~ str_pad( # otherwise just round to 2 decimal places and pad string so that .2 reads as 0.20
       as.character(round(p.value, 2)),
       width = 4,
       pad = "0",
       side = "right"
     )
   )) |>
+  # add a row of data that are actually column names which will be shown on the plot in the next step
   bind_rows(
     data.frame(
       model = "Model",
@@ -225,7 +233,7 @@ res_plot <- res |>
 glimpse(res_plot)
 ```
 
-Creating the hazard ratios isn't very difficult. We'll take the modified data frame and again organize the model order on the y axis. Note that this time, I modified model within the data frame, which we could have done for the middle plot instead of modifying it within the `aes`thetic argument.
+To create the hazard ratio annotations, we'll first organize the model order on the `y` axis. 
 
 ```{r}
 p_left <-
@@ -234,7 +242,7 @@ p_left <-
 p_left
 ```
 
-Next, we will add the model as text (instead of as a label on the y axis) using `geom_text`.
+Next, we will add the model as text (instead of as a label on the y axis) using `geom_text`. We can specify where we want the text to show up by specifying the `x` axis should be 0. We will also set the `hjust` (horizontal justification) to 0 and `fontface` to bold type.
 
 ```{r}
 p_left <- 
@@ -243,7 +251,7 @@ p_left <-
 p_left
 ```
 
-We can use the same idea to add the hazard ratios and their confidence intervals.
+We can use the same idea to add the hazard ratios and their confidence intervals, however, we want to specify that the hazard ratio data (`estimate_lab` variable) should only be bold if the value is equal to the title. We will do this using an `ifelse` statement within the `fontface` argument.
 
 ```{r}
 p_left <- 
@@ -257,7 +265,7 @@ p_left <-
 p_left
 ```
 
-Finally we can remove the background and edit the sizing so that this left size of the plot will match up neatly with the middle and right sides of the plot.
+Finally, we can remove the background and edit the sizing so that this left size of the plot will match up neatly with the middle and right sides of the plot. Remember, `coord_cartesian` allows the user to zoom in and out of the plot without removing data.
 
 ```{r}
 p_left <-
@@ -268,7 +276,11 @@ p_left <-
 p_left
 ```
 
+That's it for the hazard ratio annotation section of the plot! Next we can create the p-value annotation of the plot.
+
 # Step 3: Create p-value annotations
+
+We will follow the same steps as in Step 2 to create the p-value annotations. Again, we use an `ifelse` statement to specify that only the word p-value should be bolded, rather than all the p-values.
 
 ```{r}
 # right side of plot - pvalues
@@ -287,11 +299,17 @@ p_right
 
 # Step 4: Put the three plots together with patchwork
 
+Finally, we will use the package `patchwork` to merge all three plots together. You could equivalently use `gridarrange`, `cowplot`, or some other ggplot2 figure-merging package of your choice.
+
+For this specific use of patchwork you need to specify the `t`op, `l`eft, `r`ight, and `b`ottom indices of each plot in an `areas` function, and then put these together in a vector, which I call `layout`. Then, you can specify that `layout` in the `design` argument of `plot_layout`.
+
+To learn about the syntax of `patchwork` and its `plot_layout` function check out [this article](https://patchwork.data-imaginist.com/articles/guides/layout.html).
+
 ```{r fig.width=9, fig.height=4}
 layout <- c(
-  area(t = 0, l = 0, b = 30, r = 3),
-  area(t = 1, l = 4, b = 30, r = 9),
-  area(t = 0, l = 9, b = 30, r = 11)
+  area(t = 0, l = 0, b = 30, r = 3), # left plot, starts at the top of the page (0) and goes 30 units down and 3 units to the right
+  area(t = 1, l = 4, b = 30, r = 9), # middle plot starts a little lower (t=1) because there's no title. starts 1 unit right of the left plot (l=4, whereas left plot is r=3), goes to the bottom of the page (30 units), and 6 units further over from the left plot (r=9 whereas left plot is r=3)
+  area(t = 0, l = 9, b = 30, r = 11) # right most plot starts at top of page, begins where middle plot ends (l=9, and middle plot is r=9), goes to bottom of page (b=30), and extends two units wide (r=11)
 )
 # final plot arrangement
 p_left + p_mid + p_right + plot_layout(design = layout)
@@ -299,9 +317,13 @@ p_left + p_mid + p_right + plot_layout(design = layout)
 
 # Step 5: Export your plot!
 
+I typically export as an encapsulated postscript (eps) file using `ggsave` for journals, but you could instead export as a jpg, png, etc.
+
 ```{r eval=F}
 ggsave("forest-plot.eps", width=9, height=4)
 ```
+
+Hopefully that's not too hard to follow! Please feel free to email me if you find any errors or confusing parts. Here's the full code:
 
 # Just the code
 

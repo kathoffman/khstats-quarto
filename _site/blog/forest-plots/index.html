@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Katherine Hoffman">
-<meta name="dcterms.date" content="2022-09-15">
+<meta name="dcterms.date" content="2022-12-12">
 
 <title>KHstats - Annotated Forest Plots using ggplot2</title>
 <style>
@@ -206,7 +206,7 @@ ga('send', {
  </a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../static/KatherineHoffman_CV_Oct2022.pdf">CV</a>
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Dec2022.pdf">CV</a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="mailto:kathoffman.stats@gmail.com"><i class="bi bi-envelope" role="img">
@@ -243,7 +243,7 @@ ga('send', {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 15, 2022</p>
+        <p class="date">December 12, 2022</p>
       </div>
     </div>
       
@@ -264,11 +264,11 @@ ga('send', {
 <p><img src="index_files/figure-html/mainplot-1.png" class="img-fluid" width="864"></p>
 </div>
 <p>This post contains a short R code walkthrough to make annotated forest plots like the one shown above. There are packages to make plots like these such as <a href="https://github.com/rdboyes/forester"><code>forester</code></a>, <a href="https://cran.r-project.org/web/packages/forestplot/vignettes/forestplot.html"><code>forestplot</code></a>, and <a href="https://nightingalehealth.github.io/ggforestplot/index.html"><code>ggforestplot</code></a>, but sometimes I still prefer to make my own.</p>
-<p>The big picture of this is that we’ll be making three separate <code>ggplot2</code> objects and putting them together with <code>patchwork</code>. You could also use packages like <code>cowplot</code>, <code>gridarrange</code> or <code>ggarrange</code> to put the intermediate plot objects together.</p>
+<p>The big picture of this is that we’ll be making three separate <code>ggplot2</code> objects and putting them together with <code>patchwork</code>. You could also use packages like <code>cowplot</code>, <code>gridarrange</code> or <code>ggarrange</code> to put the intermediate plot objects together. You can <a href="#just-the-code">skip to the end</a> to see the full code.</p>
 <hr>
 <section id="step-0-load-libraries-and-data" class="level1">
 <h1>Step 0: Load libraries and data</h1>
-<p>First we will load the necessary libraries and the data set. The data we’ll use for this plot are the effect estimates for 10 Cox regression models. The models, titled A-J, are stored in a data set called <code>res</code>, stored as a csv on my Github.</p>
+<p>First we will load the necessary libraries and the data set. The data we’ll use for this plot are the effect estimates for 10 Cox regression models. The models, titled A-J, are stored in data sets called <code>res</code> and <code>res_log</code>, stored as csvs on my Github. We’ll combine these data and then begin plotting.</p>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -315,7 +315,7 @@ $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Then we show all of our information (point estimate and 95% confidence interval) on the graph.</p>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
@@ -323,7 +323,7 @@ $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_linerange</span>(<span class="fu">aes</span>(<span class="at">xmin=</span>log.conf.low, <span class="at">xmax=</span>log.conf.high)) </span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>We can now add a vertical line at 0 with <code>geom_vline</code> and rename the x axis.</p>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
@@ -331,14 +331,14 @@ $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Log Hazard Ratio"</span>, <span class="at">y=</span><span class="st">""</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Next we’ll use <code>coord_cartesian()</code> which will allow us to zoom to the exact height and width we want. I want to zoom out a bit to leave myself room for the text “Corticosteroids protective” vs.&nbsp;“Corticosteroids harmful” so I’m going to set my limits to <code>y=c(1,11)</code>. Each of the models (10 in total) is one unit, so this will give me one extra unit of space at the top of the plot. The x-limit I played around with a bit based upon the range of my log hazard ratios, and I ultimately arrived at <code>xlim=c(-1, .5)</code>.</p>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">11</span>), <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, .<span class="dv">5</span>))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Now we have space to add our text about protective vs.&nbsp;harmful using the <code>annotate</code> layer.</p>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
@@ -346,7 +346,7 @@ $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> .<span class="dv">3</span>, <span class="at">y =</span> <span class="dv">11</span>, <span class="at">label =</span> <span class="st">"Corticosteroids harmful"</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>Finally, we will remove everything on the y axis, because this plot is going to align with the next plot we make, showing the hazard ratios.</p>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p_mid <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
@@ -354,56 +354,62 @@ $ p.value       &lt;dbl&gt; 1.681527e-10, 7.792783e-01, 6.474743e-01, 6.089951e-
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y=</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span> <span class="fu">element_blank</span>())</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>p_mid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 <p>We’ll save this <code>ggplot</code> object as <code>p_mid</code> and move on to the next section of the figure.</p>
 </section>
 <section id="step-2-create-estimate-annotations-plot" class="level1">
 <h1>Step 2: Create estimate annotations plot</h1>
-<p>To plot the hazard ratio estimates, we first need to modify the data set a bit. We’ll start by rounding our estimates to the significant figures the journal requires. For this figure, I need two decimal places.</p>
+<p>To plot the hazard ratio estimates, we first need to modify the data set a bit. We’ll start by rounding our estimates to the significant figures the journal requires. For this figure, I need two decimal places. I’ll round the numbers to two decimal places (except for p-values that are &lt; 0.01), and then “pad” the numbers as strings so that they take up 4 characters. In other words, we will turn a p-value that reads 0.2 into 0.20, which has four characters (three numbers and a decimal point).</p>
+<p>I’ll also paste the low and high confidence intervals for my hazard ratio estimates together with a hyphen, and call this variable <code>estimate_lab</code>.</p>
+<p>Finally, I’ll bind a row of data that shows what I want the column names of my annotations to read as (e.g.&nbsp;Model, Hazard Ratio). The real column names of this data frame won’t appear on my plot, but the data in the rows themselves will. This should become clearer as we create the annotation sections of the plots.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wrangle results into pre-plotting table form</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>res_plot <span class="ot">&lt;-</span> res <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(estimate, conf.low, conf.high),</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> <span class="fu">str_pad</span>(</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(.x, <span class="dv">2</span>),</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">4</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pad =</span> <span class="st">"0"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">side =</span> <span class="st">"right"</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimate_lab =</span> <span class="fu">paste0</span>(estimate, <span class="st">" ("</span>, conf.low, <span class="st">"-"</span>, conf.high, <span class="st">")"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p.value =</span> <span class="fu">case_when</span>(</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    p.value <span class="sc">&lt;</span> .<span class="dv">001</span> <span class="sc">~</span> <span class="st">"&lt;0.001"</span>,</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(p.value, <span class="dv">2</span>) <span class="sc">==</span> .<span class="dv">05</span> <span class="sc">~</span> <span class="fu">as.character</span>(<span class="fu">round</span>(p.value,<span class="dv">3</span>)),</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    p.value <span class="sc">&lt;</span> .<span class="dv">01</span> <span class="sc">~</span> <span class="fu">str_pad</span>(</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.character</span>(<span class="fu">round</span>(p.value, <span class="dv">3</span>)),</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">4</span>,</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">pad =</span> <span class="st">"0"</span>,</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">side =</span> <span class="st">"right"</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">str_pad</span>(</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.character</span>(<span class="fu">round</span>(p.value, <span class="dv">2</span>)),</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">4</span>,</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">pad =</span> <span class="st">"0"</span>,</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">side =</span> <span class="st">"right"</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">model =</span> <span class="st">"Model"</span>,</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">estimate_lab =</span> <span class="st">"Hazard Ratio (95% CI)"</span>,</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">conf.low =</span> <span class="st">""</span>,</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">conf.high =</span> <span class="st">""</span>,</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">p.value =</span> <span class="st">"p-value"</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_relevel</span>(model, <span class="st">"Model"</span>)))</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(res_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># round estimates and 95% CIs to 2 decimal places for journal specifications</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(estimate, conf.low, conf.high),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> <span class="fu">str_pad</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(.x, <span class="dv">2</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">4</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">pad =</span> <span class="st">"0"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">side =</span> <span class="st">"right"</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add an "-" between HR estimate confidence intervals</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimate_lab =</span> <span class="fu">paste0</span>(estimate, <span class="st">" ("</span>, conf.low, <span class="st">"-"</span>, conf.high, <span class="st">")"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># round p-values to two decimal places, except in cases where p &lt; .001</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p.value =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    p.value <span class="sc">&lt;</span> .<span class="dv">001</span> <span class="sc">~</span> <span class="st">"&lt;0.001"</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(p.value, <span class="dv">2</span>) <span class="sc">==</span> .<span class="dv">05</span> <span class="sc">~</span> <span class="fu">as.character</span>(<span class="fu">round</span>(p.value,<span class="dv">3</span>)),</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    p.value <span class="sc">&lt;</span> .<span class="dv">01</span> <span class="sc">~</span> <span class="fu">str_pad</span>( <span class="co"># if less than .01, go one more decimal place</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.character</span>(<span class="fu">round</span>(p.value, <span class="dv">3</span>)),</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">4</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">pad =</span> <span class="st">"0"</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">side =</span> <span class="st">"right"</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">str_pad</span>( <span class="co"># otherwise just round to 2 decimal places and pad string so that .2 reads as 0.20</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.character</span>(<span class="fu">round</span>(p.value, <span class="dv">2</span>)),</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">4</span>,</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">pad =</span> <span class="st">"0"</span>,</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">side =</span> <span class="st">"right"</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add a row of data that are actually column names which will be shown on the plot in the next step</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">model =</span> <span class="st">"Model"</span>,</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">estimate_lab =</span> <span class="st">"Hazard Ratio (95% CI)"</span>,</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">conf.low =</span> <span class="st">""</span>,</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">conf.high =</span> <span class="st">""</span>,</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">p.value =</span> <span class="st">"p-value"</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_relevel</span>(model, <span class="st">"Model"</span>)))</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(res_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 11
 Columns: 9
@@ -418,23 +424,23 @@ $ p.value       &lt;chr&gt; "&lt;0.001", "0.78", "0.65", "0.61", "0.07", "0.045"
 $ estimate_lab  &lt;chr&gt; "0.50 (0.41-0.62)", "0.95 (0.66-1.37)", "0.92 (0.63-1.33…</code></pre>
 </div>
 </div>
-<p>Creating the hazard ratios isn’t very difficult. We’ll take the modified data frame and again organize the model order on the y axis. Note that this time, I modified model within the data frame, which we could have done for the middle plot instead of modifying it within the <code>aes</code>thetic argument.</p>
+<p>To create the hazard ratio annotations, we’ll first organize the model order on the <code>y</code> axis.</p>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p_left <span class="ot">&lt;-</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  res_plot  <span class="sc">|&gt;</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> model))</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>p_left</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>Next, we will add the model as text (instead of as a label on the y axis) using <code>geom_text</code>.</p>
+<p>Next, we will add the model as text (instead of as a label on the y axis) using <code>geom_text</code>. We can specify where we want the text to show up by specifying the <code>x</code> axis should be 0. We will also set the <code>hjust</code> (horizontal justification) to 0 and <code>fontface</code> to bold type.</p>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p_left <span class="ot">&lt;-</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  p_left <span class="sc">+</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">label =</span> model), <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>p_left</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>We can use the same idea to add the hazard ratios and their confidence intervals.</p>
+<p>We can use the same idea to add the hazard ratios and their confidence intervals, however, we want to specify that the hazard ratio data (<code>estimate_lab</code> variable) should only be bold if the value is equal to the title. We will do this using an <code>ifelse</code> statement within the <code>fontface</code> argument.</p>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>p_left <span class="ot">&lt;-</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  p_left <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
@@ -445,9 +451,9 @@ $ estimate_lab  &lt;chr&gt; "0.50 (0.41-0.62)", "0.95 (0.66-1.37)", "0.92 (0.63-
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>p_left</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>Finally we can remove the background and edit the sizing so that this left size of the plot will match up neatly with the middle and right sides of the plot.</p>
+<p>Finally, we can remove the background and edit the sizing so that this left size of the plot will match up neatly with the middle and right sides of the plot. Remember, <code>coord_cartesian</code> allows the user to zoom in and out of the plot without removing data.</p>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>p_left <span class="ot">&lt;-</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  p_left <span class="sc">+</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
@@ -455,11 +461,13 @@ $ estimate_lab  &lt;chr&gt; "0.50 (0.41-0.62)", "0.95 (0.66-1.37)", "0.92 (0.63-
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>p_left</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
+<p>That’s it for the hazard ratio annotation section of the plot! Next we can create the p-value annotation of the plot.</p>
 </section>
 <section id="step-3-create-p-value-annotations" class="level1">
 <h1>Step 3: Create p-value annotations</h1>
+<p>We will follow the same steps as in Step 2 to create the p-value annotations. Again, we use an <code>ifelse</code> statement to specify that only the word p-value should be bolded, rather than all the p-values.</p>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># right side of plot - pvalues</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>p_right <span class="ot">&lt;-</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  res_plot  <span class="sc">|&gt;</span></span>
@@ -473,25 +481,30 @@ $ estimate_lab  &lt;chr&gt; "0.50 (0.41-0.62)", "0.95 (0.66-1.37)", "0.92 (0.63-
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>p_right</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
 </div>
 </section>
 <section id="step-4-put-the-three-plots-together-with-patchwork" class="level1">
 <h1>Step 4: Put the three plots together with patchwork</h1>
+<p>Finally, we will use the package <code>patchwork</code> to merge all three plots together. You could equivalently use <code>gridarrange</code>, <code>cowplot</code>, or some other ggplot2 figure-merging package of your choice.</p>
+<p>For this specific use of patchwork you need to specify the <code>t</code>op, <code>l</code>eft, <code>r</code>ight, and <code>b</code>ottom indices of each plot in an <code>areas</code> function, and then put these together in a vector, which I call <code>layout</code>. Then, you can specify that <code>layout</code> in the <code>design</code> argument of <code>plot_layout</code>.</p>
+<p>To learn about the syntax of <code>patchwork</code> and its <code>plot_layout</code> function check out <a href="https://patchwork.data-imaginist.com/articles/guides/layout.html">this article</a>.</p>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>layout <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="at">t =</span> <span class="dv">0</span>, <span class="at">l =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">30</span>, <span class="at">r =</span> <span class="dv">3</span>),</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="at">t =</span> <span class="dv">1</span>, <span class="at">l =</span> <span class="dv">4</span>, <span class="at">b =</span> <span class="dv">30</span>, <span class="at">r =</span> <span class="dv">9</span>),</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="at">t =</span> <span class="dv">0</span>, <span class="at">l =</span> <span class="dv">9</span>, <span class="at">b =</span> <span class="dv">30</span>, <span class="at">r =</span> <span class="dv">11</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="at">t =</span> <span class="dv">0</span>, <span class="at">l =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">30</span>, <span class="at">r =</span> <span class="dv">3</span>), <span class="co"># left plot, starts at the top of the page (0) and goes 30 units down and 3 units to the right</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="at">t =</span> <span class="dv">1</span>, <span class="at">l =</span> <span class="dv">4</span>, <span class="at">b =</span> <span class="dv">30</span>, <span class="at">r =</span> <span class="dv">9</span>), <span class="co"># middle plot starts a little lower (t=1) because there's no title. starts 1 unit right of the left plot (l=4, whereas left plot is r=3), goes to the bottom of the page (30 units), and 6 units further over from the left plot (r=9 whereas left plot is r=3)</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="at">t =</span> <span class="dv">0</span>, <span class="at">l =</span> <span class="dv">9</span>, <span class="at">b =</span> <span class="dv">30</span>, <span class="at">r =</span> <span class="dv">11</span>) <span class="co"># right most plot starts at top of page, begins where middle plot ends (l=9, and middle plot is r=9), goes to bottom of page (b=30), and extends two units wide (r=11)</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># final plot arrangement</span></span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>p_left <span class="sc">+</span> p_mid <span class="sc">+</span> p_right <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">design =</span> layout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="864"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="864"></p>
 </div>
 </section>
 <section id="step-5-export-your-plot" class="level1">
 <h1>Step 5: Export your plot!</h1>
+<p>I typically export as an encapsulated postscript (eps) file using <code>ggsave</code> for journals, but you could instead export as a jpg, png, etc.</p>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"forest-plot.eps"</span>, <span class="at">width=</span><span class="dv">9</span>, <span class="at">height=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Hopefully that’s not too hard to follow! Please feel free to email me if you find any errors or confusing parts. Here’s the full code:</p>
 </section>
 <section id="just-the-code" class="level1">
 <h1>Just the code</h1>
@@ -565,9 +578,9 @@ $ estimate_lab  &lt;chr&gt; "0.50 (0.41-0.62)", "0.95 (0.66-1.37)", "0.92 (0.63-
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.1.3 (2022-03-10)
+<pre><code>R version 4.1.2 (2021-11-01)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+Running under: macOS Big Sur 10.16
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
@@ -580,26 +593,32 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] patchwork_1.1.1 gt_0.6.0        forcats_0.5.1   stringr_1.4.1  
- [5] dplyr_1.0.9     purrr_0.3.4     readr_2.1.2     tidyr_1.2.0    
- [9] tibble_3.1.8    ggplot2_3.3.6   tidyverse_1.3.1
+ [1] patchwork_1.1.2 gt_0.7.0        forcats_0.5.1   stringr_1.4.0  
+ [5] dplyr_1.0.10    purrr_0.3.5     readr_2.1.2     tidyr_1.2.1    
+ [9] tibble_3.1.8    ggplot2_3.4.0   tidyverse_1.3.2
 
 loaded via a namespace (and not attached):
- [1] lubridate_1.8.0   assertthat_0.2.1  digest_0.6.29     utf8_1.2.2       
- [5] R6_2.5.1          cellranger_1.1.0  backports_1.4.1   reprex_2.0.1     
- [9] evaluate_0.15     httr_1.4.2        pillar_1.8.1      rlang_1.0.4      
-[13] curl_4.3.2        readxl_1.4.0      rstudioapi_0.13   rmarkdown_2.13   
-[17] labeling_0.4.2    htmlwidgets_1.5.4 bit_4.0.4         munsell_0.5.0    
-[21] broom_0.8.0       compiler_4.1.3    modelr_0.1.8      xfun_0.32        
-[25] pkgconfig_2.0.3   htmltools_0.5.2   tidyselect_1.1.2  fansi_1.0.3      
-[29] crayon_1.5.1      tzdb_0.3.0        dbplyr_2.1.1      withr_2.5.0      
-[33] cabinets_0.6.0    grid_4.1.3        jsonlite_1.8.0    gtable_0.3.0     
-[37] lifecycle_1.0.1   DBI_1.1.2         magrittr_2.0.3    scales_1.2.1     
-[41] cli_3.4.1         stringi_1.7.8     vroom_1.5.7       farver_2.1.1     
-[45] fs_1.5.2          xml2_1.3.3        ellipsis_0.3.2    generics_0.1.3   
-[49] vctrs_0.4.1       tools_4.1.3       bit64_4.0.5       glue_1.6.2       
-[53] hms_1.1.1         parallel_4.1.3    fastmap_1.1.0     yaml_2.3.5       
-[57] colorspace_2.0-3  rvest_1.0.2       knitr_1.38        haven_2.5.0      </code></pre>
+ [1] Rcpp_1.0.9          lubridate_1.8.0     assertthat_0.2.1   
+ [4] digest_0.6.30       utf8_1.2.2          R6_2.5.1           
+ [7] cellranger_1.1.0    backports_1.4.1     reprex_2.0.1       
+[10] evaluate_0.14       httr_1.4.2          pillar_1.8.1       
+[13] rlang_1.0.6         curl_4.3.2          googlesheets4_1.0.0
+[16] readxl_1.3.1        rstudioapi_0.13     rmarkdown_2.11     
+[19] labeling_0.4.2      googledrive_2.0.0   htmlwidgets_1.5.4  
+[22] bit_4.0.4           munsell_0.5.0       broom_1.0.1        
+[25] compiler_4.1.2      modelr_0.1.8        xfun_0.29          
+[28] pkgconfig_2.0.3     htmltools_0.5.2     tidyselect_1.2.0   
+[31] fansi_1.0.3         crayon_1.5.0        tzdb_0.2.0         
+[34] dbplyr_2.1.1        withr_2.5.0         grid_4.1.2         
+[37] jsonlite_1.7.3      gtable_0.3.1        lifecycle_1.0.3    
+[40] DBI_1.1.2           magrittr_2.0.3      scales_1.2.1       
+[43] cli_3.4.1           stringi_1.7.6       vroom_1.5.7        
+[46] farver_2.1.1        fs_1.5.2            xml2_1.3.3         
+[49] ellipsis_0.3.2      generics_0.1.3      vctrs_0.5.0        
+[52] tools_4.1.2         bit64_4.0.5         glue_1.6.2         
+[55] hms_1.1.1           parallel_4.1.2      fastmap_1.1.0      
+[58] yaml_2.2.2          colorspace_2.0-3    gargle_1.2.0       
+[61] rvest_1.0.2         knitr_1.37          haven_2.4.3        </code></pre>
 </div>
 </div>
 
