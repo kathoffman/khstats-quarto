@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -137,8 +137,9 @@ ga('send', {
   'anonymizeIp': true,
 });
 </script>
+<style>html{ scroll-behavior: smooth; }</style>
 
-  </head><body class="nav-fixed fullcontent">true
+  </head><body class="docked nav-fixed">true
 
 
 
@@ -159,13 +160,17 @@ ga('send', {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html">Blog</a>
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../talks.html">Talks</a>
+    <a class="nav-link" href="../../talks.html">
+ <span class="menu-text">Talks</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-illustrations" role="button" data-bs-toggle="dropdown" aria-expanded="false">Illustrations</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-illustrations" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Illustrations</span>
+    </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-illustrations">    
         <li>
     <a class="dropdown-item" href="../../art/illustrations_viz.html">
@@ -178,7 +183,9 @@ ga('send', {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="button" data-bs-toggle="dropdown" aria-expanded="false">Research</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Research</span>
+    </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
         <li>
     <a class="dropdown-item" href="../../pubs/pubs_methods.html">
@@ -199,20 +206,21 @@ ga('send', {
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../static/KatherineHoffman_CV_Dec2022.pdf">CV</a>
+    <a class="nav-link" href="../../static/KatherineHoffman_CV_Dec2022.pdf">
+ <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="mailto:kathoffman.stats@gmail.com"><i class="bi bi-envelope" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -221,10 +229,10 @@ ga('send', {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Silver Linings: five coding tricks learned during Lockdown</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Silver Linings: five coding tricks learned during Lockdown</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
                                 <div class="quarto-categories">
                 <div class="quarto-category">R</div>
               </div>
@@ -247,14 +255,34 @@ ga('send', {
         <p class="date">July 10, 2020</p>
       </div>
     </div>
+    
       
     </div>
     
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#a-tibble-5-9" id="toc-a-tibble-5-9" class="nav-link active" data-scroll-target="#a-tibble-5-9">A tibble: 5 × 9</a></li>
+  <li><a href="#a-tibble-1623-4" id="toc-a-tibble-1623-4" class="nav-link" data-scroll-target="#a-tibble-1623-4">A tibble: 1,623 × 4</a></li>
+  <li><a href="#tidylog" id="toc-tidylog" class="nav-link" data-scroll-target="#tidylog">1. <code>tidylog</code></a></li>
+  <li><a href="#a-tibble-630-11" id="toc-a-tibble-630-11" class="nav-link" data-scroll-target="#a-tibble-630-11">A tibble: 630 × 11</a></li>
+  <li><a href="#gtsummarytbl_summary-labelledadd_variable_labels-snakecaseto_title_case" id="toc-gtsummarytbl_summary-labelledadd_variable_labels-snakecaseto_title_case" class="nav-link" data-scroll-target="#gtsummarytbl_summary-labelledadd_variable_labels-snakecaseto_title_case">2. <code>gtsummary::tbl_summary()</code> + <code>labelled::add_variable_labels</code> + <code>snakecase::to_title_case</code></a></li>
+  <li><a href="#dplyrfilter-stringrstr_detect-tolower" id="toc-dplyrfilter-stringrstr_detect-tolower" class="nav-link" data-scroll-target="#dplyrfilter-stringrstr_detect-tolower">3. <code>dplyr::filter()</code> + <code>stringr::str_detect()</code> + <code>tolower()</code></a></li>
+  <li><a href="#readrparse_number" id="toc-readrparse_number" class="nav-link" data-scroll-target="#readrparse_number">4. <code>readr::parse_number()</code></a></li>
+  <li><a href="#a-tibble-94-4" id="toc-a-tibble-94-4" class="nav-link" data-scroll-target="#a-tibble-94-4">A tibble: 94 × 4</a></li>
+  <li><a href="#lubridates-within-interval-hours" id="toc-lubridates-within-interval-hours" class="nav-link" data-scroll-target="#lubridates-within-interval-hours">5. <code>lubridate</code>’s <code>%within%</code> + <code>interval()</code> + <code>hours()</code></a></li>
+  <li><a href="#a-tibble-7-11" id="toc-a-tibble-7-11" class="nav-link" data-scroll-target="#a-tibble-7-11">A tibble: 7 × 11</a></li>
+  </ul>
+</nav>
+</nav>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -944,6 +972,8 @@ Attaching package: 'lubridate'</code></pre>
 <p>I hope you enjoyed a quick insight into the data side of COVID-19 research, and/or perhaps picked up some useful function combinations for your own applied work with <code>R</code>.</p>
 
 
+<!-- -->
+
 </section>
 
 </main> <!-- /main -->
@@ -988,13 +1018,81 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -1024,29 +1122,302 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/www\.khstats\.com/);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
 });
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb33" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Silver Linings: five coding tricks learned during Lockdown"</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Katherine Hoffman"</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2020-07-10T21:13:14-05:00</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> ["programming"]</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> /img/covid_fx/gtsummary_tweet-crop.png</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> ["R","Electronic Health Record","COVID-19","data wrangling","tidyverse","tidylog","gtsummary"]</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="an">math:</span><span class="co"> true</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> " "</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> </span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co">  blogdown::html_page:</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: false</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co">    smart: false</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co">    df_print: "paged"</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">results=</span><span class="st">"asis"</span>)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>In non-coronavirus times, I am the biostatistician for a team of NYC pulmonologists and intensivists. When the pandemic hit NYC in mid-March, I immediately became a <span class="kw">&lt;strike&gt;</span>100%<span class="kw">&lt;/strike&gt;</span> 200% COVID-19 statistician. I received many analysis requests, though not all of them from official investigators:</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;blockquote</span> <span class="er">class</span><span class="ot">=</span><span class="st">"twitter-tweet"</span><span class="kw">&gt;</span></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">lang</span><span class="ot">=</span><span class="st">"en"</span> <span class="er">dir</span><span class="ot">=</span><span class="st">"ltr"</span><span class="kw">&gt;</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>My family recently learned I am the statistician for my hospital's pulmonologists and now I get COVID-19 analysis requests from them, too <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"https://t.co/wlHmUaBh6Y"</span><span class="kw">&gt;</span>pic.twitter.com/wlHmUaBh6Y<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/p&gt;</span></span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>--- Kat Hoffman (@rkatlady) <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"https://twitter.com/rkatlady/status/1248746176834306056?ref_src=twsrc%5Etfw"</span><span class="kw">&gt;</span>April 10, 2020<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/blockquote&gt;</span></span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;</span></span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>Jokes aside, I was really busy during the Spring 2020 outbreak. While doing work for both hospital operations and rapidly moving COVID-19 academic research, it was especially important to code efficiently and accurately while working with a deluge of Electronic Health Record (EHR) data.</span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>This post contains my favorite (because they were either the most useful or most used) lines of <span class="in">`R`</span> code for turning very raw-form EHR data into analytical files for descriptive reporting and statistical inference. For the examples, I've created data that is a simplified version of my actual data sets -- just in case you too would like to pretend you are a COVID-19 biostatistician!</span>
+<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a>The first data set contains some basic demographic and clinical outcome information for all COVID-19 positive patients who arrived at a hospital. The second data set contains laboratory results for all patients who arrived at the hospital during a certain window of time. In theory, the first data set (<span class="in">`patients`</span>) should be a subset of the second (<span class="in">`labs`</span>).</span>
+<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, message=F, warning=F}</span></span>
+<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a><span class="co"># load tidyverse for data creation and set seed for reproducible data</span></span>
+<span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a><span class="co"># data set of basic patient demographics</span></span>
+<span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a>patients <span class="ot">&lt;-</span></span>
+<span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tribble</span>(</span>
+<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>id, <span class="sc">~</span>admit_dt, <span class="sc">~</span>death_or_discharge_dt,</span>
+<span id="cb33-53"><a href="#cb33-53" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>age, <span class="sc">~</span>sex, <span class="sc">~</span>height, <span class="sc">~</span>weight, <span class="sc">~</span>current_smoker, <span class="sc">~</span>immunosuppressed, </span>
+<span id="cb33-54"><a href="#cb33-54" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span>, <span class="st">"2020-03-21 00:10"</span>, <span class="st">"2020-05-13 12:10"</span>,</span>
+<span id="cb33-55"><a href="#cb33-55" aria-hidden="true" tabindex="-1"></a><span class="dv">64</span>, <span class="st">"Male"</span>, <span class="dv">68</span>, <span class="dv">199</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span>, </span>
+<span id="cb33-56"><a href="#cb33-56" aria-hidden="true" tabindex="-1"></a>    <span class="dv">104</span>, <span class="st">"2020-04-03 12:15"</span>, <span class="st">"2020-04-29 18:34"</span>,</span>
+<span id="cb33-57"><a href="#cb33-57" aria-hidden="true" tabindex="-1"></a><span class="dv">25</span>, <span class="st">"Male"</span>, <span class="dv">72</span>, <span class="cn">NA</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span>, </span>
+<span id="cb33-58"><a href="#cb33-58" aria-hidden="true" tabindex="-1"></a>    <span class="dv">106</span>, <span class="st">"2020-03-28 12:22"</span>, <span class="st">"2020-04-05 19:18"</span>,</span>
+<span id="cb33-59"><a href="#cb33-59" aria-hidden="true" tabindex="-1"></a><span class="dv">49</span>, <span class="st">"Female"</span>, <span class="dv">64</span>, <span class="dv">189</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span>, </span>
+<span id="cb33-60"><a href="#cb33-60" aria-hidden="true" tabindex="-1"></a>     <span class="dv">107</span>, <span class="st">"2020-04-10 18:15"</span>,<span class="st">"2020-04-14 19:12"</span>,</span>
+<span id="cb33-61"><a href="#cb33-61" aria-hidden="true" tabindex="-1"></a> <span class="dv">88</span>, <span class="st">"Male"</span>, <span class="dv">62</span>, <span class="dv">111</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span>, </span>
+<span id="cb33-62"><a href="#cb33-62" aria-hidden="true" tabindex="-1"></a>    <span class="dv">111</span>, <span class="st">"2020-04-18 00:49"</span>, <span class="st">"2020-04-25 19:18"</span>,</span>
+<span id="cb33-63"><a href="#cb33-63" aria-hidden="true" tabindex="-1"></a><span class="dv">61</span>, <span class="st">"Female"</span>, <span class="dv">67</span>, <span class="dv">156</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span></span>
+<span id="cb33-64"><a href="#cb33-64" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb33-65"><a href="#cb33-65" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set time zone for date time variables</span></span>
+<span id="cb33-66"><a href="#cb33-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">ends_with</span>(<span class="st">"_dt"</span>)), <span class="sc">~</span><span class="fu">as.POSIXct</span>(., <span class="at">tz=</span><span class="st">"America/New_York"</span>))</span>
+<span id="cb33-67"><a href="#cb33-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-68"><a href="#cb33-68" aria-hidden="true" tabindex="-1"></a><span class="co"># generate labs data</span></span>
+<span id="cb33-69"><a href="#cb33-69" aria-hidden="true" tabindex="-1"></a>labs <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="dv">100</span><span class="sc">:</span><span class="dv">110</span>, <span class="cf">function</span>(x){</span>
+<span id="cb33-70"><a href="#cb33-70" aria-hidden="true" tabindex="-1"></a>  lab_time <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="fu">as.POSIXct</span>(<span class="st">"2020-03-01 00:00"</span>), <span class="fu">as.POSIXct</span>(<span class="st">"2020-05-30 00:00"</span>), <span class="at">by=</span><span class="st">"hours"</span>), <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">50</span>, <span class="dv">200</span>))</span>
+<span id="cb33-71"><a href="#cb33-71" aria-hidden="true" tabindex="-1"></a>  id <span class="ot">&lt;-</span> <span class="fu">rep</span>(x, <span class="at">length.out=</span><span class="fu">length</span>(lab_time))</span>
+<span id="cb33-72"><a href="#cb33-72" aria-hidden="true" tabindex="-1"></a>  lab_name <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"D-Dimer"</span>,<span class="st">"Platelet Count"</span>,<span class="st">"C-Reactive Protein"</span>,<span class="st">"Lactate Dehydrogenase"</span>,<span class="st">"LYMPHOCYTE PERC"</span>,<span class="st">"Absolute Lymphocyte Count"</span>), <span class="at">size =</span> <span class="fu">length</span>(lab_time), <span class="at">replace =</span> T)</span>
+<span id="cb33-73"><a href="#cb33-73" aria-hidden="true" tabindex="-1"></a>  lab_value <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">length</span>(lab_time), <span class="dv">100</span>, <span class="dv">1200</span>)</span>
+<span id="cb33-74"><a href="#cb33-74" aria-hidden="true" tabindex="-1"></a>  lab_value <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(lab_value <span class="sc">&gt;</span> <span class="dv">1000</span>, <span class="st">"&gt;1000"</span>, <span class="fu">as.character</span>(<span class="fu">round</span>(lab_value)))</span>
+<span id="cb33-75"><a href="#cb33-75" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(id, lab_time, lab_name, lab_value)</span>
+<span id="cb33-76"><a href="#cb33-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb33-77"><a href="#cb33-77" aria-hidden="true" tabindex="-1"></a>}) </span>
+<span id="cb33-78"><a href="#cb33-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-79"><a href="#cb33-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-82"><a href="#cb33-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-83"><a href="#cb33-83" aria-hidden="true" tabindex="-1"></a>patients</span>
+<span id="cb33-84"><a href="#cb33-84" aria-hidden="true" tabindex="-1"></a>labs</span>
+<span id="cb33-85"><a href="#cb33-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-86"><a href="#cb33-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-87"><a href="#cb33-87" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1. `tidylog`</span></span>
+<span id="cb33-88"><a href="#cb33-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-89"><a href="#cb33-89" aria-hidden="true" tabindex="-1"></a>The first line of <span class="in">`R`</span> code I found most useful was actually just loading an entire package. It sounds crazy, but that's all you have to do! You simply load the package, <span class="in">`tidylog`</span>, after <span class="in">`tidyverse`</span> (or <span class="in">`dplyr`</span> or <span class="in">`tidyr`</span>):</span>
+<span id="cb33-90"><a href="#cb33-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-93"><a href="#cb33-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-94"><a href="#cb33-94" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidylog, <span class="at">warn.conflicts =</span> F)</span>
+<span id="cb33-95"><a href="#cb33-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-96"><a href="#cb33-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-97"><a href="#cb33-97" aria-hidden="true" tabindex="-1"></a>Then, whenever you use one of the previously mentioned packages to wrangle data, <span class="in">`tidylog`</span> will give you super helpful information about what just happened. For example, if you use <span class="in">`mutate`</span> on a column, it will tell you how many new <span class="in">`NA`</span> values were created, if any. It will also remind you which variables you removed, and will give you feedback after you've grouped or ungrouped by a certain variable.</span>
+<span id="cb33-98"><a href="#cb33-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-101"><a href="#cb33-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-102"><a href="#cb33-102" aria-hidden="true" tabindex="-1"></a>patients <span class="ot">&lt;-</span></span>
+<span id="cb33-103"><a href="#cb33-103" aria-hidden="true" tabindex="-1"></a>  patients <span class="sc">%&gt;%</span></span>
+<span id="cb33-104"><a href="#cb33-104" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute BMI</span></span>
+<span id="cb33-105"><a href="#cb33-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bmi =</span> weight <span class="sc">/</span> height<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">703</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-106"><a href="#cb33-106" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove the patients height and weight from the data frame</span></span>
+<span id="cb33-107"><a href="#cb33-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>height, <span class="sc">-</span>weight)</span>
+<span id="cb33-108"><a href="#cb33-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-109"><a href="#cb33-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-110"><a href="#cb33-110" aria-hidden="true" tabindex="-1"></a>It's especially helpful for joining data, because it will tell you how many rows matched in the right and left hand side of your data. In this example, we can see that about 50% of the lab values in <span class="in">`labs`</span> have a match in patients -- as expected. However, one patient in <span class="in">`patients`</span> does not have any labs in <span class="in">`labs`</span> -- not good! This would be a scenario I would need to follow up with my data source (the Informatics team I work with) to figure out.</span>
+<span id="cb33-111"><a href="#cb33-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-114"><a href="#cb33-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-115"><a href="#cb33-115" aria-hidden="true" tabindex="-1"></a>patient_labs <span class="ot">&lt;-</span></span>
+<span id="cb33-116"><a href="#cb33-116" aria-hidden="true" tabindex="-1"></a>  patients <span class="sc">%&gt;%</span></span>
+<span id="cb33-117"><a href="#cb33-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(labs)</span>
+<span id="cb33-118"><a href="#cb33-118" aria-hidden="true" tabindex="-1"></a>patient_labs</span>
+<span id="cb33-119"><a href="#cb33-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-120"><a href="#cb33-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-121"><a href="#cb33-121" aria-hidden="true" tabindex="-1"></a><span class="in">`library(tidylog)`</span> has singlehandedly helped me detect countless errors while working with rapidly changing COVID-19 data from many different sources. My coworker once summed it up perfectly by saying, "<span class="in">`tidylog`</span> isn't just a package, it's a lifestyle."</span>
+<span id="cb33-122"><a href="#cb33-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-123"><a href="#cb33-123" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2. `gtsummary::tbl_summary()` + `labelled::add_variable_labels` + `snakecase::to_title_case`</span></span>
+<span id="cb33-124"><a href="#cb33-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-125"><a href="#cb33-125" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;blockquote</span> <span class="er">class</span><span class="ot">=</span><span class="st">"twitter-tweet"</span><span class="kw">&gt;</span></span>
+<span id="cb33-126"><a href="#cb33-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-127"><a href="#cb33-127" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">lang</span><span class="ot">=</span><span class="st">"en"</span> <span class="er">dir</span><span class="ot">=</span><span class="st">"ltr"</span><span class="kw">&gt;</span></span>
+<span id="cb33-128"><a href="#cb33-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-129"><a href="#cb33-129" aria-hidden="true" tabindex="-1"></a>efficiently labeling variables: a useful skill if you make a lot of <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"https://twitter.com/hashtag/rstats?src=hash</span><span class="dv">&amp;amp;</span><span class="st">ref_src=twsrc%5Etfw"</span><span class="kw">&gt;</span>#rstats<span class="kw">&lt;/a&gt;</span> tables👩🏼‍💻<span class="kw">&lt;br&gt;&lt;br&gt;</span>feat. labelled, snakecase, stringr &amp; gtsummary 📦s <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"https://t.co/YmiYZEjVKS"</span><span class="kw">&gt;</span>pic.twitter.com/YmiYZEjVKS<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb33-130"><a href="#cb33-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-131"><a href="#cb33-131" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/p&gt;</span></span>
+<span id="cb33-132"><a href="#cb33-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-133"><a href="#cb33-133" aria-hidden="true" tabindex="-1"></a>--- Kat Hoffman (@kat_hoffman_) <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"https://twitter.com/kat_hoffman_/status/1305218425732595713?ref_src=twsrc%5Etfw"</span><span class="kw">&gt;</span>September 13, 2020<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb33-134"><a href="#cb33-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-135"><a href="#cb33-135" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/blockquote&gt;</span></span>
+<span id="cb33-136"><a href="#cb33-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-137"><a href="#cb33-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb33-138"><a href="#cb33-138" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;</span></span>
+<span id="cb33-139"><a href="#cb33-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-140"><a href="#cb33-140" aria-hidden="true" tabindex="-1"></a><span class="in">`gtsummary`</span>'s <span class="in">`tbl_summary()`</span> is hands down my favorite function for making summary tables. It is so smooth and flexible to use, and it works seamlessly with the new <span class="in">`gt`</span> package for making tables. You simply input a dataset containing the variables you want to summarize, and, optionally, a grouping variable to stratify those summary statistics by, and you'll immediately have a clean and clear descriptive table!</span>
+<span id="cb33-141"><a href="#cb33-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-142"><a href="#cb33-142" aria-hidden="true" tabindex="-1"></a>In this example, I'll use <span class="in">`tbl_summary()`</span> to summarize the median and IQR or number and percent of all the demographic variables in our <span class="in">`patients`</span> data set. We *could* use this code: the barebones function truly only needs a data set containing the variables of interest, and then <span class="in">`gtsummary`</span> does all the formatting work:</span>
+<span id="cb33-143"><a href="#cb33-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-146"><a href="#cb33-146" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-147"><a href="#cb33-147" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb33-148"><a href="#cb33-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-149"><a href="#cb33-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-150"><a href="#cb33-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=F}</span></span>
+<span id="cb33-151"><a href="#cb33-151" aria-hidden="true" tabindex="-1"></a>patients <span class="sc">%&gt;%</span> </span>
+<span id="cb33-152"><a href="#cb33-152" aria-hidden="true" tabindex="-1"></a>  <span class="co"># select vars of interest for tables</span></span>
+<span id="cb33-153"><a href="#cb33-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, sex, bmi, current_smoker, immunosuppressed) <span class="sc">%&gt;%</span></span>
+<span id="cb33-154"><a href="#cb33-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb33-155"><a href="#cb33-155" aria-hidden="true" tabindex="-1"></a>    <span class="co"># make sure all numeric variables are reported as continuous</span></span>
+<span id="cb33-156"><a href="#cb33-156" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">list</span>(<span class="fu">all_numeric</span>() <span class="sc">~</span> <span class="st">"continuous"</span>)</span>
+<span id="cb33-157"><a href="#cb33-157" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb33-158"><a href="#cb33-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-159"><a href="#cb33-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-160"><a href="#cb33-160" aria-hidden="true" tabindex="-1"></a>That'd be fine, but what I *really* found to be useful during the NYC outbreak was the <span class="in">`labelled`</span> function. Since I was constantly presenting data to clinicians, it was important that the tables and figures I showed were clear and concise. I try to always eliminate the "ugly" variable names from my presentations and reports, as a rule... but while doing that as automatically as possible.</span>
+<span id="cb33-161"><a href="#cb33-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-162"><a href="#cb33-162" aria-hidden="true" tabindex="-1"></a>It was incredibly helpful to use <span class="in">`set_variable_labels()`</span> from the <span class="in">`labelled`</span> package to make the variable names ready for reporting. My favorite trick was to combine this function with the <span class="in">`to_title_case()`</span> function from the <span class="in">`snakecase`</span> package. The latter will take any variable of the format **`snake_case`** (i.e. all lowercase, with underscores between words), remove the underscores, and capitalize the first letter of each word -- just like a title.</span>
+<span id="cb33-163"><a href="#cb33-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-164"><a href="#cb33-164" aria-hidden="true" tabindex="-1"></a>If you use <span class="in">`to_title_case(names(.))`</span> in the <span class="in">`.labels`</span> global argument of the <span class="in">`set_variable_names()`</span> function, it'll clean up most variables in an extremely intuitive and readable way. Then if there are variables (such as acronyms) that are still not labelled the way you'd prefer them to be, you can directly change them by listing the variable name and the character string you'd like it to say instead. We can do this for BMI, so it does not read "Bmi" when <span class="in">`to_title_case`</span> transforms the label.</span>
+<span id="cb33-165"><a href="#cb33-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-168"><a href="#cb33-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-169"><a href="#cb33-169" aria-hidden="true" tabindex="-1"></a>patients <span class="sc">%&gt;%</span> </span>
+<span id="cb33-170"><a href="#cb33-170" aria-hidden="true" tabindex="-1"></a>  <span class="co"># select vars of interest for tables</span></span>
+<span id="cb33-171"><a href="#cb33-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, sex, bmi, current_smoker, immunosuppressed) <span class="sc">%&gt;%</span></span>
+<span id="cb33-172"><a href="#cb33-172" aria-hidden="true" tabindex="-1"></a>  <span class="co"># edit variable names using labelled package</span></span>
+<span id="cb33-173"><a href="#cb33-173" aria-hidden="true" tabindex="-1"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(</span>
+<span id="cb33-174"><a href="#cb33-174" aria-hidden="true" tabindex="-1"></a>    <span class="co"># change all variable labels to "Title Case"</span></span>
+<span id="cb33-175"><a href="#cb33-175" aria-hidden="true" tabindex="-1"></a>    <span class="at">.labels =</span> snakecase<span class="sc">::</span><span class="fu">to_title_case</span>(<span class="fu">names</span>(.)),</span>
+<span id="cb33-176"><a href="#cb33-176" aria-hidden="true" tabindex="-1"></a>    <span class="co"># change any extra variables that are not title case, like BMI</span></span>
+<span id="cb33-177"><a href="#cb33-177" aria-hidden="true" tabindex="-1"></a>    <span class="at">bmi =</span> <span class="st">"BMI"</span></span>
+<span id="cb33-178"><a href="#cb33-178" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb33-179"><a href="#cb33-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb33-180"><a href="#cb33-180" aria-hidden="true" tabindex="-1"></a>    <span class="co"># don't show missing (unknown) values</span></span>
+<span id="cb33-181"><a href="#cb33-181" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing =</span> <span class="st">"no"</span>,</span>
+<span id="cb33-182"><a href="#cb33-182" aria-hidden="true" tabindex="-1"></a>    <span class="co"># make sure all numeric variables are reported as continuous</span></span>
+<span id="cb33-183"><a href="#cb33-183" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">list</span>(<span class="fu">all_numeric</span>() <span class="sc">~</span> <span class="st">"continuous"</span>)</span>
+<span id="cb33-184"><a href="#cb33-184" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb33-185"><a href="#cb33-185" aria-hidden="true" tabindex="-1"></a>  <span class="co"># bold the labels</span></span>
+<span id="cb33-186"><a href="#cb33-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span>
+<span id="cb33-187"><a href="#cb33-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-188"><a href="#cb33-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-189"><a href="#cb33-189" aria-hidden="true" tabindex="-1"></a>So clean and readable, with such little effort! A few other lines of code I usually add to make the tables nicer with very little effort are <span class="in">`missing = "no"`</span> to the main <span class="in">`tbl_summary()`</span> argument, and <span class="in">`bold_labels()`</span> after.</span>
+<span id="cb33-190"><a href="#cb33-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-191"><a href="#cb33-191" aria-hidden="true" tabindex="-1"></a><span class="fu"># 3. `dplyr::filter()` + `stringr::str_detect()` + `tolower()`</span></span>
+<span id="cb33-192"><a href="#cb33-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-193"><a href="#cb33-193" aria-hidden="true" tabindex="-1"></a>This has been *such* a life saver when searching through very long-form COVID-19 data for a particular lab, vital sign, medication, or order of interest. I often don't know the exact word, much less capitalization, of the string I'm looking for in a data set, but this combination of functions really saves the day.</span>
+<span id="cb33-194"><a href="#cb33-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-195"><a href="#cb33-195" aria-hidden="true" tabindex="-1"></a>Here we can use it to figure out the name of patients' absolute lymphocyte count labs. Of course we could just do something like:</span>
+<span id="cb33-196"><a href="#cb33-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-199"><a href="#cb33-199" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-200"><a href="#cb33-200" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(labs<span class="sc">$</span>lab_name))</span>
+<span id="cb33-201"><a href="#cb33-201" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-202"><a href="#cb33-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-203"><a href="#cb33-203" aria-hidden="true" tabindex="-1"></a>But in my actual data sets of upwards of 50 million rows, this would return thousands of results! I discovered the easiest way to find what I was looking for was to first convert the <span class="in">`lab_name`</span> to all lowercase using <span class="in">`tolower(lab_name)`</span>, and then search for strings using <span class="in">`str_detect()`</span>, only keeping rows that matched using <span class="in">`filter()`</span> and then looking at *those* unique values using <span class="in">`pull()`</span><span class="sc">\*</span> and <span class="in">`unique()`</span>.</span>
+<span id="cb33-204"><a href="#cb33-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-207"><a href="#cb33-207" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-208"><a href="#cb33-208" aria-hidden="true" tabindex="-1"></a>labs <span class="sc">%&gt;%</span></span>
+<span id="cb33-209"><a href="#cb33-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(<span class="fu">tolower</span>(lab_name), <span class="st">"lymph"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-210"><a href="#cb33-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(lab_name) <span class="sc">%&gt;%</span></span>
+<span id="cb33-211"><a href="#cb33-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() </span>
+<span id="cb33-212"><a href="#cb33-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-213"><a href="#cb33-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-214"><a href="#cb33-214" aria-hidden="true" tabindex="-1"></a>Although you don't have to use pipes to do this, I often used those filtered rows for other exploratory data checks, such as looking at the units or distributions of the tests, so it was helpful to have it in the "tidy" format.</span>
+<span id="cb33-215"><a href="#cb33-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-216"><a href="#cb33-216" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span><span class="in">`pull()`</span> is a somewhat lesser known function of <span class="in">`dplyr`</span> that extracts a column as a dimensionless vector from a data frame, rather than <span class="in">`select`</span>ing a single column, which <span class="in">`R`</span> still treats as a data frame.</span>
+<span id="cb33-217"><a href="#cb33-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-218"><a href="#cb33-218" aria-hidden="true" tabindex="-1"></a><span class="fu"># 4. `readr::parse_number()`</span></span>
+<span id="cb33-219"><a href="#cb33-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-220"><a href="#cb33-220" aria-hidden="true" tabindex="-1"></a>This is handy whenever I'm dealing with test results that can contain values above or below a detection range. Instead of using <span class="in">`as.numeric()`</span> on a vector, I've switched to always using <span class="in">`readr`</span>'s <span class="in">`parse_number()`</span> function. This is because <span class="in">`as.numeric()`</span> will turn values with meaningful information (such as "<span class="sc">\&gt;</span>1,000") into <span class="in">`NA`</span>.</span>
+<span id="cb33-221"><a href="#cb33-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-222"><a href="#cb33-222" aria-hidden="true" tabindex="-1"></a>Let's look at this with the D-Dimer values in <span class="in">`patients_labs`</span>. If you've been keeping up with any of the cytokine storm in COVID-19 headlines, you'll know that D-Dimers are often sky-high in severely ill COVID-19 patients. So high, that they're sometimes out of detectable ranges<span class="sc">\*</span>!</span>
+<span id="cb33-223"><a href="#cb33-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-226"><a href="#cb33-226" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-227"><a href="#cb33-227" aria-hidden="true" tabindex="-1"></a>patient_labs <span class="sc">%&gt;%</span></span>
+<span id="cb33-228"><a href="#cb33-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(<span class="fu">tolower</span>(lab_name), <span class="st">"dimer"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-229"><a href="#cb33-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lab_name, lab_value) <span class="sc">%&gt;%</span></span>
+<span id="cb33-230"><a href="#cb33-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lab_value_numeric =</span> <span class="fu">as.numeric</span>(lab_value),</span>
+<span id="cb33-231"><a href="#cb33-231" aria-hidden="true" tabindex="-1"></a>         <span class="at">lab_value_parsed_number =</span> readr<span class="sc">::</span><span class="fu">parse_number</span>(lab_value))</span>
+<span id="cb33-232"><a href="#cb33-232" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-233"><a href="#cb33-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-234"><a href="#cb33-234" aria-hidden="true" tabindex="-1"></a>When we use <span class="in">`as.numeric()`</span> to switch the values from strings, we lose those out of range values. Those are our sickest patients, so if we continue with the analysis, we'll definitely bias our results. However, if we use <span class="in">`parse_number()`</span> we can at least evaluate those patients conservatively, using the upper bound of the test detection range.</span>
+<span id="cb33-235"><a href="#cb33-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-236"><a href="#cb33-236" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span>Detectable range is usually <span class="sc">\&gt;</span>55,000 ng/mL, but for the sake of demonstration, let's pretend it's <span class="sc">\&gt;</span>1,000 of the mystery units in my fake data set.</span>
+<span id="cb33-237"><a href="#cb33-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-238"><a href="#cb33-238" aria-hidden="true" tabindex="-1"></a><span class="fu"># 5. `lubridate`'s `%within%` + `interval()` + `hours()`</span></span>
+<span id="cb33-239"><a href="#cb33-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-240"><a href="#cb33-240" aria-hidden="true" tabindex="-1"></a>Last but not least is two beautiful functions from the <span class="in">`lubridate`</span> package. If you ever find yourself working with time-stamped data, you should definitely check it out. I tried multiple functions and packages at the beginning of the outbreak, and in the end, nothing compared to <span class="in">`lubridate`</span>, at least for my use-cases.</span>
+<span id="cb33-241"><a href="#cb33-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-242"><a href="#cb33-242" aria-hidden="true" tabindex="-1"></a>The <span class="in">`%within%`</span> function allows you to determine whether a time value (stored in <span class="in">`R`</span> as a <span class="in">`POSIXct`</span> object) falls within a window of time. You can specify this window of time using the <span class="in">`interval()`</span> function. If you have only the start or the end time of the window of interest, you can add or subtract using supplemental functions like <span class="in">`days()`</span> or <span class="in">`hours()`</span>.</span>
+<span id="cb33-243"><a href="#cb33-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-244"><a href="#cb33-244" aria-hidden="true" tabindex="-1"></a>For my COVID-19 research, the pulmonologists were often interested in snapshots of patients relative to a certain time in their disease course, for example, within the first 24 hours after intubation. The <span class="in">`lubridate`</span> functions made it super easy to extract the labs, vital signs, or other information that happened relative to another date.</span>
+<span id="cb33-245"><a href="#cb33-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-246"><a href="#cb33-246" aria-hidden="true" tabindex="-1"></a>Here's how we could use the aforementioned functions in the <span class="in">`patient_labs`</span> dataset we made previously. We can extract all the labs relative to 24 hours after the hospital admission date.</span>
+<span id="cb33-247"><a href="#cb33-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-250"><a href="#cb33-250" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-251"><a href="#cb33-251" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb33-252"><a href="#cb33-252" aria-hidden="true" tabindex="-1"></a>patient_labs <span class="sc">%&gt;%</span></span>
+<span id="cb33-253"><a href="#cb33-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lab_time <span class="sc">%within%</span> <span class="fu">interval</span>(admit_dt, admit_dt <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">1</span>)))</span>
+<span id="cb33-254"><a href="#cb33-254" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-255"><a href="#cb33-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-256"><a href="#cb33-256" aria-hidden="true" tabindex="-1"></a>Perfect! I could go on to informatively join this data to another using <span class="in">`tidylog`</span>, make tables with clean labels using <span class="in">`tbl_summary()`</span>, <span class="in">`set_variable_labels()`</span>, and <span class="in">`to_title_case()`</span>, find further labs of interest with <span class="in">`filter()`</span>, <span class="in">`str_detect()`</span>, and <span class="in">`tolower()`</span>, and make the lab values numeric with <span class="in">`parse_number()`</span>... the possibilities are endless!</span>
+<span id="cb33-257"><a href="#cb33-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-258"><a href="#cb33-258" aria-hidden="true" tabindex="-1"></a>I hope you enjoyed a quick insight into the data side of COVID-19 research, and/or perhaps picked up some useful function combinations for your own applied work with <span class="in">`R`</span>.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

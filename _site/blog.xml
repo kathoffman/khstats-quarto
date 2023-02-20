@@ -9,7 +9,7 @@
 <link>www.khstats.com/blog.html</link>
 <atom:link href="www.khstats.com/blog.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.1.189</generator>
+<generator>quarto-1.2.269</generator>
 <lastBuildDate>Mon, 12 Dec 2022 05:00:00 GMT</lastBuildDate>
 <item>
   <title>Annotated Forest Plots using ggplot2</title>
@@ -389,6 +389,8 @@ loaded via a namespace (and not attached):
 </div>
 
 
+<!-- -->
+
 </section>
 
  ]]></description>
@@ -419,7 +421,7 @@ loaded via a namespace (and not attached):
 <li><p>🖥️ <code>R</code> code for a simple estimation example</p></li>
 </ol>
 </section>
-<section id="the-big-picture-of-otrs" class="level1">
+<section id="the-big-picture-of-otrs" class="level1 page-columns page-full">
 <h1>🗺️ The Big Picture of OTRs</h1>
 <p>In this first section, we will translate the concept of developing and optimizing an OTR into mathematical notation.</p>
 <ol type="1">
@@ -448,7 +450,7 @@ loaded via a namespace (and not attached):
 <ol start="3" type="1">
 <li>We can then think about the <strong>counterfactual outcome</strong><sup>1</sup> for each row, or observation, under the treatment rule <img src="https://latex.codecogs.com/png.latex?d">. In other words, we ask, *“what would have happened in a hypothetical world where the treatment rule* <img src="https://latex.codecogs.com/png.latex?d"> was applied?”</li>
 </ol>
-<p>Let’s denote this vector of counterfactual outcomes as <img src="https://latex.codecogs.com/png.latex?Y(d)">.</p>
+<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Recall that a counterfactual describes a hypothetical world where a unit received a certain intervention or treatment, which might be different from the treatment they actually received</p></li></div><p>Let’s denote this vector of counterfactual outcomes as <img src="https://latex.codecogs.com/png.latex?Y(d)">.</p>
 <p><img src="www.khstats.com/blog/otr/otr/Y_d.png" class="img-fluid" style="width:100.0%"></p>
 <ol start="4" type="1">
 <li>The optimal OTR will <strong>maximize the expected counterfactual outcome</strong>, or <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BE%7D%5BY(d)%5D">, across the entire population. We can write that using <img src="https://latex.codecogs.com/png.latex?%5Cmathop%7B%5Cmathrm%7Barg%5C,max%7D%7D">, which means we want to know which argument will return the highest value of a function. In this use-case, we want to know what treatment rule <img src="https://latex.codecogs.com/png.latex?d"> returns the highest expected value of the counterfactual outcome, <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BE%7D%5BY(d)%5D">.</li>
@@ -460,15 +462,15 @@ loaded via a namespace (and not attached):
 </ol>
 <p><img src="www.khstats.com/blog/otr/otr/d_star.png" class="img-fluid" style="width:50.0%"></p>
 </section>
-<section id="estimating-the-otr" class="level1">
+<section id="estimating-the-otr" class="level1 page-columns page-full">
 <h1>📈 Estimating the OTR</h1>
 <p>There are many ways to estimate <img src="https://latex.codecogs.com/png.latex?d%5E*">. One of the most common ways begins by estimating the <strong>Conditional Average Treatment Effect (CATE)</strong>.</p>
 <p>You have probably heard of the Average Treatment Effect (ATE), which is the mean difference in outcomes in a world in which every unit receives the exposure compared to a world in which no unit receives the exposure. In potential outcomes notation, <img src="https://latex.codecogs.com/png.latex?ATE%20=%20%5Cmathrm%7BE%7D%5BY%5E1-Y%5E0%5D">. The CATE is the same formula and description, but within covariate strata <img src="https://latex.codecogs.com/png.latex?W">.</p>
 <p><img src="https://latex.codecogs.com/png.latex?CATE%20=%20%5Cmathrm%7BE%7D%5BY%5E1-Y%5E0%7C%5Ctextbf%7BW%7D%5D"></p>
-<p>Under standard causal assumptions<sup>2</sup>, the CATE for a binary exposure is identifiable under the following formula:</p>
+<div class="page-columns page-full"><p>Under standard causal assumptions<sup>2</sup>, the CATE for a binary exposure is identifiable under the following formula:</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;This post is focused on estimation and therefore does not detail the requirements for causal identification, but here I refer to the assumptions of consistency, exchangeability, and positivity.</p></li></div></div>
 <p><img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BCATE%7D(W)%20=%20%5Cmathrm%7BE%7D%5BY%7CA=1,%20%5Ctextbf%7BW%7D%5D%20-%20%5Cmathrm%7BE%7D%5BY%7CA=0,%20%5Ctextbf%7BW%7D%5D"> <!-- Compare this to the ATE after identification to clearly see the formula for CATE is the same, minus the outer expectation: --></p>
-<!-- $\mathrm{ATE}(W) = \mathrm{E}[\mathrm{E}[Y|A=1, W] - \mathrm{E}[Y|A=0, W]]$ -->
-<p>We could estimate the CATE using <strong>G-computation</strong><sup>3</sup>:</p>
+<!-- $$\mathrm{ATE}(W) = \mathrm{E}[\mathrm{E}[Y|A=1, W] - \mathrm{E}[Y|A=0, W]]$$ -->
+<div class="page-columns page-full"><p>We could estimate the CATE using <strong>G-computation</strong><sup>3</sup>:</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;If you’d like a review on G-computation, check out this <a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/G-Computation.pdf"><strong>visual guide</strong></a>.</p></li></div></div>
 <ol type="1">
 <li>Fit a regression for <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BE%7D%5BY%7CA,%5Ctextbf%7BW%7D%5D">.</li>
 </ol>
@@ -546,18 +548,13 @@ loaded via a namespace (and not attached):
 <p>Thanks to my colleague <a href="https://twitter.com/ildiazm">Iván Díaz</a> for explaining OTRs to me in this way, and for reviewing this post.</p>
 
 
+<!-- -->
+
 </section>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>Recall that a counterfactual describes a hypothetical world where a unit received a certain intervention or treatment, which might be different from the treatment they actually received↩︎</p></li>
-<li id="fn2"><p>This post is focused on estimation and therefore does not detail the requirements for causal identification, but here I refer to the assumptions of consistency, exchangeability, and positivity.↩︎</p></li>
-<li id="fn3"><p>If you’d like a review on G-computation, check out this <a href="https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/G-Computation.pdf"><strong>visual guide</strong></a>.↩︎</p></li>
-</ol>
-</section></div> ]]></description>
+ ]]></description>
   <category>statistics</category>
   <guid>www.khstats.com/blog/otr/otr.html</guid>
   <pubDate>Wed, 10 Aug 2022 04:00:00 GMT</pubDate>
@@ -629,7 +626,7 @@ loaded via a namespace (and not attached):
 <p>Unless you get a hot swap PCB, you’ll need a soldering iron, solder wire, something to remove excess solder (i.e.&nbsp;solder wick or sucker).</p>
 </section>
 </section>
-<section id="my-build" class="level1">
+<section id="my-build" class="level1 page-columns page-full">
 <h1>My Build</h1>
 <p>These were the components I used. If I were to do it again I would pick another type of switch besides Cherry MX Brown… they work great but they’re a bit boring. I spent some time perusing builds on <a href="https://www.reddit.com/r/MechanicalKeyboards/">reddit (r/Mechanical Keybards)</a> before I bought my components.</p>
 <ul>
@@ -642,10 +639,10 @@ loaded via a namespace (and not attached):
 <li><a href="https://www.amazon.com/TAI-HAO-Profile-Keycaps-Compatible-Keyboards/dp/B08W56W35R/ref=sr_1_58?crid=1A8BUF5OB84RB&amp;keywords=red+blue+keycaps+retro&amp;qid=1655008111&amp;sprefix=red+blue+keycaps+retro%2Caps%2C55&amp;sr=8-58">Retro blue and red keycaps</a></li>
 <li>Soldering equipment: I borrowed my dad’s <a href="https://www.amazon.com/Hakko-FX601-02-Adjustable-Temperature-Controlled/dp/B00FZPSX3G">Hakko FX-601 iron</a> and used a <a href="https://www.amazon.com/gp/product/B00B4T9KBG/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&amp;psc=1">sharp cone-shaped tip</a>. I also used <a href="https://www.homedepot.com/p/Forney-1-16-in-1-4-lb-Rosin-Core-60-40-Solder-38073/206471634">rosin core solder wire</a>, a <a href="https://www.amazon.com/Lesnow-No-Clean-Desoldering-Removal-Dispenser/dp/B094GZ6CPZ/ref=sr_1_1_sspa?keywords=solder+wick&amp;qid=1655225989&amp;sr=8-1-spons&amp;psc=1&amp;spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExUjlQTklXM1c4MTNEJmVuY3J5cHRlZElkPUEwNzYyODczMlZYVjQ4TzhSSVlXUCZlbmNyeXB0ZWRBZElkPUEwNjQ5NzAyMlpES0gxR05GM0o5JndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==">solder wick</a> and <a href="">brass sponge</a> for removing solder. I later purchased a <a href="https://www.amazon.com/gp/product/B002MJMXD4/ref=ppx_yo_dt_b_asin_title_o07_s04?ie=UTF8&amp;psc=1">solder sucker</a>, which I recommend for removing soldering.</li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
 <p><img src="www.khstats.com/blog/keyboard/keyboard/IMG_9073.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption"><em>My components and tools, from left to right: a rag for touching up lubricant/solder, silicone lubricant, brass sponge for removing solder, solder wire, soldering iron with stand, scissors, tweezers, toothpicks, switches, stabilizers (black platic feet), screws, soft feet stickers, stabilizers (metal rods), case, key caps, PCB, brass plate, and foam pad. Not pictured: solder sucker that I purchased later.</em></figcaption><p></p>
+<p></p><figcaption class="figure-caption margin-caption"><em>My components and tools, from left to right: a rag for touching up lubricant/solder, silicone lubricant, brass sponge for removing solder, solder wire, soldering iron with stand, scissors, tweezers, toothpicks, switches, stabilizers (black platic feet), screws, soft feet stickers, stabilizers (metal rods), case, key caps, PCB, brass plate, and foam pad. Not pictured: solder sucker that I purchased later.</em></figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -702,6 +699,8 @@ loaded via a namespace (and not attached):
 <p>In the end, the process of learning to build a mechanical keyboard felt just like learning any new concept in statistics/data science. The knowledge took some time to find, and the jargon was a bit intimidating, but after spending some time sifting through information I could always find what I needed. The entire process was very enjoyable, and I’m already looking forward to my next build!</p>
 <p><img src="www.khstats.com/blog/keyboard/keyboard/IMG_7198.png" class="img-fluid"></p>
 
+
+<!-- -->
 
 </section>
 
@@ -1027,6 +1026,8 @@ loaded via a namespace (and not attached):
 </div>
 
 
+<!-- -->
+
 </section>
 
  ]]></description>
@@ -1259,6 +1260,8 @@ Survey weights
 <p>As with all my posts, I welcome feedback from my intended audience and/or experts of causal inference. I am also open to suggestions of other resources to include in the reference section. Check back later for posts walking through specific examples and <code>R</code> code!</p>
 
 
+<!-- -->
+
 </section>
 
  ]]></description>
@@ -1381,6 +1384,8 @@ Survey weights
 <!-- This problem is akin to rolling a five-sided dice six times and then summing the numbers. We can determine the probability of getting each total. This Wolfram Alpha article walks through the proof. -->
 
 
+<!-- -->
+
 
  ]]></description>
   <category>programming</category>
@@ -1439,6 +1444,8 @@ Survey weights
 <p>Cheers,</p>
 <p>Kat</p>
 
+
+<!-- -->
 
 
  ]]></description>
@@ -1536,6 +1543,8 @@ Survey weights
 <p>This tutorial would not have been possible without my colleague Iván Díaz patiently answering many, many questions on TMLE. I am also very appreciative of Miguel Angel Luque-Fernandez’s helpful feedback on the visual guide.</p>
 <p>Lastly, many thanks to Axel Martin, Nick Williams, Anjile An, Adam Peterson, Alan Wu, and Will Simmons for providing suggestions on various drafts of this art project!</p>
 
+
+<!-- -->
 
 </section>
 
@@ -2025,15 +2034,6 @@ HTML Image as link
   font-size: 65%;
 }
 
-:where(#fkgwpykulw) .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 :where(#fkgwpykulw) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -2046,39 +2046,41 @@ HTML Image as link
   vertical-align: 0;
 }
 
-:where(#fkgwpykulw) .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+:where(#fkgwpykulw) .gt_indent_1 {
+  text-indent: 5px;
 }
 
-:where(#fkgwpykulw) .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+:where(#fkgwpykulw) .gt_indent_2 {
+  text-indent: 10px;
 }
 
-:where(#fkgwpykulw) .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+:where(#fkgwpykulw) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#fkgwpykulw) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#fkgwpykulw) .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   <thead class="gt_header">
     <tr>
-      <th colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Simulated data set.</th>
+      <td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Simulated data set.</td>
     </tr>
     
   </thead>
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Y</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">W1</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">W2</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">W3</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">W4</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">A</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Y</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">W1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">W2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">W3</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">W4</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">A</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -2556,15 +2558,6 @@ HTML Image as link
   font-size: 65%;
 }
 
-:where(#wqrrijfakd) .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 :where(#wqrrijfakd) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -2577,38 +2570,40 @@ HTML Image as link
   vertical-align: 0;
 }
 
-:where(#wqrrijfakd) .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+:where(#wqrrijfakd) .gt_indent_1 {
+  text-indent: 5px;
 }
 
-:where(#wqrrijfakd) .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+:where(#wqrrijfakd) .gt_indent_2 {
+  text-indent: 10px;
 }
 
-:where(#wqrrijfakd) .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+:where(#wqrrijfakd) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#wqrrijfakd) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#wqrrijfakd) .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   <thead class="gt_header">
     <tr>
-      <th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">TMLE Algorithm after Step 1</th>
+      <td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">TMLE Algorithm after Step 1</td>
     </tr>
     
   </thead>
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Y</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">A</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_A</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_0</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Y</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">A</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Q_A</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Q_0</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Q_1</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -3080,15 +3075,6 @@ HTML Image as link
   font-size: 65%;
 }
 
-:where(#hjkpoiqvpu) .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 :where(#hjkpoiqvpu) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -3101,41 +3087,43 @@ HTML Image as link
   vertical-align: 0;
 }
 
-:where(#hjkpoiqvpu) .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+:where(#hjkpoiqvpu) .gt_indent_1 {
+  text-indent: 5px;
 }
 
-:where(#hjkpoiqvpu) .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+:where(#hjkpoiqvpu) .gt_indent_2 {
+  text-indent: 10px;
 }
 
-:where(#hjkpoiqvpu) .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+:where(#hjkpoiqvpu) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#hjkpoiqvpu) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#hjkpoiqvpu) .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   <thead class="gt_header">
     <tr>
-      <th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">TMLE Algorithm after Step 2</th>
+      <td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">TMLE Algorithm after Step 2</td>
     </tr>
     
   </thead>
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Y</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">A</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_A</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_0</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Q_1</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">H_1</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">H_0</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">H_A</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Y</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">A</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Q_A</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Q_0</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Q_1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">H_1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">H_0</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">H_A</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -3679,15 +3667,6 @@ HTML Image as link
   font-size: 65%;
 }
 
-:where(#hrilomjnxp) .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 :where(#hrilomjnxp) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -3700,36 +3679,38 @@ HTML Image as link
   vertical-align: 0;
 }
 
-:where(#hrilomjnxp) .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+:where(#hrilomjnxp) .gt_indent_1 {
+  text-indent: 5px;
 }
 
-:where(#hrilomjnxp) .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+:where(#hrilomjnxp) .gt_indent_2 {
+  text-indent: 10px;
 }
 
-:where(#hrilomjnxp) .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+:where(#hrilomjnxp) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#hrilomjnxp) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#hrilomjnxp) .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   <thead class="gt_header">
     <tr>
-      <th colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">TMLE Estimate of the ATE</th>
+      <td colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">TMLE Estimate of the ATE</td>
     </tr>
     
   </thead>
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">tmle_ate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">conf_low</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">conf_high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">tmle_ate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">conf_low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">conf_high</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -3876,9 +3857,9 @@ font-style: italic;">### Step 6: compute standard error, CIs and pvals</span></s
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><span class="fu" style="color: #4758AB;">sessionInfo</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.1.3 (2022-03-10)
+<pre><code>R version 4.1.2 (2021-11-01)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+Running under: macOS Big Sur 10.16
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
@@ -3892,35 +3873,43 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] SuperLearner_2.0-28 gam_1.20.2          foreach_1.5.2      
- [4] nnls_1.4            gt_0.6.0            forcats_0.5.1      
- [7] stringr_1.4.1       dplyr_1.0.9         purrr_0.3.4        
-[10] readr_2.1.2         tidyr_1.2.0         tibble_3.1.8       
-[13] ggplot2_3.3.6       tidyverse_1.3.1    
+ [1] SuperLearner_2.0-28 gam_1.22            foreach_1.5.2      
+ [4] nnls_1.4            gt_0.7.0            forcats_0.5.1      
+ [7] stringr_1.5.0       dplyr_1.0.10        purrr_0.3.5        
+[10] readr_2.1.2         tidyr_1.2.1         tibble_3.1.8       
+[13] ggplot2_3.4.0       tidyverse_1.3.2    
 
 loaded via a namespace (and not attached):
- [1] httr_1.4.2         sass_0.4.1         jsonlite_1.8.0     modelr_0.1.8      
- [5] Formula_1.2-4      assertthat_0.2.1   cellranger_1.1.0   yaml_2.3.5        
- [9] pillar_1.8.1       backports_1.4.1    lattice_0.20-45    glue_1.6.2        
-[13] digest_0.6.29      checkmate_2.0.0    rvest_1.0.2        colorspace_2.0-3  
-[17] htmltools_0.5.2    Matrix_1.4-0       pkgconfig_2.0.3    broom_0.8.0       
-[21] earth_5.3.1        haven_2.5.0        scales_1.2.1       ranger_0.14.1     
-[25] TeachingDemos_2.12 tzdb_0.3.0         generics_0.1.3     ellipsis_0.3.2    
-[29] withr_2.5.0        ROCR_1.0-11        cli_3.4.1          survival_3.2-13   
-[33] magrittr_2.0.3     crayon_1.5.1       readxl_1.4.0       evaluate_0.15     
-[37] fs_1.5.2           fansi_1.0.3        xml2_1.3.3         cabinets_0.6.0    
-[41] tools_4.1.3        hms_1.1.1          lifecycle_1.0.1    munsell_0.5.0     
-[45] reprex_2.0.1       glmnet_4.1-4       plotrix_3.8-2      compiler_4.1.3    
-[49] rlang_1.0.4        plotmo_3.6.2       grid_4.1.3         iterators_1.0.14  
-[53] rstudioapi_0.13    htmlwidgets_1.5.4  rmarkdown_2.13     gtable_0.3.0      
-[57] codetools_0.2-18   DBI_1.1.2          R6_2.5.1           lubridate_1.8.0   
-[61] knitr_1.38         fastmap_1.1.0      utf8_1.2.2         shape_1.4.6       
-[65] tmle_1.5.0.2       stringi_1.7.8      Rcpp_1.0.9         vctrs_0.4.1       
-[69] dbplyr_2.1.1       tidyselect_1.1.2   xfun_0.32         </code></pre>
+ [1] httr_1.4.2          sass_0.4.5          jsonlite_1.8.4     
+ [4] modelr_0.1.8        Formula_1.2-4       assertthat_0.2.1   
+ [7] googlesheets4_1.0.0 cellranger_1.1.0    yaml_2.3.7         
+[10] pillar_1.8.1        backports_1.4.1     lattice_0.20-45    
+[13] glue_1.6.2          digest_0.6.31       rvest_1.0.2        
+[16] colorspace_2.0-3    htmltools_0.5.4     Matrix_1.3-4       
+[19] pkgconfig_2.0.3     broom_1.0.1         earth_5.3.1        
+[22] haven_2.4.3         scales_1.2.1        ranger_0.14.1      
+[25] TeachingDemos_2.12  tzdb_0.2.0          googledrive_2.0.0  
+[28] generics_0.1.3      ellipsis_0.3.2      withr_2.5.0        
+[31] ROCR_1.0-11         cli_3.6.0           survival_3.2-13    
+[34] magrittr_2.0.3      crayon_1.5.0        readxl_1.3.1       
+[37] evaluate_0.20       fs_1.6.0            fansi_1.0.3        
+[40] xml2_1.3.3          tools_4.1.2         hms_1.1.1          
+[43] gargle_1.2.0        lifecycle_1.0.3     munsell_0.5.0      
+[46] reprex_2.0.1        glmnet_4.1-3        plotrix_3.8-2      
+[49] compiler_4.1.2      rlang_1.0.6         plotmo_3.6.1       
+[52] grid_4.1.2          iterators_1.0.14    rstudioapi_0.13    
+[55] htmlwidgets_1.5.4   rmarkdown_2.20      gtable_0.3.1       
+[58] codetools_0.2-18    DBI_1.1.2           R6_2.5.1           
+[61] lubridate_1.8.0     knitr_1.42          fastmap_1.1.0      
+[64] utf8_1.2.2          shape_1.4.6         tmle_1.5.0.2       
+[67] stringi_1.7.12      Rcpp_1.0.9          vctrs_0.5.2        
+[70] dbplyr_2.1.1        tidyselect_1.2.0    xfun_0.36          </code></pre>
 </div>
 </div>
-<p>⬅️️<a href="https://khstats.com/blog/tmle/tutorial"><em>Back to Part I: Motivation</em></a> ⤴️<em>Back to the top</em> ➡️<a href="https://khstats.com/blog/tmle/tutorial-pt2/"><em>Continue to Part II: The Algorithm</em></a></p>
+<p>⬅️️<a href="https://khstats.com/blog/tmle/tutorial"><em>Back to Part I: Motivation</em></a> ⤴️<em>Back to the top</em> ➡️<a href="https://khstats.com/blog/tmle/tutorial-pt3/"><em>Continue to Part III:Properties, Theory, and Learning More</em></a></p>
 
+
+<!-- -->
 
 </section>
 
@@ -3997,9 +3986,9 @@ loaded via a namespace (and not attached):
 <p>The way we use the machine learning estimates in TMLE, surprisingly enough, yields <strong>known asymptotic properties of bias and variance</strong> – just like we see in parametric maximum likelihood estimation – for our target estimand.</p>
 <p>Besides allowing us to compute 95% confidence intervals and p-values for our estimates even after using flexible models, TMLE achieves other beneficial statistical properties, such as <strong>double robustness</strong>. These are discussed further in <a href="https://khstats.com/blog/tmle/tutorial-pt3/"><em>Part III</em></a>.</p>
 </section>
-<section id="is-tmle-causal-inference" class="level1">
+<section id="is-tmle-causal-inference" class="level1 page-columns page-full">
 <h1>Is TMLE Causal Inference? 🤔</h1>
-<p>If you’ve heard about TMLE before, it was likely in the context of <strong>causal inference</strong>. Although TMLE was developed for causal inference due to its many attractive properties, it cannot be considered causal inference by itself. Causal inference is a two-step process that first requires <strong>causal assumptions</strong><sup>1</sup> before a statistical estimand can be interpreted causally.</p>
+<div class="page-columns page-full"><p>If you’ve heard about TMLE before, it was likely in the context of <strong>causal inference</strong>. Although TMLE was developed for causal inference due to its many attractive properties, it cannot be considered causal inference by itself. Causal inference is a two-step process that first requires <strong>causal assumptions</strong><sup>1</sup> before a statistical estimand can be interpreted causally.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;I won’t discuss causal assumptions in these posts, but this is referring to fundamental assumptions in causal inference like consistency, exchangeability, and positivity. A primary motivation for using TMLE and other semiparametric estimation methods for causal inference is that if you’ve already taken the time to carefully evaluate <em>causal</em> assumptions, it does not make sense to then damage an otherwise well-designed analysis by making unrealistic <em>statistical</em> assumptions.</p></li></div></div>
 <p><strong>TMLE can be used to estimate various statistical estimands</strong> (odds ratio, risk ratio, mean outcome difference, etc.) <strong>even when causal assumptions are not met</strong>. TMLE is, as its name implies, simply a tool for estimation.</p>
 <p><img src="www.khstats.com/img/ident-vs-est.png" class="img-fluid"></p>
 <p>In <a href="https://khstats.com/blog/tmle/tutorial-pt2/"><em>Part II</em></a>, I’ll walk step-by-step through a basic version of the TMLE algorithm: estimating the mean difference in outcomes, adjusted for confounders, for a binary outcome and binary treatment. If causal assumptions are met, this is called the <strong>Average Treatment Effect (ATE)</strong>, or the mean difference in outcomes in a world in which everyone had received the treatment compared to a world in which everyone had not.</p>
@@ -4011,16 +4000,13 @@ loaded via a namespace (and not attached):
 <p>My primary reference for all three posts is <a href="https://link.springer.com/book/10.1007/978-1-4419-9782-1"><em>Targeted Learning</em></a> by Mark van der Laan and Sherri Rose. I detail many other resources I’ve used to learn TMLE, semiparametric theory, and causal inference in <a href="https://khstats.com/blog/tmle/tutorial-pt3/"><em>Part III</em></a>.</p>
 
 
+<!-- -->
+
 </section>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>I won’t discuss causal assumptions in these posts, but this is referring to fundamental assumptions in causal inference like consistency, exchangeability, and positivity. A primary motivation for using TMLE and other semiparametric estimation methods for causal inference is that if you’ve already taken the time to carefully evaluate <em>causal</em> assumptions, it does not make sense to then damage an otherwise well-designed analysis by making unrealistic <em>statistical</em> assumptions.↩︎</p></li>
-</ol>
-</section></div> ]]></description>
+ ]]></description>
   <category>statistics</category>
   <guid>www.khstats.com/blog/tmle/tutorial.html</guid>
   <pubDate>Thu, 10 Dec 2020 05:00:00 GMT</pubDate>
@@ -7086,7 +7072,7 @@ SL.earth_All  0.003181357 0.8393671</code></pre>
 <section id="alternative-packages-to-superlearn" class="level2">
 <h2 class="anchored" data-anchor-id="alternative-packages-to-superlearn">Alternative packages to superlearn</h2>
 <p>Other packages freely available in <code>R</code> that can be used to implement the superlearner algorithm include <a href="https://tlverse.org/tlverse-handbook/sl3.html"><code>sl3</code></a> (an update to the original <code>Superlearner</code> package), <a href="https://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science/stacked-ensembles.html"><code>h2o</code></a>, and <a href="https://rdrr.io/cran/caretEnsemble/f/vignettes/caretEnsemble-intro.Rmd"><code>caretEnsemble</code></a>. I previously wrote a <a href="https://www.khstats.com/blog/sl3_demo/sl/">brief demo</a> on using <code>sl3</code> for an NYC R-Ladies demo.</p>
-<p>The authors of <code>tidymodels</code> – a suite of packages for machine learning including <code>recipes</code>, <code>parsnip</code>, and <code>rsample</code> – recently came out with a new package to perform superlearning/stacking called <a href="%5Bhttps://stacks.tidymodels.org/articles/basics.html"><code>stacks</code></a>. Prior to this, Alex Hayes wrote a <a href="https://www.alexpghayes.com/blog/implementing-the-super-learner-with-tidymodels/">blog post</a> on using <code>tidymodels</code> infrastructure to implement superlearning.</p>
+<p>The authors of <code>tidymodels</code> – a suite of packages for machine learning including <code>recipes</code>, <code>parsnip</code>, and <code>rsample</code> – recently came out with a new package to perform superlearning/stacking called <a href="[https://stacks.tidymodels.org/articles/basics.html"><code>stacks</code></a>. Prior to this, Alex Hayes wrote a <a href="https://www.alexpghayes.com/blog/implementing-the-super-learner-with-tidymodels/">blog post</a> on using <code>tidymodels</code> infrastructure to implement superlearning.</p>
 </section>
 </section>
 <section id="coming-soon-when-prediction-is-not-the-end-goal" class="level1">
@@ -7692,6 +7678,8 @@ loaded via a namespace (and not attached):
 </div>
 
 
+<!-- -->
+
 </section>
 
  ]]></description>
@@ -7754,6 +7742,8 @@ loaded via a namespace (and not attached):
 <p>Just this past week I attended a meeting with our Informatics team. “It’s good to ‘see’ everyone,” someone said. It’s only half true; the circumstances that bring us to meetings together are never good. We discussed data structures for a possible second wave of COVID-19 in NYC as schools and indoor dining reopen. After the call, I felt an immense sadness, despite being in a much better place than when I left the city in May.</p>
 <p>At the bottom of my heart, I don’t know if I can handle another round of it all. Can you?</p>
 
+
+<!-- -->
 
 
  ]]></description>
@@ -13338,6 +13328,8 @@ font-style: italic;">## to get the rect filled</span></span>
 [79] corrplot_0.92 ellipsis_0.3.2</p>
 
 
+<!-- -->
+
 </section>
 </section>
 
@@ -14314,19 +14306,19 @@ font-style: italic;">## to get the rect filled</span></span>
 <hr>
 </section>
 </section>
-<section id="step-by-step-proof" class="level1">
+<section id="step-by-step-proof" class="level1 page-columns page-full">
 <h1>Step-by-step Proof</h1>
 <p>Click on the superscript number after each step for more information.</p>
 <p><img src="https://latex.codecogs.com/png.latex?E%5BE%5BY%7CX,Z%5D%7CZ=z%5D"></p>
-<p><img src="https://latex.codecogs.com/png.latex?=E%5BE%5BY%7CX,Z=z%5D%7CZ=z%5D"> <sup>1</sup></p>
-<p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BX%7DE%5BY%7CX=x,Z=z%5D%5Ccdot%20P(X=x%7CZ=z)"> <sup>2</sup></p>
-<p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BX%7D%5Csum_%7BY%7Dy%20P(Y=y%7CX=x,Z=z)%5Ccdot%20P(X=x%7CZ=z)"> <sup>3</sup></p>
-<p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BX%7D%5Csum_%7BY%7Dy%20%5Cfrac%7BP(Y=y,X=x,Z=z)%7D%7BP(X=x,Z=z)%7D%5Ccdot%20%5Cfrac%7BP(X=x,Z=z)%7D%7BP(Z=z)%7D"> <sup>4</sup></p>
-<p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BX%7D%5Csum_%7BY%7Dy%20%5Cfrac%7BP(Y=y,X=x,Z=z)%7D%7BP(Z=z)%7D"> <sup>5</sup></p>
-<p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BY%7Dy%5Csum_%7BX%7D%5Cfrac%7BP(Y=y,X=x,Z=z)%7D%7BP(Z=z)%7D"> <sup>6</sup></p>
-<p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BY%7Dy%5Cfrac%7BP(Y=y,Z=z)%7D%7BP(Z=z)%7D"> <sup>7</sup></p>
-<p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BY%7Dy%20P(Y=y%7CZ=z)"> <sup>8</sup></p>
-<p><img src="https://latex.codecogs.com/png.latex?=E%5BY%7CZ=z%5D"> <sup>9</sup></p>
+<div class="page-columns page-full"><p><img src="https://latex.codecogs.com/png.latex?=E%5BE%5BY%7CX,Z=z%5D%7CZ=z%5D"> <sup>1</sup></p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Because we’re making our outer expectation conditional on <img src="https://latex.codecogs.com/png.latex?Z=z">, we can also move <img src="https://latex.codecogs.com/png.latex?Z=z"> into our inner expectation. This becomes obvious in the <code>penguins</code> example, since we only use the fitted values from one category of <code>species</code> to get the adjusted group mean for that category.</p></li></div></div>
+<div class="page-columns page-full"><p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BX%7DE%5BY%7CX=x,Z=z%5D%5Ccdot%20P(X=x%7CZ=z)"> <sup>2</sup></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;We can rewrite <img src="https://latex.codecogs.com/png.latex?E%5BY%7CX,Z=z%5D"> as the weighted summation of all possible values <img src="https://latex.codecogs.com/png.latex?X"> can take. <img src="https://latex.codecogs.com/png.latex?E%5BY%7CX,Z=z%5D"> will only ever be able to take values of <img src="https://latex.codecogs.com/png.latex?X"> that vary over the range of <img src="https://latex.codecogs.com/png.latex?x">, <img src="https://latex.codecogs.com/png.latex?E%5BY%7CX=x,Z=z%5D"> since our value <img src="https://latex.codecogs.com/png.latex?z"> is already fixed. We can weight each of these possible <img src="https://latex.codecogs.com/png.latex?E%5BY%7CX=x,Z=z%5D"> values by <img src="https://latex.codecogs.com/png.latex?P(X=x%7CZ=z)">, since that’s the probabilty <img src="https://latex.codecogs.com/png.latex?X"> will take value <img src="https://latex.codecogs.com/png.latex?x"> at our already-fixed <img src="https://latex.codecogs.com/png.latex?z">. Thus, we can start to find <img src="https://latex.codecogs.com/png.latex?E%5BE%5BY%7CX,Z=z%5D%7CZ=z%5D"> by weighting each <img src="https://latex.codecogs.com/png.latex?E%5BY%7CX=x,Z=z%5D"> by <img src="https://latex.codecogs.com/png.latex?P(X=x%7CZ=z)"> and adding them all up (see Partition Theorem).</p></li></div></div>
+<div class="page-columns page-full"><p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BX%7D%5Csum_%7BY%7Dy%20P(Y=y%7CX=x,Z=z)%5Ccdot%20P(X=x%7CZ=z)"> <sup>3</sup></p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;We can get the expectation of <img src="https://latex.codecogs.com/png.latex?Y"> at each of those possible values of <img src="https://latex.codecogs.com/png.latex?X"> by a similar process as step 2 (weighting each <img src="https://latex.codecogs.com/png.latex?y"> by <img src="https://latex.codecogs.com/png.latex?P(Y=y%7CX=x,%20Z=z)">.</p></li></div></div>
+<div class="page-columns page-full"><p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BX%7D%5Csum_%7BY%7Dy%20%5Cfrac%7BP(Y=y,X=x,Z=z)%7D%7BP(X=x,Z=z)%7D%5Ccdot%20%5Cfrac%7BP(X=x,Z=z)%7D%7BP(Z=z)%7D"> <sup>4</sup></p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;By the Law of Conditional Probability, we can rewrite our conditional probabilities as joint distributions.</p></li></div></div>
+<div class="page-columns page-full"><p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BX%7D%5Csum_%7BY%7Dy%20%5Cfrac%7BP(Y=y,X=x,Z=z)%7D%7BP(Z=z)%7D"> <sup>5</sup></p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;The denominator of the first fraction cancels out with the numerator of the second fraction.</p></li></div></div>
+<div class="page-columns page-full"><p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BY%7Dy%5Csum_%7BX%7D%5Cfrac%7BP(Y=y,X=x,Z=z)%7D%7BP(Z=z)%7D"> <sup>6</sup></p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;We can switch the summations around so that <img src="https://latex.codecogs.com/png.latex?y"> is outside the summation over all values of <img src="https://latex.codecogs.com/png.latex?X">. This lets us get the joint distribution of only <img src="https://latex.codecogs.com/png.latex?Y"> and <img src="https://latex.codecogs.com/png.latex?Z">.</p></li></div></div>
+<div class="page-columns page-full"><p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BY%7Dy%5Cfrac%7BP(Y=y,Z=z)%7D%7BP(Z=z)%7D"> <sup>7</sup></p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;This is a conditional expectation, written in the form of a joint distribution.</p></li></div></div>
+<div class="page-columns page-full"><p><img src="https://latex.codecogs.com/png.latex?=%5Csum_%7BY%7Dy%20P(Y=y%7CZ=z)"> <sup>8</sup></p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;By the Partition Theorem.</p></li></div></div>
+<div class="page-columns page-full"><p><img src="https://latex.codecogs.com/png.latex?=E%5BY%7CZ=z%5D"> <sup>9</sup></p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;Rewriting the previous equation as an expectation.</p></li></div></div>
 <p>So, we’ve proved that:</p>
 <p><img src="https://latex.codecogs.com/png.latex?E%5BE%5BY%7CX,Z%5D%7CZ=z%5D%20=%20E%5BY%7CZ=z%5D"></p>
 <p>which, thankfully, means I have an answer to my function output confusion. It was a lightbulb moment for me to realize I should think of an inner expectation as a random variable, and all the rules I learned about conditional and iterated expectations can be revisited in the regressions I fit on a daily basis.</p>
@@ -14338,23 +14330,12 @@ font-style: italic;">## to get the rect filled</span></span>
 <p><a href="https://www.math.arizona.edu/~tgk/464_07/cond_exp.pdf">A Conditional Expectation - Arizona Math</a></p>
 
 
+<!-- -->
+
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>Because we’re making our outer expectation conditional on <img src="https://latex.codecogs.com/png.latex?Z=z">, we can also move <img src="https://latex.codecogs.com/png.latex?Z=z"> into our inner expectation. This becomes obvious in the <code>penguins</code> example, since we only use the fitted values from one category of <code>species</code> to get the adjusted group mean for that category.↩︎</p></li>
-<li id="fn2"><p>We can rewrite <img src="https://latex.codecogs.com/png.latex?E%5BY%7CX,Z=z%5D"> as the weighted summation of all possible values <img src="https://latex.codecogs.com/png.latex?X"> can take. <img src="https://latex.codecogs.com/png.latex?E%5BY%7CX,Z=z%5D"> will only ever be able to take values of <img src="https://latex.codecogs.com/png.latex?X"> that vary over the range of <img src="https://latex.codecogs.com/png.latex?x">, <img src="https://latex.codecogs.com/png.latex?E%5BY%7CX=x,Z=z%5D"> since our value <img src="https://latex.codecogs.com/png.latex?z"> is already fixed. We can weight each of these possible <img src="https://latex.codecogs.com/png.latex?E%5BY%7CX=x,Z=z%5D"> values by <img src="https://latex.codecogs.com/png.latex?P(X=x%7CZ=z)">, since that’s the probabilty <img src="https://latex.codecogs.com/png.latex?X"> will take value <img src="https://latex.codecogs.com/png.latex?x"> at our already-fixed <img src="https://latex.codecogs.com/png.latex?z">. Thus, we can start to find <img src="https://latex.codecogs.com/png.latex?E%5BE%5BY%7CX,Z=z%5D%7CZ=z%5D"> by weighting each <img src="https://latex.codecogs.com/png.latex?E%5BY%7CX=x,Z=z%5D"> by <img src="https://latex.codecogs.com/png.latex?P(X=x%7CZ=z)"> and adding them all up (see Partition Theorem).↩︎</p></li>
-<li id="fn3"><p>We can get the expectation of <img src="https://latex.codecogs.com/png.latex?Y"> at each of those possible values of <img src="https://latex.codecogs.com/png.latex?X"> by a similar process as step 2 (weighting each <img src="https://latex.codecogs.com/png.latex?y"> by <img src="https://latex.codecogs.com/png.latex?P(Y=y%7CX=x,%20Z=z)">.↩︎</p></li>
-<li id="fn4"><p>By the Law of Conditional Probability, we can rewrite our conditional probabilities as joint distributions.↩︎</p></li>
-<li id="fn5"><p>The denominator of the first fraction cancels out with the numerator of the second fraction.↩︎</p></li>
-<li id="fn6"><p>We can switch the summations around so that <img src="https://latex.codecogs.com/png.latex?y"> is outside the summation over all values of <img src="https://latex.codecogs.com/png.latex?X">. This lets us get the joint distribution of only <img src="https://latex.codecogs.com/png.latex?Y"> and <img src="https://latex.codecogs.com/png.latex?Z">.↩︎</p></li>
-<li id="fn7"><p>This is a conditional expectation, written in the form of a joint distribution.↩︎</p></li>
-<li id="fn8"><p>By the Partition Theorem.↩︎</p></li>
-<li id="fn9"><p>Rewriting the previous equation as an expectation.↩︎</p></li>
-</ol>
-</section></div> ]]></description>
+ ]]></description>
   <category>statistics</category>
   <guid>www.khstats.com/blog/iterated-expectations/index.html</guid>
   <pubDate>Mon, 10 Aug 2020 04:00:00 GMT</pubDate>
@@ -15052,6 +15033,8 @@ Attaching package: 'lubridate'</code></pre>
 <p>I hope you enjoyed a quick insight into the data side of COVID-19 research, and/or perhaps picked up some useful function combinations for your own applied work with <code>R</code>.</p>
 
 
+<!-- -->
+
 </section>
 
  ]]></description>
@@ -15408,6 +15391,8 @@ Attaching package: 'lubridate'</code></pre>
 [57] compiler_4.1.3</p>
 
 
+<!-- -->
+
 </section>
 </section>
 
@@ -15464,6 +15449,8 @@ Attaching package: 'lubridate'</code></pre>
 <p>All the best,</p>
 <p>Kat</p>
 
+
+<!-- -->
 
 
  ]]></description>
@@ -16865,6 +16852,8 @@ $training_offset
 </ul>
 
 
+<!-- -->
+
 </section>
 
  ]]></description>
@@ -16970,6 +16959,8 @@ $training_offset
 </ol>
 
 
+<!-- -->
+
 </section>
 
  ]]></description>
@@ -17045,6 +17036,8 @@ $training_offset
 <p>*Not a real statistic.</p>
 <p>**Exact details and diseases of the studies I am currently working on have been generalized or altered to protect the research interests of my collaborators.</p>
 
+
+<!-- -->
 
 
  ]]></description>

@@ -1,0 +1,249 @@
+---
+title: "Alluvial Plots (Sankey Diagrams) for Time-Varying Survival Data"
+author: "Katherine Hoffman"
+date: "2023-01-02"
+categories: [programming]
+image: "image.png"
+draft: true
+description: " "
+---
+
+```{=tex}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{arg\,max}
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=F, message=F)
+```
+
+Alluvial plots, or Sankey diagrams, can be used to show the movement of individual units across a single variable, such as time. This post will first explain how to use the `ggalluvial` R package with a straightforward use-case: showing how an illness severity score changes in a population of critically ill patients by day.
+
+Then, we will use the same package and ideas to walk through how to show data we typically use for survival analyses in an alluvial chart. I'll use `ggalluvial` to show the movement of:
+
+- categorical, time-varying exposure
+- time-to-event outcome
+- competing event
+- loss to follow up
+
+over time. These plots can be organized to look similar to Kaplan Meier plots.
+
+```{r}
+library(tidyverse)
+library(ggalluvial)
+```
+
+
+```{r echo=F}
+
+sofa_wide <- read_csv(here::here("blog/alluvial/pseudo_sofa_khstats.csv")) |>
+  mutate(across(starts_with("day"), ~factor(.x, levels=c("Deceased", 0:4,"Missing","Discharged"))))
+
+my_pal <- ggsci::pal_nejm("default", alpha = 0.6)(8)
+subscore <- "pulmonary_sofa"
+p <- sofa_wide |>
+    filter(score_type == subscore) |>
+    group_by(day0, day1, day2, day3) |>
+    count(.drop = F) |>
+    ungroup() |>
+    to_lodes_form(key = "day", axes = 1:4)  |>
+    mutate(day = case_when(day == "day0" ~ "B",
+                           TRUE ~ as.character(parse_number(as.character(day)))),
+           day = fct_relevel(day, "B")) |>
+    ggplot(aes(x = day, y = n,
+               stratum = stratum,
+               alluvium = alluvium,
+               fill = stratum)) +
+    geom_flow() +
+    geom_stratum() +
+    theme_classic() +
+    scale_x_discrete(expand = c(0.1,0.1)) +
+    scale_fill_manual(values = my_pal, drop=F) +
+    labs(x = "Day", y = "Count",
+         fill = "Subscore", title = paste0(snakecase::to_title_case(subscore)))
+
+
+
+p
+
+
+```
+
+
+
+## Step 0: Load the data
+
+```{r}
+sofa_wide <- read_csv(here::here("blog/alluvial/pseudo_sofa_khstats.csv")) |>
+  mutate(across(starts_with("day"), ~factor(.x, levels=c("Deceased", 0:4,"Missing","Discharged"))))
+```
+
+The data structure we will use for each alluvial plot is **wide format**, i.e. one row per unit, and one column per time period.
+
+The `sofa_wide` data set shows this wide format data with one row for each of the six SOFA subscore per patient. We will subset this data for now to one subscore, the pulmonary SOFA score, and use this data to make our first plot.
+
+```{r}
+sofa_pulm <- sofa_wide |> filter(score_type == "pulmonary_sofa")
+head(sofa_pulm)
+glimpse(sofa_pulm)
+```
+
+
+```{r}
+glimpse(sofa_wide)
+head(sofa_wide)
+```
+
+## Step 2
+
+```{r}
+sofa_wide |>
+    filter(score_type == subscore) |>
+      group_by(day0, day1, day2, day3) |>
+    count(.drop = F) 
+```
+
+# Step 3
+
+
+```{r}
+sofa_wide |>
+    filter(score_type == subscore) |>
+    group_by(day0, day1, day2, day3) |>
+    count(.drop = F) |>
+    ungroup() |>
+    to_lodes_form(key = "day", axes = 1:4)
+```
+
+```{r}
+sofa_wide |>
+    filter(score_type == subscore) |>
+    group_by(day0, day1, day2, day3) |>
+    count(.drop = F) |>
+    ungroup() |>
+    to_lodes_form(key = "day", axes = 1:4)  |>
+    mutate(day = case_when(day == "day0" ~ "B",
+                           TRUE ~ as.character(parse_number(as.character(day)))),
+           day = fct_relevel(day, "B"))
+```
+
+```{r}
+sofa_alluv <- sofa_wide |>
+    filter(score_type == subscore) |>
+    group_by(day0, day1, day2, day3) |>
+    count(.drop = F) |>
+    ungroup() |>
+    to_lodes_form(key = "day", axes = 1:4)  |>
+    mutate(day = case_when(day == "day0" ~ "B",
+                           TRUE ~ as.character(parse_number(as.character(day)))),
+           day = fct_relevel(day, "B"))
+```
+
+
+```{r}
+p <-
+  sofa_alluv |>
+    ggplot(aes(x = day,
+               y = n,
+               stratum = stratum,
+               alluvium = alluvium,
+               fill = stratum))
+p
+```
+
+```{r}
+p <- p + geom_flow() 
+p
+```
+
+```{r}
+p <- p + geom_stratum() 
+p
+```
+
+```{r}
+p <- p + theme_classic() 
+p
+```
+
+```{r}
+p <- p + coord_cartesian(xlim = c(.5,4.5),
+                         ylim = c(0,100),
+                         expand=F) 
+p
+```
+
+```{r}
+p <- p +
+  labs(x = "Day",
+       y = "Count",
+       fill = "Subscore", 
+       title = paste0(snakecase::to_title_case(subscore)))
+p
+```
+
+```{r}
+my_pal <- ggsci::pal_nejm("default", alpha = 0.6)(8)
+
+p <- p +   scale_fill_manual(values = my_pal, drop=F) 
+p
+```
+
+
+
+```{r}
+subscore <- "pulmonary_sofa"
+p <- sofa_wide |>
+    filter(score_type == subscore) |>
+    group_by(day0, day1, day2, day3) |>
+    count(.drop = F) |>
+    ungroup() |>
+    to_lodes_form(key = "day", axes = 1:4)  |>
+    mutate(day = case_when(day == "day0" ~ "B",
+                           TRUE ~ as.character(parse_number(as.character(day)))),
+           day = fct_relevel(day, "B")) |>
+    ggplot(aes(x = day, y = n,
+               stratum = stratum,
+               alluvium = alluvium,
+               fill = stratum)) +
+    geom_flow() +
+    geom_stratum() +
+    theme_classic() +
+    scale_x_discrete(expand = c(0.1,0.1)) +
+    scale_fill_manual(values = my_pal, drop=F) +
+    labs(x = "Day", y = "Count",
+         fill = "Subscore", title = paste0(snakecase::to_title_case(subscore)))
+
+p
+
+```
+
+
+```{r}
+
+sofa_trend_alluvial <- function(df, subscore){
+  df |>
+    filter(score_type == subscore) |>
+    group_by(day0, day1, day2, day3) |>
+    count(.drop = F) |>
+    ungroup() |>
+    to_lodes_form(key = "day", axes = 1:4)  |>
+    mutate(day = case_when(day == "day0" ~ "B",
+                           TRUE ~ as.character(parse_number(as.character(day)))),
+           day = fct_relevel(day, "B")) |>
+    ggplot(aes(x = day, y = n,
+               stratum = stratum,
+               alluvium = alluvium,
+               fill = stratum)) +
+    geom_flow() +
+    geom_stratum() +
+    theme_classic() +
+    scale_x_discrete(expand = c(0.1,0.1)) +
+    scale_fill_manual(values = my_pal, drop=F) +
+    labs(x = "Day", y = "Count",
+         fill = "Subscore", title = paste0(snakecase::to_title_case(str_remove(subscore,"_sofa"))))
+}
+```
+
+
+

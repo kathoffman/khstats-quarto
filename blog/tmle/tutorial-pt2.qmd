@@ -583,6 +583,8 @@ sessionInfo()
 ```
 
 ⬅️️[*Back to Part I: Motivation*](https://khstats.com/blog/tmle/tutorial)
+
 ⤴️[*Back to the top*](#part-ii-the-algorithm)
-➡️[*Continue to Part II: The Algorithm*](https://khstats.com/blog/tmle/tutorial-pt2/)
+
+➡️[*Continue to Part III:Properties, Theory, and Learning More*](https://khstats.com/blog/tmle/tutorial-pt3/)
 

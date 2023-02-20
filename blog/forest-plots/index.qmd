@@ -332,6 +332,7 @@ Hopefully that's not too hard to follow! Please feel free to email me if you fin
 library(tidyverse)
 library(gt)
 library(patchwork)
+
 ## ---------------------------
 ## load data
 # load in results generated from Cox PH hazards models
@@ -344,6 +345,7 @@ res <- res_log |>
 
 ## plotting
 ## ---------------------------
+
 # create forest plot on log scale (middle section of figure)
 p_mid <-
   res |>
@@ -360,6 +362,7 @@ p_mid <-
         axis.ticks.y= element_blank(),
         axis.text.y= element_blank(),
         axis.title.y= element_blank())
+
 # wrangle results into pre-plotting table form
 res_plot <- res |>
   mutate(across(c(estimate, conf.low, conf.high), ~str_pad(round(.x, 2), width=4, pad="0", side="right")),
@@ -368,6 +371,7 @@ res_plot <- res |>
   mutate(p.value = case_when(p.value < .01 ~ "<0.01", TRUE ~ str_pad(as.character(round(p.value, 2)),width=4,pad="0",side="right"))) |>
   bind_rows(data.frame(model = "Model", estimate_lab = "Hazard Ratio (95% CI)", conf.low = "", conf.high="",p.value="p-value")) |>
   mutate(model = fct_rev(fct_relevel(model, "Model")))
+
 # left side of plot - hazard ratios
 p_left <-
   res_plot  |>
@@ -376,6 +380,7 @@ p_left <-
   geom_text(aes(x=1, label=estimate_lab), hjust=0, fontface = ifelse(res_plot$estimate_lab == "Hazard Ratio (95% CI)", "bold", "plain")) +
   theme_void() +
   coord_cartesian(xlim=c(0,4))
+
 # right side of plot - pvalues
 p_right <-
   res_plot  |>
@@ -388,6 +393,7 @@ layout <- c(
   area(t = 1, l = 4, b = 30, r = 9),
   area(t = 0, l = 9, b = 30, r = 11)
 )
+
 # final plot arrangement
 p_left + p_mid + p_right + plot_layout(design = layout)
 ## save final figure

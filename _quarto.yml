@@ -40,7 +40,6 @@ website:
     - id: art
       collapse-level: 1
       title: "Illustrations"
-      subtitle: "test"
       style: "docked"
       contents:
         - text: "Visual Guides for Causal Inference"
@@ -50,8 +49,25 @@ website:
 
 format:
   html:
+    smooth-scroll: true
     theme: [minty, styles.css]
     highlight-style: zenburn
+    link-external-icon: false
+    link-external-newwindow: true
+    citations-hover: true
+    footnotes-hover: true
+    #toc: true
+    #toc-depth: 3
+    #toc-title: Contents
+    #toc-location: left
+    code-link: false
+    anchor-sections: true
+    #code-tools: true
+    #code-fold: true
+    code-block-bg: "#f1f3f5"
+    code-block-border-left: "#31BAE9"
+    reference-location: margin
+    fig-cap-location: margin
 
 
 editor: source
