@@ -2,6 +2,7 @@
 title: "An Illustrated Guide to TMLE, Part III: Properties, Theory, and Learning More"
 author: "Katherine Hoffman"
 image: tmle_props.png
+page-layout: article
 description: " "
 date: 2020-12-12
 categories: ["statistics"]

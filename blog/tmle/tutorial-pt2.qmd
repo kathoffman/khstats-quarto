@@ -3,6 +3,7 @@ title: "An Illustrated Guide to TMLE, Part II: The Algorithm"
 author: "Katherine Hoffman"
 date: 2020-12-11
 image: tmle/tmle_crop.jpeg
+page-layout: article
 categories: ["statistics"]
 description: " "
 output:
@@ -322,7 +323,7 @@ To reiterate, in [Step 1](#step-1-estimate-the-outcome) we estimated the expecte
 
 </html>
 
-🚨 ***Warning:*** this step is easy to code, but difficult to understand unless you have a background in semiparametric theory. Let's first look at *what* we're doing, and then I'll discuss at a very high-level why we're doing that in a [later section](#why-does-tmle-work).
+🚨 ***Warning:*** this step is easy to code, but difficult to understand unless you have a background in semiparametric theory. Let's first look at *what* we're doing, and then I'll discuss at a very high-level why we're doing that in a [later section](https://khstats.com/blog/tmle/tutorial-pt3/#why-does-tmle-work).
 
 The point of this step is to solve an *estimating equation* for the *efficient influence function* (EIF) of our estimand of interest. Without diving into what an EIF or an estimating equation is, let's accept for a moment that they will help us:
 

@@ -15,3 +15,5 @@ format:
     toc-location: left
     code-tools: true
     code-link: true
+    page-layout: article
+

@@ -3197,7 +3197,7 @@ HTML Image as link
 <a href=""> <img src="www.khstats.com/img/bear_with_me.jpg" alt="cheatsheet" style="float:right; padding-left:65px;" width="50%&quot;"> </a>
 
 
-<p>🚨 <strong><em>Warning:</em></strong> this step is easy to code, but difficult to understand unless you have a background in semiparametric theory. Let’s first look at <em>what</em> we’re doing, and then I’ll discuss at a very high-level why we’re doing that in a later section.</p>
+<p>🚨 <strong><em>Warning:</em></strong> this step is easy to code, but difficult to understand unless you have a background in semiparametric theory. Let’s first look at <em>what</em> we’re doing, and then I’ll discuss at a very high-level why we’re doing that in a <a href="https://khstats.com/blog/tmle/tutorial-pt3/#why-does-tmle-work">later section</a>.</p>
 <p>The point of this step is to solve an <em>estimating equation</em> for the <em>efficient influence function</em> (EIF) of our estimand of interest. Without diving into what an EIF or an estimating equation is, let’s accept for a moment that they will help us:</p>
 <ol type="1">
 <li><p><strong>Update our initial outcome estimates</strong> so that our estimate of the ATE is asymptotically unbiased (under certain conditions, see <a href="https://khstats.com/blog/tmle/tutorial-pt3/#properties-of-tmle"><em>Part III, Statistical Properties</em></a>).</p></li>
@@ -3906,7 +3906,9 @@ loaded via a namespace (and not attached):
 [70] dbplyr_2.1.1        tidyselect_1.2.0    xfun_0.36          </code></pre>
 </div>
 </div>
-<p>⬅️️<a href="https://khstats.com/blog/tmle/tutorial"><em>Back to Part I: Motivation</em></a> ⤴️<em>Back to the top</em> ➡️<a href="https://khstats.com/blog/tmle/tutorial-pt3/"><em>Continue to Part III:Properties, Theory, and Learning More</em></a></p>
+<p>⬅️️<a href="https://khstats.com/blog/tmle/tutorial"><em>Back to Part I: Motivation</em></a></p>
+<p>⤴️<em>Back to the top</em></p>
+<p>➡️<a href="https://khstats.com/blog/tmle/tutorial-pt3/"><em>Continue to Part III:Properties, Theory, and Learning More</em></a></p>
 
 
 <!-- -->
