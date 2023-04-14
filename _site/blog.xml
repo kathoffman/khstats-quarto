@@ -389,8 +389,6 @@ loaded via a namespace (and not attached):
 </div>
 
 
-<!-- -->
-
 </section>
 
  ]]></description>
@@ -548,8 +546,6 @@ loaded via a namespace (and not attached):
 <p>Thanks to my colleague <a href="https://twitter.com/ildiazm">Iván Díaz</a> for explaining OTRs to me in this way, and for reviewing this post.</p>
 
 
-<!-- -->
-
 </section>
 </section>
 
@@ -652,7 +648,7 @@ loaded via a namespace (and not attached):
 <section id="test-your-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="test-your-pcb">1. Test your PCB</h2>
 <p>First you’ll want to download a keyboard programming app like <a href="https://www.caniusevia.com/">VIA</a>, plug your keyboard into your computer, take a pair of tweezers, and test each point of key circuitry on your PCB plate.</p>
-<video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="/keyboard/testing_keys.mp4#t=0.1"></video>
+<!--  -->
 </section>
 <section id="lubricate-the-stabilizers" class="level2">
 <h2 class="anchored" data-anchor-id="lubricate-the-stabilizers">2. Lubricate the stabilizers</h2>
@@ -699,8 +695,6 @@ loaded via a namespace (and not attached):
 <p>In the end, the process of learning to build a mechanical keyboard felt just like learning any new concept in statistics/data science. The knowledge took some time to find, and the jargon was a bit intimidating, but after spending some time sifting through information I could always find what I needed. The entire process was very enjoyable, and I’m already looking forward to my next build!</p>
 <p><img src="www.khstats.com/blog/keyboard/keyboard/IMG_7198.png" class="img-fluid"></p>
 
-
-<!-- -->
 
 </section>
 
@@ -1026,8 +1020,6 @@ loaded via a namespace (and not attached):
 </div>
 
 
-<!-- -->
-
 </section>
 
  ]]></description>
@@ -1260,8 +1252,6 @@ Survey weights
 <p>As with all my posts, I welcome feedback from my intended audience and/or experts of causal inference. I am also open to suggestions of other resources to include in the reference section. Check back later for posts walking through specific examples and <code>R</code> code!</p>
 
 
-<!-- -->
-
 </section>
 
  ]]></description>
@@ -1384,8 +1374,6 @@ Survey weights
 <!-- This problem is akin to rolling a five-sided dice six times and then summing the numbers. We can determine the probability of getting each total. This Wolfram Alpha article walks through the proof. -->
 
 
-<!-- -->
-
 
  ]]></description>
   <category>programming</category>
@@ -1444,8 +1432,6 @@ Survey weights
 <p>Cheers,</p>
 <p>Kat</p>
 
-
-<!-- -->
 
 
  ]]></description>
@@ -1543,8 +1529,6 @@ Survey weights
 <p>This tutorial would not have been possible without my colleague Iván Díaz patiently answering many, many questions on TMLE. I am also very appreciative of Miguel Angel Luque-Fernandez’s helpful feedback on the visual guide.</p>
 <p>Lastly, many thanks to Axel Martin, Nick Williams, Anjile An, Adam Peterson, Alan Wu, and Will Simmons for providing suggestions on various drafts of this art project!</p>
 
-
-<!-- -->
 
 </section>
 
@@ -3911,8 +3895,6 @@ loaded via a namespace (and not attached):
 <p>➡️<a href="https://khstats.com/blog/tmle/tutorial-pt3/"><em>Continue to Part III:Properties, Theory, and Learning More</em></a></p>
 
 
-<!-- -->
-
 </section>
 
  ]]></description>
@@ -4001,8 +3983,6 @@ loaded via a namespace (and not attached):
 <h3 class="anchored" data-anchor-id="references"><em>References</em></h3>
 <p>My primary reference for all three posts is <a href="https://link.springer.com/book/10.1007/978-1-4419-9782-1"><em>Targeted Learning</em></a> by Mark van der Laan and Sherri Rose. I detail many other resources I’ve used to learn TMLE, semiparametric theory, and causal inference in <a href="https://khstats.com/blog/tmle/tutorial-pt3/"><em>Part III</em></a>.</p>
 
-
-<!-- -->
 
 </section>
 </section>
@@ -7680,8 +7660,6 @@ loaded via a namespace (and not attached):
 </div>
 
 
-<!-- -->
-
 </section>
 
  ]]></description>
@@ -7744,8 +7722,6 @@ loaded via a namespace (and not attached):
 <p>Just this past week I attended a meeting with our Informatics team. “It’s good to ‘see’ everyone,” someone said. It’s only half true; the circumstances that bring us to meetings together are never good. We discussed data structures for a possible second wave of COVID-19 in NYC as schools and indoor dining reopen. After the call, I felt an immense sadness, despite being in a much better place than when I left the city in May.</p>
 <p>At the bottom of my heart, I don’t know if I can handle another round of it all. Can you?</p>
 
-
-<!-- -->
 
 
  ]]></description>
@@ -13330,8 +13306,6 @@ font-style: italic;">## to get the rect filled</span></span>
 [79] corrplot_0.92 ellipsis_0.3.2</p>
 
 
-<!-- -->
-
 </section>
 </section>
 
@@ -14332,8 +14306,6 @@ font-style: italic;">## to get the rect filled</span></span>
 <p><a href="https://www.math.arizona.edu/~tgk/464_07/cond_exp.pdf">A Conditional Expectation - Arizona Math</a></p>
 
 
-<!-- -->
-
 </section>
 
 
@@ -15035,8 +15007,6 @@ Attaching package: 'lubridate'</code></pre>
 <p>I hope you enjoyed a quick insight into the data side of COVID-19 research, and/or perhaps picked up some useful function combinations for your own applied work with <code>R</code>.</p>
 
 
-<!-- -->
-
 </section>
 
  ]]></description>
@@ -15393,8 +15363,6 @@ Attaching package: 'lubridate'</code></pre>
 [57] compiler_4.1.3</p>
 
 
-<!-- -->
-
 </section>
 </section>
 
@@ -15451,8 +15419,6 @@ Attaching package: 'lubridate'</code></pre>
 <p>All the best,</p>
 <p>Kat</p>
 
-
-<!-- -->
 
 
  ]]></description>
@@ -16854,8 +16820,6 @@ $training_offset
 </ul>
 
 
-<!-- -->
-
 </section>
 
  ]]></description>
@@ -16961,8 +16925,6 @@ $training_offset
 </ol>
 
 
-<!-- -->
-
 </section>
 
  ]]></description>
@@ -17038,8 +17000,6 @@ $training_offset
 <p>*Not a real statistic.</p>
 <p>**Exact details and diseases of the studies I am currently working on have been generalized or altered to protect the research interests of my collaborators.</p>
 
-
-<!-- -->
 
 
  ]]></description>

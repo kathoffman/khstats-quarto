@@ -22,69 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -231,7 +168,7 @@ ga('send', {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">Stats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+      <h1 class="title">Stats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">career</div>
               </div>
@@ -312,8 +249,6 @@ ga('send', {
 <p>Kat</p>
 
 
-<!-- -->
-
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -381,57 +316,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
-    }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -513,91 +397,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
 });
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Stats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Katherine Hoffman"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> " "</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> /img/kim1-crop.png</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2019-10-06</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> ["career"]</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> ["career", "biostatistics", "interview", "SAS"]</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">message=</span>F, <span class="at">warning=</span>F)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="al">![](/img/kim1.png)</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Earlier this year I wrote my first blog post, <span class="co">[</span><span class="ot">"A Day in the Life of a Biostatistician,"</span><span class="co">](https://www.khstats.com/blog/ditl-biostats/)</span> documenting the granular details of my work as an early career academic research biostatistician. I'm excited to announce I am turning that post into a "day in the life" series in which I interview other biostatisticians with differing roles. My hope is that it will enlighten anyone interested in the field of biostatistics, and especially help undergraduate and current biostatistics Masters students make informed decisions about their careers.</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>My first interviewee is Kim Hirschhorn, a former classmate and good friend from my time at the University of Michigan School of Public Health. Kim is an avid reality TV show watcher, loves Eggo waffles and Hostess Ho-Hos, and is a great statistician; so great, professors were often confused as to why she wasn't planning to pursue a PhD. Kim, however, has always been adamant that she doesn't need a PhD to have the career she wants.</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Kim's determination to find a job which allowed for ample career growth with "only" an MS in Biostatistics paid off. After graduating in 2018, she chose to work as a biostatistician at PRA Health Sciences, a Contract Research Organization (CRO) for pharmaceutical companies. Biostatistician roles at CROs offer excellent career trajectory for Masters-level statisticians and don't have a job title ceiling as some careers in statistics notoriously do for those without a PhD. Additionally, it's a lucrative job option for a Masters-level biostatistician. (🤑!) For more information on salaries of early career statisticians you can check out the <span class="co">[</span><span class="ot">American Statistical Association's recent survey of 2018 Masters in Statistics graduates</span><span class="co">](https://magazine.amstat.org/blog/2019/08/01/mastergraduate/)</span>. But, to learn more about what Kim actually does as a biostatistician at a pharmaceutical CRO, read on!</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>**Kat: Thanks for taking the time to chat, Kim! Can you tell me where you work and what the mission of your company is?**</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>*Kim: I work at the Chicago office of a large CRO called PRA Health Sciences. PRA stands for Pharmaceutical Research Associates, and our primary responsibility is to run clinical trials for pharmaceutical companies. This includes everything from planning the study at an administrative level -- such as identifying physicians to recruit patients and administer drug therapies -- to collecting data like patients' disease progression and adverse events, analyzing and summarizing the results, and submitting requests for the successful trials to be approved by the Food and Drug Administration (FDA). After a pharmaceutical company has researched and developed a potential new drug, we partner with them to implement the various phases of clinical trials necessary to test that drug.*</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>**Whoa, sometimes I forget about all the steps in a clinical trial. Before we go any further, can you give us a quick explanation about what those phases of clinical trials mean?**</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>*There are three main phases: Phase I, II, and III. In general, Phase I clinical trials check whether a drug is safe to administer. Sometimes this also involves testing which dosage of a drug is safe -- or at least not overwhelmingly toxic -- to the body. Phase I trials are usually done on a small group of patients. Phase II trials are done on a larger group of patients and focus on whether the drug is effective, or in other words, whether it can actually fix whatever health problem the pharmaceutical company had in mind when developing it. Most drugs fail in Phase II.*</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>*If a drug does move onto a Phase III trial, its performance in comparison to the current standard of care (which is often another drug on the market) is evaluated. In both Phase II and III, patients are randomized into treatment and control groups and typically neither physicians nor patients know which treatment is administered. Even patients who are not receiving a treatment will receive a sugar pill, or placebo drug. Oftentimes a clinical trial's aims will fall somewhere between two phases. For example, I've worked on Phase 1b/2a trials that collect information on safety, determine the recommended dose, and then evaluate the drug's efficacy.*</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>**I see, so which of those phases do you work on?**</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>*I have been a Biostatistician I for a bit over a year now, so that means I am the lead biostatistician on a few simple Phase I trials. There is usually not much statistical testing occurring here; it's all about how many patients have an adverse response to the drug. Since I am still in the most junior biostatistician role, a lot of my time is spent doing biostatistical support for Phase II and III trials, where more senior biostatisticians oversee my work and pre-specify the analyses. The longer I stay at my job, the more responsibilities I will have and the more complex studies I will lead.*</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>**What's involved in leading a study, even a "small and simple" phase I? How is that different from the work you do as "biostatistical support" on the Phase II and III trials?**</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>*When I am the lead of a study, I am meeting with members of the pharmaceutical company and working with them to develop a statistical analysis plan. Once the clinical trial starts and I begin to receive data, I work with programmers to ensure everything that needs to be done for the analysis is completed in the time allotted by that trial's budget. Since the studies I am leading now are early phase, I am in charge of doing all the statistical analyses and reporting the results back to the pharmaceutical company.*</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>*In contrast, when I am biostatistical support, I am mostly executing analyses already specified in a statistical analysis plan. This typically involves writing macros in the statistical programming language [SAS](https://www.sas.com/en_us/software/stat.html) to ultimately produce what is dozens of outputs. A large portion of my time as a junior biostatistician is spent figuring out the best way to present that huge amount of data and results in a comprehensible way. Even before I have data from a clinical trial, I have to plan out detailed tables and prepare a shell document for when the data is ready for analysis.*</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>**Who are you working with in your day-to-day roles?**</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>*I get assignments from my manager, and then work with the lead biostatisticians on each trial. It is standard in the pharmaceutical industry that all analyses must be independently reproduced. This usually means the lead biostatistician is redoing my analysis without looking at my code, so sometimes I have to work closely with him or her to figure out why our results are not matching. Besides that, I frequently collaborate with the data programmers and statistical programmers in charge of the data for the trials I am working on.*</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>*Data programmers are in charge of taking raw data from the trials, checking it for inconsistencies, and putting it into a standardized form for statistical programmers. Statistical programmers then take those standardized data sets, derive many new variables from those initially collected for each patient, and produce hundreds of tables and figures summarizing the data. In some cases they also help prepare the data for my analyses, for example, they might write code to calculate the number of days or months until each patient experienced disease progression so that I can use that information for statistical models.*</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>*If there is a problem with the data when I am running a model, I ask the statistical programmer to check his or her code, and if there is no issue there, the data programmer looks at their code. If necessary, the data programmer may go back to the clinical sites who are collecting the data from patients and ask them to correct any missing information or inconsistencies.*</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>**Sounds like your data is in pretty good shape when it arrives to you, then! Earlier you mentioned writing macros in SAS. Does everyone use SAS? Could you use R or another programming language if you wanted?**</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>*I have used R for a few side analyses, such as a data mining analysis. However, the industry standard for pharmaceuticals has always been SAS. I don't foresee that changing anytime soon. Although a huge benefit of R is that it is free and open source software, meaning anyone can contribute code in a package, SAS has the advantage that if you run a certain type of statistical model, you can be absolutely sure that is what ran on your data. Because SAS is a paid software, it is liable for what it says it is doing, and there is always support on hand if you have questions about errors or results you are getting from any given data procedure.*</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>**What are your hours like? What sort of flexibility do you have for vacation, or working remotely?**</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>*I usually get in at 8:15 and leave somewhere between 4:45 and 5:15. I do get a lot of vacation days, with the caveat that if there is a deliverable deadline for a project I'm working on, I may not be able to take my vacation during that time. As for working remotely, it's an option I have as-needed, such as if I have a doctor's appointment. The job can definitely be done 100% remotely, and in fact many members of the company work remotely, but it's not really an option for a Biostatistician I to do all the time because we rely so heavily on our senior biostatisticians. I prefer that, though - it's easier for me to work in the office!*</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>**How will your roles and responsibilities change as you progress as a biostatistician at a CRO?**</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>*When I said a lot of my time is spent working on table shells and report planning, I think it's worth acknowledging that that is not a very exciting activity. However, as a Biostatistician I progresses to Biostatistician II, Senior Biostatistician, Principal Biostatistician, Senior Principal Biostatistician, etc., a lot of those more mundane (in my opinion) tasks decrease. You are in charge of much more complex studies and specifying the statistical analyses for that clinical trial. The work also naturally becomes more managerial.*</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>*Being in charge of a trial means meeting with both external clients and internal company leadership, setting timelines for data/statistical programmers and junior biostatisticians, answering questions that come up about data and analyses, maintaining oversight of the hours each team member is spending on the project, and tracking the corresponding budget carefully. As biostatisticians progress in the career ladder at a CRO, they have some flexibility in how much data they actually analyze on a day-to-day basis.*</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>**What made you decide to take this position at a CRO over your other offers?**</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>*Well of course it's not all about money, but this was one of the highest offers I received, so that helped. The potential for career growth was also very appealing to me. Typically after about 4-5 years you are a Senior Biostatistician and qualified to lead any study. But, you can lead studies long before this if the pharmaceutical company agrees you are qualified to do so. I really like that career progression at a pharmaceutical CRO is very much about experience and skills, as opposed to whether or not you hold a PhD. This is often not the case if you work directly for a pharmaceutical company.*</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>**Finally, what made you choose to enter the field of Biostatistics?**</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>*I have always been drawn to a career in public health. During my first year at the University of Illinois, I was a stereotypical freshman pre-med student. I ultimately changed my mind about medical school and got a Bachelor's degree in statistics, but I still took several epidemiology and biology classes just because I found them interesting. Math has always been my strongest subject, but I wanted to find a way to combine it with my other interests. After doing a fair share of Googling, I found the field of Biostatistics. I met with the head of U of I's Statistics MS program, and he shared his experience of working in industry as a biostatistician before becoming a professor. He spoke very highly of the field and gave me a lot of great information on the types of careers I could have with a Masters in Statistics or Biostatistics. I was pretty much sold after that meeting.*</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>**Looking back, are you happy with your decision to do a Masters in Biostatistics, rather than Statistics or Applied Statistics?**</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>*Yes, I'm really happy I decided on a Masters in Biostatistics. Throughout my program, our applied problem sets were always related to medicine or healthcare in some way, and it was easy for me to take health-specific statistics classes, such as a clinical trials methodology course. Since I was pretty sure I wanted to go into healthcare, I think biostatistics was a great decision for me, because a Masters in Biostatistics shows my passion for the field and may give me an edge over similar applicants who have a more general Masters in Statistics or Applied Statistics. I still find public health to be the most interesting sector to practice statistics in, so I think the degree will always be to my advantage.*</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>**Thanks so much for chatting, Kim!**</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>If you have other questions for Kim, or if there are careers within biostatistics you'd like to hear about, feel free to email me and let me know.</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>All the best,</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>Kat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</script>
 </div> <!-- /content -->
 
 

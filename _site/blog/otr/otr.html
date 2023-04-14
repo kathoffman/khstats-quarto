@@ -232,7 +232,7 @@ ga('send', {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">Building Statistical Intuition for Optimal Treatment Rules</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+      <h1 class="title">Building Statistical Intuition for Optimal Treatment Rules</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">statistics</div>
               </div>
@@ -428,8 +428,6 @@ ga('send', {
 <p>Thanks to my colleague <a href="https://twitter.com/ildiazm">Iván Díaz</a> for explaining OTRs to me in this way, and for reviewing this post.</p>
 
 
-<!-- -->
-
 </section>
 </section>
 
@@ -500,57 +498,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
-    }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -632,211 +579,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
 });
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Building Statistical Intuition for Optimal Treatment Rules"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Katherine Hoffman"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2022-08-10"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [statistics]</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "image.png"</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> " "</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="in">```{=tex}</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="in">\usepackage{amsmath}</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="in">\DeclareMathOperator*{\argmax}{arg\,max}</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>Developing and optimizing **optimal treatment rules (OTRs)** is a fast-growing topic in the medical research community. A treatment rule is a **decision for treatment based upon a person's characteristics**. The intuition behind this is that not all individuals will respond to a treatment in the same way. We can exploit these **heterogeneous effects** and develop personalized rules which provide benefit a greater number of people.</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>The methods of OTRs are rooted in **principles of causal inference**, or using data to inform us about what would have happened in a hypothetical world in which different interventions had occurred. This post walks through the basic statistical intuition for OTRs. Each explanation is accompanied by mathematical notation and a small graphic to convey equivalent meaning.</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Although this post is introductory, it assumes basic knowledge in causal inference, such as *counterfactual outcomes*, *assumptions for causal identification*, *Average Treatment Effect*, and [*G-computation*/*g-formula*](https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/G-Computation.pdf).</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu"># Table of Contents</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>🗺️ <span class="co">[</span><span class="ot">The big-picture approach to OTRs</span><span class="co">](#the-big-picture-of-otrs)</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>📈 <span class="co">[</span><span class="ot">A simple estimation example</span><span class="co">](#estimating-the-otr)</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>🖥️ <span class="co">[</span><span class="ot">`R` code for a simple estimation example</span><span class="co">](#r-simulation)</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="fu"># 🗺️ The Big Picture of OTRs {#the-big-picture-of-otrs}</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>In this first section, we will translate the concept of developing and optimizing an OTR into mathematical notation.</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>We will start with a standard set-up: we have a matrix of observed data $O$ which includes our **outcome** $Y$, the **exposure** (i.e. treatment, medicine, etc.) we want to study $A$, and other **covariates** $\textbf{W}$. Each row is an observation. We can denote these columns of data, which are random variables, as $O = (\textbf{W}, A, Y)$.</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="al">![](otr/data_structure.png)</span>{width="80%"}</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- , and visualize it as the following data set. *Note that we are considering a binary exposure for simplicity.* --&gt;</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ![](tmle/1_data_structure.png){width=80%} --&gt;</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Now, consider we create some function, $d$, which takes baseline confounders $\textbf{W}$ and outputs a treatment assignment $A$. We can write this mapping function, or **treatment rule**, in mathematical notation as:</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;p style="margin-left: 40px"&gt; --&gt;</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>$$d: \textbf{W} \rightarrow A$$ This is equivalent to a function you could write in R or Python which takes a matrix <span class="in">`W`</span> and outputs a vector of treatment assignments <span class="in">`A`</span>, which may or may not be the same treatment assignment as what each observation actually received.</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="al">![](otr/input_output.png)</span>{width="80%"}</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;p style="margin-left: 40px"&gt;An example in `R` code could be this:&lt;/p&gt;  --&gt;</span></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;p style="margin-left: 40px"&gt; --&gt;</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r} --&gt;</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- d &lt;- function(W){ --&gt;</span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # assigned treatment A is a vector of length nrow(W) and depends on values of W --&gt;</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # for example, the treatment rule could be if W1 is greater than 5, treat, otherwise, don't treat --&gt;</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   A &lt;- ifelse(W[[1]] &gt; 5, 1, 0) --&gt;</span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   return(A) --&gt;</span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;/p&gt;  --&gt;</span></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>We can then think about the **counterfactual outcome**<span class="ot">[^1]</span> for each row, or observation, under the treatment rule $d$. In other words, we ask, <span class="sc">\*</span>"what would have happened in a hypothetical world where the treatment rule<span class="sc">\*</span> $d$ was applied?"</span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>Recall that a counterfactual describes a hypothetical world where a unit received a certain intervention or treatment, which might be different from the treatment they actually received</span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>Let's denote this vector of counterfactual outcomes as $Y(d)$.</span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="al">![](otr/Y_d.png)</span>{width="100%"}</span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>The optimal OTR will **maximize the expected counterfactual outcome**, or $\mathrm{E}<span class="co">[</span><span class="ot">Y(d)</span><span class="co">]</span>$, across the entire population. We can write that using $\mathop{\mathrm{arg\,max}}$, which means we want to know which argument will return the highest value of a function. In this use-case, we want to know what treatment rule $d$ returns the highest expected value of the counterfactual outcome, $\mathrm{E}<span class="co">[</span><span class="ot">Y(d)</span><span class="co">]</span>$.</span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>$$\mathop{\mathrm{arg\,max}}_d \mathrm{E}<span class="co">[</span><span class="ot">Y(d)</span><span class="co">]</span>$$</span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="al">![](otr/argmax.png)</span>{width="70%"}</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>We can call whatever function $d$, or $d(\textbf{W})$, that maximizes this expected counterfactual outcome for the population $d^*$. **This** $d^*$ is our OTR.</span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="al">![](otr/d_star.png)</span>{width="50%"}</span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="fu"># 📈 Estimating the OTR {#estimating-the-otr}</span></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>There are many ways to estimate $d^*$. One of the most common ways begins by estimating the **Conditional Average Treatment Effect (CATE)**.</span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>You have probably heard of the Average Treatment Effect (ATE), which is the mean difference in outcomes in a world in which every unit receives the exposure compared to a world in which no unit receives the exposure. In potential outcomes notation, $ATE = \mathrm{E}<span class="co">[</span><span class="ot">Y^1-Y^0</span><span class="co">]</span>$. The CATE is the same formula and description, but within covariate strata $W$.</span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>$$CATE = \mathrm{E}<span class="co">[</span><span class="ot">Y^1-Y^0|\textbf{W}</span><span class="co">]</span>$$</span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>Under standard causal assumptions<span class="ot">[^2]</span>, the CATE for a binary exposure is identifiable under the following formula:</span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="ot">[^2]: </span>This post is focused on estimation and therefore does not detail the requirements for causal identification, but here I refer to the assumptions of consistency, exchangeability, and positivity.</span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>$$\mathrm{CATE}(W) = \mathrm{E}<span class="co">[</span><span class="ot">Y|A=1, \textbf{W}</span><span class="co">]</span> - \mathrm{E}<span class="co">[</span><span class="ot">Y|A=0, \textbf{W}</span><span class="co">]</span>$$ <span class="co">&lt;!-- Compare this to the ATE after identification to clearly see the formula for CATE is the same, minus the outer expectation: --&gt;</span></span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- $$\mathrm{ATE}(W) = \mathrm{E}[\mathrm{E}[Y|A=1, W] - \mathrm{E}[Y|A=0, W]]$$ --&gt;</span></span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>We could estimate the CATE using **G-computation**<span class="ot">[^3]</span>:</span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="ot">[^3]: </span>If you'd like a review on G-computation, check out this <span class="co">[</span><span class="ot">**visual guide**</span><span class="co">](https://github.com/kathoffman/causal-inference-visual-guides/blob/master/visual-guides/G-Computation.pdf)</span>.</span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Fit a regression for $\mathrm{E}<span class="co">[</span><span class="ot">Y|A,\textbf{W}</span><span class="co">]</span>$.</span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="al">![](tmle/2_outcome_fit.png)</span>{width="70%"}</span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Use the model fit from Step 1 to obtain predicted estimates for $Y$. Use two different datasets: one where all observations are changed to have $A=1$, and one where all observations are changed to have $A=0$.</span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>$$\hat{E}<span class="co">[</span><span class="ot">Y|A=1, \textbf{W}</span><span class="co">]</span>$$</span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a><span class="al">![](tmle/4_Q1.png)</span>{width="80%"}</span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>$$\hat{E}<span class="co">[</span><span class="ot">Y|A=0, \textbf{W}</span><span class="co">]</span>$$</span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="al">![](tmle/5_Q1.png)</span>{width="80%"}</span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Compute the difference of the quantities from Step 2.</span>
-<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>$$\widehat{CATE} = \hat{E}<span class="co">[</span><span class="ot">Y|A=1, \textbf{W}</span><span class="co">]</span> - \hat{E}<span class="co">[</span><span class="ot">Y|A=0, \textbf{W}</span><span class="co">]</span>$$</span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="al">![](otr/cate.png)</span>{width="32%"}</span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>Now, we could say our optimal treatment rule is to **give treatment if the value of** $CATE$ for that person is positive, indicating a positive effect of treatment on the outcome $Y$. Likewise, if the value is negative or 0, indicating a negative or neutral effect on the outcome $Y$, that unit would not receive treatment under the OTR.</span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>\usepackage{bbm}</span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>$$\text{Treatment rule} = \mathbb{1}{ <span class="sc">\{</span>CATE &gt; 0} <span class="sc">\}</span>$$</span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a><span class="al">![](otr/cate_assign_legend.png)</span>{width="50%"}</span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="fu"># 🖥️ `R` simulation {#r-simulation}</span></span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>Let's take a look an <span class="in">`R`</span> simulation for the simple estimation of the $d^*$ we just described. We can first simulate data of <span class="in">`n`</span> = 500 rows, where we have only one confounder <span class="in">`W`</span>, a binary treatment <span class="in">`A`</span> which depends on <span class="in">`W`</span>, and an outcome <span class="in">`Y`</span> which is continuous and depends on <span class="in">`W`</span> and <span class="in">`A`</span>.</span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">500</span></span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">1</span>, <span class="dv">99</span>)</span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="at">prob =</span> <span class="fu">abs</span>(W<span class="sc">/</span><span class="dv">100</span>))</span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">10</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">2</span><span class="sc">*</span>A) <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">50</span><span class="sc">*</span>W) <span class="sc">-</span> <span class="fu">rnorm</span>(n, .<span class="dv">1</span><span class="sc">*</span>A<span class="sc">*</span>W)</span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(W, A, Y)</span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>We'll run a regression for a saturated linear regression model of $\mathrm{E}<span class="co">[</span><span class="ot">Y|A,\textbf{W}</span><span class="co">]</span>$, then obtain predictions on datasets where <span class="in">`A`</span> is changed to <span class="in">`1`</span> and <span class="in">`0`</span> for all rows. We can then compute the CATE as the difference between these predictions.</span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, results="asis", warning=F, message=F}</span></span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y<span class="sc">~</span>A<span class="sc">*</span>W)</span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>E_Y1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">A =</span> <span class="dv">1</span>, W))</span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>E_Y0 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">A =</span> <span class="dv">0</span>, W))</span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>CATE <span class="ot">&lt;-</span> E_Y1 <span class="sc">-</span> E_Y0</span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>Finally, our optimal treatment rule will be to treat any unit with <span class="in">`CATE &gt; 1`</span>. If we plot the distribution of CATE in intervals of length 1, we can visually see there is benefit for about 1/4 of units in our simulated population.</span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning=F, message=F}</span></span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(CATE) <span class="sc">|&gt;</span></span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d_star =</span> <span class="fu">ifelse</span>(CATE <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"Treat"</span>, <span class="st">"Do not treat"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(CATE,<span class="at">fill=</span>d_star)) <span class="sc">+</span></span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_binned</span>() <span class="sc">+</span></span>
-<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#f2696f"</span>,<span class="st">"#4984b0"</span>)) <span class="sc">+</span></span>
-<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"CATE"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">"Treatment Rule"</span>, <span class="at">title=</span><span class="st">"Distribution of CATE"</span>)</span>
-<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a><span class="fu"># Improving estimation of $d^*$</span></span>
-<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>There are many other ways to estimate the $CATE$ with improved statistical properties, e.g. **double robustness**. We could also estimate $d^*$ directly instead of first estimating the $CATE$.</span>
-<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a>We can extend either of these ideas to longitudinal settings, studies with clustering, etc. I've listed some of the resources I've used to learn about developing OTRs below. As always, I welcome feedback and/or suggestions of additional resources I can include.</span>
-<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a><span class="fu"># Further reading</span></span>
-<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a>These concepts are introductory, so any paper on "optimal treatment rules", "individualized treatment rules", or "heterogeneous treatment effects" should review the ideas discussed here in their introductions.</span>
-<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>This <span class="co">[</span><span class="ot">Hoogland et al. tutorial</span><span class="co">](https://onlinelibrary.wiley.com/doi/10.1002/sim.9154)</span> gives an introduction and code for OTRs.</span>
-<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>This <span class="co">[</span><span class="ot">Wang et al. paper</span><span class="co">](https://www.bios.unc.edu/~dzeng/Pub/EHROLearning1.pdf)</span> offers a clear mathematical introduction on OTRs.</span>
-<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Brady Neal's causal course Youtube series</span><span class="co">](https://www.youtube.com/watch?v=-0-RYxQ0zqM)</span> (Chapter 6.2) discusses Conditional Outcome Modeling (what the CATE estimator falls under) over a 10 minute video.</span>
-<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>This <span class="co">[</span><span class="ot">Angus and Chang *JAMA* Statistics and Research Methods paper</span><span class="co">](https://jamanetwork.com/journals/jama/fullarticle/2787131)</span> gives an overview of a few ways to compute heterogeneous treatment effects for individualized treatment rules.</span>
-<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Lately I've been interested in <span class="co">[</span><span class="ot">this recent methods paper</span><span class="co">](https://arxiv.org/pdf/2004.14497.pdf)</span> by Edward Kennedy. It discusses a way to evaluate the CATE using doubly robust estimation, and gives several other foundational papers in the introduction.</span>
-<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">This `R` blog post</span><span class="co">](https://egap.org/resource/10-things-to-know-about-heterogeneous-treatment-effects/)</span> about heterogeneous treatment effects also may be useful for thinking through these issues with real data.</span>
-<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a><span class="ss">-     </span><span class="co">[</span><span class="ot">Lina Montoya</span><span class="co">](http://lina-montoya.com/)</span>'s <span class="co">[</span><span class="ot">paper</span><span class="co">](https://arxiv.org/abs/2101.12326)</span> on using the <span class="co">[</span><span class="ot">Superlearner algorithm</span><span class="co">](https://www.khstats.com/blog/sl/superlearning.html)</span> to estimate the CATE is super interesting and contains many great references to other OTR papers</span>
-<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>This <span class="co">[</span><span class="ot">Pirracchio et al. paper</span><span class="co">](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2773970)</span> is an interesting application of the Superlearner optimal treatment rule in a critical care setting (one of my favorite areas of research!)</span>
-<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a>I'll continue to add resources to this list as I discover them. Please reach out if you have recommendations of papers or tutorials (yours or others!) to add to this list.</span>
-<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a><span class="fu">## Acknowledgments</span></span>
-<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>Thanks to my colleague <span class="co">[</span><span class="ot">Iván Díaz</span><span class="co">](https://twitter.com/ildiazm)</span> for explaining OTRs to me in this way, and for reviewing this post.</span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</script>
 </div> <!-- /content -->
 
 

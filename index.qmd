@@ -28,7 +28,7 @@ I am a biostatistician who is passionate about meaningful and reproducible medic
 ### Statistics
 
 -   [An Introduction to Modified Treatment Policies](/blog/lmtp/lmtp.html)
--   [Building Statistical Intuition For Optimal Treatment Rules](/blog/otr)
+-   [Building Statistical Intuition For Optimal Treatment Rules](/blog/otr/otr.html)
 -   [Illustrated Guide to Targeted Maximum Likelihood Estimation (TMLE)](/blog/tmle/tutorial.html)
 :::
 

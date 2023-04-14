@@ -1,135 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>www.khstats.com/archive/publications.html</loc>
-    <lastmod>2023-02-20T04:39:10.008Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/talks.html</loc>
-    <lastmod>2023-02-20T04:39:10.599Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/art/illustrations.html</loc>
-    <lastmod>2023-02-20T04:39:11.004Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/art/illustrations_viz.html</loc>
-    <lastmod>2023-02-20T04:39:11.369Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/art/illustrations_draw.html</loc>
-    <lastmod>2023-02-20T04:39:11.691Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/talks/ensemble.html</loc>
-    <lastmod>2023-02-20T04:39:11.988Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/talks/steroids.html</loc>
-    <lastmod>2023-02-20T04:39:12.301Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/talks/swimmers.html</loc>
-    <lastmod>2023-02-20T04:39:12.589Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/index.html</loc>
-    <lastmod>2023-02-20T04:39:12.897Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/sl/superlearning.html</loc>
-    <lastmod>2023-02-20T04:39:15.855Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/sl/sl.html</loc>
-    <lastmod>2023-02-20T04:39:17.172Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/covid-functions/index.html</loc>
-    <lastmod>2023-02-20T04:39:18.724Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/lmtp/lmtp.html</loc>
-    <lastmod>2023-02-20T04:39:19.523Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/tmle/tutorial.html</loc>
-    <lastmod>2023-02-20T04:39:21.697Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/tmle/tutorial-pt3.html</loc>
-    <lastmod>2023-02-20T04:39:22.768Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/tmle/tutorial-pt2.html</loc>
-    <lastmod>2023-02-20T04:42:21.345Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/tmle/visual-key.html</loc>
-    <lastmod>2023-02-20T04:39:25.530Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/nyrconf/index.html</loc>
-    <lastmod>2023-02-20T04:39:26.698Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/sofa/index.html</loc>
-    <lastmod>2023-02-20T04:39:27.841Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/iterated-expectations/index.html</loc>
-    <lastmod>2023-02-20T04:39:29.308Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/forest-plots/index.html</loc>
-    <lastmod>2023-02-20T04:39:30.947Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/ditl/pharma-cro.html</loc>
-    <lastmod>2023-02-20T04:39:32.006Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/ditl/index.html</loc>
-    <lastmod>2023-02-20T04:39:33.513Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/ditl/ditl-followup.html</loc>
-    <lastmod>2023-02-20T04:39:34.774Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/otr/otr.html</loc>
-    <lastmod>2023-02-20T04:39:36.122Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/corr-plots/index.html</loc>
-    <lastmod>2023-02-20T04:39:39.544Z</lastmod>
-  </url>
-  <url>
-    <loc>www.khstats.com/blog/covid/index.html</loc>
-    <lastmod>2023-02-20T04:39:40.564Z</lastmod>
-  </url>
-  <url>
     <loc>www.khstats.com/blog/keyboard/index.html</loc>
-    <lastmod>2023-02-20T04:39:41.354Z</lastmod>
+    <lastmod>2023-04-14T10:32:20.116Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/trt-timelines/trt-timelines.html</loc>
-    <lastmod>2023-02-20T04:39:42.941Z</lastmod>
+    <lastmod>2023-04-14T10:32:09.142Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog/trt-timelines/multiple-vars.html</loc>
-    <lastmod>2023-02-20T04:39:44.694Z</lastmod>
+    <lastmod>2023-04-14T10:32:10.996Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/pubs/pubs_methods.html</loc>
-    <lastmod>2023-02-20T04:39:45.485Z</lastmod>
+    <lastmod>2023-04-14T10:32:11.903Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/pubs/pubs_applications.html</loc>
-    <lastmod>2023-02-20T04:39:46.319Z</lastmod>
+    <lastmod>2023-04-14T10:32:12.963Z</lastmod>
   </url>
   <url>
     <loc>www.khstats.com/blog.html</loc>
-    <lastmod>2023-02-20T04:42:14.666Z</lastmod>
+    <lastmod>2023-04-14T10:32:14.564Z</lastmod>
   </url>
 </urlset>
