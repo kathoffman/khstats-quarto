@@ -9,7 +9,7 @@
 <meta name="author" content="Katherine Hoffman">
 <meta name="dcterms.date" content="2023-01-02">
 
-<title>KHstats - Alluvial Plots (Sankey Diagrams) for Time-Varying Survival Data</title>
+<title>KHstats - Alluvial Plots (AKA Sankey Diagrams) for Time-Varying Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -231,7 +231,7 @@ ga('send', {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Alluvial Plots (Sankey Diagrams) for Time-Varying Survival Data</h1>
+      <h1 class="title">Alluvial Plots (AKA Sankey Diagrams) for Time-Varying Data</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">programming</div>
               </div>
@@ -266,9 +266,16 @@ ga('send', {
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#step-0-load-the-data" id="toc-step-0-load-the-data" class="nav-link active" data-scroll-target="#step-0-load-the-data">Step 0: Load the data</a></li>
-  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2</a></li>
-  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3</a></li>
+  <li><a href="#step-0-load-long-form-data" id="toc-step-0-load-long-form-data" class="nav-link active" data-scroll-target="#step-0-load-long-form-data">Step 0: Load long-form data</a></li>
+  <li><a href="#step-1-create-wide-form-data" id="toc-step-1-create-wide-form-data" class="nav-link" data-scroll-target="#step-1-create-wide-form-data">Step 1: Create wide-form data</a></li>
+  <li><a href="#step-2-create-ggalluvial-compatible-data" id="toc-step-2-create-ggalluvial-compatible-data" class="nav-link" data-scroll-target="#step-2-create-ggalluvial-compatible-data">Step 2: Create <code>ggalluvial</code>-compatible data</a>
+  <ul class="collapse">
+  <li><a href="#step-2a-group_by_at" id="toc-step-2a-group_by_at" class="nav-link" data-scroll-target="#step-2a-group_by_at">Step 2a: <code>group_by_at</code></a></li>
+  <li><a href="#step-2b-count" id="toc-step-2b-count" class="nav-link" data-scroll-target="#step-2b-count">Step 2b: <code>count</code></a></li>
+  <li><a href="#step-2c-ggalluvialto_lodes_form" id="toc-step-2c-ggalluvialto_lodes_form" class="nav-link" data-scroll-target="#step-2c-ggalluvialto_lodes_form">Step 2c: <code>ggalluvial::to_lodes_form()</code></a></li>
+  <li><a href="#step-2d-changes-x-axis-and-reorder-statusstratum-levels" id="toc-step-2d-changes-x-axis-and-reorder-statusstratum-levels" class="nav-link" data-scroll-target="#step-2d-changes-x-axis-and-reorder-statusstratum-levels">Step 2d: Changes x-axis and reorder status/stratum levels</a></li>
+  </ul></li>
+  <li><a href="#step-3-set-up-colors" id="toc-step-3-set-up-colors" class="nav-link" data-scroll-target="#step-3-set-up-colors">Step 3: Set up colors</a></li>
   </ul>
 </nav>
 </nav>
@@ -281,289 +288,539 @@ ga('send', {
 
 
 
-<p>Alluvial plots, or Sankey diagrams, can be used to show the movement of individual units across a single variable, such as time. This post will first explain how to use the <code>ggalluvial</code> R package with a straightforward use-case: showing how an illness severity score changes in a population of critically ill patients by day.</p>
-<p>Then, we will use the same package and ideas to walk through how to show data we typically use for survival analyses in an alluvial chart. I’ll use <code>ggalluvial</code> to show the movement of:</p>
+<p>Alluvial plots, or Sankey diagrams, can be used to show the movement of individual units across a single variable, such as time. This post will first explain how to use the <a href="https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html#:~:text=The%20%7Bggalluvial%7D%20package%20is%20a,the%20feedback%20of%20many%20users."><code>ggalluvial</code></a> package with a straightforward use-case: showing how an illness severity score changes in a population of critically ill patients by day.</p>
+<div class="cell">
+
+</div>
+<p>Then, we will use the same package and ideas to walk through how to show data we typically use for survival analyses in an alluvial chart. I’ll use <code>ggalluvial</code> to show the movement of the following complexities over time:</p>
 <ul>
 <li>categorical, time-varying exposure</li>
 <li>time-to-event outcome</li>
 <li>competing event</li>
 <li>loss to follow up</li>
 </ul>
-<p>over time. These plots can be organized to look similar to Kaplan Meier plots.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalluvial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>These plots can be organized to look similar to Kaplan Meier plots.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
-<section id="step-0-load-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="step-0-load-the-data">Step 0: Load the data</h2>
+<section id="step-0-load-long-form-data" class="level1">
+<h1>Step 0: Load long-form data</h1>
+<p>We’ll first read in the data set from my Github. This data is in <strong>long-form</strong>, meaning there is one row for every patient at every time point of the study. There are 3,300 patients in this data, and there are 14 time points, so 14 * 3,300 = 49,500 rows.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sofa_wide <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"blog/alluvial/pseudo_sofa_khstats.csv"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"day"</span>), <span class="sc">~</span><span class="fu">factor</span>(.x, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Deceased"</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>,<span class="st">"Missing"</span>,<span class="st">"Discharged"</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dat_long <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"blog/alluvial/aki_death_status.csv"</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dat_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 49,500 × 3
+      id  time status                     
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                      
+ 1     1     0 Non-IMV supplemental oxygen
+ 2     1     1 Non-IMV supplemental oxygen
+ 3     1     2 Non-IMV supplemental oxygen
+ 4     1     3 AKI                        
+ 5     1     4 AKI                        
+ 6     1     5 AKI                        
+ 7     1     6 AKI                        
+ 8     1     7 AKI                        
+ 9     1     8 AKI                        
+10     1     9 AKI                        
+# ℹ 49,490 more rows</code></pre>
 </div>
-<p>The data structure we will use for each alluvial plot is <strong>wide format</strong>, i.e.&nbsp;one row per unit, and one column per time period.</p>
-<p>The <code>sofa_wide</code> data set shows this wide format data with one row for each of the six SOFA subscore per patient. We will subset this data for now to one subscore, the pulmonary SOFA score, and use this data to make our first plot.</p>
+</div>
+<p>At each <code>time</code> point, there is a column <code>status</code> which indicates whether the patient was still in the study, and if so, what their supplemental oxygen status, where categories are:</p>
+<ul>
+<li><p><code>"No supplemental oxygen"</code></p></li>
+<li><p><code>"Non-IMV supplemental oxygen"</code></p></li>
+<li><p><code>"IMV"</code></p></li>
+</ul>
+<p>If they are not in the study any longer, the status indicates whether it is because they</p>
+<ul>
+<li>experienced the event of interest (<code>"AKI"</code>)</li>
+<li>experienced a competing event, i.e.&nbsp;death (<code>"Deceased"</code>)</li>
+<li>or they were informatively right-censored (<code>"Discharged"</code>).</li>
+</ul>
+</section>
+<section id="step-1-create-wide-form-data" class="level1">
+<h1>Step 1: Create wide-form data</h1>
+<p>I’ve started with the long-form data because I think(!) it is the most common form for an analyst to start with in their time-varying exposure and/or time-to-event data analysis. However, we actually need the data to be in <strong>wide-form</strong> to make it compatible for plotting using the <code>ggalluvial</code> package. Wide-form data means we want one row per patient (n=3,300) and one column per time point (k=14), and the values of each cell is the patient’s status at that time point.</p>
+<p>We will use the <code>pivot_wider()</code> function for this. Here are the breakdowns of the arguments we’ll use in <code>pivot_wider()</code>. For more information, type <code>?pivot_wider()</code> into your <code>R</code> console.</p>
+<ul>
+<li><p><code>id_col = id</code> specifies that the <code>id</code> column uniquely identifies each observation (each patient)</p></li>
+<li><p><code>names_from = time</code> means the names of the new columns for each time point will come from the current <code>time</code> column</p></li>
+<li><p><code>names_prefix = "time_"</code> will relabel our new time columns to be {<code>time_1</code>, <code>time_2</code>, …, <code>time_14</code>}</p></li>
+<li><p><code>values_from = status</code> indicates we want the values in the cells of our new data frame to be the values that are currently in the <code>status</code> column of our long-form data.</p></li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sofa_pulm <span class="ot">&lt;-</span> sofa_wide <span class="sc">|&gt;</span> <span class="fu">filter</span>(score_type <span class="sc">==</span> <span class="st">"pulmonary_sofa"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sofa_pulm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat_wide <span class="ot">&lt;-</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  dat_long <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> id,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_from =</span> time, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> status,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_prefix =</span> <span class="st">"time_"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>dat_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-     id score_type     day0  day1  day2    day3   
-  &lt;dbl&gt; &lt;chr&gt;          &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;  
-1     1 pulmonary_sofa 0     0     0       0      
-2     2 pulmonary_sofa 0     1     Missing Missing
-3     3 pulmonary_sofa 0     0     0       0      
-4     4 pulmonary_sofa 0     2     0       0      
-5     5 pulmonary_sofa 0     1     1       0      
-6     6 pulmonary_sofa 0     2     2       2      </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sofa_pulm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 100
-Columns: 6
-$ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, …
-$ score_type &lt;chr&gt; "pulmonary_sofa", "pulmonary_sofa", "pulmonary_sofa", "pulm…
-$ day0       &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,…
-$ day1       &lt;fct&gt; 0, 1, 0, 2, 1, 2, 0, 1, 2, 0, 2, 0, 2, 0, 0, 1, 2, 1, 0, 0,…
-$ day2       &lt;fct&gt; 0, Missing, 0, 0, 1, 2, 0, 0, 2, 0, 2, 1, Missing, 0, 0, 0,…
-$ day3       &lt;fct&gt; 0, Missing, 0, 0, 0, 2, 0, 0, 1, 0, 2, 1, Missing, 0, Disch…</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sofa_wide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 600
-Columns: 6
-$ id         &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4,…
-$ score_type &lt;chr&gt; "pulmonary_sofa", "coagulation_sofa", "neurologic_sofa", "h…
-$ day0       &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ day1       &lt;fct&gt; 0, 2, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 2, 2,…
-$ day2       &lt;fct&gt; 0, 2, 0, 0, 0, 1, Missing, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0,…
-$ day3       &lt;fct&gt; 0, 1, 0, 0, 0, 0, Missing, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,…</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sofa_wide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-     id score_type          day0  day1  day2  day3 
-  &lt;dbl&gt; &lt;chr&gt;               &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;
-1     1 pulmonary_sofa      0     0     0     0    
-2     1 coagulation_sofa    0     2     2     1    
-3     1 neurologic_sofa     0     0     0     0    
-4     1 hepatic_sofa        0     0     0     0    
-5     1 cardiovascular_sofa 0     0     0     0    
-6     1 renal_sofa          0     1     1     0    </code></pre>
+<pre><code># A tibble: 3,300 × 16
+      id time_0   time_1 time_2 time_3 time_4 time_5 time_6 time_7 time_8 time_9
+   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
+ 1     1 Non-IMV… Non-I… Non-I… AKI    AKI    AKI    AKI    AKI    AKI    AKI   
+ 2     2 No supp… No su… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I…
+ 3     3 No supp… Disch… Disch… Disch… Disch… Disch… Disch… Disch… Disch… Disch…
+ 4     4 Non-IMV… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I… Decea… Decea…
+ 5     5 Non-IMV… Non-I… Non-I… Non-I… Non-I… No su… No su… No su… Disch… Disch…
+ 6     6 Non-IMV… Non-I… AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI   
+ 7     7 Non-IMV… No su… AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI   
+ 8     8 Non-IMV… Non-I… Non-I… No su… No su… No su… Disch… Disch… Disch… Disch…
+ 9     9 No supp… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I… Disch… Disch… Disch…
+10    10 IMV      AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI   
+# ℹ 3,290 more rows
+# ℹ 5 more variables: time_10 &lt;chr&gt;, time_11 &lt;chr&gt;, time_12 &lt;chr&gt;,
+#   time_13 &lt;chr&gt;, time_14 &lt;chr&gt;</code></pre>
 </div>
 </div>
 </section>
-<section id="step-2" class="level2">
-<h2 class="anchored" data-anchor-id="step-2">Step 2</h2>
+<section id="step-2-create-ggalluvial-compatible-data" class="level1">
+<h1>Step 2: Create <code>ggalluvial</code>-compatible data</h1>
+<p>The next step after you have wide form data (with a status value for every observation and time point in your plot) is to get the data wrangled into the format that <code>ggalluvial</code> can handle for plotting.</p>
+<p>First, we need to get the number of observations (patients) which have the same “flow” or “path” across all the time points in our study. In other words, we want to know how many patients are on no supplemental oxygen for times 1-10 and are then discharged at time 11. We <em>also</em> want to know how many patients have an exposure of IMV their first day of the study, and then die the second day. There are hundreds of possible “flows” that could be observed across our different statuses and time points, and the way we get the N’s for each flow that is to:</p>
+<ol type="1">
+<li><p><code>group_by</code> all the different columns indicating statuses per time point (here it is <code>time_1</code>, <code>time_2</code>, …, <code>time_14</code>)</p></li>
+<li><p><code>count()</code> across all those different <code>time_*</code> columns.</p></li>
+</ol>
+<p>To implement this, I’m first going to create an objects that will make my code a bit more flexible. I’m going to create a vector denoting the <code>time_*</code> column names of my new wide-form data set. This will help me call the right variables to group very soon.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sofa_wide <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(score_type <span class="sc">==</span> subscore) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(day0, day1, day2, day3) <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(<span class="at">.drop =</span> F) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>vars_to_group <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"time_"</span>, <span class="dv">0</span><span class="sc">:</span>max_time) </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>vars_to_group</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 32 × 5
-# Groups:   day0, day1, day2, day3 [32]
-   day0  day1  day2       day3           n
-   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;      &lt;fct&gt;      &lt;int&gt;
- 1 0     0     0          0             45
- 2 0     0     0          1              1
- 3 0     0     0          Discharged     7
- 4 0     0     1          0              1
- 5 0     0     1          1              2
- 6 0     0     Discharged Discharged     1
- 7 0     1     0          0              7
- 8 0     1     0          1              1
- 9 0     1     1          0              3
-10 0     1     1          1              2
-# … with 22 more rows</code></pre>
+<pre><code> [1] "time_0"  "time_1"  "time_2"  "time_3"  "time_4"  "time_5"  "time_6" 
+ [8] "time_7"  "time_8"  "time_9"  "time_10" "time_11" "time_12" "time_13"
+[15] "time_14"</code></pre>
+</div>
+</div>
+<section id="step-2a-group_by_at" class="level2">
+<h2 class="anchored" data-anchor-id="step-2a-group_by_at">Step 2a: <code>group_by_at</code></h2>
+<p>Now, we want to first group by the columns that contain the status of each observation. For me, these are now in the vector <code>vars_to_group</code>. We will then use the dplyr function <code>group_by_at()</code> to group by <strong>all</strong> of those status-per-time columns. Let’s look at the data after we do that. It shouldn’t look any different from our <code>dat_wide</code>, except for the invisible “GROUPS:” of <code>time_1</code>, <code>time_2</code>, and so on.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dat_wide <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_at</span>(vars_to_group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,300 × 16
+# Groups:   time_0, time_1, time_2, time_3, time_4, time_5, time_6, time_7,
+#   time_8, time_9, time_10, time_11, time_12, time_13, time_14 [701]
+      id time_0   time_1 time_2 time_3 time_4 time_5 time_6 time_7 time_8 time_9
+   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
+ 1     1 Non-IMV… Non-I… Non-I… AKI    AKI    AKI    AKI    AKI    AKI    AKI   
+ 2     2 No supp… No su… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I…
+ 3     3 No supp… Disch… Disch… Disch… Disch… Disch… Disch… Disch… Disch… Disch…
+ 4     4 Non-IMV… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I… Decea… Decea…
+ 5     5 Non-IMV… Non-I… Non-I… Non-I… Non-I… No su… No su… No su… Disch… Disch…
+ 6     6 Non-IMV… Non-I… AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI   
+ 7     7 Non-IMV… No su… AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI   
+ 8     8 Non-IMV… Non-I… Non-I… No su… No su… No su… Disch… Disch… Disch… Disch…
+ 9     9 No supp… Non-I… Non-I… Non-I… Non-I… Non-I… Non-I… Disch… Disch… Disch…
+10    10 IMV      AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI   
+# ℹ 3,290 more rows
+# ℹ 5 more variables: time_10 &lt;chr&gt;, time_11 &lt;chr&gt;, time_12 &lt;chr&gt;,
+#   time_13 &lt;chr&gt;, time_14 &lt;chr&gt;</code></pre>
 </div>
 </div>
 </section>
-<section id="step-3" class="level1">
-<h1>Step 3</h1>
+<section id="step-2b-count" class="level2">
+<h2 class="anchored" data-anchor-id="step-2b-count">Step 2b: <code>count</code></h2>
+<p>Once the data is properly grouped, <code>count()</code> will return the N’s for each unique path or flow we observe in our data set.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sofa_wide <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(score_type <span class="sc">==</span> subscore) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(day0, day1, day2, day3) <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(<span class="at">.drop =</span> F) <span class="sc">|&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">to_lodes_form</span>(<span class="at">key =</span> <span class="st">"day"</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dat_wide <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_at</span>(vars_to_group) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 128 × 4
-       n alluvium day   stratum
-   &lt;int&gt;    &lt;int&gt; &lt;fct&gt; &lt;fct&gt;  
- 1    45        1 day0  0      
- 2     1        2 day0  0      
- 3     7        3 day0  0      
- 4     1        4 day0  0      
- 5     2        5 day0  0      
- 6     1        6 day0  0      
- 7     7        7 day0  0      
- 8     1        8 day0  0      
- 9     3        9 day0  0      
-10     2       10 day0  0      
-# … with 118 more rows</code></pre>
+<pre><code># A tibble: 701 × 16
+# Groups:   time_0, time_1, time_2, time_3, time_4, time_5, time_6, time_7,
+#   time_8, time_9, time_10, time_11, time_12, time_13, time_14 [701]
+   time_0 time_1 time_2 time_3 time_4 time_5 time_6 time_7 time_8 time_9 time_10
+   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  
+ 1 IMV    AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI    
+ 2 IMV    Decea… Decea… Decea… Decea… Decea… Decea… Decea… Decea… Decea… Deceas…
+ 3 IMV    IMV    AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI    
+ 4 IMV    IMV    Decea… Decea… Decea… Decea… Decea… Decea… Decea… Decea… Deceas…
+ 5 IMV    IMV    IMV    AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI    
+ 6 IMV    IMV    IMV    IMV    AKI    AKI    AKI    AKI    AKI    AKI    AKI    
+ 7 IMV    IMV    IMV    IMV    IMV    AKI    AKI    AKI    AKI    AKI    AKI    
+ 8 IMV    IMV    IMV    IMV    IMV    Decea… Decea… Decea… Decea… Decea… Deceas…
+ 9 IMV    IMV    IMV    IMV    IMV    IMV    AKI    AKI    AKI    AKI    AKI    
+10 IMV    IMV    IMV    IMV    IMV    IMV    IMV    AKI    AKI    AKI    AKI    
+# ℹ 691 more rows
+# ℹ 5 more variables: time_11 &lt;chr&gt;, time_12 &lt;chr&gt;, time_13 &lt;chr&gt;,
+#   time_14 &lt;chr&gt;, n &lt;int&gt;</code></pre>
 </div>
 </div>
+<p>It’s a bit hard to see what happened there, but a new column <code>n</code> was created with the N’s in each pathway. We can see this better if we <code>select(n, everything())</code> (meaning select n, then all the other columns).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sofa_wide <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(score_type <span class="sc">==</span> subscore) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(day0, day1, day2, day3) <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(<span class="at">.drop =</span> F) <span class="sc">|&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">to_lodes_form</span>(<span class="at">key =</span> <span class="st">"day"</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)  <span class="sc">|&gt;</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">day =</span> <span class="fu">case_when</span>(day <span class="sc">==</span> <span class="st">"day0"</span> <span class="sc">~</span> <span class="st">"B"</span>,</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                           <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(<span class="fu">parse_number</span>(<span class="fu">as.character</span>(day)))),</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">day =</span> <span class="fu">fct_relevel</span>(day, <span class="st">"B"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dat_wide <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_at</span>(vars_to_group) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(n, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 128 × 4
-       n alluvium day   stratum
+<pre><code># A tibble: 701 × 16
+# Groups:   time_0, time_1, time_2, time_3, time_4, time_5, time_6, time_7,
+#   time_8, time_9, time_10, time_11, time_12, time_13, time_14 [701]
+       n time_0 time_1   time_2 time_3 time_4 time_5 time_6 time_7 time_8 time_9
+   &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
+ 1    45 IMV    AKI      AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI   
+ 2     3 IMV    Deceased Decea… Decea… Decea… Decea… Decea… Decea… Decea… Decea…
+ 3    18 IMV    IMV      AKI    AKI    AKI    AKI    AKI    AKI    AKI    AKI   
+ 4     2 IMV    IMV      Decea… Decea… Decea… Decea… Decea… Decea… Decea… Decea…
+ 5     5 IMV    IMV      IMV    AKI    AKI    AKI    AKI    AKI    AKI    AKI   
+ 6     3 IMV    IMV      IMV    IMV    AKI    AKI    AKI    AKI    AKI    AKI   
+ 7     3 IMV    IMV      IMV    IMV    IMV    AKI    AKI    AKI    AKI    AKI   
+ 8     2 IMV    IMV      IMV    IMV    IMV    Decea… Decea… Decea… Decea… Decea…
+ 9     2 IMV    IMV      IMV    IMV    IMV    IMV    AKI    AKI    AKI    AKI   
+10     1 IMV    IMV      IMV    IMV    IMV    IMV    IMV    AKI    AKI    AKI   
+# ℹ 691 more rows
+# ℹ 5 more variables: time_10 &lt;chr&gt;, time_11 &lt;chr&gt;, time_12 &lt;chr&gt;,
+#   time_13 &lt;chr&gt;, time_14 &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>So, we can see that 45 patients have an exposure of Invasive Mechanical Ventilation (IMV) their index day of hospitalization, and then get Acute Kidney Injury (AKI), by their first full day of hospitalization.</p>
+</section>
+<section id="step-2c-ggalluvialto_lodes_form" class="level2">
+<h2 class="anchored" data-anchor-id="step-2c-ggalluvialto_lodes_form">Step 2c: <code>ggalluvial::to_lodes_form()</code></h2>
+<p>Now, we will use the <code>ggalluvial</code> package’s function <code>to_lodes_form</code> to transfer all the potential paths into what is called “lodes form.”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Titanic data in alluvia format</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>titanic_alluvia <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(Titanic)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(titanic_alluvia)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Class    Sex   Age Survived Freq
+1   1st   Male Child       No    0
+2   2nd   Male Child       No    0
+3   3rd   Male Child       No   35
+4  Crew   Male Child       No    0
+5   1st Female Child       No    0
+6   2nd Female Child       No    0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_alluvia_form</span>(titanic_alluvia,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">weight =</span> <span class="st">"Freq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Titanic data in lodes format</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>titanic_lodes <span class="ot">&lt;-</span> <span class="fu">to_lodes_form</span>(titanic_alluvia,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">key =</span> <span class="st">"x"</span>, <span class="at">value =</span> <span class="st">"stratum"</span>, <span class="at">id =</span> <span class="st">"alluvium"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(titanic_lodes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Freq alluvium     x stratum
+1    0        1 Class     1st
+2    0        2 Class     2nd
+3   35        3 Class     3rd
+4    0        4 Class    Crew
+5    0        5 Class     1st
+6    0        6 Class     2nd</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>titanic_lodes2 <span class="ot">&lt;-</span> <span class="fu">to_lodes_form</span>(titanic_alluvia,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">key =</span> variable, <span class="at">value =</span> value,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">id =</span> cohort,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                                <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">diffuse =</span> Class)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(titanic_lodes2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  cohort Class Survived Freq variable value
+1      1   1st       No    0    Class   1st
+2      1   1st       No    0      Sex  Male
+3      1   1st       No    0      Age Child
+4      2   2nd       No    0    Class   2nd
+5      2   2nd       No    0      Sex  Male
+6      2   2nd       No    0      Age Child</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dat_wide <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_at</span>(vars_to_group) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">to_lodes_form</span>(<span class="at">key =</span> <span class="st">"time"</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(vars_to_group)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10,515 × 4
+       n alluvium time   stratum
+   &lt;int&gt;    &lt;int&gt; &lt;fct&gt;  &lt;fct&gt;  
+ 1    45        1 time_0 IMV    
+ 2     3        2 time_0 IMV    
+ 3    18        3 time_0 IMV    
+ 4     2        4 time_0 IMV    
+ 5     5        5 time_0 IMV    
+ 6     3        6 time_0 IMV    
+ 7     3        7 time_0 IMV    
+ 8     2        8 time_0 IMV    
+ 9     2        9 time_0 IMV    
+10     1       10 time_0 IMV    
+# ℹ 10,505 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="step-2d-changes-x-axis-and-reorder-statusstratum-levels" class="level2">
+<h2 class="anchored" data-anchor-id="step-2d-changes-x-axis-and-reorder-statusstratum-levels">Step 2d: Changes x-axis and reorder status/stratum levels</h2>
+<p>Now, we want the x-axis on our plot to show time in numbers, rather than <code>time_0</code>, <code>time_1</code>, etc., so we will use <code>parse_number()</code> to extract the number from our new column <code>time</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dat_wide <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_at</span>(vars_to_group) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">to_lodes_form</span>(<span class="at">key =</span> <span class="st">"time"</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(vars_to_group))) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">factor</span>(<span class="fu">parse_number</span>(<span class="fu">as.character</span>(time)))) <span class="co"># time column is a factor, so frist change to character, then parse_number, then change it back to a factor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10,515 × 4
+       n alluvium time  stratum
    &lt;int&gt;    &lt;int&gt; &lt;fct&gt; &lt;fct&gt;  
- 1    45        1 B     0      
- 2     1        2 B     0      
- 3     7        3 B     0      
- 4     1        4 B     0      
- 5     2        5 B     0      
- 6     1        6 B     0      
- 7     7        7 B     0      
- 8     1        8 B     0      
- 9     3        9 B     0      
-10     2       10 B     0      
-# … with 118 more rows</code></pre>
+ 1    45        1 0     IMV    
+ 2     3        2 0     IMV    
+ 3    18        3 0     IMV    
+ 4     2        4 0     IMV    
+ 5     5        5 0     IMV    
+ 6     3        6 0     IMV    
+ 7     3        7 0     IMV    
+ 8     2        8 0     IMV    
+ 9     2        9 0     IMV    
+10     1       10 0     IMV    
+# ℹ 10,505 more rows</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sofa_alluv <span class="ot">&lt;-</span> sofa_wide <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(score_type <span class="sc">==</span> subscore) <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(day0, day1, day2, day3) <span class="sc">|&gt;</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(<span class="at">.drop =</span> F) <span class="sc">|&gt;</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">to_lodes_form</span>(<span class="at">key =</span> <span class="st">"day"</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)  <span class="sc">|&gt;</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">day =</span> <span class="fu">case_when</span>(day <span class="sc">==</span> <span class="st">"day0"</span> <span class="sc">~</span> <span class="st">"B"</span>,</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                           <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(<span class="fu">parse_number</span>(<span class="fu">as.character</span>(day)))),</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">day =</span> <span class="fu">fct_relevel</span>(day, <span class="st">"B"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>dat_alluvial <span class="ot">&lt;-</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a> dat_wide <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_at</span>(vars_to_group) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">to_lodes_form</span>(<span class="at">key =</span> <span class="st">"time"</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(vars_to_group))) <span class="sc">|&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">factor</span>(<span class="fu">parse_number</span>(<span class="fu">as.character</span>(time))), <span class="co"># time column is a factor, so frist change to character, then parse_number, then change it back to a factor</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">stratum =</span> <span class="fu">fct_relevel</span>(stratum,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"No supplemental oxygen"</span>,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"Non-IMV supplemental oxygen"</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"IMV"</span>, </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"AKI"</span>,</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"Deceased"</span>,</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"Discharged"</span>))</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>dat_alluvial</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10,515 × 4
+       n alluvium time  stratum
+   &lt;int&gt;    &lt;int&gt; &lt;fct&gt; &lt;fct&gt;  
+ 1    45        1 0     IMV    
+ 2     3        2 0     IMV    
+ 3    18        3 0     IMV    
+ 4     2        4 0     IMV    
+ 5     5        5 0     IMV    
+ 6     3        6 0     IMV    
+ 7     3        7 0     IMV    
+ 8     2        8 0     IMV    
+ 9     2        9 0     IMV    
+10     1       10 0     IMV    
+# ℹ 10,505 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="step-3-set-up-colors" class="level1">
+<h1>Step 3: Set up colors</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>type_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#374E55"</span>, <span class="co"># gray</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"#79AF97"</span>, <span class="co"># green</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"#DF8F44"</span>, <span class="co">#orange</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"#00A1D5"</span>, <span class="co">#bluea,</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"#B24745"</span>, <span class="co">#red</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"#6A6599"</span> <span class="co"># purple</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                 ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  sofa_alluv <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> day,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> n,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">stratum =</span> stratum,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">alluvium =</span> alluvium,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> stratum))</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> dat_alluvial <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> time,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">stratum =</span> stratum, </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> stratum,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">alluvium =</span> alluvium,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">y=</span>n,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> stratum)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_flow</span>() </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_stratum</span>() </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> type_colors) </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> type_colors) </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_flow</span>() </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_stratum</span>() </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Study Day"</span>, <span class="at">y =</span> <span class="st">"Number of Patients"</span>, <span class="at">title =</span> <span class="st">"Number of Patients per Exposure-Outcome Status by Day"</span>,</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Status"</span>, <span class="at">col =</span> <span class="st">"Status"</span>) </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">family=</span><span class="st">"Times"</span>, <span class="at">size=</span><span class="dv">11</span>),</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">size=</span><span class="dv">9</span>))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_classic</span>() </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(.<span class="dv">5</span>,<span class="fl">4.5</span>),</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">expand=</span>F) </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Day"</span>,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Subscore"</span>, </span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="fu">paste0</span>(snakecase<span class="sc">::</span><span class="fu">to_title_case</span>(subscore)))</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>my_pal <span class="ot">&lt;-</span> ggsci<span class="sc">::</span><span class="fu">pal_nejm</span>(<span class="st">"default"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>)(<span class="dv">8</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span>   <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> my_pal, <span class="at">drop=</span>F) </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>subscore <span class="ot">&lt;-</span> <span class="st">"pulmonary_sofa"</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> sofa_wide <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(score_type <span class="sc">==</span> subscore) <span class="sc">|&gt;</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(day0, day1, day2, day3) <span class="sc">|&gt;</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(<span class="at">.drop =</span> F) <span class="sc">|&gt;</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">to_lodes_form</span>(<span class="at">key =</span> <span class="st">"day"</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)  <span class="sc">|&gt;</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">day =</span> <span class="fu">case_when</span>(day <span class="sc">==</span> <span class="st">"day0"</span> <span class="sc">~</span> <span class="st">"B"</span>,</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                           <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(<span class="fu">parse_number</span>(<span class="fu">as.character</span>(day)))),</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">day =</span> <span class="fu">fct_relevel</span>(day, <span class="st">"B"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> day, <span class="at">y =</span> n,</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">stratum =</span> stratum,</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">alluvium =</span> alluvium,</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> stratum)) <span class="sc">+</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_flow</span>() <span class="sc">+</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_stratum</span>() <span class="sc">+</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.1</span>)) <span class="sc">+</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> my_pal, <span class="at">drop=</span>F) <span class="sc">+</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Day"</span>, <span class="at">y =</span> <span class="st">"Count"</span>,</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"Subscore"</span>, <span class="at">title =</span> <span class="fu">paste0</span>(snakecase<span class="sc">::</span><span class="fu">to_title_case</span>(subscore)))</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sofa_trend_alluvial <span class="ot">&lt;-</span> <span class="cf">function</span>(df, subscore){</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(score_type <span class="sc">==</span> subscore) <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(day0, day1, day2, day3) <span class="sc">|&gt;</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(<span class="at">.drop =</span> F) <span class="sc">|&gt;</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">to_lodes_form</span>(<span class="at">key =</span> <span class="st">"day"</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)  <span class="sc">|&gt;</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">day =</span> <span class="fu">case_when</span>(day <span class="sc">==</span> <span class="st">"day0"</span> <span class="sc">~</span> <span class="st">"B"</span>,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                           <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(<span class="fu">parse_number</span>(<span class="fu">as.character</span>(day)))),</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">day =</span> <span class="fu">fct_relevel</span>(day, <span class="st">"B"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> day, <span class="at">y =</span> n,</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">stratum =</span> stratum,</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">alluvium =</span> alluvium,</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> stratum)) <span class="sc">+</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_flow</span>() <span class="sc">+</span></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_stratum</span>() <span class="sc">+</span></span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.1</span>)) <span class="sc">+</span></span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> my_pal, <span class="at">drop=</span>F) <span class="sc">+</span></span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Day"</span>, <span class="at">y =</span> <span class="st">"Count"</span>,</span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"Subscore"</span>, <span class="at">title =</span> <span class="fu">paste0</span>(snakecase<span class="sc">::</span><span class="fu">to_title_case</span>(<span class="fu">str_remove</span>(subscore,<span class="st">"_sofa"</span>))))</span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<!-- ## Step 0: Load the data -->
+<!-- ```{r} -->
+<!-- sofa_wide <- read_csv(here::here("blog/alluvial/pseudo_sofa_khstats.csv")) |> -->
+<!--   mutate(across(starts_with("day"), ~factor(.x, levels=c("Deceased", 0:4,"Missing","Discharged")))) |>   filter(score_type == "pulmonary_sofa") -->
+<!-- ``` -->
+<!-- The data structure we will use for each alluvial plot is **wide format**, i.e. one row per unit, and one column per time period. -->
+<!-- The `sofa_wide` data set shows this wide format data with one row for each of the six SOFA subscore per patient. We will subset this data for now to one subscore, the pulmonary SOFA score, and use this data to make our first plot. -->
+<!-- ```{r} -->
+<!-- glimpse(sofa_wide) -->
+<!-- head(sofa_wide) -->
+<!-- ``` -->
+<!-- ## Step 2 -->
+<!-- ```{r} -->
+<!-- sofa_wide |> -->
+<!--       group_by(day0, day1, day2, day3) |> -->
+<!--     count(.drop = F)  -->
+<!-- ``` -->
+<!-- # Step 3 -->
+<!-- ```{r} -->
+<!-- sofa_wide |> -->
+<!--     group_by(day0, day1, day2, day3) |> -->
+<!--     count(.drop = F) |> -->
+<!--     ungroup() |> -->
+<!--     to_lodes_form(key = "day", axes = 1:4) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- sofa_wide |> -->
+<!--     group_by(day0, day1, day2, day3) |> -->
+<!--     count(.drop = F) |> -->
+<!--     ungroup() |> -->
+<!--     to_lodes_form(key = "day", axes = 1:4)  |> -->
+<!--     mutate(day = case_when(day == "day0" ~ "B", -->
+<!--                            TRUE ~ as.character(parse_number(as.character(day)))), -->
+<!--            day = fct_relevel(day, "B")) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- sofa_alluv <- sofa_wide |> -->
+<!--     group_by(day0, day1, day2, day3) |> -->
+<!--     count(.drop = F) |> -->
+<!--     ungroup() |> -->
+<!--     to_lodes_form(key = "day", axes = 1:4)  |> -->
+<!--     mutate(day = case_when(day == "day0" ~ "B", -->
+<!--                            TRUE ~ as.character(parse_number(as.character(day)))), -->
+<!--            day = fct_relevel(day, "B")) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- p <- -->
+<!--   sofa_alluv |> -->
+<!--     ggplot(aes(x = day, -->
+<!--                y = n, -->
+<!--                stratum = stratum, -->
+<!--                alluvium = alluvium, -->
+<!--                fill = stratum)) -->
+<!-- p -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- p <- p + geom_flow()  -->
+<!-- p -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- p <- p + geom_stratum()  -->
+<!-- p -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- p <- p + theme_classic()  -->
+<!-- p -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- p <- p + coord_cartesian(xlim = c(.5,4.5), -->
+<!--                          ylim = c(0,100), -->
+<!--                          expand=F)  -->
+<!-- p -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- p <- p + -->
+<!--   labs(x = "Day", -->
+<!--        y = "Count", -->
+<!--        fill = "Subscore",  -->
+<!--        title = "Pulmonary SOFA Score by Day") -->
+<!-- p -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- my_pal <- ggsci::pal_nejm("default", alpha = 0.6)(8) -->
+<!-- p <- p +   scale_fill_manual(values = my_pal, drop=F)  -->
+<!-- p -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- p <- sofa_wide |> -->
+<!--     group_by(day0, day1, day2, day3) |> -->
+<!--     count(.drop = F) |> -->
+<!--     ungroup() |> -->
+<!--     to_lodes_form(key = "day", axes = 1:4)  |> -->
+<!--     mutate(day = case_when(day == "day0" ~ "B", -->
+<!--                            TRUE ~ as.character(parse_number(as.character(day)))), -->
+<!--            day = fct_relevel(day, "B")) |> -->
+<!--     ggplot(aes(x = day, y = n, -->
+<!--                stratum = stratum, -->
+<!--                alluvium = alluvium, -->
+<!--                fill = stratum)) + -->
+<!--     geom_flow() + -->
+<!--     geom_stratum() + -->
+<!--     theme_classic() + -->
+<!--     scale_x_discrete(expand = c(0.1,0.1)) + -->
+<!--     scale_fill_manual(values = my_pal, drop=F) + -->
+<!--     labs(x = "Day", y = "Count", -->
+<!--          fill = "Subscore", title = "Pulmonary SOFA Score by Day") -->
+<!-- p -->
+<!-- ``` -->
 
 
 </section>

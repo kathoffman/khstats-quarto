@@ -2,18 +2,15 @@
 title: "Become a Superlearner! An Illustrated Guide to Superlearning"
 author: "Katherine Hoffman"
 date: 2020-10-10T21:13:14-05:00
-categories: ["statistics"]
 image: /img/sl_steps/Superlearning_crop.jpg
-draft: false
-math: true
-description: " "
 tags: ["R","SuperLearner","superlearning","stacking","stacked generalizations","ensemble learning","sl3","rstats"]
-output: 
-  html_document:
-    toc: true
-    toc_float: true
-    smart: false
-    print_df: paged
+page-layout: article
+categories: ["statistics"]
+description: " "
+output:
+  blogdown::html_page:
+    toc: false
+    toc_depth: 1
 ---
 
 <html>

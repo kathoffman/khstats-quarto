@@ -1,5 +1,13 @@
 [
   {
+    "listing": "/talks.html",
+    "items": [
+      "/talks/steroids.html",
+      "/talks/swimmers.html",
+      "/talks/ensemble.html"
+    ]
+  },
+  {
     "listing": "/blog.html",
     "items": [
       "/blog/forest-plots/index.html",

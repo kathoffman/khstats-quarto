@@ -1,0 +1,37 @@
+---
+title: "Katherine (Kat) Hoffman"
+comments: false
+#image: img/profile-modified-wide.png
+#about:
+  # template: trestles
+  # links:
+  #   - icon: envelope
+  #     text: Email
+  #     href: mailto:kathoffman.stats@gmail.com
+  #   - icon: file-pdf
+  #     text: CV
+  #     href: https://github.com/kathoffman
+  #   - icon: github
+  #     text: GitHub
+  #     href: https://github.com/kathoffman
+  #   - icon: twitter
+  #     text: Twitter
+  #     href: https://twitter.com/kat_hoffman_
+---
+
+</center>
+
+::: {#hero-heading}
+
+Hi! My name is Kat Hoffman. I received my MS in Biostatistics from the University of Michigan in 2018, and I've been working as a biostatistician in academic medical research since.
+
+Prior to studying biostatistics, I studied biochemistry at the University of Detroit Mercy, cared for hospitalized patients as a nurse technician, and worked at a children's health clinic in rural Nicaragua. I am passionate about improving the state of medical and public health research through education in statistics.
+
+I created this website in 2019 to store educational materials I've created on career, programming, and statistics topics. I am particularly interested in understanding methods to estimate causal, rather than correlative, effects, and in methods which allow us to place as few assumptions on the underlying distribution of the data as possible (so-called semi- and non-parametric methods).
+
+In Fall 2023 I will begin a PhD in Biostatistics at the University of Washington. I am always open to hearing feedback on blog posts and illustrations
+
+
+
+
+:::
