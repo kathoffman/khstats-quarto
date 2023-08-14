@@ -10,6 +10,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/blog/phd-apps/index.html",
       "/blog/forest-plots/index.html",
       "/blog/otr/otr.html",
       "/blog/keyboard/index.html",

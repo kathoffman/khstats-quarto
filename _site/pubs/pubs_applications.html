@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,14 +17,15 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -38,8 +39,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -108,49 +108,50 @@ ga('send', {
     <span class="navbar-title">KHstats</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../blog.html">
+    <a class="nav-link" href="../blog.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../talks.html">
+    <a class="nav-link" href="../talks.html" rel="" target="">
  <span class="menu-text">Talks</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-illustrations" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-illustrations" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Illustrations</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-illustrations">    
         <li>
-    <a class="dropdown-item" href="../art/illustrations_viz.html">
+    <a class="dropdown-item" href="../art/illustrations_viz.html" rel="" target="">
  <span class="dropdown-text">Visual Guides for Causal Inference</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../art/illustrations_draw.html">
+    <a class="dropdown-item" href="../art/illustrations_draw.html" rel="" target="">
  <span class="dropdown-text">Educational Drawings and Comics</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Research</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
         <li>
-    <a class="dropdown-item" href="../pubs/pubs_methods.html">
+    <a class="dropdown-item" href="../pubs/pubs_methods.html" rel="" target="">
  <span class="dropdown-text">Statistics Methods</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../pubs/pubs_applications.html">
+    <a class="dropdown-item" href="../pubs/pubs_applications.html" rel="" target="">
  <span class="dropdown-text">Clinical Applications</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">
+    <a class="dropdown-item" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en" rel="" target="">
  <span class="dropdown-text">Google Scholar Profile</span></a>
   </li>  
     </ul>
@@ -158,62 +159,69 @@ ga('send', {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/kat_hoffman_"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/kat_hoffman_" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/kathoffman"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/kathoffman" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../static/KatherineHoffman_CV_Dec2022.pdf">
+    <a class="nav-link" href="../static/KatherineHoffman_CV_Dec2022.pdf" rel="" target="">
  <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="mailto:kathoffman.stats@gmail.com"><i class="bi bi-envelope" role="img">
+    <a class="nav-link" href="mailto:kathoffman.stats@gmail.com" rel="" target=""><i class="bi bi-envelope" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Clinical Applications</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pubs/pubs_applications.html">Clinical Applications</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pubs/pubs_methods.html" class="sidebar-item-text sidebar-link">Statistics Methods</a>
+  <a href="../pubs/pubs_methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics Methods</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pubs/pubs_applications.html" class="sidebar-item-text sidebar-link active">Clinical Applications</a>
+  <a href="../pubs/pubs_applications.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Clinical Applications</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en" class="sidebar-item-text sidebar-link">Google Scholar Profile</a>
+  <a href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Google Scholar Profile</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -221,7 +229,7 @@ ga('send', {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Clinical Applications</h1>
+<h1 class="title">Clinical Applications</h1>
 </div>
 
 
@@ -246,41 +254,41 @@ ga('send', {
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Selected Clinical Application Publications</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
-<div id="ref-schenck_comparative_2021" class="csl-entry" role="doc-biblioentry">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Selected Clinical Application Publications</h2><div id="refs" class="references csl-bib-body" role="list">
+<div id="ref-schenck_comparative_2021" class="csl-entry" role="listitem">
 <div class="csl-left-margin">1. </div><div class="csl-right-inline">*Schenck EJ, *Hoffman KL, Oromendia C, et al. A <span>Comparative</span> <span>Analysis</span> of the <span>Respiratory</span> <span>Subscore</span> of the <span>Sequential</span> <span>Organ</span> <span>Failure</span> <span>Assessment</span> <span>Scoring</span> <span>System</span>. <em>Annals of the American Thoracic Society</em>. 2021;18(11):1849-1860. doi:<a href="https://doi.org/10.1513/AnnalsATS.202004-399OC">10.1513/AnnalsATS.202004-399OC</a></div>
 </div>
-<div id="ref-gomez-escobar_cytokine_2021" class="csl-entry" role="doc-biblioentry">
+<div id="ref-gomez-escobar_cytokine_2021" class="csl-entry" role="listitem">
 <div class="csl-left-margin">2. </div><div class="csl-right-inline">*Gómez-Escobar LG, *Hoffman KL, Choi JJ, et al. Cytokine signatures of end organ injury in <span>COVID</span>-19. <em>Scientific Reports</em>. 2021;11(1):12606. doi:<a href="https://doi.org/10.1038/s41598-021-91859-z">10.1038/s41598-021-91859-z</a></div>
 </div>
-<div id="ref-schenck_respiratory_2020" class="csl-entry" role="doc-biblioentry">
+<div id="ref-schenck_respiratory_2020" class="csl-entry" role="listitem">
 <div class="csl-left-margin">3. </div><div class="csl-right-inline">Schenck EJ, Hoffman K, Goyal P, et al. Respiratory <span>Mechanics</span> and <span>Gas</span> <span>Exchange</span> in <span>COVID</span>-19–associated <span>Respiratory</span> <span>Failure</span>. <em>Annals of the American Thoracic Society</em>. 2020;17(9):1158-1161. doi:<a href="https://doi.org/10.1513/AnnalsATS.202005-427RL">10.1513/AnnalsATS.202005-427RL</a></div>
 </div>
-<div id="ref-torres_attributable_2021" class="csl-entry" role="doc-biblioentry">
+<div id="ref-torres_attributable_2021" class="csl-entry" role="listitem">
 <div class="csl-left-margin">4. </div><div class="csl-right-inline">Torres LK, Hoffman KL, Oromendia C, et al. Attributable mortality of acute respiratory distress syndrome: A systematic review, meta-analysis and survival analysis using targeted minimum loss-based estimation. <em>Thorax</em>. 2021;76(12):1176-1185. doi:<a href="https://doi.org/10.1136/thoraxjnl-2020-215950">10.1136/thoraxjnl-2020-215950</a></div>
 </div>
-<div id="ref-price_effect_2021" class="csl-entry" role="doc-biblioentry">
+<div id="ref-price_effect_2021" class="csl-entry" role="listitem">
 <div class="csl-left-margin">5. </div><div class="csl-right-inline">Price DR, Hoffman KL, Oromendia C, et al. Effect of <span>Neutropenic</span> <span>Critical</span> <span>Illness</span> on <span>Development</span> and <span>Prognosis</span> of <span>Acute</span> <span>Respiratory</span> <span>Distress</span> <span>Syndrome</span>. <em>American Journal of Respiratory and Critical Care Medicine</em>. 2021;203(4):504-508. doi:<a href="https://doi.org/10.1164/rccm.202003-0753LE">10.1164/rccm.202003-0753LE</a></div>
 </div>
-<div id="ref-price_temporal_2021" class="csl-entry" role="doc-biblioentry">
+<div id="ref-price_temporal_2021" class="csl-entry" role="listitem">
 <div class="csl-left-margin">6. </div><div class="csl-right-inline">Price DR, Hoffman KL, Sanchez E, Choi AMK, Siempos II. Temporal trends of outcomes of neutropenic patients with <span>ARDS</span> enrolled in therapeutic clinical trials. <em>Intensive Care Medicine</em>. 2021;47(1):122-123. doi:<a href="https://doi.org/10.1007/s00134-020-06263-4">10.1007/s00134-020-06263-4</a></div>
 </div>
-<div id="ref-zhang_association_2021" class="csl-entry" role="doc-biblioentry">
+<div id="ref-zhang_association_2021" class="csl-entry" role="listitem">
 <div class="csl-left-margin">7. </div><div class="csl-right-inline">Zhang WZ, Hoffman KL, Schiffer KT, et al. Association of plasma mitochondrial <span>DNA</span> with <span>COPD</span> severity and progression in the <span>SPIROMICS</span> cohort. <em>Respiratory Research</em>. 2021;22(1):126. doi:<a href="https://doi.org/10.1186/s12931-021-01707-x">10.1186/s12931-021-01707-x</a></div>
 </div>
-<div id="ref-schenck_critical_2021" class="csl-entry" role="doc-biblioentry">
+<div id="ref-schenck_critical_2021" class="csl-entry" role="listitem">
 <div class="csl-left-margin">8. </div><div class="csl-right-inline">Schenck EJ, Hoffman KL, Cusick M, Kabariti J, Sholle ET, Campion TR. Critical <span class="nocase">carE</span> <span>Database</span> for <span>Advanced</span> <span>Research</span> (<span>CEDAR</span>): <span>An</span> automated method to support intensive care units with electronic health record data. <em>Journal of Biomedical Informatics</em>. 2021;118:103789. doi:<a href="https://doi.org/10.1016/j.jbi.2021.103789">10.1016/j.jbi.2021.103789</a></div>
 </div>
-<div id="ref-su_evaluation_2021" class="csl-entry" role="doc-biblioentry">
+<div id="ref-su_evaluation_2021" class="csl-entry" role="listitem">
 <div class="csl-left-margin">9. </div><div class="csl-right-inline">Su C, Hoffman KL, Xu Z, et al. Evaluation of <span>Albumin</span> <span>Kinetics</span> in <span>Critically</span> <span>Ill</span> <span>Patients</span> <span>With</span> <span>Coronavirus</span> <span>Disease</span> 2019 <span>Compared</span> to <span>Those</span> <span>With</span> <span>Sepsis</span>-<span>Induced</span> <span>Acute</span> <span>Respiratory</span> <span>Distress</span> <span>Syndrome</span>. <em>Critical Care Explorations</em>. 2021;3(12):e0589. doi:<a href="https://doi.org/10.1097/CCE.0000000000000589">10.1097/CCE.0000000000000589</a></div>
 </div>
-<div id="ref-zhang_association_2020" class="csl-entry" role="doc-biblioentry">
+<div id="ref-zhang_association_2020" class="csl-entry" role="listitem">
 <div class="csl-left-margin">10. </div><div class="csl-right-inline">Zhang WZ, Rice MC, Hoffman KL, et al. Association of urine mitochondrial <span>DNA</span> with clinical measures of <span>COPD</span> in the <span>SPIROMICS</span> cohort. <em>JCI insight</em>. 2020;5(3):133984. doi:<a href="https://doi.org/10.1172/jci.insight.133984">10.1172/jci.insight.133984</a></div>
 </div>
-<div id="ref-rahman_sex-driven_2020" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rahman_sex-driven_2020" class="csl-entry" role="listitem">
 <div class="csl-left-margin">11. </div><div class="csl-right-inline">Rahman A, Schelbaum E, Hoffman K, et al. Sex-driven modifiers of <span>Alzheimer</span> risk: <span>A</span> multimodality brain imaging study. <em>Neurology</em>. 2020;95(2):e166-e178. doi:<a href="https://doi.org/10.1212/WNL.0000000000009781">10.1212/WNL.0000000000009781</a></div>
 </div>
-<div id="ref-price_angiopoietin_2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-price_angiopoietin_2022" class="csl-entry" role="listitem">
 <div class="csl-left-margin">12. </div><div class="csl-right-inline">*Price DR, *Benedetti E, Hoffman KL, et al. Angiopoietin 2 <span>Is</span> <span>Associated</span> with <span>Vascular</span> <span>Necroptosis</span> <span>Induction</span> in <span>Coronavirus</span> <span>Disease</span> 2019 <span>Acute</span> <span>Respiratory</span> <span>Distress</span> <span>Syndrome</span>. <em>The American Journal of Pathology</em>. 2022;192(7):1001-1015. doi:<a href="https://doi.org/10.1016/j.ajpath.2022.04.002">10.1016/j.ajpath.2022.04.002</a></div>
 </div>
 </div></section></div></main> <!-- /main -->
@@ -311,9 +319,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -378,6 +400,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -416,12 +524,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp(/www\.khstats\.com/);
+      var filterRegex = new RegExp("www\.khstats\.com");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
