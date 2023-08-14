@@ -11,7 +11,7 @@ editor: source
 ::: {.g-col-12 .g-col-md-8}
 # Katherine (Kat) Hoffman
 
-I am a biostatistician who is passionate about meaningful and reproducible medical research. In addition to my research collaborations, I enjoy creating educational materials about statistics, programming, and career-related topics.
+I am a biostatistician who is passionate about meaningful and reproducible medical research. Outside of my research collaborations, I enjoy writing about statistics, programming, and career-related topics. I also enjoy creating [illustrations](https://www.khstats.com/art/illustrations_draw) and educational materials, such as my [Visual Guides for Causal Inference](https://www.khstats.com/art/illustrations_viz).
 <!-- I use this website to store the blog posts, illustrations, and visual guides I've created over the years. -->
 <!-- I post about new content on [Twitter](https://twitter.com/kat_hoffman_), and I am always open to hearing feedback via <a href = "mailto: kathoffman.stats@gmail.com">email</a>. -->
 

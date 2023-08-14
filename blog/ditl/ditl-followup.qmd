@@ -12,15 +12,14 @@ tags: ["career", "biostatistics"]
 knitr::opts_chunk$set(echo = TRUE, message=F, warning=F)
 ```
 
-**Last updated August 23, 2022.**
 
-To my surprise since writing it, I've received hundreds of emails about my first blog post, ["Day in the Life of a Biostatistician"](https://www.khstats.com/blog/ditl-biostats/). I really enjoy hearing from everyone who reaches out, but I thought I'd give detailed answers to the most common questions I've received in this follow up post.
+> To my surprise since writing it, I've received hundreds of emails about my first blog post, ["Day in the Life of a Biostatistician"](https://www.khstats.com/blog/ditl-biostats/). I really enjoy hearing from everyone who reaches out, but I thought I'd give detailed answers to the most common questions I've received in this follow up post. I first published this in January 2021 and last updated it in August 2022.
 
 ***Caveat all my answers with "this is just one early-career biostatistician's opinion," please!***
 
 ------------------------------------------------------------------------
 
-**What do you recommend majoring in?**
+**What do you recommend majoring in to become a (bio)statistician?**
 
 If you're still early in your undergraduate education, I think it is best to major in statistics or math and supplement those classes with specific applications of statistics that interest you. Courses in biological science (e.g. genetics) or issues in healthcare (e.g. medical ethics, health economics) are all beneficial if you're specifically interested in medical and biological applications of statistics. Any computer science courses you're able to fit into your schedule will also help.
 
@@ -28,7 +27,7 @@ If you're too far along in your current degree or you already finished college, 
 
 **Did you find the transition from biological sciences to statistics to be difficult?** *(For those who haven't read my DITL post, I majored in Biochemistry and had not taken the prerequisite math courses since my freshman year of college.)*
 
-Yes, absolutely. I don't want to scare anyone away from going into biostatistics, but it was a difficult transition for me and required a lot of effort to catch up. I underestimated the transition to learn graduate level statistics after a years-long hiatus from math. I had to relearn many concepts from calculus and teach my brain to learn high-level math after years of studying biology. I say this not to discourage you(!), but so that you understand you may feel very behind when you first begin your journey in biostatistics. It doesn't mean you cannot or will not be successful.
+Yes, absolutely. I don't want to scare anyone away from going into biostatistics, but it was a difficult transition for me and required a lot of effort to catch up. I underestimated the transition to learn graduate level statistics after a years-long hiatus from math. I had to relearn many concepts from calculus and teach my brain to learn high-level math after years of studying biology and chemistry. I say this not to discourage you(!), but so that you understand you may feel very behind when you first begin your journey in biostatistics. It doesn't mean you cannot or will not be successful.
 
 **Did you know how to code before you started school and did you find learning to code to be difficult?**
 
@@ -70,6 +69,8 @@ Also yes. I've been able to live comfortably and save money while working in aca
 
 I'm four years into my career and don't yet feel stunted, so that's a good sign, I think! No, I don't think a PhD is necessary to have a stable, rewarding career. This is not to say I'll never apply, because I do really love learning new statistical theory, but I do not think it is necessary and can see many routes to having a "successful" career without one.
 
+*Update, August 2023, I did apply! I am starting the University of Washington's Biostatistics PhD program soon, and I wrote about my motivation and application process [here]().*
+
 **What's your favorite part of your job?**
 
 I love when I am able to focus on one project and optimize my code to be really well documented and efficient. I also like improving my understanding of the biology or clinical domain knowledge for specific projects. Interestingly, one of my least favorite parts of the job *used* to be writing and editing manuscripts, but as I've gained experience reading and writing scientific papers, I enjoy this much more.
@@ -77,6 +78,10 @@ I love when I am able to focus on one project and optimize my code to be really 
 **What's your least favorite part of your job?**
 
 It is working with individuals who either believe they have equivalent knowledge to me in statistics after taking an introductory course, or who know very little about statistics, do not desire to learn more, and yet do not trust my knowledge. Both types of people tend to want to be very hands-on in my analyses and this usually results in me explaining (to little avail) why we cannot do the analysis they think we should do. I don't think this is unique to my job or even academia, however, it is definitely my least favorite part.
+
+<!-- **What's the most difficult part of your job?** -->
+
+<!-- For me, it is determining how long a project will take, and communicating that to my stakeholder (a researcher or group of researchers) -->
 
 ------------------------------------------------------------------------
 
