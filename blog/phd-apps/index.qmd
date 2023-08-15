@@ -1,5 +1,5 @@
 ---
-title: "Applying to, Deciding on, and Preparing for my Biostatistics PhD Program"
+title: "A Biostatistics PhD Application Notebook [with Statement of Purpose]"
 author: "Katherine Hoffman"
 date: "2023-08-14"
 categories: [career]
@@ -7,17 +7,17 @@ description: " "
 image: "img.jpg"
 ---
 
-> A minor life update – **I applied to Biostatistics PhD programs last fall!** And, a major life update– **I’m moving to Seattle to attend the University of Washington (UW)’s program next month**. I’m super excited (and nervous) to begin. Since applications are opening up for next year, I thought I’d write a quick post about what the process of deciding to apply, actually applying, and deciding on a program was like for me.
+> A minor life update – **I applied to Biostatistics PhD programs last fall!** And, a major life update– **I’m moving to Seattle to attend the University of Washington (UW)’s program next month**. I’m super excited (and nervous) to begin. Since applications are opening up for next year, I thought I’d share what the process of deciding to apply, actually applying, and deciding on a program was like for me.
 
 # Background and FAQs
 
-I was in a somewhat uncommon situation when I applied in Fall 2022 for Fall 2023 matriculation. I’d already received my MS in Biostatistics in 2018 and had been working in academic medical research since. Because of this, I had many academic biostatistician colleagues and friends to consult about my application. Since not everyone has this opportunity, I thought I’d pass on what was told to me, especially the advice I was given on writing my statement of purpose (SOP). **I found the SOP advice so helpful that I’ve publicly shared mine in this [Google Doc](https://docs.google.com/document/d/1Ex3nUpPqc8CCWTnMKeyRUDnUF_C9GOriJBtY-47eASg/edit?usp=sharing)**, and added pieces of advice I received in the comments.
+I was in a somewhat uncommon situation when I applied in Fall 2022 for Fall 2023 matriculation to Biostatistics PhD programs. I’d already received my MS in Biostatistics in 2018 and have been working in academic medical research since. Because of this, I had many academic biostatistician colleagues and friends to consult about my application. Since not everyone has this opportunity, I thought I’d pass on what was told to me, especially the advice I was given on writing my statement of purpose (SOP). **I found the SOP advice so helpful that I’ve publicly shared mine in this [Google Doc](https://docs.google.com/document/d/1Ex3nUpPqc8CCWTnMKeyRUDnUF_C9GOriJBtY-47eASg/edit?usp=sharing)**, and added advice I received in the comments.
 
-I am by no means an expert at what biostatistics graduate programs are looking for, and this is not a comprehensive post on applying to (biostatistics) graduate school. For more thorough and general information, I recommend Lucy Lai’s post on [applying to graduate programs](https://lucy-lai.com/blog/gradapps) and Simon Couch’s post on [applying to statistics and biostatistics graduate programs](https://www.simonpcouch.com/blog/apply-to-stats-grad-school/#fnref:8). Nonetheless, perhaps some of you might find my experience useful, or you might be able to pass it on to a future applicant who will find it useful!
+I am by no means an expert at what biostatistics graduate programs are looking for, and this is not a comprehensive post on applying to (biostatistics) graduate school. For more general and thorough information, I recommend Lucy Lai’s post on [applying to graduate programs](https://lucy-lai.com/blog/gradapps) and Simon Couch’s post on [applying to statistics and biostatistics graduate programs](https://www.simonpcouch.com/blog/apply-to-stats-grad-school). Nonetheless, perhaps some of you might find my experience useful, or you might be able to pass it on to a future applicant who will find it useful!
 
 ### Do you need a PhD to be successful in biostatistics?
 
-A question I’m frequently asked from students and earlier-in-their-career biostatisticians lately is if I feel a PhD is necessary because of a “ceiling” in biostatistics. My answer was and still is: a PhD is absolutely *not* necessary. In fact, for a while, I was extremely resistant to the idea of pursuing one. It’s a huge financial and personal commitment, and it’s worth carefully examining whether it’s the right decision for you, now or ever.
+A question I’m frequently asked from students and early-career biostatisticians is whether I feel a PhD is necessary because of a “ceiling” in biostatistics. My answer was and still is: a PhD is absolutely *not* necessary. In fact, for a while, I was resistant to the idea of pursuing one. It’s a huge financial and personal commitment, and it’s worth carefully examining whether it’s the right decision for you, now or ever.
 
 I wholeheartedly believe I could have been fulfilled intellectually and financially in Masters-level statistician/data science jobs forever. There are many interesting roles in both industry and academic research. Some are heavily programming related, some are much more statistics-heavy, and other roles would mean career progression via supervision/management of other biostatisticians and programmers. A (bio)statistics degree is extremely versatile because you can pivot to areas such as data engineering, software writing, data reporting/querying/interpreting, and more. There have been multiple times over the past five years that I’ve seriously considered trying out data journalism and/or more serious data visualization.
 
@@ -25,19 +25,17 @@ However, I *really* love studying and teaching causal inference and statistics. 
 
 ### Why'd you take five years off before starting your PhD?
 
-The other question I'm often asked is whether it was intentional to take “so much time” off and/or whether I’m glad I waited to go back for my PhD. The first question is that, no, it wasn't intentional, because five years ago I was not planning to get a PhD. The second question is somewhat difficult to answer before I start my program (it might be really hard to go back to school, I have no idea!), but at the moment, I am extremely happy I took a break between finishing the MS and starting the PhD. I had plenty of time to narrow and pursue my interests without any pressure and while making good money. I also had the chance to learn work-life balance, which I wasn't great at until a few years ago. I was able to build up my application through an abundance of research and teaching opportunities, and this allowed me to be a far more competitive applicant than I would’ve been out of my MS. Finally, I learned a lot about myself! I feel so much more emotionally mature and resilient than I was five years ago.
+The other question I'm asked relatively often is whether it was intentional to take “so much time” off and/or whether I’m glad I waited to go back for my PhD. My answer to the first question is that, no, it wasn't intentional, because five years ago I was not planning to get a PhD. The second question is somewhat difficult to answer before I start my program (it might be really hard to go back to school, I have no idea!), but at the moment, I am super happy I took a break between finishing the MS and starting the PhD. I had plenty of time to narrow and pursue my interests without any pressure and while making good money. I also had the chance to learn work-life balance, which I wasn't great at until a few years ago. I was able to build up my application through an abundance of research and teaching opportunities, and this allowed me to be a far more competitive applicant than I would’ve been out of my MS. Finally, I learned a lot about myself! I feel so much more emotionally mature and resilient than I was five years ago.
 
 # The Application Process
 
-<!-- In this post, I’ll be honest about my experience, including what schools I applied to and where I did/did not get in. I hope none of the information I give deters anyone from applying to any schools because you have a different background than me. I’ve been working as a full-time biostatistician since I finished my MS in Biostatistics 5 years ago, so I necessarily have a different background than someone applying from undergrad or a masters degree. However, PhD programs accept many, many students with less work/research experience than me (and with stronger backgrounds in other ways). I am by no means an expert in applying or in understanding what the application committees look for; I can only report what worked (and hypothesize about what didn’t work!) for me. -->
-
-In this post, I’ll try to be as honest as possible about my personal experience in applying. I hope none of the information I provide deters anyone from applying to any schools because you have a different background than me. I’ve been working full-time for five years, so I necessarily have a different background than someone applying from an undergraduate or Masters degree. However, PhD programs accept many, many students with less work/research experience than me (and with stronger backgrounds in other ways), so my successes and failures should not be considered to be predictive of someone else's.
+I’ll try to be as honest as possible about my personal experience in applying. I hope none of the information I provide deters anyone from applying to any schools because they have a different background than me. I’ve been working full-time for five years, so I necessarily have a different background than someone applying from an undergraduate or Masters degree. However, PhD programs accept many, many students with less work/research experience than me (and with stronger backgrounds in other ways), so my successes and failures should not be considered to be predictive of someone else's.
 
 ## Assessing which schools to apply to
 
 I gauged my competitiveness for applying to PhD programs by asking biostatistics faculty I knew from working in the field and/or who taught me during my MS. I also searched Reddit for relevant content ([r/biostatistics](https://www.reddit.com/r/biostatistics/)) and used [Gradcafe](https://forum.thegradcafe.com/topic/141530-fall-2023-statisticsbiostatistics-applicants-thread/). (Be wary of anonymous forums on the internet, though!)
 
-From these sources, I gathered that my strengths were:
+From these sources, I gathered that my strengths were probably:
 
 - having a MS in Biostatistics already
 - five years of full-time work as a biostatistical consultant
@@ -49,7 +47,7 @@ I decided my main weakness I could not change before submitting my application w
 
 Of note, when I read posts on GradCafe, the general consensus was that U.S. citizens (which I am) have a higher chance of being admitted to programs in the U.S. I don’t have much insight on this, but I think it has to do with funding opportunities. There are many government sponsored funding opportunities which are unfortunately only available to domestic students. 
 
-In the end, I applied to eight schools: two schools in New York City (where I currently live) and six other schools which are consistently considered to be top programs for biostatistics. I knew I wouldn’t be willing to leave NYC and my current job for most programs, so I only selected schools I could actually see myself considering.
+In the end, I applied to eight schools: two schools in New York City (where I currently live) and six other schools which are consistently considered to be top programs for biostatistics. I knew I would only be willing to leave NYC for a few programs, so I only selected schools I could actually see myself considering.
 
 ## Application organization
 
@@ -57,31 +55,31 @@ I kept track of all my applications and notes on a Notion page. I made several t
 
 ## Application Components
 
-### Letters of Recommendation
+### Transcripts
 
-For LORs, I asked:
-
-1. My long-time mentor who I’ve worked with for 4 years and who could speak to my research potential for both methods and applied work. He is mid-career and well-known within the field of causal inference statistical estimation methods, which is what I want to continue studying.
-
-2. A long-time physician collaborator who I’d also worked with on applied projects for 4 years who could talk about my skill set in applied projects.
-
-3. My current boss, an academic epidemiologist with strong training in statistical methods. At the time I’d only worked with for a few months, but she seemed comfortable writing about my scientific potential.
-
-4. (Extra letter) My former professor in an applied capstone course during my MS who could speak to my discipline and aptitude for completing coursework. She is late-career and well-known within the field of biostatistics.
-
-I think this is general LOR advice, but I only asked individuals who I was pretty sure would write strong letters on my behalf. I tried to strike a balance in people who were recognizable names within the field of biostatistics and who worked with me enough to write about me. Remember to ask your letter-writers early, as well as register early with the schools’ application systems so the writers have plenty of time to upload their letters.
+All the schools I applied to required me to submit unofficial transcripts and then manually enter all relevant (science, math, statistics, etc.) coursework into their own application system. I had to enter the course name, course number, number of credits, semester I took it, and grade for each course. This is super time consuming, and I recommend beginning to work on this as soon as applications open. Many of the application portals were glitchy, and this would have been hard to complete at the last minute.
 
 ### GRE Scores
 
 My GRE scores expired a few years back, but thankfully all the schools I applied to haven’t required them since the pandemic, so I didn’t retake the test. Of note, a few schools said they required them on their website, but did not actually when I inquired with admissions. For one school I only had to self-report my old scores.
 
-### Gathering/filling out transcripts
+### Letters of Recommendation
 
-All the schools I applied to required me to manually enter all relevant (science, math, statistics, etc.) coursework into their own application system. You generally have to enter the course name, number, number of credits, semester you took it, and your corresponding grade in the course. This is super time consuming, and I recommend beginning to work on this as soon as applications open. Many of the application portals were glitchy, and this would have been hard to complete at the last minute.
+All schools required three LORs, and most accepted up to four or five. The people I asked to write my LORs were:
+
+1. A long-time colleague and mentor who could speak to my research potential for both methods and applied work. They are mid-career and known within the field of causal inference statistical estimation methods, which is what I want to continue studying.
+
+2. A long-time physician collaborator who I’d also worked with on applied projects for 4 years who could talk about my skill set in applied projects.
+
+3. My current boss, an academic epidemiologist with strong training in statistical methods. At the time I’d only worked with them for a few months, but they seemed comfortable writing about my scientific potential.
+
+4. (Extra letter) My former professor^[Some schools explicitly request a LOR from a former professor.] from my applied capstone course during my MS. They are late-career and well-known within the field of biostatistics. They confirmed they could speak to my discipline and aptitude for completing coursework.
+
+I think this is general LOR advice, but I only asked individuals who I was pretty sure would write strong letters on my behalf. I tried to strike a balance in people who were recognizable names within the field of biostatistics and who worked with me enough to write about me. Remember to ask your letter-writers early, as well as register early with the schools’ application systems so the writers have plenty of time to upload their letters.
 
 ### The Statement of Purpose (SOP)
 
-By far the hardest part of the application for me! There’s a lot of opinions surrounding the statement of purpose for Biostatistics PhDs, from, “it’s extremely important and the only way to set yourself apart to the application committee,” to, “nobody reads it and it won’t affect your application.” I opted to believe the first set of opinions, and took my SOP seriously.
+This was by far the hardest part of the application for me! There’s a lot of opinions surrounding the statement of purpose for Biostatistics PhDs, from, “it’s very important and the only way to set yourself apart to the application committee,” to, “nobody reads it and it won’t affect your application.” I opted to believe the first set of opinions, and took my SOP seriously.
 
 I received a lot of advice on my statement. The most helpful piece of advice I received was that the SOP is not about highlighting qualifications – that’s what the CV does – and qualifications alone do not equate to success in academia. You need drive and motivation, and your SOP is the chance to show that you have it. It is more about your philosophy and research goals than stating what you've done so far. Every time you bring up an accomplishment, you should explain to the committee exactly why that’s relevant to your overall goal of pursuing a PhD in biostatistics. If something is not directly relevant to why you want to pursue a PhD or why you’ll be a successful researcher, you should not include it.
 
@@ -95,7 +93,11 @@ If you take only one thing away from my SOP advice: **start writing your SOP ear
 
 ### The Personal Statement
 
-Only a few schools required this, and the prompts were related to why your background uniquely adds to your scientific potential. This statement is, of course, very personal to your own background! I wrote about how growing up in a rural Midwest town with my entire family in blue-collar jobs shaped my understanding of public health and access to education. I also wrote about my work and volunteer experience in low income areas and with underrepresented groups, and my motivations for improving diversity in the field as driven by my experiences as an underrepresented gender in STEM. This will obviously look very different for any given applicant. I am not posting my personal statement publicly, but if you have a reason you think it’d be helpful to see my personal statement, please email me.
+Only a few schools required this, and the prompts were related to why your background uniquely adds to your scientific potential. This statement is, of course, very personal to your own background! I wrote about how growing up in a rural Midwest town with my family in blue-collar jobs shaped my understanding of public health and access to education. I also wrote about my work and volunteer experience in low income areas and with underrepresented groups, and how my motivations for improving diversity in the field are driven by my experiences as an underrepresented gender in STEM. This will obviously look very different for any given applicant. I am not posting my personal statement publicly, but if you have a reason you think it’d be helpful to see my personal statement, please email me.
+
+### Application Fees
+
+Almost every school had an $80-130 application fee, paid upon the time of submitting. Make sure to reach out to schools if you have *any* justification for receiving a fee waiver!
 
 ## Pre Application Review Service (PARS)
 
@@ -109,28 +111,60 @@ Applications were due December 1, and I began hearing about interviews the first
 
 I found the interviews stressful to plan around (e.g. I had to cancel at least one pre-planned vacation), and anxiety-inducing leading up to the day. However, the questions themselves were easy to answer (with the caveat that I’ve done many interviews and interviewed several biostatistician job candidates over the years, so I had an idea of what to expect). The questions I was asked were generally along the lines of:
 
-- Tell me about why you want to do a PhD. Why do you think you need it? What are you hoping to accomplish during your PhD?
+- Tell me about why you want to do a PhD. Why do you think you need it? What are you hoping to accomplish during and after your PhD?
 - Why [this school]? Why [city the school is located in]?
 - Tell me about a time when you had to collaborate with others to get a project done.
 - What questions do you have about our program or [location of the school]?
 
-For many of these questions, I reiterated (sometimes verbatim) sentences from my statement of purpose. I also brought up different research projects I’d done over the years, depending on where the conversation went. The people interviewing you are trying to assess your fit with the program and gauge your excitement. I know it is easier said than done, but my takeaway from the interviews was that it was best to just let the conversation flow. The interviews were usually 30 minutes long, so make sure you have lots of questions prepared for when the interviewer flips the question-asking to you. If you run out of questions about the program, start asking the interviewer about their research or what their favorite things to do are around the university.
+For many of these questions, I reiterated (sometimes verbatim) sentences from my statement of purpose. I also brought up different research projects I’d done over the years, depending on where the conversation went. The people interviewing you are trying to assess your fit with the program and gauge your enthusiasm and drive. I know it is easier said than done, but my takeaway from the interviews was that it was best to just let the conversation flow. The interviews were usually 30 minutes long, so make sure you have lots of questions prepared for when the interviewer flips the question-asking to you. If you run out of questions about the program, start asking the interviewer about their research or what their favorite things to do are around the university.
 
 Despite the interview questions feeling straightforward to me, the days were EXHAUSTING, both physically and mentally. You essentially have 8am-9pm day(s) with other applicants, students, and faculty, and you have to be “on” the entire day. This experience can be really overwhelming, so go easy on yourself. I recommend writing notes down after each interview day/visit – I kept a long running note on my phone.
 
 # Decision time
 
-Of the eight schools I applied to, I was accepted to five. My acceptances and rejections didn’t make a ton of sense to me either way, meaning I was surprised to receive certain acceptances while also receiving rejections from schools I thought I had a higher chance of getting into. This supported a phrase I heard a lot, “PhD admissions are a bit of a black box.”  There are many qualified applicants, especially to the top programs, and it is hard to discern between applicants by a CV, transcript, and statement of purpose. Different application committee members will have biases in what they’re looking for (e.g. strong mathematics background vs. research experience) and it’s best not to dwell too much on any particular outcome.
+Of the eight schools I applied to, I was accepted to five. My acceptances and rejections didn’t make a ton of sense to me either way, meaning I was surprised to receive certain acceptances while also receiving rejections from schools I thought I may have a higher chance of getting into. This supported a phrase I heard a lot, “PhD admissions are a bit of a black box.”  There are many qualified applicants, especially to the top programs, and it is hard to discern between applicants by a CV, transcript, and a statement of purpose. Different application committee members will have biases in what they’re looking for (e.g. strong mathematics background vs. research experience) and it’s best not to dwell too much on any particular outcome.
 
-It was a difficult decision for me to choose between programs. I was extremely torn about the idea of leaving the community I have in NYC. However, I could not shake the feeling that my visit at UW had felt overwhelmingly “right." After a lot of pro-con lists, I decided to go with this gut feeling.
+It was a difficult decision for me to choose between programs. I was extremely torn over the idea of leaving the community I have in NYC. However, I could not shake the feeling that my visit to UW had felt overwhelmingly “right." After a lot of pro-con lists, I decided to go with this gut feeling.
 
-The major choices which affected my decision were location, overall fit of the program/coursework, current students’ relationships within and between cohorts, perceived work-life balance of students and faculty, funding/research requirements, teaching requirements, and number of faculty working on what I wanted to work on (non-parametric causal inference). After I finished my visit days, I set up follow-up meetings with professors and the graduate program directors from multiple schools to make sure I understood my options correctly. I made my decision to attend UW at the end of March, about two weeks before the April 15th decision deadline.
+The major choices which affected my decision were location, overall fit of the program/coursework, current students’ relationships within and between cohorts, perceived work-life balance of students and faculty, funding/research requirements, teaching requirements, stipend amount, and number of faculty working on what I wanted to work on (non-parametric causal inference). After I finished my visit days, I set follow-up meetings with professors and the graduate program directors from multiple schools to make sure I understood my options correctly. I made my decision to attend UW at the end of March, about two weeks before the April 15th decision deadline.
+
+# Miscellaneous notes
+
+A few miscellaneous details I learned and thoughts I had throughout the application process:
+
+## Admission rates
+
+I found it difficult to find admission rates online, but the numbers given at some of my interview/admit days (if I remember correctly) were *approximately*:
+
+- 250 or so applicants
+- 15-25 interview spots (varied by school)
+- 7-20 spots in the cohort offered
+
+The final number of spots in the cohort and process for obtaining that number varied quite a bit by school. A few schools ranked candidates and could only offer a spot to the top 6-7 candidates. Once someone rejected their offer, they moved down the list to offer the next candidate. Other schools accepted a large (~20) number of applicants with the expectation that only a certain percentage would accept their offer. Finally, at least one school I applied to could only offer a fixed number of spots (12), and could not re-offer to another applicant if someone turned down their offer. That school was careful to only give offers to those they *really* thought might attend.
+
+## Funding
+
+Most Biostatistics PhD programs will only admit students if they know they can fund them, i.e. pay for tuition and a stipend, for 4-6 years. For the programs I was admitted to, the stipend offers ranged from $36-46,000 per year, pre-tax. A PhD stipend is often described as "enough to live, but not enough to save," although this will obviously vary by the city's cost-of-living and the student's personal financial situation.
+
+I said earlier that a PhD is a huge financial commitment, and the stipend is the main reason why. Even though the amount of money might *seem* like a lot (it did to me when I was going through my MS degree!), the time you'll spend earning your PhD is undoubtedly a short-term loss of potential earnings. If you have a strong quantitative background (as most Biostatistics PhD applicants do), a *conservative* estimate is that this loss could accumulate to over $400,000 in pre-tax income.^[My calculation for this is (potential salary - stipend) * expected years in PhD.] This estimate is not accounting for the compounding interest you will miss out on in retirement savings (assuming you would put money towards retirement if working full-time). Although the earning potential is higher with a PhD than with an MS, it will still take some time to counteract the short term loss.
+
+On that note, if you have multiple funded offers, it is worth asking each program what their policies are regarding internships, part-time work, and freelance consulting work, because all of these are supplemental sources of income. Are any of these types of work allowed or encouraged, and does participating in them affect the stipend amount you receive (beyond potential differences in tax brackets)? The answers vary by program, and sometimes even by student due to differences in funding sources.
+
+<!-- It's also worth comparing the requirements for funding between schools. Does a research or teaching assistant position cover your funding, or does the school pay for you for a certain number of years without being you tied to an RA or TA role? -->
+
+<!-- ## Choosing between epidemiology and biostatistics programs -->
+
+<!-- One decision I carefully thought through was whether to apply to only biostatistics programs, or a mix of epidemiology and biostatistics programs.  -->
+
+## Reaching out to professors in advance
+
+I did not personally email any professors before applying, so I unfortunately don't have much to share on this topic. I doubt it would've helped me get into any additional programs, but who knows! It definitely has the potential to be informative and a good networking experience. Lucy Lai includes a template for reaching out to professors in her [blog post](https://lucy-lai.com/blog/gradapps), as does John Muschelli in his post, ["Some things I wish I knew about Grad School"](https://hopstat.wordpress.com/2020/10/01/some-things-i-wish-i-knew-about-grad-school/).
 
 # Looking ahead, preparing for my PhD coursework
 
-UW is on the quarter system, so I'll start classes at the end of September. This summer I’ve been working, enjoying life sans homework, and trying to remember all the math I’ve forgotten over the years.
+UW is on the quarter system, so I'll start classes with a cohort of eight other students at the end of September. This summer I’ve been working, enjoying life sans homework, and trying to remember all the math I’ve forgotten over the years.
 
-I’m refreshing myself on linear algebra using a combination of Khan Academy (I love Sal’s visualizations – I listen on 1.5-2x speed and slow down when he says something that I don’t understand) and [*Linear Algebra Done Right*](https://www.chegg.com/textbooks/linear-algebra-done-right-3rd-edition-9783319110790-3319110799?preSelection=rent&c_id=sem&utm_source=google&utm_medium=cpc&utm_campaign=tb--long_tail-campaign_googleshoppingpmax&utm_content=&gclid=Cj0KCQjwoeemBhCfARIsADR2QCtzOvpwHTwWyhhjZ551Ez8HeQc2iH94LOR1OS9wunkhrt5PU_-9Ux8aAvhrEALw_wcB&gclsrc=aw.ds) by Sheldon Axler. The latter is a small textbook which is meant to be a second learning of linear algebra (it’s quite abstract compared to the usual sequence of teaching the subject). This [Github repo](https://github.com/jubnoske08/linear_algebra) with solutions to Axler’s exercises is also helpful. I am also brushing up calculus using a mix of Khan Academy, random Youtube videos, and the textbook [*Advanced Calculus*](https://www.thriftbooks.com/w/advanced-calculus_patrick-m-fitzpatrick/623425/item/12685126/?utm_source=google&utm_medium=cpc&utm_campaign=low_vol_f%2fm%2fs_standard_shopping_customer_aquisition&utm_adgroup=&utm_term=&utm_content=603452145786&gclid=Cj0KCQjwoeemBhCfARIsADR2QCvVNjDm6ZZA30SMj00ghtI6qbOycK_PZMa21bwDg2PdtNeVVe-cfCUaAsGDEALw_wcB#idiq=12685126&edition=7979483) by Patrick M. Fitzpatrick. This is what I wish I would've done before starting my MS degree. :)
+I’m refreshing myself on linear algebra using a combination of Khan Academy (I love Sal’s visualizations – I listen on 1.5-2x speed and slow down when he says something that I don’t understand) and [*Linear Algebra Done Right*](https://www.chegg.com/textbooks/linear-algebra-done-right-3rd-edition-9783319110790-3319110799?preSelection=rent&c_id=sem&utm_source=google&utm_medium=cpc&utm_campaign=tb--long_tail-campaign_googleshoppingpmax&utm_content=&gclid=Cj0KCQjwoeemBhCfARIsADR2QCtzOvpwHTwWyhhjZ551Ez8HeQc2iH94LOR1OS9wunkhrt5PU_-9Ux8aAvhrEALw_wcB&gclsrc=aw.ds) by Sheldon Axler. The latter is a small textbook which is meant to be a second learning of linear algebra (it’s quite abstract compared to the usual sequence of teaching the subject). This [Github repo](https://github.com/jubnoske08/linear_algebra) with solutions to Axler’s exercises is also helpful. I am also brushing up calculus using a mix of Khan Academy, random YouTube videos, and the textbook [*Advanced Calculus*](https://www.thriftbooks.com/w/advanced-calculus_patrick-m-fitzpatrick/623425/item/12685126/?utm_source=google&utm_medium=cpc&utm_campaign=low_vol_f%2fm%2fs_standard_shopping_customer_aquisition&utm_adgroup=&utm_term=&utm_content=603452145786&gclid=Cj0KCQjwoeemBhCfARIsADR2QCvVNjDm6ZZA30SMj00ghtI6qbOycK_PZMa21bwDg2PdtNeVVe-cfCUaAsGDEALw_wcB#idiq=12685126&edition=7979483) by Patrick M. Fitzpatrick. This is what I wish I would've done before starting my MS degree. 🙂
 
 If you'd like to know more about what my work looked like as an applied biostatistician in medical research, please see my [Day in the Life of a Biostatistician](https://www.khstats.com/blog/ditl/) post. I answer common email questions stemming from that post in this [Follow-up post](https://www.khstats.com/blog/ditl/ditl-followup). As always, feel free to email me with questions, clarifications, or suggestions for additional resources to include.
 

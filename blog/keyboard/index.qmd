@@ -1,5 +1,5 @@
 ---
-title: "You're just my type! A beginner's guide to building a custom mechanical keyboard"
+title: "Just my type! A beginner's guide to building a custom mechanical keyboard"
 author: "Katherine Hoffman"
 execute-dir: file
 image:  keyboard/IMG_2826.JPG
@@ -95,7 +95,7 @@ I'll briefly outline the steps to building the keyboard below. If you're actuall
 
 First you'll want to download a keyboard programming app like [VIA](https://www.caniusevia.com/), plug your keyboard into your computer, take a pair of tweezers, and test each point of key circuitry on your PCB plate.
 
-<!-- {{< video src="/keyboard/testing_keys.mp4#t=0.1" >}} -->
+{{< video src="blog/keyboard/keyboard/testing_keys.mp4#t=0.1" >}}
 
 ## 2. Lubricate the stabilizers
 
@@ -121,7 +121,7 @@ This was hands-down my favorite part of the entire process. Soldering (pronounce
 
 <video width="100%"  controls>
 
-<source src="keyboard/soldering.mp4#t=0.1" type="video/mp4">
+<source src="keyboard/soldering.mp4" type="video/mp4">
 
 </video>
 

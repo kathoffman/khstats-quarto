@@ -110,7 +110,7 @@ I close the report; I will continue working on this analysis tomorrow.
 
 **5:00PM** - The doctors arrive and, after introductions, we talk about the current stage of the project and what the goals are. We discuss the timing of starting chart reviews of patients, how we will upload the information to a database efficiently, and what might be the best way to condense the highly detailed genetics data into useful information for an analysis. Our solution will likely involve a series of iterative searches through the columns containing genetic information.
 
-<img src="/img/ditl/data_dict.png" width="500px"/>
+<img src="/img/ditl/data_dict.png" width="500" height="250" />
 
 *The start of a database I am helping researchers build to collect data for their study. This is not my favorite part of my job, but it is a crucial step for good scientific research.*
 
@@ -118,7 +118,7 @@ I close the report; I will continue working on this analysis tomorrow.
 
 **6:30PM** - I leave work! I typically have some kind of activity, like happy hour (see my cute cubicle buddies below), a sports game, or Spanish class that I'm heading off to. Some days I attend coding workshops hosted by groups such as R-ladies. On nights when I'm feeling especially nerdy, I'll go home and read a statistics paper or sift through the #rstats tips on twitter.
 
-<img src="/img/ditl/coworkers.jpg" width="500px" height="375px"/>
+<img src="/img/ditl/coworkers.jpg" width="550px" height="375px"/>
 
 ...So, there you have it. One average daily experience as an early career masters-level statistician. All in all, I have an excellent work-life balance and overall work environment. Every day I get to learn more about science, medicine, statistics, and the intersection of these wonderful ideas. Although it varies quite a bit, approximately 10% of each day involves writing, 20% interacting with other researchers, and the rest of it is spent thinking critically and finding answers to problems I am passionate about.
 
