@@ -1,13 +1,5 @@
 [
   {
-    "listing": "/talks.html",
-    "items": [
-      "/talks/steroids.html",
-      "/talks/swimmers.html",
-      "/talks/ensemble.html"
-    ]
-  },
-  {
     "listing": "/blog.html",
     "items": [
       "/blog/phd-apps/index.html",
@@ -32,6 +24,14 @@
       "/blog/nyrconf/index.html",
       "/blog/ditl/index.html",
       "/blog/tmle/visual-key.html"
+    ]
+  },
+  {
+    "listing": "/talks.html",
+    "items": [
+      "/talks/steroids.html",
+      "/talks/swimmers.html",
+      "/talks/ensemble.html"
     ]
   }
 ]

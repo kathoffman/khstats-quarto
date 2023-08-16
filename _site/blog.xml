@@ -9,7 +9,7 @@
 <link>www.khstats.com/blog.html</link>
 <atom:link href="www.khstats.com/blog.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.3.353</generator>
+<generator>quarto-1.3.450</generator>
 <lastBuildDate>Mon, 14 Aug 2023 04:00:00 GMT</lastBuildDate>
 <item>
   <title>A Biostatistics PhD Application Notebook [with Statement of Purpose]</title>
@@ -2106,7 +2106,8 @@ font-style: inherit;">"Distribution of CATE"</span>)</span></code></pre></div>
 <section id="test-your-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="test-your-pcb">1. Test your PCB</h2>
 <p>First you’ll want to download a keyboard programming app like <a href="https://www.caniusevia.com/">VIA</a>, plug your keyboard into your computer, take a pair of tweezers, and test each point of key circuitry on your PCB plate.</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="blog/keyboard/keyboard/testing_keys.mp4#t=0.1"></video></div>
+<iframe src="keyboard/testing_keys.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+</iframe>
 </section>
 <section id="lubricate-the-stabilizers" class="level2">
 <h2 class="anchored" data-anchor-id="lubricate-the-stabilizers">2. Lubricate the stabilizers</h2>
@@ -2116,19 +2117,20 @@ font-style: inherit;">"Distribution of CATE"</span>)</span></code></pre></div>
 <section id="place-your-stabilizers-on-the-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="place-your-stabilizers-on-the-pcb">3. Place your stabilizers on the PCB</h2>
 <p>Time to click the stabilizers into place! You can put the respective keycaps on (space bar, shift, backspace, etc.) and make sure you like the feel at this point.</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="/keyboard/test_stabs.mp4#t=0.1"></video></div>
+<iframe src="keyboard/test_stabs.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+</iframe>
 </section>
 <section id="add-the-plate-and-click-the-key-switches-into-the-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="add-the-plate-and-click-the-key-switches-into-the-pcb">4. Add the plate and click the key switches into the PCB</h2>
 <p>You can now overlay your plate on the PCB and start clicking each key switch’s metal prongs into the small holes on the PCB. You should feel a click when it locks into place, and the switches should not fall out if you flip the board over.</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video3" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="/keyboard/clicking_switches.mp4"></video></div>
+<iframe src="keyboard/clicking_switches.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+</iframe>
 </section>
 <section id="soldering" class="level2">
 <h2 class="anchored" data-anchor-id="soldering">5. Soldering</h2>
 <p>This was hands-down my favorite part of the entire process. Soldering (pronounced saw-der-ing) is SO much fun. There’s a ton of videos online about it, and you can buy a kit to practice if you want, but honestly I just went for it. You basically melt a piece of metal (solder) and then place the soldering iron right next to the key switch prongs and PCB ring of metal to create an electrical conduction.</p>
-<video width="100%" controls="">
-<source src="keyboard/soldering.mp4" type="video/mp4">
-</video>
+<iframe src="keyboard/soldering.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+</iframe>
 <p>One important note with soldering is that you should wait a day and retest your keys to make sure the conduction stayed. I had an issue where I would successfully test the keys about five minutes after soldering, but the next day the same keys would no longer work. I finally realized this was because I was soldering outside on a summer night (to avoid the fumes). As the sun went down, my soldering iron was no longer as hot as it said it was (~400° Fahrenheit) because the wind/outside air was cooling it down.</p>
 <p>This is what my final soldered PCB and switches looked like. Each of the keys has two small mounds of solder creating an electrical conduction between the switch and the PCB. These look like small silver balls.</p>
 <p><img src="www.khstats.com/blog/keyboard/keyboard/final_solder.png" class="img-fluid"></p>
@@ -2136,16 +2138,14 @@ font-style: inherit;">"Distribution of CATE"</span>)</span></code></pre></div>
 <section id="stack-and-screw" class="level2">
 <h2 class="anchored" data-anchor-id="stack-and-screw">6. Stack and screw</h2>
 <p>Once all your keys’ electrical connections work, you can add your key caps. Finally, stack all the pieces together (case, foam plate, plate/PCB/switches/keys) and tighten the necessary screws.</p>
-<video width="100%" controls="">
-<source src="keyboard/screws.mp4#t=0.1" type="video/mp4">
-</video>
+<iframe src="keyboard/screws.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+</iframe>
 </section>
 <section id="type-away" class="level2">
 <h2 class="anchored" data-anchor-id="type-away">7. Type away</h2>
 <p>Enjoy the click-clack of your brand new custom mechanical keyboard!</p>
-<video width="100%" controls="">
-<source src="keyboard/typing.mp4#t=0.1" type="video/mp4">
-</video>
+<iframe src="keyboard/typing.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+</iframe>
 </section>
 </section>
 <section id="lessons-learned" class="level1">

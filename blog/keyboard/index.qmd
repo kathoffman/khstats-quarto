@@ -95,7 +95,7 @@ I'll briefly outline the steps to building the keyboard below. If you're actuall
 
 First you'll want to download a keyboard programming app like [VIA](https://www.caniusevia.com/), plug your keyboard into your computer, take a pair of tweezers, and test each point of key circuitry on your PCB plate.
 
-{{< video src="blog/keyboard/keyboard/testing_keys.mp4#t=0.1" >}}
+<iframe src="keyboard/testing_keys.mp4" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
 
 ## 2. Lubricate the stabilizers
 
@@ -107,23 +107,22 @@ If your PCB plate is working properly, go ahead and add lubricant and put togeth
 
 Time to click the stabilizers into place! You can put the respective keycaps on (space bar, shift, backspace, etc.) and make sure you like the feel at this point.
 
-{{< video src="/keyboard/test_stabs.mp4#t=0.1" >}}
+
+<iframe src="keyboard/test_stabs.mp4" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
+
 
 ## 4. Add the plate and click the key switches into the PCB
 
 You can now overlay your plate on the PCB and start clicking each key switch's metal prongs into the small holes on the PCB. You should feel a click when it locks into place, and the switches should not fall out if you flip the board over.
 
-{{< video src="/keyboard/clicking_switches.mp4">}}
+<iframe src="keyboard/clicking_switches.mp4" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
 
 ## 5. Soldering
 
 This was hands-down my favorite part of the entire process. Soldering (pronounced saw-der-ing) is SO much fun. There's a ton of videos online about it, and you can buy a kit to practice if you want, but honestly I just went for it. You basically melt a piece of metal (solder) and then place the soldering iron right next to the key switch prongs and PCB ring of metal to create an electrical conduction.
 
-<video width="100%"  controls>
 
-<source src="keyboard/soldering.mp4" type="video/mp4">
-
-</video>
+<iframe src="keyboard/soldering.mp4" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
 
 One important note with soldering is that you should wait a day and retest your keys to make sure the conduction stayed. I had an issue where I would successfully test the keys about five minutes after soldering, but the next day the same keys would no longer work. I finally realized this was because I was soldering outside on a summer night (to avoid the fumes). As the sun went down, my soldering iron was no longer as hot as it said it was (\~400° Fahrenheit) because the wind/outside air was cooling it down.
 
@@ -135,21 +134,13 @@ This is what my final soldered PCB and switches looked like. Each of the keys ha
 
 Once all your keys' electrical connections work, you can add your key caps. Finally, stack all the pieces together (case, foam plate, plate/PCB/switches/keys) and tighten the necessary screws.
 
-<video width="100%" controls>
-
-<source src="keyboard/screws.mp4#t=0.1" type="video/mp4">
-
-</video>
+<iframe src="keyboard/screws.mp4" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
 
 ## 7. Type away
 
 Enjoy the click-clack of your brand new custom mechanical keyboard!
 
-<video width= "100%" controls>
-
-<source src="keyboard/typing.mp4#t=0.1" type="video/mp4">
-
-</video>
+<iframe src="keyboard/typing.mp4" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
 
 # Lessons learned
 
