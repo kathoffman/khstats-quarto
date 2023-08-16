@@ -2027,10 +2027,10 @@ font-style: inherit;">"Distribution of CATE"</span>)</span></code></pre></div>
 <p>This blog post details a DIY project I did last summer – building a mechanical keyboard. I’m no expert, but I enjoyed the process of building the keyboard so much that I thought I would briefly walk through the steps and share helpful resources. Even if you have no interest in building your own, I hope it encourages you to learn something new that you may have initially felt intimidated by!</p>
 </blockquote>
 <p><img src="www.khstats.com/blog/keyboard/keyboard/IMG_2826.JPG" class="img-fluid"></p>
-<!-- <iframe src="https://giphy.com/embed/2IGcITcJg09VK" width="480" height="379" frameBorder="0"  allowFullScreen></iframe><p><a href="https://giphy.com/gifs/2IGcITcJg09VK"></a></p> -->
+<!-- <iframe src="https://giphy.com/embed/2IGcITcJg09VK" width="480" height="379" frameBorder="0"  allowFullScreen sandbox ></iframe><p><a href="https://giphy.com/gifs/2IGcITcJg09VK"></a></p> -->
 <section id="whats-a-mechanical-keyboard" class="level1">
 <h1>What’s a mechanical keyboard?</h1>
-<!-- <iframe src="https://giphy.com/embed/2IGcITcJg09VK" width="700" frameBorder="0" allowFullScreen></iframe><p></p> -->
+<!-- <iframe src="https://giphy.com/embed/2IGcITcJg09VK" width="700" frameBorder="0" allowFullScreen sandbox ></iframe><p></p> -->
 <p>A mechanical keyboard is the typing unit that comes with a desktop computer, as opposed to a laptop. The keys are taller and provide more feedback in feel and sound when you hit them. Gamers, typists, and coders are more likely to use a mechanical keyboard.</p>
 </section>
 <section id="why-would-i-want-to-build-a-mechanical-keyboard" class="level1">
@@ -2106,7 +2106,7 @@ font-style: inherit;">"Distribution of CATE"</span>)</span></code></pre></div>
 <section id="test-your-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="test-your-pcb">1. Test your PCB</h2>
 <p>First you’ll want to download a keyboard programming app like <a href="https://www.caniusevia.com/">VIA</a>, plug your keyboard into your computer, take a pair of tweezers, and test each point of key circuitry on your PCB plate.</p>
-<iframe src="keyboard/testing_keys.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+<iframe src="keyboard/testing_keys.mp4" width="640" height="360" frameborder="0" allowfullscreen="" sandbox="">
 </iframe>
 </section>
 <section id="lubricate-the-stabilizers" class="level2">
@@ -2117,19 +2117,19 @@ font-style: inherit;">"Distribution of CATE"</span>)</span></code></pre></div>
 <section id="place-your-stabilizers-on-the-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="place-your-stabilizers-on-the-pcb">3. Place your stabilizers on the PCB</h2>
 <p>Time to click the stabilizers into place! You can put the respective keycaps on (space bar, shift, backspace, etc.) and make sure you like the feel at this point.</p>
-<iframe src="keyboard/test_stabs.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+<iframe src="keyboard/test_stabs.mp4" width="640" height="360" frameborder="0" allowfullscreen="" sandbox="">
 </iframe>
 </section>
 <section id="add-the-plate-and-click-the-key-switches-into-the-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="add-the-plate-and-click-the-key-switches-into-the-pcb">4. Add the plate and click the key switches into the PCB</h2>
 <p>You can now overlay your plate on the PCB and start clicking each key switch’s metal prongs into the small holes on the PCB. You should feel a click when it locks into place, and the switches should not fall out if you flip the board over.</p>
-<iframe src="keyboard/clicking_switches.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+<iframe src="keyboard/clicking_switches.mp4" width="640" height="360" frameborder="0" allowfullscreen="" sandbox="">
 </iframe>
 </section>
 <section id="soldering" class="level2">
 <h2 class="anchored" data-anchor-id="soldering">5. Soldering</h2>
 <p>This was hands-down my favorite part of the entire process. Soldering (pronounced saw-der-ing) is SO much fun. There’s a ton of videos online about it, and you can buy a kit to practice if you want, but honestly I just went for it. You basically melt a piece of metal (solder) and then place the soldering iron right next to the key switch prongs and PCB ring of metal to create an electrical conduction.</p>
-<iframe src="keyboard/soldering.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+<iframe src="keyboard/soldering.mp4" width="640" height="360" frameborder="0" allowfullscreen="" sandbox="">
 </iframe>
 <p>One important note with soldering is that you should wait a day and retest your keys to make sure the conduction stayed. I had an issue where I would successfully test the keys about five minutes after soldering, but the next day the same keys would no longer work. I finally realized this was because I was soldering outside on a summer night (to avoid the fumes). As the sun went down, my soldering iron was no longer as hot as it said it was (~400° Fahrenheit) because the wind/outside air was cooling it down.</p>
 <p>This is what my final soldered PCB and switches looked like. Each of the keys has two small mounds of solder creating an electrical conduction between the switch and the PCB. These look like small silver balls.</p>
@@ -2138,13 +2138,13 @@ font-style: inherit;">"Distribution of CATE"</span>)</span></code></pre></div>
 <section id="stack-and-screw" class="level2">
 <h2 class="anchored" data-anchor-id="stack-and-screw">6. Stack and screw</h2>
 <p>Once all your keys’ electrical connections work, you can add your key caps. Finally, stack all the pieces together (case, foam plate, plate/PCB/switches/keys) and tighten the necessary screws.</p>
-<iframe src="keyboard/screws.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+<iframe src="keyboard/screws.mp4" width="640" height="360" frameborder="0" allowfullscreen="" sandbox="">
 </iframe>
 </section>
 <section id="type-away" class="level2">
 <h2 class="anchored" data-anchor-id="type-away">7. Type away</h2>
 <p>Enjoy the click-clack of your brand new custom mechanical keyboard!</p>
-<iframe src="keyboard/typing.mp4" width="640" height="360" frameborder="0" allowfullscreen="">
+<iframe src="keyboard/typing.mp4" width="640" height="360" frameborder="0" allowfullscreen="" sandbox="">
 </iframe>
 </section>
 </section>
