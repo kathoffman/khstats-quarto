@@ -79,7 +79,7 @@ I think this is general LOR advice, but I only asked individuals who I was prett
 
 ### Curriculum Vitae
 
-All of the schools required me to submit a Curriculum Vitae (CV) document. [This](static/KatherineHoffman_CV_Dec2022.pdf) is the version I submitted for applications. Depending on your background, sections will look different. I recommend having someone within academia, preferably (bio)statistics or related, review your CV. If you are a student, you should also take advantage of your university's career center resources to review.
+All of the schools required me to submit a Curriculum Vitae (CV) document. [**This**](/static/KatherineHoffman_CV_Dec2022.pdf) is the version I submitted for applications. Depending on your background, sections will look different. I recommend having someone within academia, preferably (bio)statistics or related, review your CV. If you are a student, you should also take advantage of your university's career center resources to review.
 
 Additional feedback I received for this which may be relevant to someone else:
 

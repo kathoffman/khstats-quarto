@@ -10,7 +10,7 @@ editor: source
 ![](img/profile-modified-wide.png)
 :::
 
-::: {.g-col-12 .g-col-md-6}
+::: {.g-col-12 .g-col-md-5}
 # Kat's Stats
 
 I am a biostatistician and incoming Biostatistics PhD student who is passionate about meaningful and reproducible medical research. Outside of my research collaborations, I enjoy [writing](https://www.khstats.com/blog) about statistics, programming, and career-related topics. I also enjoy creating [illustrations](https://www.khstats.com/art/illustrations_draw) and educational materials, such as my [Visual Guides for Causal Inference](https://www.khstats.com/art/illustrations_viz).
@@ -25,7 +25,7 @@ MS Biostatistics \| University of Michigan \| 2016-2018<br> BS Biochemistry \| U
 
 :::
 
-::: {.g-col-0 .g-col-md-1}
+::: {.g-col-0 .g-col-md-2}
 :::
 :::
 <!-- ::: -->
