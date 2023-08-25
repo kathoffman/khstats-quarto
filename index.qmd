@@ -4,51 +4,59 @@ editor: source
 ---
 
 ::: grid
+::: {.g-col-0 .g-col-md-1}
+:::
 ::: {.g-col-12 .g-col-md-4}
 ![](img/profile-modified-wide.png)
 :::
 
-::: {.g-col-12 .g-col-md-8}
-# Katherine (Kat) Hoffman
+::: {.g-col-12 .g-col-md-6}
+# Kat's Stats
 
-I am a biostatistician who is passionate about meaningful and reproducible medical research. Outside of my research collaborations, I enjoy writing about statistics, programming, and career-related topics. I also enjoy creating [illustrations](https://www.khstats.com/art/illustrations_draw) and educational materials, such as my [Visual Guides for Causal Inference](https://www.khstats.com/art/illustrations_viz).
+I am a biostatistician and incoming Biostatistics PhD student who is passionate about meaningful and reproducible medical research. Outside of my research collaborations, I enjoy [writing](https://www.khstats.com/blog) about statistics, programming, and career-related topics. I also enjoy creating [illustrations](https://www.khstats.com/art/illustrations_draw) and educational materials, such as my [Visual Guides for Causal Inference](https://www.khstats.com/art/illustrations_viz).
 <!-- I use this website to store the blog posts, illustrations, and visual guides I've created over the years. -->
 <!-- I post about new content on [Twitter](https://twitter.com/kat_hoffman_), and I am always open to hearing feedback via <a href = "mailto: kathoffman.stats@gmail.com">email</a>. -->
 
-**Education:**<br> M.S. Biostatistics \| University of Michigan \| 2018<br> B.S. Biochemistry \| University of Detroit Mercy \| 2015
+**Education:**<br>
+PhD Biostatistics \| University of Washington \| 2023-present<br>
+MS Biostatistics \| University of Michigan \| 2016-2018<br> BS Biochemistry \| University of Detroit Mercy \| 2011-2015
 
-**Experience:**<br>Columbia University Medical Center \| 2022-present<br>Weill Cornell Medicine \| 2018-2022
+<!-- **Experience:**<br>Columbia University Medical Center \| 2022-present<br>Weill Cornell Medicine \| 2018-2022 -->
 
 :::
-:::
 
-## Featured blog posts
-
-::: grid
-::: {.g-col-12 .g-col-md-4}
-### Statistics
-
--   [An Introduction to Modified Treatment Policies](/blog/lmtp/lmtp.html)
--   [Building Statistical Intuition For Optimal Treatment Rules](/blog/otr/otr.html)
--   [Illustrated Guide to Targeted Maximum Likelihood Estimation (TMLE)](/blog/tmle/tutorial.html)
-:::
-
-::: {.g-col-12 .g-col-md-4}
-### Programming
-
--   [Treatment Timelines for Multiple Variables with {ggplot2}](/blog/trt-timelines/multiple-vars.html)
--   [Annotated Effect Size Plots with {ggplot2}](/blog/forest-plots/)
--   [Customizable Correlation Plots in R](/blog/corr-plots)
-:::
-
-::: {.g-col-12 .g-col-md-4}
-### Career
-
--   [A Day in the Life of a Biostatistician](/blog/ditl)
--   [Stats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician](/blog/ditl/ditl-followup.html)
--   [On the Sidelines: NYC's COVID-19 Surge through the eyes of a pulmonary and critical care team's biostatistician](/blog/covid)
+::: {.g-col-0 .g-col-md-1}
 :::
 :::
+<!-- ::: -->
+
+<!-- ## Featured blog posts -->
+
+<!-- ::: grid -->
+<!-- ::: {.g-col-12 .g-col-md-4} -->
+<!-- ### Statistics -->
+
+<!-- -   [An Introduction to Modified Treatment Policies](/blog/lmtp/lmtp.html) -->
+<!-- -   [Building Statistical Intuition For Optimal Treatment Rules](/blog/otr/otr.html) -->
+<!-- -   [Illustrated Guide to Targeted Maximum Likelihood Estimation (TMLE)](/blog/tmle/tutorial.html) -->
+<!-- ::: -->
+
+<!-- ::: {.g-col-12 .g-col-md-4} -->
+<!-- ### Programming -->
+
+<!-- -   [Treatment Timelines for Multiple Variables with {ggplot2}](/blog/trt-timelines/multiple-vars.html) -->
+<!-- -   [Annotated Effect Size Plots with {ggplot2}](/blog/forest-plots/) -->
+<!-- -   [Customizable Correlation Plots in R](/blog/corr-plots) -->
+<!-- ::: -->
+
+<!-- ::: {.g-col-12 .g-col-md-4} -->
+<!-- ### Career -->
+
+<!-- -   [A Day in the Life of a Biostatistician](/blog/ditl) -->
+<!-- -   [Stats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician](/blog/ditl/ditl-followup.html) -->
+<!-- -   [On the Sidelines: NYC's COVID-19 Surge through the eyes of a pulmonary and critical care team's biostatistician](/blog/covid) -->
+<!-- ::: -->
+<!-- ::: -->
 
 <!-- ## Featured illustrations -->
 

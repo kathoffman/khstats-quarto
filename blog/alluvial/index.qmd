@@ -19,60 +19,31 @@ tags:
 ```
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=F, message=F)
+knitr::opts_chunk$set(echo = TRUE, warning=F, message=F, fig.width=8, fig.height=5)
 ```
 
-Alluvial plots, or Sankey diagrams, can be used to show the movement of individual units across a single variable, such as time. This post will first explain how to use the [`ggalluvial`](https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html#:~:text=The%20%7Bggalluvial%7D%20package%20is%20a,the%20feedback%20of%20many%20users.) package with a straightforward use-case: showing how an illness severity score changes in a population of critically ill patients by day.
+> **Alluvial** plots, or **Sankey diagrams**, can be used to show the **movement of individual units across a single variable**, such as time. In this post I'll show the steps to make an alluvial plot for a time-varying exposure and time-to-event outcome.
 
+ [`ggalluvial`](https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html#:~:text=The%20%7Bggalluvial%7D%20package%20is%20a,the%20feedback%20of%20many%20users.) 
 
-```{r echo=F,  fig.height=5, fig.width=5}
+In this post I'll walk through using alluvial plots to show longitudinal data. I've written a post about showing longitudinal data in treatment timelines... but sometimes treatment timelines are too granular, and we need to show multiple longitudinal variables for many units, for example, people.
 
-library(tidyverse)
-library(ggalluvial)
+One way to do this is by using alluvial plots, or sankey diagrams. In an alluvial plot,,... 
 
-```
-
-```{r include = F}
-sofa_wide <- read_csv(here::here("blog/alluvial/pseudo_sofa_khstats.csv")) |>
-  mutate(across(starts_with("day"), ~factor(.x, levels=c("Deceased", 0:4,"Missing","Discharged")))) |>   filter(score_type == "pulmonary_sofa")# |>
-  #nest(id) |>
-  #sample_n(1000)
-
-
-my_pal <- ggsci::pal_nejm("default", alpha = 0.6)(8)
-p <- sofa_wide |>
-    group_by(day0, day1, day2, day3) |>
-    count(.drop = F) |>
-    ungroup() |>
-    to_lodes_form(key = "day", axes = 1:4)  |>
-    mutate(day = case_when(day == "day0" ~ "B",
-                           TRUE ~ as.character(parse_number(as.character(day)))),
-           day = fct_relevel(day, "B")) |>
-    ggplot(aes(x = day, y = n,
-               stratum = stratum,
-               alluvium = alluvium,
-               fill = stratum)) +
-    geom_flow() +
-    geom_stratum() +
-    theme_classic() +
-    scale_x_discrete(expand = c(0.1,0.1)) +
-    scale_fill_manual(values = my_pal, drop=F) +
-    labs(x = "Day", y = "Count",
-         fill = "Subscore", title = "Pulmonary SOFA Scores by Day")
-p
-```
-
-Then, we will use the same package and ideas to walk through how to show data we typically use for survival analyses in an alluvial chart. I'll use `ggalluvial` to show the movement of the following complexities over time:
+ I'll use `ggalluvial` to show the movement of the following complexities over time:
 
 - categorical, time-varying exposure
 - time-to-event outcome
 - competing event
 - loss to follow up
 
+...in a cohort of severely ill COVID-19 patients
+
 These plots can be organized to look similar to Kaplan Meier plots.
 
 ```{r echo = F, fig.width=8, fig.height=5}
-
+library(tidyverse)
+library(ggalluvial)
 
 dat_long <- read_csv(here::here("blog/alluvial/aki_death_status.csv")) |>
   group_by(id) |>
@@ -86,13 +57,12 @@ dat_wide <-
 
 max_time <- 14
 vars_to_group <- paste0("time_", 0:max_time)
-type_colors <- c("#374E55", # gray
+type_colors <- c("#6A6599", # purple
+                  "#B24745", #red
+                   "#00A1D5", #bluea,
+                  "#374E55", # gray
                  "#79AF97", # green
-                 "#DF8F44", #orange
-                  "#00A1D5", #bluea,
-                 "#B24745", #red
-                  "#6A6599" # purple
-                 
+                 "#DF8F44" #orange
                  ) 
 
 dat_alluvial <-
@@ -101,13 +71,12 @@ dat_alluvial <-
   count() |>
   to_lodes_form(key = "day", axes = 1:max_time) |>
   mutate(day = factor(parse_number(as.character(day))+1),
-        stratum = fct_relevel(stratum,
+        stratum = fct_relevel(stratum,"Discharged",
+                                      "Deceased",
+                                      "AKI",
                                       "No supplemental oxygen",
                                       "Non-IMV supplemental oxygen",
-                                      "IMV", 
-                                      "AKI",
-                                      "Deceased",
-                                      "Discharged"))
+                                      "IMV"))
 
 dat_alluvial |>
   ggplot(
@@ -149,7 +118,7 @@ At each `time` point, there is a column `status` which indicates whether the pat
 
 - `"IMV"`
 
-If they are not in the study any longer, the status indicates whether it is because they 
+If they are not in the study any longer, the status indicates whether it is because they either: 
 
 - experienced the event of interest (`"AKI"`)
 - experienced a competing event, i.e. death (`"Deceased"`)
@@ -210,16 +179,14 @@ dat_wide |>
 Once the data is properly grouped, `count()` will return the N's for each unique path or flow we observe in our data set.
 
 ```{r}
-dat_wide |>
+dat_alluvial <-  dat_wide |>
   group_by_at(vars_to_group) |>
   count() 
 ```
 It's a bit hard to see what happened there, but a new column `n` was created with the N's in each pathway. We can see this better if we `select(n, everything())` (meaning select n, then all the other columns).
 
 ```{r}
-dat_wide |>
-  group_by_at(vars_to_group) |>
-  count() |>
+dat_alluvial |>
   select(n, everything())
 ```
 
@@ -252,9 +219,8 @@ head(titanic_lodes2)
 
 
 ```{r}
-dat_wide |>
-  group_by_at(vars_to_group) |>
-  count() |>
+dat_alluvial <- 
+   dat_alluvial|>
   to_lodes_form(key = "time", axes = 1:(length(vars_to_group)))
 ```
 
@@ -264,24 +230,17 @@ dat_wide |>
 Now, we want the x-axis on our plot to show time in numbers, rather than `time_0`, `time_1`, etc., so we will use `parse_number()` to extract the number from our new column `time`.
 
 ```{r}
-dat_wide |>
-  group_by_at(vars_to_group) |>
-  count() |>
-  to_lodes_form(key = "time", axes = 1:(length(vars_to_group))) |>
-  mutate(time = factor(parse_number(as.character(time)))) # time column is a factor, so frist change to character, then parse_number, then change it back to a factor
+dat_alluvial <- 
+  dat_alluvial |>
+  mutate(time = factor(parse_number(as.character(time)))) # time column is a factor, so first change to character, then parse_number, then change it back to a factor
 ```
 
 
-
+Lastly, we will organize the 
 
 ```{r}
-dat_alluvial <-
- dat_wide |>
-  group_by_at(vars_to_group) |>
-  count() |>
-  to_lodes_form(key = "time", axes = 1:(length(vars_to_group))) |>
-  mutate(time = factor(parse_number(as.character(time))), # time column is a factor, so frist change to character, then parse_number, then change it back to a factor
-        stratum = fct_relevel(stratum,
+dat_alluvial <- dat_alluvial |>
+  mutate(stratum = fct_relevel(stratum,
                                       "No supplemental oxygen",
                                       "Non-IMV supplemental oxygen",
                                       "IMV", 
@@ -293,6 +252,8 @@ dat_alluvial
 
 # Step 3: Set up colors
 
+Now, we want to create a vector of colors, which I'll call `type_colors`, that follows the same order of our `stratum` factor levels we defined above.
+
 ```{r}
 type_colors <- c("#374E55", # gray
                  "#79AF97", # green
@@ -302,6 +263,8 @@ type_colors <- c("#374E55", # gray
                   "#6A6599" # purple
                  ) 
 ```
+
+Once our colors are defined, we will add start with a standard ggplot function and add in the relevant arguments, e.g. x axis is `time` and y axis is the counts in column `n`. The color and fill of our plot's bars will be determined by the `stratum` column. The ...... will also be determined by 
 
 ```{r}
 p <- dat_alluvial |>
@@ -313,7 +276,10 @@ p <- dat_alluvial |>
         y=n,
         fill = stratum)
   )
+p
 ```
+
+Now, we will usse the function `geom_flow()` to.....??
 
 ```{r}
 p <- p +
@@ -328,17 +294,23 @@ p <- p +
 p
 ```
 
+We can change the fill of the columns to match our selected colors.
+
 ```{r}
 p <- p +
   scale_fill_manual(values = type_colors) 
 p
 ```
 
+We can change the outline of the columns to match our selected colors.
+
 ```{r}
 p <- p +
   scale_color_manual(values = type_colors) 
 p
 ```
+
+We can remove extra white space with `theme_classic()`.
 
 ```{r}
 p <- p +

@@ -3,11 +3,17 @@ project:
 
 website:
   title: "KHstats"
+  favicon: /img/climbing_comic.jpg
+  twitter-card: true
   page-navigation: true
   google-analytics: "UA-136820093-1"
   site-url: "www.khstats.com"
+  search: 
+    location: navbar
+    type: overlay
   navbar:
     left:
+      - about.qmd
       - blog.qmd
       - talks.qmd
       - sidebar:art
