@@ -11,8 +11,7 @@ output:
     toc: true
     toc_float: true
     smart: false
-website:
-  twitter-card:
+twitter-card:
     description: "An R code walkthrough for treatment timelines or 'swimmer' plots. These can help visualize treatment or measurement patterns, time-varying covariates, outcomes, and loss to follow-up in longitudinal data settings."
     card-style: summary_large_image
     image: "../../img/swimmer.jpg"

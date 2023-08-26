@@ -5,15 +5,9 @@ website:
   title: "KHstats"
   favicon: img/climbing_comic.jpg
   image: img/climbing_comic.jpg
-  twitter-card:
-    title: "KH Stats"
-    description: "{(bio)statistics, causal inference, data visualization, R programming, medical research}"
-    creator: "@kat_hoffman_"
-    #card-style: summary
-  open-graph:
-    title: "KH Stats"
-    description: "{(bio)statistics, causal inference, data visualization, R programming, medical research}"
-    image: "img/climbing_comic.jpg"
+  description: "Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc."
+  twitter-card: true
+  open-graph: true
   page-navigation: true
   google-analytics: "UA-136820093-1"
   site-url: "www.khstats.com"
