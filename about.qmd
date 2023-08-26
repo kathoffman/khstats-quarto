@@ -3,7 +3,7 @@ title: "About"
 comments: false
 ---
 
-Hi! My name is Katherine Hoffman. You can call me Kat, and my pronouns are she/her.
+Hi! My name is Katherine Hoffman. You can call me Kat (she/her).
 
 I received my MS in Biostatistics from the University of Michigan in 2018, and I worked as a biostatistician in academic medical research in New York City from 2018-2023. As of Fall 2023, I am pursuing a PhD in Biostatistics at the University of Washington.
 
