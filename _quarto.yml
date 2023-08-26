@@ -6,7 +6,10 @@ website:
   favicon: img/climbing_comic.jpg
   image: img/climbing_comic.jpg
   description: "Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc."
-  twitter-card: true
+  twitter-card: 
+    image: img/climbing_comic.jpg
+    description: "Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc."
+    card-style: summary
   open-graph: true
   page-navigation: true
   google-analytics: "UA-136820093-1"

@@ -6,7 +6,7 @@ categories: [career]
 description: " "
 image: "img.jpg"
 twitter-card:
-  description: "Motivation for applying to Biostatistics PhD programs, details on application components, interview process, decision factors, and helpful advice I received."
+  description: "Motivation for applying to Biostatistics PhD programs five years after finishing my MS, with details on the application process and helpful advice I received."
   image: "img.jpg"
 ---
 
