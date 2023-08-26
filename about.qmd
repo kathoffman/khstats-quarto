@@ -9,7 +9,7 @@ I received my MS in Biostatistics from the University of Michigan in 2018, and I
 
 Prior to studying biostatistics, I studied biochemistry and took pre-medicine courses at the University of Detroit Mercy. During the summers I cared for hospitalized patients as a nurse technician in Michigan and worked at a children's health clinic in rural Nicaragua. These experiences, combined with a love for mathematics, have made me passionate about improving the state of medical and public health research through education in statistics.
 
-I created this website in 2019 to store educational materials I've created on career, programming, and statistics topics. I am particularly interested in understanding methods to estimate causal, rather than correlative, effects, and in methods which allow us to place as few assumptions on the underlying distribution of the data as possible (so-called semi- and non-parametric methods).
+I created this website in 2019 to store educational materials I've created on career, programming, and statistics topics. I am particularly interested in estimating causal, rather than correlative, effects, and in methods which require as few assumptions on the underlying distribution of the data as possible (so-called semi- and non-parametric methods).
 
 I am always open to hearing feedback on blog posts and illustrations, and I answer questions via email whenever I find time. Outside of work and blogging, I love to play sports, hike/climb, and check out new restaurants/live entertainment.
 

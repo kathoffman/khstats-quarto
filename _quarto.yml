@@ -4,7 +4,10 @@ project:
 website:
   title: "KHstats"
   favicon: /img/climbing_comic.jpg
-  twitter-card: true
+  twitter-card:
+    description: "KHstats art and writings in (bio)statistics, causal inference, data visualization, R programming, medical research, etc."
+    image:  /img/climbing_comic.jpg
+  open-graph: true
   page-navigation: true
   google-analytics: "UA-136820093-1"
   site-url: "www.khstats.com"

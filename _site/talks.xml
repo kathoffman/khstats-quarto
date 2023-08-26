@@ -65,3 +65,10 @@
 </item>
 </channel>
 </rss>
+>
+  <guid>www.khstats.com/talks/ensemble.html</guid>
+  <pubDate>Tue, 19 Jan 2021 05:00:00 GMT</pubDate>
+  <media:content url="www.khstats.com/img/wcm-cc-bagging.png" medium="image" type="image/png" height="90" width="144"/>
+</item>
+</channel>
+</rss>
