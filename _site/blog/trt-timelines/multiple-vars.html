@@ -121,11 +121,9 @@ ga('send', {
 <meta property="og:image" content="www.khstats.com/blog/trt-timelines/img/climbing_comic.jpg">
 <meta property="og:site-name" content="KHstats">
 <meta name="twitter:title" content="KH Stats">
-<meta name="twitter:description" content="{(bio)statistics, causal inference, data visualization, R programming, medical research}">
-<meta name="twitter:image" content="www.khstats.com/blog/trt-timelines/crop_swimmer.png">
+<meta name="twitter:description" content="An R code walkthrough for treatment timelines or ‘swimmer’ plots. These can help visualize treatment or measurement patterns, time-varying covariates, outcomes, and loss to follow-up in longitudinal data settings.">
+<meta name="twitter:image" content="www.khstats.com/img/swimmer.jpg">
 <meta name="twitter:creator" content="@kat_hoffman_">
-<meta name="twitter:image-height" content="855">
-<meta name="twitter:image-width" content="1075">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -226,8 +224,7 @@ ga('send', {
     <div class="quarto-title column-body">
       <h1 class="title">Using ggplot2 to create Treatment Timelines with Multiple Variables</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">R</div>
-                <div class="quarto-category">data visualization</div>
+                <div class="quarto-category">programming</div>
               </div>
                   </div>
   </div>
@@ -281,12 +278,7 @@ ga('send', {
 
 
 
-<p>An R code walkthrough for treatment timelines or “swimmer” plots. These can help visualize treatment or measurement patterns, time-varying covariates, outcomes, and loss to follow-up in longitudinal data settings.</p>
-<!--more-->
-<p><strong><em>June 8, 2022.</em></strong></p>
-<div class="cell-output-display">
 <p><img src="multiple-vars_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>This post walks through code to create a timeline in <code>R</code> using <code>ggplot2</code>. These types of plots can help visualize <strong>treatment or measurement patterns</strong>, <strong>time-varying covariates</strong>, <strong>outcomes</strong>, and <strong>loss to follow-up</strong> in longitudinal data settings.</p>
 <p>You can view a corresponding slide deck I made with {flipbookr} for the 2022 R/Medicine <a href="https://kathoffman.github.io/swimmer-plots/slides.html#1">[here]</a>, or you can <a href="#just-the-code">skip to the end of this post to just see the code</a>.</p>
 <section id="background" class="level1">
@@ -321,18 +313,14 @@ ga('send', {
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>day, <span class="at">y=</span>id, <span class="at">col =</span> intubation_status, <span class="at">group=</span>id)) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
 <p><img src="multiple-vars_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>We can add our <code>steroids</code> column to the plot by adding a point designating whether <code>steroids</code> exposure was <code>1</code> (yes) or <code>0</code> (no) that day. We can see this results in points of two different colors on the lines of our plot. <a href="https://www.khstats.com/blog/trt-timelines/trt-timelines/">This can work just fine</a>! …unless you want to add another variable to the timeline.</p>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dat_long <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>day, <span class="at">y=</span>id, <span class="at">col =</span> intubation_status, <span class="at">group=</span>id)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(day, id, <span class="at">col =</span> steroids)) <span class="sc">+</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
 <p><img src="multiple-vars_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
-</div>
 </section>
 <section id="modify-the-data" class="level1">
 <h1>Modify the data</h1>
@@ -372,10 +360,8 @@ ga('send', {
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>day, <span class="at">y=</span>id, <span class="at">col =</span> intubation_status, <span class="at">group=</span>id)) <span class="sc">+</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>steroids_this_day, <span class="at">y=</span>id, <span class="at">col=</span><span class="st">"Steroids"</span>, <span class="at">shape=</span><span class="st">"Steroids"</span>)) <span class="sc">+</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>Warning: Removed 387 rows containing missing values (geom_point).</code></pre>
-<div class="cell-output-display">
+<pre><code>Warning: Removed 387 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="multiple-vars_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>From this point on I’ll save the plot as <code>p</code> and just keep adding onto it so you can see the new step.</p>
 <p>We’ll see why we’re doing this in a second, but in creating this first iteration of <code>p</code> using <code>geom_line()</code> and <code>geom_point()</code>, we also want to set the <code>col</code> to match how we want the marker for steroids to appear in the legend. I’m also going to make minor edits to the <code>size</code> and <code>shape</code> of the point geometry right now, as well as the width of each timeline itself (also using the <code>size</code> argument).</p>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> </span>
@@ -386,21 +372,17 @@ ga('send', {
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>steroids_this_day, <span class="at">y=</span>id, <span class="at">col=</span><span class="st">"Steroids"</span>), <span class="at">stroke=</span><span class="dv">2</span>, <span class="at">shape=</span><span class="dv">15</span>) <span class="sc">+</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>Warning: Removed 387 rows containing missing values (geom_point).</code></pre>
-<div class="cell-output-display">
+<pre><code>Warning: Removed 387 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="multiple-vars_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>Let’s add hypoxia and death to the figure. We’ll use <code>geom_point()</code> again, and again specify legend names for the <code>col</code> and <code>shape</code> arguments, and modify the <code>size</code> and <code>stroke</code> of our point geometries.</p>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>severe_this_day, <span class="at">y=</span>id, <span class="at">col=</span><span class="st">"Severe hypoxia"</span>), <span class="at">size=</span><span class="dv">2</span>, <span class="at">stroke=</span><span class="fl">1.5</span>, <span class="at">shape=</span><span class="dv">21</span>) <span class="sc">+</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>death_this_day, <span class="at">y=</span>id, <span class="at">col=</span><span class="st">"Death"</span>), <span class="at">size=</span><span class="dv">2</span>, <span class="at">stroke=</span><span class="fl">1.5</span>, <span class="at">shape=</span><span class="dv">4</span>) </span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>Warning: Removed 387 rows containing missing values (geom_point).</code></pre>
-<pre><code>Warning: Removed 403 rows containing missing values (geom_point).</code></pre>
-<pre><code>Warning: Removed 414 rows containing missing values (geom_point).</code></pre>
-<div class="cell-output-display">
+<pre><code>Warning: Removed 387 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>Warning: Removed 403 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>Warning: Removed 414 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="multiple-vars_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>Note that we get warning messages that values with <code>NA</code> are removed. This is fine since we just created all those <code>NA</code>s! I’m going to set my options so that warnings are suppressed for future code outputs to keep this post tidy.</p>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">message=</span>F, <span class="at">warning=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
@@ -418,9 +400,7 @@ ga('send', {
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> cols, <span class="at">name=</span><span class="st">"Patient Status"</span>) </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
 <p><img src="multiple-vars_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
-</div>
 </section>
 <section id="fix-the-legend" class="level1">
 <h1>Fix the Legend</h1>
@@ -436,9 +416,7 @@ ga('send', {
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">shape =</span> shape_override) <span class="co"># modify the color legend to include shapes</span></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                      )</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>         ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
 <p><img src="multiple-vars_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>To remove the line through Death, Severe hypoxia, and Steroids in our legend, we can override the aesthetics for <code>linetype</code> with NA’s for those three labels. We will specify the default, <code>linetype=1</code>, for our intubation status color labels.</p>
 <p>We can additionally override the stroke and size arguments to correspond to our point geometries.</p>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>line_override <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="cn">NA</span>,<span class="cn">NA</span>) <span class="co"># order matches `cols`:severe, intubation (yes/no), steroids, death</span></span>
@@ -456,9 +434,7 @@ ga('send', {
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                                )</span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>             )</span>
 <span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
 <p><img src="multiple-vars_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>Ok, the challenging parts are done! Now we can make some minor aesthetic edits using <code>labs</code>, <code>scale_x_continuous()</code>, and <code>theme()</code>. I won’t go into detail on these edits because they’re fairly self-explanatory, but check out the help files if you’re unsure what these arguments in theme do!</p>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Days since hospitalization"</span>,<span class="at">y=</span><span class="st">"Patient</span><span class="sc">\n</span><span class="st">number"</span>,<span class="at">title=</span><span class="st">"Treatment Timeline for N=30 Patients"</span>) <span class="sc">+</span></span>
@@ -477,9 +453,7 @@ ga('send', {
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  ) </span>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
 <p><img src="multiple-vars_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>Hope this is helpful! As always let me know if you have any feedback or suggestions. If you’d like to copy-paste the code, here it is:</p>
 </section>
 <section id="just-the-code" class="level1">
@@ -549,41 +523,40 @@ ga('send', {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.1.3 (2022-03-10)
-Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+<pre><code>R version 4.3.1 (2023-06-16)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Big Sur 11.7
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/Detroit
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] rmarkdown_2.13  gt_0.6.0        forcats_0.5.1   stringr_1.4.1  
- [5] dplyr_1.0.9     purrr_0.3.4     readr_2.1.2     tidyr_1.2.0    
- [9] tibble_3.1.8    ggplot2_3.3.6   tidyverse_1.3.1
+ [1] rmarkdown_2.23  gt_0.9.0        lubridate_1.9.2 forcats_1.0.0  
+ [5] stringr_1.5.0   dplyr_1.1.2     purrr_1.0.1     readr_2.1.4    
+ [9] tidyr_1.3.0     tibble_3.2.1    ggplot2_3.4.2   tidyverse_2.0.0
 
 loaded via a namespace (and not attached):
- [1] lubridate_1.8.0   assertthat_0.2.1  digest_0.6.29     utf8_1.2.2       
- [5] R6_2.5.1          cellranger_1.1.0  backports_1.4.1   reprex_2.0.1     
- [9] evaluate_0.15     httr_1.4.2        pillar_1.8.1      rlang_1.0.4      
-[13] curl_4.3.2        readxl_1.4.0      rstudioapi_0.13   labeling_0.4.2   
-[17] htmlwidgets_1.5.4 bit_4.0.4         munsell_0.5.0     broom_0.8.0      
-[21] compiler_4.1.3    modelr_0.1.8      xfun_0.32         pkgconfig_2.0.3  
-[25] htmltools_0.5.2   tidyselect_1.1.2  fansi_1.0.3       crayon_1.5.1     
-[29] tzdb_0.3.0        dbplyr_2.1.1      withr_2.5.0       cabinets_0.6.0   
-[33] grid_4.1.3        jsonlite_1.8.0    gtable_0.3.0      lifecycle_1.0.1  
-[37] DBI_1.1.2         magrittr_2.0.3    scales_1.2.1      cli_3.3.0        
-[41] stringi_1.7.8     vroom_1.5.7       farver_2.1.1      fs_1.5.2         
-[45] xml2_1.3.3        ellipsis_0.3.2    generics_0.1.3    vctrs_0.4.1      
-[49] tools_4.1.3       bit64_4.0.5       glue_1.6.2        hms_1.1.1        
-[53] parallel_4.1.3    fastmap_1.1.0     yaml_2.3.5        colorspace_2.0-3 
-[57] rvest_1.0.2       knitr_1.38        haven_2.5.0      </code></pre>
+ [1] utf8_1.2.3        generics_0.1.3    xml2_1.3.5        stringi_1.7.12   
+ [5] hms_1.1.3         digest_0.6.33     magrittr_2.0.3    evaluate_0.21    
+ [9] grid_4.3.1        timechange_0.2.0  fastmap_1.1.1     jsonlite_1.8.7   
+[13] fansi_1.0.4       scales_1.2.1      cli_3.6.1         rlang_1.1.1      
+[17] crayon_1.5.2      bit64_4.0.5       munsell_0.5.0     withr_2.5.0      
+[21] yaml_2.3.7        tools_4.3.1       parallel_4.3.1    tzdb_0.4.0       
+[25] colorspace_2.1-0  curl_5.0.1        vctrs_0.6.3       R6_2.5.1         
+[29] lifecycle_1.0.3   htmlwidgets_1.6.2 bit_4.0.5         vroom_1.6.3      
+[33] pkgconfig_2.0.3   pillar_1.9.0      gtable_0.3.3      glue_1.6.2       
+[37] xfun_0.39         tidyselect_1.2.0  rstudioapi_0.14   knitr_1.43       
+[41] farver_2.1.1      htmltools_0.5.5   labeling_0.4.2    compiler_4.3.1   </code></pre>
 </div>
 </div>
 

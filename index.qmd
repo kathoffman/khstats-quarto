@@ -13,7 +13,7 @@ editor: source
 ::: {.g-col-12 .g-col-md-5}
 # Kat's Stats
 
-I am a biostatistician and incoming Biostatistics PhD student who is passionate about meaningful and reproducible medical research. Outside of my research collaborations, I enjoy writing [blog posts](https://www.khstats.com/blog) about statistics, programming, and career-related topics. For many of my posts I create [illustrations](https://www.khstats.com/art/illustrations_draw) and infographics, such as this [Visual Guides for Causal Inference](https://www.khstats.com/art/illustrations_viz) series.
+I am a biostatistician and incoming Biostatistics PhD student who is passionate about meaningful and reproducible medical research. Outside of my research collaborations, I enjoy writing [blog posts](https://www.khstats.com/blog) about statistics, programming, and career-related topics. For many of my posts I create [illustrations](https://www.khstats.com/art/illustrations_draw) and infographics, such as my [Visual Guides for Causal Inference](https://www.khstats.com/art/illustrations_viz) series.
 <!-- I use this website to store the blog posts, illustrations, and visual guides I've created over the years. -->
 <!-- I post about new content on [Twitter](https://twitter.com/kat_hoffman_), and I am always open to hearing feedback via <a href = "mailto: kathoffman.stats@gmail.com">email</a>. -->
 

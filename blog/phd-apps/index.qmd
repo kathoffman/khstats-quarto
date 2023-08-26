@@ -5,6 +5,9 @@ date: "2023-08-14"
 categories: [career]
 description: " "
 image: "img.jpg"
+twitter-card:
+  description: "Motivation for applying to Biostatistics PhD programs, details on application components, interview process, decision factors, and helpful advice I received."
+  image: "img.jpg"
 ---
 
 > A minor life update – **I applied to Biostatistics PhD programs last fall!** And, a major life update– **I’m moving to Seattle to attend the University of Washington (UW)’s program next month**. I’m super excited (and nervous) to begin. Since applications are opening up for next year, I thought I’d share what the process of deciding to apply, actually applying, and deciding on a program was like for me.
@@ -132,7 +135,7 @@ Despite the interview questions feeling straightforward to me, the days were EXH
 
 # Decision time
 
-Of the eight schools I applied to, I was accepted to five. My acceptances and rejections didn’t make a ton of sense to me either way, meaning I was surprised to receive certain acceptances while also receiving rejections from schools I thought I may have a higher chance of getting into. This supported a phrase I heard a lot, “PhD admissions are a bit of a black box.”  There are many qualified applicants, and it is hard to discern between applicants by a CV, transcript, and a statement of purpose. Different application committee members will have biases in what they’re looking for (e.g. strong mathematics background vs. research experience) and it’s best not to dwell too much on any particular outcome.
+Of the eight schools I applied to, I interviewed at five and was accepted to five.^[If you are applying and think it would be helpful to know which schools I applied to and/or what my experiences were at each, please email me.] My acceptances and rejections didn’t make a ton of sense to me either way, meaning I was surprised to receive certain acceptances while also receiving rejections from schools I thought I may have a higher chance of getting into. This supported a phrase I heard a lot, “PhD admissions are a bit of a black box.”  There are many qualified applicants, and it is hard to discern between applicants by a CV, transcript, and a statement of purpose. Different application committee members will have biases in what they’re looking for (e.g. strong mathematics background vs. research experience) and it’s best not to dwell too much on any particular outcome.
 
 It was a difficult decision for me to choose between programs. I was extremely torn over the idea of leaving the community I have in NYC. However, I could not shake the feeling that my visit to UW had felt overwhelmingly “right." After a lot of pro-con lists, I decided to go with this gut feeling.
 
@@ -179,5 +182,5 @@ Until next time!
 ---
 
 > #### *Acknowledgments*
-*Deciding to start a PhD program was a huge decision for me, and I am grateful to so many for encouragement and advice over the years. Thank you to **Iván Díaz**, who has taught me an enormous amount about causal inference over the past five years and who has been instrumental in my development as a researcher. Thank you to my former professor **Tom Braun** for convincing me not to drop out of my Biostatistics MS program during my first semester :), and for showing me the importance of empathy and communication in STEM. Thank you to **Bhramar Mukherjee** for consistently vocalizing her belief in my potential and demonstrating what being passionate about your career can look like. Finally, thank you to **Elizabeth Sweeney**, **Sam Adhikari**, **David Lenis**, **Kara Rudolph**, **Alejandro Schuler**, and **Seth Temple** for helpful conversations which contributed in various ways to information shared in this post.*
+*Deciding to start a PhD program was a huge decision for me, and I am grateful to so many for encouragement and advice over the years. Thank you to my colleague **Iván Díaz**, who has taught me an enormous amount over the past five years and who has been instrumental in my development as a researcher. Thank you also to my former professors, especially **Tom Braun** for convincing me not to drop out of my Biostatistics MS program during my first semester :), and **Bhramar Mukherjee** for consistently vocalizing her belief in my potential. Finally, thank you to **Elizabeth Sweeney**, **Sam Adhikari**, **David Lenis**, **Kara Rudolph**, **Alejandro Schuler**, and **Seth Temple** for helpful conversations which contributed in various ways to information I've shared in this post.*
 

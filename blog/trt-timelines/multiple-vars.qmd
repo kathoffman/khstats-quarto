@@ -3,7 +3,6 @@ title: "Using ggplot2 to create Treatment Timelines with Multiple Variables"
 author: "Katherine Hoffman"
 weight: 2
 date: 2022-06-08
-description: " "
 image: crop_swimmer.png 
 categories: ["programming"]
 tags: ["R","ggplot2","swimmer plots","treatment timelines","longitudinal survival"]
@@ -12,13 +11,12 @@ output:
     toc: true
     toc_float: true
     smart: false
+website:
+  twitter-card:
+    description: "An R code walkthrough for treatment timelines or 'swimmer' plots. These can help visualize treatment or measurement patterns, time-varying covariates, outcomes, and loss to follow-up in longitudinal data settings."
+    card-style: summary_large_image
+    image: "../../img/swimmer.jpg"
 ---
-
-An R code walkthrough for treatment timelines or "swimmer" plots. These can help visualize treatment or measurement patterns, time-varying covariates, outcomes, and loss to follow-up in longitudinal data settings.
-
-<!--more-->
-
-***June 8, 2022.***
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, results = "asis")

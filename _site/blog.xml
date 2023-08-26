@@ -150,9 +150,9 @@ Our department is offering a pre-application review service (PARS) initiative to
 <p>For many of my answers, I reiterated (sometimes verbatim) sentences from my statement of purpose. I also brought up different research projects I’d done over the years, depending on where the conversation went. The people interviewing you are, above all, trying to assess your fit with the program. I know it is easier said than done, but my takeaway was that it was best to just let the conversation flow. The interviews were usually 30 minutes long, so make sure you have lots of questions prepared for when the interviewer flips the question-asking to you. If you run out of questions about the program, start asking the interviewer about their research or what their favorite things to do are around the university.</p>
 <p>Despite the interview questions feeling straightforward to me, the days were EXHAUSTING, both physically and mentally. You essentially have 8am-9pm day(s) with other applicants, students, and faculty, and you have to be “on” the entire day. This experience can be really overwhelming, so go easy on yourself. I recommend writing notes down after each interview day/visit – I kept a long running note on my phone.</p>
 </section>
-<section id="decision-time" class="level1">
+<section id="decision-time" class="level1 page-columns page-full">
 <h1>Decision time</h1>
-<p>Of the eight schools I applied to, I was accepted to five. My acceptances and rejections didn’t make a ton of sense to me either way, meaning I was surprised to receive certain acceptances while also receiving rejections from schools I thought I may have a higher chance of getting into. This supported a phrase I heard a lot, “PhD admissions are a bit of a black box.” There are many qualified applicants, and it is hard to discern between applicants by a CV, transcript, and a statement of purpose. Different application committee members will have biases in what they’re looking for (e.g.&nbsp;strong mathematics background vs.&nbsp;research experience) and it’s best not to dwell too much on any particular outcome.</p>
+<div class="page-columns page-full"><p>Of the eight schools I applied to, I interviewed at five and was accepted to five.<sup>2</sup> My acceptances and rejections didn’t make a ton of sense to me either way, meaning I was surprised to receive certain acceptances while also receiving rejections from schools I thought I may have a higher chance of getting into. This supported a phrase I heard a lot, “PhD admissions are a bit of a black box.” There are many qualified applicants, and it is hard to discern between applicants by a CV, transcript, and a statement of purpose. Different application committee members will have biases in what they’re looking for (e.g.&nbsp;strong mathematics background vs.&nbsp;research experience) and it’s best not to dwell too much on any particular outcome.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;If you are applying and think it would be helpful to know which schools I applied to and/or what my experiences were at each, please email me.</p></li></div></div>
 <p>It was a difficult decision for me to choose between programs. I was extremely torn over the idea of leaving the community I have in NYC. However, I could not shake the feeling that my visit to UW had felt overwhelmingly “right.” After a lot of pro-con lists, I decided to go with this gut feeling.</p>
 <p>The major choices which affected my decision were location, overall fit of the program/coursework, current students’ relationships within and between cohorts, perceived work-life balance of students and faculty, funding/teaching/research requirements, stipend amount, and number of faculty working on what I wanted to work on (non-parametric causal inference). After I finished my visit days, I set follow-up meetings with professors and the graduate program directors from multiple schools to make sure I understood my options correctly. I made my decision to attend UW at the end of March, about two weeks before the April 15th decision deadline.</p>
 </section>
@@ -172,7 +172,7 @@ Our department is offering a pre-application review service (PARS) initiative to
 <section id="funding" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="funding">Funding</h2>
 <p>Most Biostatistics PhD programs will only admit students if they know they can fund them, i.e.&nbsp;pay for tuition and a stipend, for 4-6 years. For the programs I was admitted to, the stipend offers ranged from $36-46,000 per year, pre-tax. A PhD stipend is often described as “enough to live, but not enough to save,” although this will obviously vary by the city’s cost-of-living and the student’s personal financial situation.</p>
-<div class="page-columns page-full"><p>I said earlier that a PhD is a huge financial commitment, and the stipend is the main reason why. Even though the amount of money might <em>seem</em> like a lot (it did to me when I was going through my MS degree!), the time you’ll spend earning your PhD is undoubtedly a short-term loss of potential earnings. If you have a strong quantitative background (as most Biostatistics PhD applicants do), a conservative estimate is that this loss could accumulate to over $400,000 in pre-tax income.<sup>2</sup> This estimate is not accounting for the compounding interest you will miss out on in retirement savings (assuming you would put money towards retirement if working full-time). Although the earning potential is higher with a PhD than with an MS, it will still take some time to counteract the short-term loss.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;My calculation for this is (potential salary - stipend) * expected years in PhD.</p></li></div></div>
+<div class="page-columns page-full"><p>I said earlier that a PhD is a huge financial commitment, and the stipend is the main reason why. Even though the amount of money might <em>seem</em> like a lot (it did to me when I was going through my MS degree!), the time you’ll spend earning your PhD is undoubtedly a short-term loss of potential earnings. If you have a strong quantitative background (as most Biostatistics PhD applicants do), a conservative estimate is that this loss could accumulate to over $400,000 in pre-tax income.<sup>3</sup> This estimate is not accounting for the compounding interest you will miss out on in retirement savings (assuming you would put money towards retirement if working full-time). Although the earning potential is higher with a PhD than with an MS, it will still take some time to counteract the short-term loss.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;My calculation for this is (potential salary - stipend) * expected years in PhD.</p></li></div></div>
 <p>On that note, if you have multiple funded offers, it is worth asking each program what their policies are regarding internships, part-time work, and freelance consulting work, because all of these are supplemental sources of income. Are any of these types of work allowed or encouraged, and does participating in them affect the stipend amount you receive (beyond potential differences in tax brackets)? The answers vary by program, and sometimes even by student due to differences in funding sources.</p>
 </section>
 <section id="reaching-out-to-professors-in-advance" class="level2">
@@ -190,7 +190,7 @@ Our department is offering a pre-application review service (PARS) initiative to
 <hr>
 <blockquote class="blockquote">
 <h4 id="acknowledgments" class="anchored" data-anchor-id="looking-ahead-preparing-for-my-phd-coursework"><em>Acknowledgments</em></h4>
-<p><em>Deciding to start a PhD program was a huge decision for me, and I am grateful to so many for encouragement and advice over the years. Thank you to <strong>Iván Díaz</strong>, who has taught me an enormous amount about causal inference over the past five years and who has been instrumental in my development as a researcher. Thank you to my former professor <strong>Tom Braun</strong> for convincing me not to drop out of my Biostatistics MS program during my first semester :), and for showing me the importance of empathy and communication in STEM. Thank you to <strong>Bhramar Mukherjee</strong> for consistently vocalizing her belief in my potential and demonstrating what being passionate about your career can look like. Finally, thank you to <strong>Elizabeth Sweeney</strong>, <strong>Sam Adhikari</strong>, <strong>David Lenis</strong>, <strong>Kara Rudolph</strong>, <strong>Alejandro Schuler</strong>, and <strong>Seth Temple</strong> for helpful conversations which contributed in various ways to information shared in this post.</em></p>
+<p><em>Deciding to start a PhD program was a huge decision for me, and I am grateful to so many for encouragement and advice over the years. Thank you to my colleague <strong>Iván Díaz</strong>, who has taught me an enormous amount over the past five years and who has been instrumental in my development as a researcher. Thank you also to my former professors, especially <strong>Tom Braun</strong> for convincing me not to drop out of my Biostatistics MS program during my first semester :), and <strong>Bhramar Mukherjee</strong> for consistently vocalizing her belief in my potential. Finally, thank you to <strong>Elizabeth Sweeney</strong>, <strong>Sam Adhikari</strong>, <strong>David Lenis</strong>, <strong>Kara Rudolph</strong>, <strong>Alejandro Schuler</strong>, and <strong>Seth Temple</strong> for helpful conversations which contributed in various ways to information I’ve shared in this post.</em></p>
 </blockquote>
 
 
@@ -2187,12 +2187,7 @@ font-style: inherit;">"Distribution of CATE"</span>)</span></code></pre></div>
 
 
 
-<p>An R code walkthrough for treatment timelines or “swimmer” plots. These can help visualize treatment or measurement patterns, time-varying covariates, outcomes, and loss to follow-up in longitudinal data settings.</p>
-<!--more-->
-<p><strong><em>June 8, 2022.</em></strong></p>
-<div class="cell-output-display">
 <p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>This post walks through code to create a timeline in <code>R</code> using <code>ggplot2</code>. These types of plots can help visualize <strong>treatment or measurement patterns</strong>, <strong>time-varying covariates</strong>, <strong>outcomes</strong>, and <strong>loss to follow-up</strong> in longitudinal data settings.</p>
 <p>You can view a corresponding slide deck I made with {flipbookr} for the 2022 R/Medicine <a href="https://kathoffman.github.io/swimmer-plots/slides.html#1">[here]</a>, or you can skip to the end of this post to just see the code.</p>
 <section id="background" class="level1">
@@ -2289,9 +2284,7 @@ font-style: inherit;">+</span></span>
 <span id="cb3-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_bw</span>()</span></code></pre></div>
-<div class="cell-output-display">
 <p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>We can add our <code>steroids</code> column to the plot by adding a point designating whether <code>steroids</code> exposure was <code>1</code> (yes) or <code>0</code> (no) that day. We can see this results in points of two different colors on the lines of our plot. <a href="https://www.khstats.com/blog/trt-timelines/trt-timelines/">This can work just fine</a>! …unless you want to add another variable to the timeline.</p>
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">dat_long <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2328,9 +2321,7 @@ font-style: inherit;">+</span></span>
 <span id="cb4-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_bw</span>() </span></code></pre></div>
-<div class="cell-output-display">
 <p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
-</div>
 </section>
 <section id="modify-the-data" class="level1">
 <h1>Modify the data</h1>
@@ -2480,10 +2471,8 @@ font-style: inherit;">+</span></span>
 <span id="cb7-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_bw</span>()</span></code></pre></div>
-<pre><code>Warning: Removed 387 rows containing missing values (geom_point).</code></pre>
-<div class="cell-output-display">
+<pre><code>Warning: Removed 387 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>From this point on I’ll save the plot as <code>p</code> and just keep adding onto it so you can see the new step.</p>
 <p>We’ll see why we’re doing this in a second, but in creating this first iteration of <code>p</code> using <code>geom_line()</code> and <code>geom_point()</code>, we also want to set the <code>col</code> to match how we want the marker for steroids to appear in the legend. I’m also going to make minor edits to the <code>size</code> and <code>shape</code> of the point geometry right now, as well as the width of each timeline itself (also using the <code>size</code> argument).</p>
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">p <span class="ot" style="color: #003B4F;
@@ -2544,10 +2533,8 @@ font-style: inherit;">+</span></span>
 background-color: null;
 font-style: inherit;">theme_bw</span>()</span>
 <span id="cb9-8">p</span></code></pre></div>
-<pre><code>Warning: Removed 387 rows containing missing values (geom_point).</code></pre>
-<div class="cell-output-display">
+<pre><code>Warning: Removed 387 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>Let’s add hypoxia and death to the figure. We’ll use <code>geom_point()</code> again, and again specify legend names for the <code>col</code> and <code>shape</code> arguments, and modify the <code>size</code> and <code>stroke</code> of our point geometries.</p>
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">p <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -2607,12 +2594,10 @@ font-style: inherit;">shape=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span>) </span>
 <span id="cb11-4">p</span></code></pre></div>
-<pre><code>Warning: Removed 387 rows containing missing values (geom_point).</code></pre>
-<pre><code>Warning: Removed 403 rows containing missing values (geom_point).</code></pre>
-<pre><code>Warning: Removed 414 rows containing missing values (geom_point).</code></pre>
-<div class="cell-output-display">
+<pre><code>Warning: Removed 387 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>Warning: Removed 403 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>Warning: Removed 414 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>Note that we get warning messages that values with <code>NA</code> are removed. This is fine since we just created all those <code>NA</code>s! I’m going to set my options so that warnings are suppressed for future code outputs to keep this post tidy.</p>
 <div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">knitr<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2698,9 +2683,7 @@ font-style: inherit;">name=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Patient Status"</span>) </span>
 <span id="cb17-3">p</span></code></pre></div>
-<div class="cell-output-display">
 <p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
-</div>
 </section>
 <section id="fix-the-legend" class="level1">
 <h1>Fix the Legend</h1>
@@ -2748,9 +2731,7 @@ background-color: null;
 font-style: inherit;"># modify the color legend to include shapes</span></span>
 <span id="cb18-7">                      )</span>
 <span id="cb18-8">         ) </span></code></pre></div>
-<div class="cell-output-display">
 <p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>To remove the line through Death, Severe hypoxia, and Steroids in our legend, we can override the aesthetics for <code>linetype</code> with NA’s for those three labels. We will specify the default, <code>linetype=1</code>, for our intubation status color labels.</p>
 <p>We can additionally override the stroke and size arguments to correspond to our point geometries.</p>
 <div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">line_override <span class="ot" style="color: #003B4F;
@@ -2838,9 +2819,7 @@ font-style: inherit;">size =</span> size_override)</span>
 <span id="cb19-13">                                )</span>
 <span id="cb19-14">             )</span>
 <span id="cb19-15">p</span></code></pre></div>
-<div class="cell-output-display">
 <p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>Ok, the challenging parts are done! Now we can make some minor aesthetic edits using <code>labs</code>, <code>scale_x_continuous()</code>, and <code>theme()</code>. I won’t go into detail on these edits because they’re fairly self-explanatory, but check out the help files if you’re unsure what these arguments in theme do!</p>
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">p <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -3039,9 +3018,7 @@ background-color: null;
 font-style: inherit;">element_blank</span>()</span>
 <span id="cb20-16">  ) </span>
 <span id="cb20-17">p</span></code></pre></div>
-<div class="cell-output-display">
 <p><img src="www.khstats.com/blog/trt-timelines/multiple-vars_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
-</div>
 <p>Hope this is helpful! As always let me know if you have any feedback or suggestions. If you’d like to copy-paste the code, here it is:</p>
 </section>
 <section id="just-the-code" class="level1">
@@ -3623,41 +3600,40 @@ font-style: inherit;">element_blank</span>()</span>
 background-color: null;
 font-style: inherit;">sessionInfo</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.1.3 (2022-03-10)
-Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+<pre><code>R version 4.3.1 (2023-06-16)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Big Sur 11.7
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/Detroit
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] rmarkdown_2.13  gt_0.6.0        forcats_0.5.1   stringr_1.4.1  
- [5] dplyr_1.0.9     purrr_0.3.4     readr_2.1.2     tidyr_1.2.0    
- [9] tibble_3.1.8    ggplot2_3.3.6   tidyverse_1.3.1
+ [1] rmarkdown_2.23  gt_0.9.0        lubridate_1.9.2 forcats_1.0.0  
+ [5] stringr_1.5.0   dplyr_1.1.2     purrr_1.0.1     readr_2.1.4    
+ [9] tidyr_1.3.0     tibble_3.2.1    ggplot2_3.4.2   tidyverse_2.0.0
 
 loaded via a namespace (and not attached):
- [1] lubridate_1.8.0   assertthat_0.2.1  digest_0.6.29     utf8_1.2.2       
- [5] R6_2.5.1          cellranger_1.1.0  backports_1.4.1   reprex_2.0.1     
- [9] evaluate_0.15     httr_1.4.2        pillar_1.8.1      rlang_1.0.4      
-[13] curl_4.3.2        readxl_1.4.0      rstudioapi_0.13   labeling_0.4.2   
-[17] htmlwidgets_1.5.4 bit_4.0.4         munsell_0.5.0     broom_0.8.0      
-[21] compiler_4.1.3    modelr_0.1.8      xfun_0.32         pkgconfig_2.0.3  
-[25] htmltools_0.5.2   tidyselect_1.1.2  fansi_1.0.3       crayon_1.5.1     
-[29] tzdb_0.3.0        dbplyr_2.1.1      withr_2.5.0       cabinets_0.6.0   
-[33] grid_4.1.3        jsonlite_1.8.0    gtable_0.3.0      lifecycle_1.0.1  
-[37] DBI_1.1.2         magrittr_2.0.3    scales_1.2.1      cli_3.3.0        
-[41] stringi_1.7.8     vroom_1.5.7       farver_2.1.1      fs_1.5.2         
-[45] xml2_1.3.3        ellipsis_0.3.2    generics_0.1.3    vctrs_0.4.1      
-[49] tools_4.1.3       bit64_4.0.5       glue_1.6.2        hms_1.1.1        
-[53] parallel_4.1.3    fastmap_1.1.0     yaml_2.3.5        colorspace_2.0-3 
-[57] rvest_1.0.2       knitr_1.38        haven_2.5.0      </code></pre>
+ [1] utf8_1.2.3        generics_0.1.3    xml2_1.3.5        stringi_1.7.12   
+ [5] hms_1.1.3         digest_0.6.33     magrittr_2.0.3    evaluate_0.21    
+ [9] grid_4.3.1        timechange_0.2.0  fastmap_1.1.1     jsonlite_1.8.7   
+[13] fansi_1.0.4       scales_1.2.1      cli_3.6.1         rlang_1.1.1      
+[17] crayon_1.5.2      bit64_4.0.5       munsell_0.5.0     withr_2.5.0      
+[21] yaml_2.3.7        tools_4.3.1       parallel_4.3.1    tzdb_0.4.0       
+[25] colorspace_2.1-0  curl_5.0.1        vctrs_0.6.3       R6_2.5.1         
+[29] lifecycle_1.0.3   htmlwidgets_1.6.2 bit_4.0.5         vroom_1.6.3      
+[33] pkgconfig_2.0.3   pillar_1.9.0      gtable_0.3.3      glue_1.6.2       
+[37] xfun_0.39         tidyselect_1.2.0  rstudioapi_0.14   knitr_1.43       
+[41] farver_2.1.1      htmltools_0.5.5   labeling_0.4.2    compiler_4.3.1   </code></pre>
 </div>
 </div>
 

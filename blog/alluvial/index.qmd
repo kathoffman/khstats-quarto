@@ -22,24 +22,125 @@ tags:
 knitr::opts_chunk$set(echo = TRUE, warning=F, message=F, fig.width=8, fig.height=5)
 ```
 
-> **Alluvial** plots, or **Sankey diagrams**, can be used to show the **movement of individual units across a single variable**, such as time. In this post I'll show the steps to make an alluvial plot for a time-varying exposure and time-to-event outcome.
 
- [`ggalluvial`](https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html#:~:text=The%20%7Bggalluvial%7D%20package%20is%20a,the%20feedback%20of%20many%20users.) 
+> **Alluvial** plots, or **Sankey diagrams**, can be used to show the **movement of individual units across a single variable**, such as time. In this post I'll show the steps to make the below alluvial plot for a time-varying exposure and time-to-event outcome.
 
-In this post I'll walk through using alluvial plots to show longitudinal data. I've written a post about showing longitudinal data in treatment timelines... but sometimes treatment timelines are too granular, and we need to show multiple longitudinal variables for many units, for example, people.
 
-One way to do this is by using alluvial plots, or sankey diagrams. In an alluvial plot,,... 
 
- I'll use `ggalluvial` to show the movement of the following complexities over time:
+I've been making alluvial plots, also known as Sankey diagrams, for my research in pulmonary and critical care for a few years now. For example, in a recent manuscript, I used an alluvial plot to show:
 
-- categorical, time-varying exposure
-- time-to-event outcome
-- competing event
-- loss to follow up
+::: {.column-margin}
+![Another example of an alluvial plot I've made for a manuscript is Figure 1A of [Schenck et al. (2022)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8641830/). It shows number of patients with each Serial Organ Failure Assessment pulmonary subscore (0,1,2,3,4) using various substitution methods for missing measurements.](../../img/sofa_fig_alluvial.png)
+:::
 
-...in a cohort of severely ill COVID-19 patients
+- a time-varying categorical exposure: maximum level of respiratory support
+  - no supplemental oxygen
+  - non-invasive supplemental oxygen
+  - invasive mechanical ventilation
+- a time-to event outcome: time to acute kidney injury (AKI)
+- a censoring event: hospital discharge
+- a competing risk: death
+  
+The below plot is from [Diaz et al. (2023)]() and shows the exposure and outcome statuses over 14 days of study time in a cohort of 3,000 critically ill COVID-19 patients.
 
-These plots can be organized to look similar to Kaplan Meier plots.
+![](../../img/diaz_alluvial_ex.png)
+
+::: {.callout-note icon="false" title="What about swimmer plots?"}
+
+Another option to show time-varying exposures is [swimmer plots](), however, the space required for these figures quickly becomes impractical as the number of individual study units grows.
+:::
+
+::: {.column-margin}
+![Swimmer plot from my blog post "Swimmer Plots for multiple treatments using ggplot2."](../../img/swimmer.jpg)
+:::
+
+<!-- ::: {.column-margin} -->
+<!-- ![Another example of an alluvial plot for applied research is in [Diaz et al. (2023)](). It shows the maximum level of respiratory support (no supplemental oxygen, non-invasive supplemental oxygen, and invasive mechanical ventilation) over 14 days of study time in a population of critically ill COVID-19 patients. Outcomes of interest are also shown (hospital discharge, acute kidney injury, and death).](../../img/diaz_alluvial_ex.png) -->
+<!-- ::: -->
+
+<!-- https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8641830/ -->
+
+<!-- For example, I used them to show... -->
+
+<!--  [`ggalluvial`](https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html#:~:text=The%20%7Bggalluvial%7D%20package%20is%20a,the%20feedback%20of%20many%20users.)  -->
+
+In this post I'll walk through making alluvial plots with the `R` package [`{ggalluvial}`](https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html#:~:text=The%20%7Bggalluvial%7D%20package%20is%20a,the%20feedback%20of%20many%20users.) to display movement of study units in longitudinal data. The end product will show the movement of the following complexities over time in a simulated data set:
+
+- Time-varying exposure (Treatment vs. No treatment)
+- Time-to-event outcome
+- Competing event
+- Loss to follow up
+
+I'll show how these plots can be organized to look similar to Kaplan Meier plots.
+
+```{r eval=F}
+library(tidyverse)
+library(ggalluvial)
+max_time <- 7
+
+dat_long <- read_csv(here::here("blog/alluvial/aki_death_status.csv")) |>
+  group_by(id) |>
+  nest() |>
+  ungroup() |>
+  sample_n(1000) |>
+  unnest() |>
+  mutate(status = case_when(status == "Non-IMV supplemental oxygen" ~ "Treatment B",
+                            status == "IMV" ~ "Treatment A",
+                            status == "Deceased" ~ "Competing event",
+                            status == "Discharged" ~ "Loss to follow up",
+                            status == "AKI" ~ "Outcome",
+                            status == "No supplemental oxygen" ~ "Treatment A")) |>
+  filter(time <= max_time) |>
+  mutate(status = fct_relevel(status, "Loss to follow up"))
+
+dat_wide <-
+  dat_long |>
+  pivot_wider(id_cols = id, names_from = time, values_from = status, names_prefix = "time_") 
+
+
+vars_to_group <- paste0("time_", 0:max_time)
+type_colors <- c("#6A6599", # purple
+                  "#B24745", #red
+                   "#00A1D5", #bluea,
+                  "#374E55", # gray
+                 "#79AF97" # green
+                 )
+
+
+dat_alluvial <-
+  dat_wide |>
+  group_by_at(vars_to_group) |>
+  count() |>
+  to_lodes_form(key = "month", axes = 1:max_time) |>
+  mutate(month = factor(parse_number(as.character(month))))
+
+dat_alluvial |>
+  ggplot(
+    aes(x = month,
+        stratum = stratum, 
+        col = stratum,
+        alluvium = alluvium,
+        y=n,
+        fill = stratum)
+  ) +
+  geom_flow() +
+  geom_stratum() +
+  # scale_fill_manual(values = type_colors) +
+  # scale_color_manual(values = type_colors) +
+  theme_classic() +
+  scale_x_discrete(expand = c(0,0))+
+  scale_y_continuous(expand = c(0,0)) +
+  labs(x = "Study Month",
+       y = "Number of Patients",
+       title = "Number of Patients per Exposure-Outcome Status by Day",
+       fill = "Status",
+       col = "Status") +
+  theme(text=element_text(family="Roboto"),
+        legend.text = element_text(
+          size=9))
+
+```
+
 
 ```{r echo = F, fig.width=8, fig.height=5}
 library(tidyverse)
