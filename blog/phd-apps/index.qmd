@@ -6,8 +6,9 @@ categories: [career]
 description: " "
 image: "img.jpg"
 twitter-card:
+  card-style: summary_large_image
   description: "Motivation for applying to Biostatistics PhD programs five years after finishing my MS, with details on the application process and helpful advice I received."
-  image: "img.jpg"
+  image: "unsplash.jpg"
 ---
 
 > A minor life update – **I applied to Biostatistics PhD programs last fall!** And, a major life update– **I’m moving to Seattle to attend the University of Washington (UW)’s program next month**. I’m super excited (and nervous) to begin. Since applications are opening up for next year, I thought I’d share what the process of deciding to apply, actually applying, and deciding on a program was like for me.
@@ -26,9 +27,9 @@ I wholeheartedly believe I could have been fulfilled intellectually and financia
 
 However, I *really* love studying and teaching causal inference and statistics. Beginning around Spring 2022, I had a nagging feeling that it might be the right time in my life to deeply learn many concepts I’ve struggled to learn for years without formal coursework and training. I wanted to learn these concepts not because I particularly want to develop new methods as an academic researcher, or to make lots of money in industry, but rather because I see huge gaps in the statistical and epidemiological methods which are available and what are actually being used in applied research. I know I will feel fulfilled the rest of my career if I can work on improving these gaps, either through education, scientific communication, or mentorship.
 
-### Why'd you take five years off before starting your PhD?
+### Should you take time off before starting your PhD?
 
-The other questions I've been asked are whether it was intentional to take “so much time” off and/or whether I’m glad I waited to go back for my PhD. My answer to the first question is that, no, it wasn't intentional, because five years ago I was not planning to get a PhD. The second question is somewhat difficult to answer before I start my program (it might be really hard to go back to school, I have no idea!), but at the moment, I am super happy I took a break between finishing the MS and starting the PhD. I had plenty of time to narrow and pursue my interests without any pressure and while making good money. I also had the chance to learn work-life balance, which I wasn't great at until a few years ago. I was able to build up my application through an abundance of research and teaching opportunities, and this allowed me to be a far more competitive applicant than I would’ve been out of my MS. Finally, I learned a lot about myself! I feel so much more emotionally mature and resilient than I was five years ago.
+The other questions I've been asked are (1) whether it was intentional to take “so much time” off and/or (2) whether I’m glad I waited to go back for my PhD. My answer to the first question is that, no, it wasn't intentional, because five years ago I was not planning to get a PhD. The second question is somewhat difficult to answer before I start my program (it might be really hard to go back to school, I have no idea!), but at the moment, I am super happy I took a break between finishing the MS and starting the PhD. I had plenty of time to narrow and pursue my interests without any pressure and while making good money. I also had the chance to learn work-life balance, which I wasn't great at until a few years ago. I was able to build up my application through an abundance of research and teaching opportunities, and this allowed me to be a far more competitive applicant than I would’ve been out of my MS. Finally, I learned a lot about myself! I feel so much more emotionally mature and resilient than I was five years ago.
 
 # The Application Process
 

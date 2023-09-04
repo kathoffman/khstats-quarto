@@ -11,7 +11,7 @@ Prior to studying biostatistics, I studied biochemistry and took pre-medicine co
 
 <!-- I am particularly interested in estimating causal, rather than correlative, effects, and in methods which require as few assumptions on the underlying distribution of the data as possible (so-called semi- and non-parametric methods).  -->
 
-I created this website in 2019 to store educational materials I've created on career, programming, and statistics topics. I am always open to hearing feedback on blog posts and illustrations, and I answer questions via email whenever I find time. Outside of work and blogging, I love to play sports, hike/climb, and check out new restaurants/live entertainment.
+I created this website in 2019 to store educational materials I've created on career, programming, and statistics topics. I am always open to hearing feedback on blog posts and illustrations, and I answer questions via email whenever I find time. Outside of work and blogging, I love to play sports, hike/climb, and check out new restaurants and live entertainment.
 
 :::grid
 
