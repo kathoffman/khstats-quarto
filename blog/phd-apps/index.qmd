@@ -5,10 +5,14 @@ date: "2023-08-14"
 categories: [career]
 description: " "
 image: "img.jpg"
+# twitter-card:
+#   card-style: summary_large_image
+#   description: "Motivation for applying to Biostatistics PhD programs five years after finishing my MS, with details on the application process and helpful advice I received."
+#   image: "unsplash.jpg"
 twitter-card:
-  card-style: summary_large_image
-  description: "Motivation for applying to Biostatistics PhD programs five years after finishing my MS, with details on the application process and helpful advice I received."
-  image: "unsplash.jpg"
+    description: "Motivation for applying to Biostatistics PhD programs five years after finishing my MS, with details on the application process and helpful advice I received."
+    card-style: summary_large_image
+    image: "unsplash.jpg"
 ---
 
 > A minor life update – **I applied to Biostatistics PhD programs last fall!** And, a major life update– **I’m moving to Seattle to attend the University of Washington (UW)’s program next month**. I’m super excited (and nervous) to begin. Since applications are opening up for next year, I thought I’d share what the process of deciding to apply, actually applying, and deciding on a program was like for me.
