@@ -4,7 +4,7 @@ author: "Katherine Hoffman"
 date: "2023-08-14"
 categories: [career]
 description: " "
-image: "img.jpg"
+image: ""
 # twitter-card:
 #   card-style: summary_large_image
 #   description: "Motivation for applying to Biostatistics PhD programs five years after finishing my MS, with details on the application process and helpful advice I received."
@@ -13,6 +13,13 @@ twitter-card:
     description: "Motivation for applying to Biostatistics PhD programs five years after finishing my MS, with details on the application process and helpful advice I received."
     card-style: summary_large_image
     image: "unsplash.jpg"
+# format :
+#   html: 
+#     grid:
+#       sidebar-width: 300px
+#       body-width: 900px
+#       margin-width: 300px
+#       gutter-width: 1.5rem
 ---
 
 > A minor life update – **I applied to Biostatistics PhD programs last fall!** And, a major life update– **I’m moving to Seattle to attend the University of Washington (UW)’s program next month**. I’m super excited (and nervous) to begin. Since applications are opening up for next year, I thought I’d share what the process of deciding to apply, actually applying, and deciding on a program was like for me.
@@ -21,7 +28,7 @@ twitter-card:
 
 I was in a somewhat uncommon situation when I applied in Fall 2022 for Fall 2023 matriculation to Biostatistics PhD programs. I received my MS in Biostatistics in 2018 and have been working in academic medical research since. Because of this, I had many academic biostatistician colleagues and friends to consult about my application. Since not everyone has this opportunity, I thought I’d pass on what was told to me, especially the advice I was given on writing my statement of purpose (SOP). **I found the SOP advice so helpful that I’ve publicly shared mine in this [Google Doc](https://docs.google.com/document/d/1Ex3nUpPqc8CCWTnMKeyRUDnUF_C9GOriJBtY-47eASg/edit?usp=sharing)** and added advice I received in the comments.
 
-I am by no means an expert at what biostatistics graduate programs are looking for, and this is not a comprehensive post on applying to (biostatistics) graduate school. For more general and thorough information, I recommend Lucy Lai’s post on [applying to graduate programs](https://lucy-lai.com/blog/gradapps) and Simon Couch’s post on [applying to statistics and biostatistics graduate programs](https://www.simonpcouch.com/blog/apply-to-stats-grad-school). Nonetheless, perhaps some of you might find my experience useful, or you might be able to pass it on to a future applicant who will find it useful!
+I am by no means an expert at what biostatistics graduate programs are looking for, and this is not a comprehensive post on applying to (biostatistics) graduate school. For more general information, I recommend [**Lucy Lai**](https://lucy-lai.com/blog/gradapps)'s post on applying to graduate programs. Other excellent posts with detailed information about the biostatistics application process include those by [**Simon Couch**](https://www.simonpcouch.com/blog/apply-to-stats-grad-school) and [**Daniel Posmik**](https://posmikdc.github.io/blog/2024/biostats-phd-admit/). Nonetheless, perhaps some of you might find my experience useful, or you might be able to pass it on to a future applicant who will find it useful!
 
 ### Do you need a PhD to be successful in biostatistics?
 
@@ -53,7 +60,7 @@ From these sources, I gathered that my strengths were probably:
 
 I decided the main weakness of my application would be my lack of mathematics background. Even though I had good grades in my Biostatistics MS program, I had only the minimum math requirements to apply to that program originally (Calc I-III and linear algebra), and my Calc III and linear algebra grades were mediocre, albeit from 10 years ago.
 
-Of note, when I read posts on GradCafe, the general consensus was that U.S. citizens (which I am) have a higher chance of being admitted to programs in the U.S. I don’t have much insight on this, but I think it has to do with funding opportunities. There are many government sponsored funding opportunities which are unfortunately only available to domestic students. 
+Of note, when I read posts on GradCafe, the general consensus was that U.S. citizens (which I am) have a higher chance of being admitted to programs in the U.S. I don’t have much insight on this, but I think it depends program-to-program and has to do with funding opportunities. There are many government sponsored funding opportunities which are unfortunately only available to domestic students. This is also program-dependent, but oftentimes there are also many more international applicants, making it inherently more competitive to be an international applicant.
 
 In the end, I applied to eight schools: two schools in New York City (where I currently live) and six other schools which are consistently considered to be top programs for biostatistics. Although I'm well-aware that rankings are imperfect measures of the quality of programs and there are *many* excellent biostatistics programs that are not top-ranked, I also knew I would only consider leaving NYC and my full-time salary for a few opportunities.
 
@@ -167,6 +174,14 @@ Most Biostatistics PhD programs will only admit students if they know they can f
 I said earlier that a PhD is a huge financial commitment, and the stipend is the main reason why. Even though the amount of money might *seem* like a lot (it did to me when I was going through my MS degree!), the time you'll spend earning your PhD is undoubtedly a short-term loss of potential earnings. If you have a strong quantitative background (as most Biostatistics PhD applicants do), a conservative estimate is that this loss could accumulate to over $400,000 in pre-tax income.^[My calculation for this is (potential salary - stipend) * expected years in PhD.] This estimate is not accounting for the compounding interest you will miss out on in retirement savings (assuming you would put money towards retirement if working full-time). Although the earning potential is higher with a PhD than with an MS, it will still take some time to counteract the short-term loss.
 
 On that note, if you have multiple funded offers, it is worth asking each program what their policies are regarding internships, part-time work, and freelance consulting work, because all of these are supplemental sources of income. Are any of these types of work allowed or encouraged, and does participating in them affect the stipend amount you receive (beyond potential differences in tax brackets)? The answers vary by program, and sometimes even by student due to differences in funding sources.
+
+***[Edit August 2024]* Tidbits on funding I learned about funding after beginning my PhD program:**
+
+  (1) I learned in some cases you can actually negotiate your offer with schools if you have other offers! I have no advice to offer on this, only that I've heard it is possible.
+
+  (2) The [National Science Foundation (NSF) Graduate Student Research Fellowship](https://www.nsfgrfp.org/) is an excellent opportunity for U.S. citizens to secure their own funding prior to beginning a PhD program. If you're returning to school after prior time in graduate school, like I was, you can *only* apply for the scholarship before beginning your PhD program. The deadline is in October. If you'd like to apply, Simon Couch wrote a [blog post](https://www.simonpcouch.com/blog/2021-08-02-apply-to-nsf-grfp/) about his experience. One of my classmates came into UW with this fellowship.
+  
+  (3) Another opportunity for U.S. students is to apply for a National Institutes of Health F31 Fellowship. This is another way to secure your own funding, and there is no limit on the number of years of prior schooling to apply.
 
 ## Reaching out to professors in advance
 

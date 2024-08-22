@@ -14,13 +14,14 @@
 <title>KHstats</title>
 <link>www.khstats.com/blog.html</link>
 </image>
-<generator>quarto-1.3.450</generator>
+<generator>quarto-1.4.552</generator>
 <lastBuildDate>Mon, 14 Aug 2023 04:00:00 GMT</lastBuildDate>
 <item>
   <title>A Biostatistics PhD Application Notebook [with Statement of Purpose]</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>www.khstats.com/blog/phd-apps/index.html</link>
+  <link>www.khstats.com/blog/phd-apps/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -31,7 +32,7 @@
 <section id="background-and-faqs" class="level1">
 <h1>Background and FAQs</h1>
 <p>I was in a somewhat uncommon situation when I applied in Fall 2022 for Fall 2023 matriculation to Biostatistics PhD programs. I received my MS in Biostatistics in 2018 and have been working in academic medical research since. Because of this, I had many academic biostatistician colleagues and friends to consult about my application. Since not everyone has this opportunity, I thought I’d pass on what was told to me, especially the advice I was given on writing my statement of purpose (SOP). <strong>I found the SOP advice so helpful that I’ve publicly shared mine in this <a href="https://docs.google.com/document/d/1Ex3nUpPqc8CCWTnMKeyRUDnUF_C9GOriJBtY-47eASg/edit?usp=sharing">Google Doc</a></strong> and added advice I received in the comments.</p>
-<p>I am by no means an expert at what biostatistics graduate programs are looking for, and this is not a comprehensive post on applying to (biostatistics) graduate school. For more general and thorough information, I recommend Lucy Lai’s post on <a href="https://lucy-lai.com/blog/gradapps">applying to graduate programs</a> and Simon Couch’s post on <a href="https://www.simonpcouch.com/blog/apply-to-stats-grad-school">applying to statistics and biostatistics graduate programs</a>. Nonetheless, perhaps some of you might find my experience useful, or you might be able to pass it on to a future applicant who will find it useful!</p>
+<p>I am by no means an expert at what biostatistics graduate programs are looking for, and this is not a comprehensive post on applying to (biostatistics) graduate school. For more general information, I recommend <a href="https://lucy-lai.com/blog/gradapps"><strong>Lucy Lai</strong></a>’s post on applying to graduate programs. Other excellent posts with detailed information about the biostatistics application process include those by <a href="https://www.simonpcouch.com/blog/apply-to-stats-grad-school"><strong>Simon Couch</strong></a> and <a href="https://posmikdc.github.io/blog/2024/biostats-phd-admit/"><strong>Daniel Posmik</strong></a>. Nonetheless, perhaps some of you might find my experience useful, or you might be able to pass it on to a future applicant who will find it useful!</p>
 <section id="do-you-need-a-phd-to-be-successful-in-biostatistics" class="level3">
 <h3 class="anchored" data-anchor-id="do-you-need-a-phd-to-be-successful-in-biostatistics">Do you need a PhD to be successful in biostatistics?</h3>
 <p>A question I’m frequently asked from students and early-career biostatisticians is whether I feel a PhD is necessary because of a “ceiling” in biostatistics. My answer was and still is: a PhD is absolutely <em>not</em> necessary. In fact, for a while, I was resistant to the idea of pursuing one. It’s a huge financial and personal commitment, and it’s worth carefully examining whether it’s the right decision for you, now or ever.</p>
@@ -58,7 +59,7 @@
 <li>participating in statistical methodology papers</li>
 </ul>
 <p>I decided the main weakness of my application would be my lack of mathematics background. Even though I had good grades in my Biostatistics MS program, I had only the minimum math requirements to apply to that program originally (Calc I-III and linear algebra), and my Calc III and linear algebra grades were mediocre, albeit from 10 years ago.</p>
-<p>Of note, when I read posts on GradCafe, the general consensus was that U.S. citizens (which I am) have a higher chance of being admitted to programs in the U.S. I don’t have much insight on this, but I think it has to do with funding opportunities. There are many government sponsored funding opportunities which are unfortunately only available to domestic students.</p>
+<p>Of note, when I read posts on GradCafe, the general consensus was that U.S. citizens (which I am) have a higher chance of being admitted to programs in the U.S. I don’t have much insight on this, but I think it depends program-to-program and has to do with funding opportunities. There are many government sponsored funding opportunities which are unfortunately only available to domestic students. This is also program-dependent, but oftentimes there are also many more international applicants, making it inherently more competitive to be an international applicant.</p>
 <p>In the end, I applied to eight schools: two schools in New York City (where I currently live) and six other schools which are consistently considered to be top programs for biostatistics. Although I’m well-aware that rankings are imperfect measures of the quality of programs and there are <em>many</em> excellent biostatistics programs that are not top-ranked, I also knew I would only consider leaving NYC and my full-time salary for a few opportunities.</p>
 </section>
 <section id="application-organization" class="level2">
@@ -84,7 +85,7 @@
 <li><p>My current boss, an academic epidemiologist with strong training in statistical methods. At the time I’d only worked with them for a few months, but they seemed comfortable writing about my scientific potential.</p></li>
 <li><p>(Extra letter) My former professor<sup>1</sup> from my applied capstone course during my MS. They are late-career and well-known within the field of biostatistics. They confirmed they could speak to my discipline and aptitude for completing coursework.</p></li>
 </ol>
-<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Some schools explicitly request a LOR from a former professor.</p></li></div><p>I think this is general LOR advice, but I only asked individuals who I was pretty sure would write strong letters on my behalf. I tried to strike a balance in people who were recognizable names within the field of biostatistics and who worked with me enough to write about me. Remember to ask your letter-writers early, as well as register early with the schools’ application systems so the writers have plenty of time to upload their letters.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Some schools explicitly request a LOR from a former professor.</p></div></div><p>I think this is general LOR advice, but I only asked individuals who I was pretty sure would write strong letters on my behalf. I tried to strike a balance in people who were recognizable names within the field of biostatistics and who worked with me enough to write about me. Remember to ask your letter-writers early, as well as register early with the schools’ application systems so the writers have plenty of time to upload their letters.</p>
 </section>
 <section id="curriculum-vitae" class="level3">
 <h3 class="anchored" data-anchor-id="curriculum-vitae">Curriculum Vitae</h3>
@@ -152,8 +153,8 @@ Our department is offering a pre-application review service (PARS) initiative to
 </section>
 <section id="decision-time" class="level1 page-columns page-full">
 <h1>Decision time</h1>
-<div class="page-columns page-full"><p>Of the eight schools I applied to, I interviewed at five and was accepted to five.<sup>2</sup> My acceptances and rejections didn’t make a ton of sense to me either way, meaning I was surprised to receive certain acceptances while also receiving rejections from schools I thought I may have a higher chance of getting into. This supported a phrase I heard a lot, “PhD admissions are a bit of a black box.” There are many qualified applicants, and it is hard to discern between applicants by a CV, transcript, and a statement of purpose. Different application committee members will have biases in what they’re looking for (e.g.&nbsp;strong mathematics background vs.&nbsp;research experience) and it’s best not to dwell too much on any particular outcome.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;If you are applying and think it would be helpful to know which schools I applied to and/or what my experiences were at each, please email me.</p></li></div></div>
-<p>It was a difficult decision for me to choose between programs. I was extremely torn over the idea of leaving the community I have in NYC. However, I could not shake the feeling that my visit to UW had felt overwhelmingly “right.” After a lot of pro-con lists, I decided to go with this gut feeling.</p>
+<p>Of the eight schools I applied to, I interviewed at five and was accepted to five.<sup>2</sup> My acceptances and rejections didn’t make a ton of sense to me either way, meaning I was surprised to receive certain acceptances while also receiving rejections from schools I thought I may have a higher chance of getting into. This supported a phrase I heard a lot, “PhD admissions are a bit of a black box.” There are many qualified applicants, and it is hard to discern between applicants by a CV, transcript, and a statement of purpose. Different application committee members will have biases in what they’re looking for (e.g.&nbsp;strong mathematics background vs.&nbsp;research experience) and it’s best not to dwell too much on any particular outcome.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;If you are applying and think it would be helpful to know which schools I applied to and/or what my experiences were at each, please email me.</p></div></div><p>It was a difficult decision for me to choose between programs. I was extremely torn over the idea of leaving the community I have in NYC. However, I could not shake the feeling that my visit to UW had felt overwhelmingly “right.” After a lot of pro-con lists, I decided to go with this gut feeling.</p>
 <p>The major choices which affected my decision were location, overall fit of the program/coursework, current students’ relationships within and between cohorts, perceived work-life balance of students and faculty, funding/teaching/research requirements, stipend amount, and number of faculty working on what I wanted to work on (non-parametric causal inference). After I finished my visit days, I set follow-up meetings with professors and the graduate program directors from multiple schools to make sure I understood my options correctly. I made my decision to attend UW at the end of March, about two weeks before the April 15th decision deadline.</p>
 </section>
 <section id="miscellaneous-notes" class="level1 page-columns page-full">
@@ -172,8 +173,14 @@ Our department is offering a pre-application review service (PARS) initiative to
 <section id="funding" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="funding">Funding</h2>
 <p>Most Biostatistics PhD programs will only admit students if they know they can fund them, i.e.&nbsp;pay for tuition and a stipend, for 4-6 years. For the programs I was admitted to, the stipend offers ranged from $36-46,000 per year, pre-tax. A PhD stipend is often described as “enough to live, but not enough to save,” although this will obviously vary by the city’s cost-of-living and the student’s personal financial situation.</p>
-<div class="page-columns page-full"><p>I said earlier that a PhD is a huge financial commitment, and the stipend is the main reason why. Even though the amount of money might <em>seem</em> like a lot (it did to me when I was going through my MS degree!), the time you’ll spend earning your PhD is undoubtedly a short-term loss of potential earnings. If you have a strong quantitative background (as most Biostatistics PhD applicants do), a conservative estimate is that this loss could accumulate to over $400,000 in pre-tax income.<sup>3</sup> This estimate is not accounting for the compounding interest you will miss out on in retirement savings (assuming you would put money towards retirement if working full-time). Although the earning potential is higher with a PhD than with an MS, it will still take some time to counteract the short-term loss.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;My calculation for this is (potential salary - stipend) * expected years in PhD.</p></li></div></div>
-<p>On that note, if you have multiple funded offers, it is worth asking each program what their policies are regarding internships, part-time work, and freelance consulting work, because all of these are supplemental sources of income. Are any of these types of work allowed or encouraged, and does participating in them affect the stipend amount you receive (beyond potential differences in tax brackets)? The answers vary by program, and sometimes even by student due to differences in funding sources.</p>
+<p>I said earlier that a PhD is a huge financial commitment, and the stipend is the main reason why. Even though the amount of money might <em>seem</em> like a lot (it did to me when I was going through my MS degree!), the time you’ll spend earning your PhD is undoubtedly a short-term loss of potential earnings. If you have a strong quantitative background (as most Biostatistics PhD applicants do), a conservative estimate is that this loss could accumulate to over $400,000 in pre-tax income.<sup>3</sup> This estimate is not accounting for the compounding interest you will miss out on in retirement savings (assuming you would put money towards retirement if working full-time). Although the earning potential is higher with a PhD than with an MS, it will still take some time to counteract the short-term loss.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;My calculation for this is (potential salary - stipend) * expected years in PhD.</p></div></div><p>On that note, if you have multiple funded offers, it is worth asking each program what their policies are regarding internships, part-time work, and freelance consulting work, because all of these are supplemental sources of income. Are any of these types of work allowed or encouraged, and does participating in them affect the stipend amount you receive (beyond potential differences in tax brackets)? The answers vary by program, and sometimes even by student due to differences in funding sources.</p>
+<p><strong><em>[Edit August 2024]</em> Tidbits on funding I learned about funding after beginning my PhD program:</strong></p>
+<ol type="1">
+<li><p>I learned in some cases you can actually negotiate your offer with schools if you have other offers! I have no advice to offer on this, only that I’ve heard it is possible.</p></li>
+<li><p>The <a href="https://www.nsfgrfp.org/">National Science Foundation (NSF) Graduate Student Research Fellowship</a> is an excellent opportunity for U.S. citizens to secure their own funding prior to beginning a PhD program. If you’re returning to school after prior time in graduate school, like I was, you can <em>only</em> apply for the scholarship before beginning your PhD program. The deadline is in October. If you’d like to apply, Simon Couch wrote a <a href="https://www.simonpcouch.com/blog/2021-08-02-apply-to-nsf-grfp/">blog post</a> about his experience. One of my classmates came into UW with this fellowship.</p></li>
+<li><p>Another opportunity for U.S. students is to apply for a National Institutes of Health F31 Fellowship. This is another way to secure your own funding, and there is no limit on the number of years of prior schooling to apply.</p></li>
+</ol>
 </section>
 <section id="reaching-out-to-professors-in-advance" class="level2">
 <h2 class="anchored" data-anchor-id="reaching-out-to-professors-in-advance">Reaching out to professors in advance</h2>
@@ -199,14 +206,14 @@ Our department is offering a pre-application review service (PARS) initiative to
 
  ]]></description>
   <category>career</category>
-  <guid>www.khstats.com/blog/phd-apps/index.html</guid>
+  <guid>www.khstats.com/blog/phd-apps/</guid>
   <pubDate>Mon, 14 Aug 2023 04:00:00 GMT</pubDate>
-  <media:content url="www.khstats.com/blog/phd-apps/img.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="www.khstats.com/blog/phd-apps" medium="image"/>
 </item>
 <item>
   <title>Annotated Forest Plots using ggplot2</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>www.khstats.com/blog/forest-plots/index.html</link>
+  <link>www.khstats.com/blog/forest-plots/</link>
   <description><![CDATA[ 
 
 
@@ -1697,7 +1704,7 @@ loaded via a namespace (and not attached):
 
  ]]></description>
   <category>programming</category>
-  <guid>www.khstats.com/blog/forest-plots/index.html</guid>
+  <guid>www.khstats.com/blog/forest-plots/</guid>
   <pubDate>Mon, 12 Dec 2022 05:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/blog/forest-plots/image.png" medium="image" type="image/png" height="80" width="144"/>
 </item>
@@ -2033,7 +2040,7 @@ font-style: inherit;">"Distribution of CATE"</span>)</span></code></pre></div>
 <item>
   <title>Just my type! A beginner’s guide to building a custom mechanical keyboard</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>www.khstats.com/blog/keyboard/index.html</link>
+  <link>www.khstats.com/blog/keyboard/</link>
   <description><![CDATA[ 
 
 
@@ -2174,7 +2181,7 @@ font-style: inherit;">"Distribution of CATE"</span>)</span></code></pre></div>
 
  ]]></description>
   <category>miscellaneous</category>
-  <guid>www.khstats.com/blog/keyboard/index.html</guid>
+  <guid>www.khstats.com/blog/keyboard/</guid>
   <pubDate>Wed, 15 Jun 2022 04:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/blog/keyboard/keyboard/IMG_2826.JPG" medium="image"/>
 </item>
@@ -3881,7 +3888,7 @@ Survey weights
 <item>
   <title>How many ways are there to get a SOFA Score of 10?</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>www.khstats.com/blog/sofa/index.html</link>
+  <link>www.khstats.com/blog/sofa/</link>
   <description><![CDATA[ 
 
 
@@ -4311,7 +4318,7 @@ font-style: inherit;">arrow</span>())</span></code></pre></div>
 
  ]]></description>
   <category>programming</category>
-  <guid>www.khstats.com/blog/sofa/index.html</guid>
+  <guid>www.khstats.com/blog/sofa/</guid>
   <pubDate>Thu, 10 Feb 2022 05:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/img/sofa/sofa-crop.png" medium="image" type="image/png" height="82" width="144"/>
 </item>
@@ -12956,7 +12963,7 @@ loaded via a namespace (and not attached):
 <item>
   <title>On the Sidelines: NYC’s COVID-19 Outbreak from the Eyes of a Pulmonary and Critical Care Team’s Biostatistician</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>www.khstats.com/blog/covid/index.html</link>
+  <link>www.khstats.com/blog/covid/</link>
   <description><![CDATA[ 
 
 
@@ -13011,14 +13018,14 @@ loaded via a namespace (and not attached):
 
  ]]></description>
   <category>career</category>
-  <guid>www.khstats.com/blog/covid/index.html</guid>
+  <guid>www.khstats.com/blog/covid/</guid>
   <pubDate>Sat, 03 Oct 2020 04:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/blog/covid/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Customizable correlation plots in R</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>www.khstats.com/blog/corr-plots/index.html</link>
+  <link>www.khstats.com/blog/corr-plots/</link>
   <description><![CDATA[ 
 
 
@@ -19786,14 +19793,14 @@ font-style: inherit;">sessionInfo</span>()</span></code></pre></div>
 
  ]]></description>
   <category>programming</category>
-  <guid>www.khstats.com/blog/corr-plots/index.html</guid>
+  <guid>www.khstats.com/blog/corr-plots/</guid>
   <pubDate>Mon, 24 Aug 2020 04:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/img/corr-cover-image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
   <title>Rethinking Conditional and Iterated Expectations as Linear Regression Models</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>www.khstats.com/blog/iterated-expectations/index.html</link>
+  <link>www.khstats.com/blog/iterated-expectations/</link>
   <description><![CDATA[ 
 
 
@@ -20894,14 +20901,14 @@ font-style: inherit;">gt</span>()</span></code></pre></div>
 
  ]]></description>
   <category>statistics</category>
-  <guid>www.khstats.com/blog/iterated-expectations/index.html</guid>
+  <guid>www.khstats.com/blog/iterated-expectations/</guid>
   <pubDate>Mon, 10 Aug 2020 04:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/blog/iterated-expectations/expectations.png" medium="image" type="image/png" height="78" width="144"/>
 </item>
 <item>
   <title>Silver Linings: five coding tricks learned during Lockdown</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>www.khstats.com/blog/covid-functions/index.html</link>
+  <link>www.khstats.com/blog/covid-functions/</link>
   <description><![CDATA[ 
 
 
@@ -22042,7 +22049,7 @@ font-style: inherit;">1</span>)))</span></code></pre></div>
 
  ]]></description>
   <category>programming</category>
-  <guid>www.khstats.com/blog/covid-functions/index.html</guid>
+  <guid>www.khstats.com/blog/covid-functions/</guid>
   <pubDate>Sat, 11 Jul 2020 02:13:14 GMT</pubDate>
   <media:content url="www.khstats.com/img/covid_fx/gtsummary_tweet-crop.png" medium="image" type="image/png" height="74" width="144"/>
 </item>
@@ -25246,7 +25253,7 @@ font-style: inherit;">head</span>()</span></code></pre></div>
 <item>
   <title>Tips and Tricks from the 2019 New York R Conference</title>
   <dc:creator>Katherine Hoffman</dc:creator>
-  <link>www.khstats.com/blog/nyrconf/index.html</link>
+  <link>www.khstats.com/blog/nyrconf/</link>
   <description><![CDATA[ 
 
 
@@ -25410,7 +25417,7 @@ font-style: inherit;">#remotes::install_github("noamross/redoc")</span></span></
 
  ]]></description>
   <category>programming</category>
-  <guid>www.khstats.com/blog/nyrconf/index.html</guid>
+  <guid>www.khstats.com/blog/nyrconf/</guid>
   <pubDate>Mon, 10 Jun 2019 04:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/blog/nyrconf/redoc.png" medium="image" type="image/png" height="72" width="144"/>
 </item>
