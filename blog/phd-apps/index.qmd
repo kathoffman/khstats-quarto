@@ -4,7 +4,7 @@ author: "Katherine Hoffman"
 date: "2023-08-14"
 categories: [career]
 description: " "
-image: ""
+image: "uw_img.png"
 # twitter-card:
 #   card-style: summary_large_image
 #   description: "Motivation for applying to Biostatistics PhD programs five years after finishing my MS, with details on the application process and helpful advice I received."
@@ -12,7 +12,7 @@ image: ""
 twitter-card:
     description: "Motivation for applying to Biostatistics PhD programs five years after finishing my MS, with details on the application process and helpful advice I received."
     card-style: summary_large_image
-    image: "unsplash.jpg"
+    # image: "unsplash.jpg"
 # format :
 #   html: 
 #     grid:

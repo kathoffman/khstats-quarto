@@ -4,11 +4,11 @@ author: "Katherine Hoffman"
 date: "2020-10-03"
 categories: [career]
 description: " "
-image: "image.jpg"
+image: "img/this-will-define-your-life.jpg"
 twitter-card:
     title: "KH Stats"
     description: "New York City's Spring 2020 COVID-19 Outbreak from the Eyes of a Pulmonary and Critical Care Team's Biostatistician"
-    image: image.jpg
+    image: img/this-will-define-your-life.jpg
     creator: "@kat_hoffman_"
     card-style: summary
 ---

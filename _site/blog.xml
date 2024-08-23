@@ -208,7 +208,7 @@ Our department is offering a pre-application review service (PARS) initiative to
   <category>career</category>
   <guid>www.khstats.com/blog/phd-apps/</guid>
   <pubDate>Mon, 14 Aug 2023 04:00:00 GMT</pubDate>
-  <media:content url="www.khstats.com/blog/phd-apps" medium="image"/>
+  <media:content url="www.khstats.com/blog/phd-apps/uw_img.png" medium="image" type="image/png" height="37" width="144"/>
 </item>
 <item>
   <title>Annotated Forest Plots using ggplot2</title>
@@ -12969,6 +12969,7 @@ loaded via a namespace (and not attached):
 
 
 
+
 <p><em>This article is dedicated to the healthcare workers who risked their lives to care for patients with COVID-19. It was originally published on October 3, 2020 and has been republished by <a href="https://www.kevinmd.com/blog/2020/10/new-york-citys-covid-19-outbreak-from-the-eyes-of-a-pulmonary-and-critical-care-teams-biostatistician.html">Kevin MD</a></em>, <a href="https://sph.umich.edu/pursuit/2020posts/on-the-sidelines-new-yorks-covid-19-outbreak-from-the-eyes-of-a-biostatistician.html"><em>The Pursuit</em></a>, <a href="https://www.monroenews.com/news/20201122/kat-hoffman-new-york-city-during-pandemic"><em>The Monroe Evening News</em></a>, and <a href="https://rss.onlinelibrary.wiley.com/doi/10.1111/1740-9713.01492"><em>Significance</em></a>.</p>
 
 <p><span></span></p>
@@ -13020,7 +13021,7 @@ loaded via a namespace (and not attached):
   <category>career</category>
   <guid>www.khstats.com/blog/covid/</guid>
   <pubDate>Sat, 03 Oct 2020 04:00:00 GMT</pubDate>
-  <media:content url="www.khstats.com/blog/covid/image.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="www.khstats.com/blog/covid/img/this-will-define-your-life.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Customizable correlation plots in R</title>
