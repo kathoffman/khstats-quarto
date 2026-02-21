@@ -7,7 +7,7 @@ page-layout: article
 categories: ["statistics"]
 description: " "
 output:
-  blogdown::html_page:
+  article:
     toc: false
     toc_depth: 1
 ---

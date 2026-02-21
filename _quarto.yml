@@ -19,7 +19,7 @@ website:
     type: overlay
   navbar:
     left:
-      - about.qmd
+      # - about.qmd
       - blog.qmd
       - talks.qmd
       - sidebar:art
@@ -27,6 +27,8 @@ website:
     right:
       - icon: twitter
         href: https://twitter.com/kat_hoffman_
+      - icon: bluesky
+        href: https://bsky.app/profile/kathoffman.bsky.social
       - icon: github
         href: https://github.com/kathoffman
       - text: CV
@@ -63,24 +65,20 @@ format:
   html:
     smooth-scroll: true
     theme: [minty, styles.css]
-    highlight-style: zenburn
+    highlight-style: github
     link-external-icon: false
     link-external-newwindow: true
     citations-hover: true
     footnotes-hover: true
-    #toc: true
-    #toc-depth: 3
-    #toc-title: Contents
-    #toc-location: left
-    code-link: false
     anchor-sections: true
-    #code-tools: true
-    #code-fold: true
+    code-link: false
     code-block-bg: "#f1f3f5"
     code-block-border-left: "#31BAE9"
     reference-location: margin
     fig-cap-location: margin
-
+    grid:
+      body-width: 850px
+      margin-width: 300px
 
 editor: source
 

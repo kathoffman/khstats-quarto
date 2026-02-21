@@ -14,12 +14,13 @@
 <title>KHstats</title>
 <link>www.khstats.com/talks.html</link>
 </image>
-<generator>quarto-1.3.450</generator>
+<generator>quarto-1.8.27</generator>
 <lastBuildDate>Mon, 19 Sep 2022 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Corticosteroids in COVID-19: Optimizing Observational Research through Target Trial Emulations</title>
   <link>www.khstats.com/talks/steroids.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -40,6 +41,7 @@
 
 
 
+
 <p>The slide deck for my R/medicine talk is available <a href="https://kathoffman.github.io/swimmer-plots/slides.html">[here]</a>.</p>
 <p>A recording is on <a href="https://www.youtube.com/watch?v=s-IYmN1TBJg">Youtube</a>.</p>
 
@@ -55,6 +57,7 @@
   <title>Introduction to Ensemble Learning and Super Learning</title>
   <link>www.khstats.com/talks/ensemble.html</link>
   <description><![CDATA[ 
+
 
 
 

@@ -4,28 +4,40 @@ editor: source
 ---
 
 ::: grid
-::: {.g-col-0 .g-col-md-1}
+
+::: {.g-col-12 .g-col-md-1}
 :::
+
 ::: {.g-col-12 .g-col-md-4}
-![](img/profile-modified-wide.png)
+
+<!-- ![](img/profile-modified-wide.png) -->
+![](img/florida_headshot.jpg){width=350 style="margin-top:5rem;"}
 :::
 
-::: {.g-col-12 .g-col-md-5}
-# Kat's Stats
+::: {.g-col-12 .g-col-md-6}
 
-I am a biostatistician and Biostatistics PhD student who is passionate about meaningful and reproducible medical research. Outside of my research collaborations, I enjoy writing [blog posts](https://www.khstats.com/blog) about statistics, programming, and career-related topics. For many of my posts I create [illustrations](https://www.khstats.com/art/illustrations_draw) and infographics, such as my [Visual Guides for Causal Inference](https://www.khstats.com/art/illustrations_viz) series.
+# Katherine (Kat) Hoffman
+
+I am an MS-level biostatistician and third-year Biostatistics PhD student at the University of Washington. I am advised by Dr. Marco Carone and develop statistical methodology motivated by challenges that arise in infectious disease and vaccine research. My work is supported by Dr. Helen Chu in the Department of Medicine.
+
+I am driven by the goal of advancing rigorous, reproducible biomedical research. My primary interests lie in causal inference, particularly for settings involving time-varying or continuous exposures and time-to-event outcomes.
+
+Outside of my research collaborations, I enjoy writing [blog posts](https://www.khstats.com/blog) about statistics, programming, and career-related topics. For many of my posts I create [illustrations](https://www.khstats.com/art/illustrations_draw) and infographics, such as my [Visual Guides for Causal Inference](https://www.khstats.com/art/illustrations_viz) series.
 <!-- I use this website to store the blog posts, illustrations, and visual guides I've created over the years. -->
 <!-- I post about new content on [Twitter](https://twitter.com/kat_hoffman_), and I am always open to hearing feedback via <a href = "mailto: kathoffman.stats@gmail.com">email</a>. -->
 
-**Education:**<br>
-PhD Biostatistics \| University of Washington \| 2023-present
-MS Biostatistics \| University of Michigan \| 2018<br> BS Biochemistry \| University of Detroit Mercy \| 2015
+<!-- **Education:**<br> -->
+<!-- PhD Biostatistics \| University of Washington \| 2023-present <br> -->
+<!-- MS Biostatistics \| University of Michigan \| 2018<br> BS Biochemistry \| University of Detroit Mercy \| 2015 -->
 
-<!-- **Experience:**<br>Columbia University Medical Center \| 2022-present<br>Weill Cornell Medicine \| 2018-2022 -->
+<!-- **Professional Experience:**<br>Graduate Research Assistant | University of Washington \| 2023-present -->
+<!-- <br>Senior Data Analyst | Columbia University \| 2022-2023<br>Research Biostatistician | Weill Cornell Medicine \| 2018-2022 -->
 
 :::
 
-::: {.g-col-0 .g-col-md-2}
+
+
+::: {.g-col-12 .g-col-md-1}
 :::
 :::
 <!-- ::: -->
