@@ -1,7 +1,7 @@
 /* css styles */
 
-$primary: #a0abc7 !default;
-$secondary:     #b0c4de !default;
+$primary: #1F6F8B !default;
+$secondary: #7FB3C8 !default;
 
 /*-- scss:defaults --*/
 
@@ -60,14 +60,14 @@ color: #f8f9fa !important;
 
 
 //** Global textual link color.
-$link-color:            #7383ac !default;
-//** Link hover color set via `darken()` function.
-$link-hover-color:      darken($link-color, 15%) !default;
+$link-color: #155E75 !default;
+$link-hover-color: darken($link-color, 12%) !default;
+$code-block-bg: #F4F8FA;//** Link hover color set via `darken()` function.
 //** Link decoration.
 $link-decoration: none;
 //**$link-hover-decoration: none;
 
-$code-block-bg: #f8f9fb;
+$code-block-bg: #F4F8FA;
 
 .navbar {
   color: #FFFFFF;
