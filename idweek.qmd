@@ -1,0 +1,96 @@
+---
+title: "IDWeek 2026"
+comments: false
+toc: true
+---
+
+I am presenting recent work on **virus-virus interactions** in the prospective community cohort study CASCADIA at **IDWeek 2026** in **Washington D.C.**
+
+## MedRxiv Preprint
+
+[View or download preprint](img/hoffman-medrxiv.pdf)
+
+<iframe
+  src="img/hoffman-medrxiv.pdf"
+  width="80%"
+  height="400px"
+  style="border: none;">
+</iframe>
+
+
+## My IDWeek presentations
+
+### Friday Rapid-fire Talk [5 minutes]
+
+Rapid Fire Session Title: Rapid-Fire Poster Session: Catch Your Breath: Pulmonary Infections
+
+Rapid Fire Session Date: Friday October 23, 2026
+
+Rapid Fire Session Location: RF Arena 3
+
+Rapid Fire Session Time: 12:15 PM - 12:45 PM ET
+
+### Saturday Poster Session
+
+**(P - 428) Viral Interference in a Community-Based Cohort in Washington and Oregon, 2022-2024**
+
+Saturday, October 24, 2026
+
+12:15 PM - 1:30 PM ET
+
+
+[View or download the poster (PDF)](img/Hoffman_IDWeekPoster_Viral_Interactions.pdf)
+
+<iframe
+  src="img/Hoffman_IDWeekPoster_Viral_Interactions.pdf"
+  width="80%"
+  height="480px"
+  style="border: none;">
+</iframe>
+
+***
+
+## Other relevant presentations
+
+I recently presented this work to the University of Washington's Biostatistics Student Seminar. 
+
+[View or download the slides (PDF)](img/Hoffman CASCADIA_viral_interactions_talk Student Seminar.pdf)
+
+<iframe
+  src="img/Hoffman CASCADIA_viral_interactions_talk Student Seminar.pdf"
+  width="80%"
+  height="400px"
+  style="border: none;">
+</iframe>
+
+## Related work from the Chu Lab at IDWeek
+
+**(P - 204) Antibody Correlates of Protection Against Human Metapneumovirus Infection in Children and Adults**
+
+Friday, October 23, 2026
+
+12:15 PM - 1:30 PM ET
+
+**(P - 418) Household Transmission of Symptomatic Human Coronavirus in Washington and Oregon, United States, 2022-2024**
+
+Saturday, October 24, 2026
+
+12:15 PM - 1:30 PM ET
+
+**(P - 460) Incidence of RSV infections among participants in the CASCADIA Prospective Community Cohort Study, Oregon and Washington, United States, November 2023–March 2024**
+
+Saturday, October 24, 2026
+
+12:15 PM - 1:30 PM ET
+
+**(P - 2050) Use of Whole Genome Sequencing to Determine True Household Transmission of Respiratory Syncytial Virus**
+
+Saturday, October 24, 2026
+
+12:15 PM - 1:30 PM ET
+
+**(P - 2078) Community Epidemiology of Symptomatic Human Coronavirus Infections in the CASCADIA Cohort (2022-2024)**
+
+Saturday, October 24, 2026
+
+12:15 PM - 1:30 PM ET

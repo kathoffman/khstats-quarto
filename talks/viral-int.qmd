@@ -1,0 +1,19 @@
+---
+title: "Virus-Virus Interactions in US Adults and Children: A Prospective Cohort Study"
+categories: ["applications"]
+editor: visual
+description: " "
+date: 2026-10-23
+image: /img/viral-int.png
+---
+
+I recently presented this work to the University of Washington's Biostatistics Student Seminar. 
+
+[View or download the slides (PDF)](img/Hoffman CASCADIA_viral_interactions_talk Student Seminar.pdf)
+
+<iframe
+  src="/img/Hoffman CASCADIA_viral_interactions_talk Student Seminar.pdf"
+  width="100%"
+  height="500px"
+  style="border: none;">
+</iframe>

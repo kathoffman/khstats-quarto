@@ -3,6 +3,26 @@ page-layout: full
 editor: source
 ---
 
+```{=html}
+<style>
+.news dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 1.5rem;
+  row-gap: 0.75rem;
+  margin: 0;
+}
+.news dt {
+  font-weight: 600;
+  color: var(--bs-secondary-color, #6c757d);
+  font-variant-numeric: tabular-nums;
+}
+.news dd {
+  margin: 0;
+}
+</style>
+```
+
 ::: grid
 
 ::: {.g-col-12 .g-col-md-1}
@@ -18,72 +38,41 @@ editor: source
 
 # Katherine (Kat) Hoffman
 
-I am an MS-level biostatistician and third-year Biostatistics PhD student at the University of Washington. I am advised by Dr. Marco Carone and develop statistical methodology motivated by challenges that arise in infectious disease and vaccine research. My work is supported by Dr. Helen Chu in the Department of Medicine.
+I am an MS-level biostatistician and fourth-year Biostatistics PhD student at the University of Washington. I am advised by [**Dr. Marco Carone**](https://faculty.washington.edu/mcarone/about.html) and develop statistical methodology motivated by challenges that arise in infectious disease and vaccine research. My work is supported by [**Dr. Helen Chu**](https://aid.uw.edu/people/faculty/infectious-diseases/helen-chu) in the Department of Medicine.
 
 I am driven by the goal of advancing rigorous, reproducible biomedical research. My primary interests lie in causal inference, particularly for settings involving time-varying or continuous exposures and time-to-event outcomes.
 
 Outside of my research collaborations, I enjoy writing [blog posts](https://www.khstats.com/blog) about statistics, programming, and career-related topics. For many of my posts I create [illustrations](https://www.khstats.com/art/illustrations_draw) and infographics, such as my [Visual Guides for Causal Inference](https://www.khstats.com/art/illustrations_viz) series.
-<!-- I use this website to store the blog posts, illustrations, and visual guides I've created over the years. -->
-<!-- I post about new content on [Twitter](https://twitter.com/kat_hoffman_), and I am always open to hearing feedback via <a href = "mailto: kathoffman.stats@gmail.com">email</a>. -->
-
-<!-- **Education:**<br> -->
-<!-- PhD Biostatistics \| University of Washington \| 2023-present <br> -->
-<!-- MS Biostatistics \| University of Michigan \| 2018<br> BS Biochemistry \| University of Detroit Mercy \| 2015 -->
-
-<!-- **Professional Experience:**<br>Graduate Research Assistant | University of Washington \| 2023-present -->
-<!-- <br>Senior Data Analyst | Columbia University \| 2022-2023<br>Research Biostatistician | Weill Cornell Medicine \| 2018-2022 -->
 
 :::
 
+:::
 
+::: grid
 
 ::: {.g-col-12 .g-col-md-1}
 :::
+
+::: {.g-col-12 .g-col-md-10 .news}
+
+## Recent news
+
+Oct 2026
+:   Presented *"Viral Interference in US Adults and Children"* at IDWeek 2026 in Washington D.C. ([slides, poster](idweek.qmd))
+
+Oct 2026
+:   Paper *"Interactions between respiratory viruses in US adults and children: a prospective cohort study"* posted on *MedRxiv*. 
+<!-- ([preprint]()) -->
+
+Jul 2026
+:   Paper *"Immune correlates of risk for SARS-CoV-2 infection in children: a prospective, community-based cohort study"* published in *Nature Communications*. ([article](https://www.nature.com/articles/s41467-026-74684-8))
+
+Feb 2026
+:   Attended the Isaac Newton Institute for Mathematical Sciences as a visiting scholar in the program, *Causal inference: From theory to practice and back again*.
+
+Aug 2024
+:   Awarded the American Statistical Association's Gertrude M. Cox Scholarship.
+
 :::
-<!-- ::: -->
 
-<!-- ## Featured blog posts -->
-
-<!-- ::: grid -->
-<!-- ::: {.g-col-12 .g-col-md-4} -->
-<!-- ### Statistics -->
-
-<!-- -   [An Introduction to Modified Treatment Policies](/blog/lmtp/lmtp.html) -->
-<!-- -   [Building Statistical Intuition For Optimal Treatment Rules](/blog/otr/otr.html) -->
-<!-- -   [Illustrated Guide to Targeted Maximum Likelihood Estimation (TMLE)](/blog/tmle/tutorial.html) -->
-<!-- ::: -->
-
-<!-- ::: {.g-col-12 .g-col-md-4} -->
-<!-- ### Programming -->
-
-<!-- -   [Treatment Timelines for Multiple Variables with {ggplot2}](/blog/trt-timelines/multiple-vars.html) -->
-<!-- -   [Annotated Effect Size Plots with {ggplot2}](/blog/forest-plots/) -->
-<!-- -   [Customizable Correlation Plots in R](/blog/corr-plots) -->
-<!-- ::: -->
-
-<!-- ::: {.g-col-12 .g-col-md-4} -->
-<!-- ### Career -->
-
-<!-- -   [A Day in the Life of a Biostatistician](/blog/ditl) -->
-<!-- -   [Stats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician](/blog/ditl/ditl-followup.html) -->
-<!-- -   [On the Sidelines: NYC's COVID-19 Surge through the eyes of a pulmonary and critical care team's biostatistician](/blog/covid) -->
-<!-- ::: -->
-<!-- ::: -->
-
-<!-- ## Featured illustrations -->
-
-
-<!-- ::: grid -->
-<!-- ::: {.g-col-12 .g-col-md-4} -->
-<!-- ![](img/ident-vs-est.png) -->
-<!-- ::: -->
-
-<!-- ::: {.g-col-12 .g-col-md-4} -->
-<!-- ![](img/TMLE.jpg) -->
-<!-- ::: -->
-<!-- ::: {.g-col-12 .g-col-md-4} -->
-<!-- ![](img/lmtp/mtp_summary.jpg) -->
-<!-- ::: -->
-
-<!-- ::: -->
-
+:::

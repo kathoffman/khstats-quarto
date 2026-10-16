@@ -4,14 +4,14 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nA Biostatistics PhD Application Notebook [with Statement of Purpose]\n\n\n\n\n\nAug 14, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnnotated Forest Plots using ggplot2\n\n\n\n\n\nDec 12, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuilding Statistical Intuition for Optimal Treatment Rules\n\n\n\n\n\nAug 10, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nJust my type! A beginner’s guide to building a custom mechanical keyboard\n\n\n\n\n\nJun 15, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nUsing ggplot2 to create Treatment Timelines with Multiple Variables\n\n\n\n\n\nJun 8, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nAn Illustrated Guide to Modified Treatment Policies, Part 1: Introduction and Motivation\n\n\n\n\n\nApr 7, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow many ways are there to get a SOFA Score of 10?\n\n\n\n\n\nFeb 10, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nBecoming a Biostatistician: FAQs for ‘A Day in the Life of a Biostatistician’\n\n\n\n\n\nJan 15, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\nAn Illustrated Guide to TMLE, Part III: Properties, Theory, and Learning More\n\n\n\n\n\nDec 12, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nAn Illustrated Guide to TMLE, Part II: The Algorithm\n\n\n\n\n\nDec 11, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nAn Illustrated Guide to TMLE, Part I: Introduction and Motivation\n\n\n\n\n\nDec 10, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nBecome a Superlearner! An Illustrated Guide to Superlearning\n\n\n\n\n\nOct 11, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nOn the Sidelines: NYC’s COVID-19 Outbreak from the Eyes of a Pulmonary and Critical Care Team’s Biostatistician\n\n\n\n\n\nOct 3, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nCustomizable correlation plots in R\n\n\n\n\n\nAug 24, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nRethinking Conditional and Iterated Expectations as Linear Regression Models\n\n\n\n\n\nAug 10, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nSilver Linings: five coding tricks learned during Lockdown\n\n\n\n\n\nJul 11, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nPatient Treatment Timelines for Longitudinal Survival Data\n\n\n\n\n\nNov 28, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\nStats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician\n\n\n\n\n\nOct 6, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\nUsing {sl3} for superlearning\n\n\n\n\n\nSep 13, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\nTips and Tricks from the 2019 New York R Conference\n\n\n\n\n\n\nJun 10, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Day in the Life of a Biostatistician\n\n\n\n\n\n\nApr 16, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Condensed Key for A Visual Guide to Targeted Maximum Likelihood Estimation (TMLE)\n\n\n\n\n\n\nJan 9, 2019\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nA Biostatistics PhD Application Notebook [with Statement of Purpose]\n\n\n\n\n\nAug 14, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnnotated Forest Plots using ggplot2\n\n\n\n\n\nDec 12, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuilding Statistical Intuition for Optimal Treatment Rules\n\n\n\n\n\nAug 10, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nJust my type! A beginner’s guide to building a custom mechanical keyboard\n\n\n\n\n\nJun 15, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nUsing ggplot2 to create Treatment Timelines with Multiple Variables\n\n\n\n\n\nJun 8, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nAn Illustrated Guide to Modified Treatment Policies, Part 1: Introduction and Motivation\n\n\n\n\n\nApr 7, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow many ways are there to get a SOFA Score of 10?\n\n\n\n\n\nFeb 10, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nBecoming a Biostatistician: FAQs for ‘A Day in the Life of a Biostatistician’\n\n\n\n\n\nJan 15, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\nAn Illustrated Guide to TMLE, Part III: Properties, Theory, and Learning More\n\n\n\n\n\nDec 12, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nAn Illustrated Guide to TMLE, Part II: The Algorithm\n\n\n\n\n\nDec 11, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nAn Illustrated Guide to TMLE, Part I: Introduction and Motivation\n\n\n\n\n\nDec 10, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nBecome a Superlearner! An Illustrated Guide to Superlearning\n\n\n\n\n\nOct 10, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nOn the Sidelines: NYC’s COVID-19 Outbreak from the Eyes of a Pulmonary and Critical Care Team’s Biostatistician\n\n\n\n\n\nOct 3, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nCustomizable correlation plots in R\n\n\n\n\n\nAug 24, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nRethinking Conditional and Iterated Expectations as Linear Regression Models\n\n\n\n\n\nAug 10, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nSilver Linings: five coding tricks learned during Lockdown\n\n\n\n\n\nJul 10, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nPatient Treatment Timelines for Longitudinal Survival Data\n\n\n\n\n\nNov 28, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\nStats on Drugs: An Interview with a Pharmaceutical CRO Biostatistician\n\n\n\n\n\nOct 6, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\nUsing {sl3} for superlearning\n\n\n\n\n\nSep 12, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\nTips and Tricks from the 2019 New York R Conference\n\n\n\n\n\n\nJun 10, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Day in the Life of a Biostatistician\n\n\n\n\n\n\nApr 16, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Condensed Key for A Visual Guide to Targeted Maximum Likelihood Estimation (TMLE)\n\n\n\n\n\n\nJan 9, 2019\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pubs/pubs_methods.html",
     "href": "pubs/pubs_methods.html",
     "title": "Methods",
     "section": "",
-    "text": "Statistical and Epidemiological Research Methods Manuscripts and Pre-prints\n\n1. Katherine L. Hoffman, Edward J. Schenck, Michael J. Satlin, William Whalen, Di Pan, Nicholas Williams, Iván Díaz. Comparison of a Target Trial Emulation Framework vs Cox Regression to Estimate the Association of Corticosteroids With COVID-19 Mortality. JAMA Network Open. 2022;5(10):e2234425-e2234425. doi:10.1001/jamanetworkopen.2022.34425\n\n\n2. Katherine L Hoffman, Diego Salazar-Barreto, Nicholas Williams, Kara E Rudolph, Iván Dı́az. Introducing longitudinal modified treatment policies: A unified framework for studying complex exposures. arXiv preprint arXiv:230409460. Published online 2023. https://arxiv.org/pdf/2304.09460.pdf\n\n\n3. Iván Díaz, Katherine L Hoffman, Nima S. Hejazi. Causal survival analysis under competing risks using longitudinal modified treatment policies. Published online 2022. doi:10.48550/ARXIV.2202.03513\n\n\n4. Iván Díaz, Nicholas Williams, Katherine L. Hoffman, Edward J. Schenck. Nonparametric Causal Effects Based on Longitudinal Modified Treatment Policies. Journal of the American Statistical Association. Published online September 2021:1-16. doi:10.1080/01621459.2021.1955691\n\n\n5. Brian Gilbert, Katherine L. Hoffman, Nicholas Williams, Kara E. Rudolph, Edward J. Schenck, Iván Díaz. Identification and estimation of mediational effects of longitudinal modified treatment policies. Published online 2024. https://arxiv.org/abs/2403.09928",
+    "text": "Statistical and Epidemiological Research Methods Manuscripts and Pre-prints\n\n1. Katherine L. Hoffman, Edward J. Schenck, Michael J. Satlin, William Whalen, Di Pan, Nicholas Williams, Iván Díaz. Comparison of a Target Trial Emulation Framework vs Cox Regression to Estimate the Association of Corticosteroids With COVID-19 Mortality. JAMA Network Open. 2022;5(10):e2234425-e2234425. doi:10.1001/jamanetworkopen.2022.34425\n\n\n2. Katherine L. Hoffman, Diego Salazar-Barreto, Nicholas T. Williams, Kara E. Rudolph, Iván Díaz. Studying continuous, time-varying, and/or complex exposures using longitudinal modified treatment policies. Epidemiology. 2024;35(5):667-675. doi:10.1097/EDE.0000000000001764\n\n\n3. Iván Díaz, Katherine L. Hoffman, Nima S. Hejazi. Causal survival analysis under competing risks using longitudinal modified treatment policies. Lifetime Data Analysis. 2024;30(1):213-236. doi:10.1007/s10985-023-09606-7\n\n\n4. Iván Díaz, Nicholas Williams, Katherine L. Hoffman, Edward J. Schenck. Nonparametric Causal Effects Based on Longitudinal Modified Treatment Policies. Journal of the American Statistical Association. Published online September 2021:1-16. doi:10.1080/01621459.2021.1955691\n\n\n5. Brian Gilbert, Katherine L. Hoffman, Nicholas Williams, Kara E. Rudolph, Edward J. Schenck, Iván Díaz. Identification and estimation of mediational effects of longitudinal modified treatment policies. Biostatistics. 2025;26(1):kxaf031. doi:10.1093/biostatistics/kxaf031",
     "crumbs": [
       "Statistics Methods"
     ]
@@ -276,6 +276,20 @@
     "text": "Alternative packages to superlearn\nOther packages freely available in R that can be used to implement the superlearner algorithm include sl3 (an update to the original Superlearner package), h2o, and caretEnsemble. I previously wrote a brief demo on using sl3 for an NYC R-Ladies demo.\nThe authors of tidymodels – a suite of packages for machine learning including recipes, parsnip, and rsample – recently came out with a new package to perform superlearning/stacking called stacks. Prior to this, Alex Hayes wrote a blog post on using tidymodels infrastructure to implement superlearning."
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Katherine (Kat) Hoffman",
+    "section": "",
+    "text": "I am an MS-level biostatistician and fourth-year Biostatistics PhD student at the University of Washington. I am advised by Dr. Marco Carone and develop statistical methodology motivated by challenges that arise in infectious disease and vaccine research. My work is supported by Dr. Helen Chu in the Department of Medicine.\nI am driven by the goal of advancing rigorous, reproducible biomedical research. My primary interests lie in causal inference, particularly for settings involving time-varying or continuous exposures and time-to-event outcomes.\nOutside of my research collaborations, I enjoy writing blog posts about statistics, programming, and career-related topics. For many of my posts I create illustrations and infographics, such as my Visual Guides for Causal Inference series."
+  },
+  {
+    "objectID": "index.html#recent-news",
+    "href": "index.html#recent-news",
+    "title": "Katherine (Kat) Hoffman",
+    "section": "Recent news",
+    "text": "Recent news\n\nOct 2026\n\nPresented “Viral Interference in US Adults and Children” at IDWeek 2026 in Washington D.C. (slides, poster)\n\nOct 2026\n\nPaper “Interactions between respiratory viruses in US adults and children: a prospective cohort study” posted on MedRxiv. \n\nJul 2026\n\nPaper “Immune correlates of risk for SARS-CoV-2 infection in children: a prospective, community-based cohort study” published in Nature Communications. (article)\n\nFeb 2026\n\nAttended the Isaac Newton Institute for Mathematical Sciences as a visiting scholar in the program, Causal inference: From theory to practice and back again.\n\nAug 2024\n\nAwarded the American Statistical Association’s Gertrude M. Cox Scholarship."
+  },
+  {
     "objectID": "talks/swimmers.html",
     "href": "talks/swimmers.html",
     "title": "Swimmer plots for longitudinal data using ggplot2",
@@ -304,7 +318,7 @@
     "href": "talks.html",
     "title": "Talks",
     "section": "",
-    "text": "Selected slide decks are shown below. A full listing of talks is available on my CV.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nCorticosteroids in COVID-19: Optimizing Observational Research through Target Trial Emulations\n\n\n\n\n\n\n\nSep 19, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nSwimmer plots for longitudinal data using ggplot2\n\n\n\n\n\n\n\nAug 25, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Ensemble Learning and Super Learning\n\n\n\n\n\n\n\nJan 19, 2021\n\n\n\n\n\nNo matching items"
+    "text": "Selected slide decks are shown below. A full listing of talks is available on my CV.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nVirus-Virus Interactions in US Adults and Children: A Prospective Cohort Study\n\n\n\n\n\n\n\nOct 23, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nCorticosteroids in COVID-19: Optimizing Observational Research through Target Trial Emulations\n\n\n\n\n\n\n\nSep 19, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nSwimmer plots for longitudinal data using ggplot2\n\n\n\n\n\n\n\nAug 25, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Ensemble Learning and Super Learning\n\n\n\n\n\n\n\nJan 19, 2021\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "archive/publications.html",
@@ -362,11 +376,46 @@
     "text": "Slide deck for a talk corresponding to the paper Comparison of a Target Trial Emulation Framework to Cox Regression to Estimate the Effect of Corticosteroids on COVID-19 Mortality (Hoffman et al. 2022) is available [here]."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Katherine (Kat) Hoffman",
+    "objectID": "talks/viral-int.html",
+    "href": "talks/viral-int.html",
+    "title": "Virus-Virus Interactions in US Adults and Children: A Prospective Cohort Study",
     "section": "",
-    "text": "Katherine (Kat) Hoffman\nI am an MS-level biostatistician and third-year Biostatistics PhD student at the University of Washington. I am advised by Dr. Marco Carone and develop statistical methodology motivated by challenges that arise in infectious disease and vaccine research. My work is supported by Dr. Helen Chu in the Department of Medicine.\nI am driven by the goal of advancing rigorous, reproducible biomedical research. My primary interests lie in causal inference, particularly for settings involving time-varying or continuous exposures and time-to-event outcomes.\nOutside of my research collaborations, I enjoy writing blog posts about statistics, programming, and career-related topics. For many of my posts I create illustrations and infographics, such as my Visual Guides for Causal Inference series."
+    "text": "I recently presented this work to the University of Washington’s Biostatistics Student Seminar.\nView or download the slides (PDF)"
+  },
+  {
+    "objectID": "idweek.html",
+    "href": "idweek.html",
+    "title": "IDWeek 2026",
+    "section": "",
+    "text": "I am presenting recent work on virus-virus interactions in the prospective community cohort study CASCADIA at IDWeek 2026 in Washington D.C."
+  },
+  {
+    "objectID": "idweek.html#medrxiv-preprint",
+    "href": "idweek.html#medrxiv-preprint",
+    "title": "IDWeek 2026",
+    "section": "MedRxiv Preprint",
+    "text": "MedRxiv Preprint\nView or download preprint"
+  },
+  {
+    "objectID": "idweek.html#my-idweek-presentations",
+    "href": "idweek.html#my-idweek-presentations",
+    "title": "IDWeek 2026",
+    "section": "My IDWeek presentations",
+    "text": "My IDWeek presentations\n\nFriday Rapid-fire Talk [5 minutes]\nRapid Fire Session Title: Rapid-Fire Poster Session: Catch Your Breath: Pulmonary Infections\nRapid Fire Session Date: Friday October 23, 2026\nRapid Fire Session Location: RF Arena 3\nRapid Fire Session Time: 12:15 PM - 12:45 PM ET\n\n\nSaturday Poster Session\n(P - 428) Viral Interference in a Community-Based Cohort in Washington and Oregon, 2022-2024\nSaturday, October 24, 2026\n12:15 PM - 1:30 PM ET\nView or download the poster (PDF)"
+  },
+  {
+    "objectID": "idweek.html#other-relevant-presentations",
+    "href": "idweek.html#other-relevant-presentations",
+    "title": "IDWeek 2026",
+    "section": "Other relevant presentations",
+    "text": "Other relevant presentations\nI recently presented this work to the University of Washington’s Biostatistics Student Seminar.\nView or download the slides (PDF)"
+  },
+  {
+    "objectID": "idweek.html#related-work-from-the-chu-lab-at-idweek",
+    "href": "idweek.html#related-work-from-the-chu-lab-at-idweek",
+    "title": "IDWeek 2026",
+    "section": "Related work from the Chu Lab at IDWeek",
+    "text": "Related work from the Chu Lab at IDWeek\n(P - 204) Antibody Correlates of Protection Against Human Metapneumovirus Infection in Children and Adults\nFriday, October 23, 2026\n12:15 PM - 1:30 PM ET\n(P - 418) Household Transmission of Symptomatic Human Coronavirus in Washington and Oregon, United States, 2022-2024\nSaturday, October 24, 2026\n12:15 PM - 1:30 PM ET\n(P - 460) Incidence of RSV infections among participants in the CASCADIA Prospective Community Cohort Study, Oregon and Washington, United States, November 2023–March 2024\nSaturday, October 24, 2026\n12:15 PM - 1:30 PM ET\n(P - 2050) Use of Whole Genome Sequencing to Determine True Household Transmission of Respiratory Syncytial Virus\nSaturday, October 24, 2026\n12:15 PM - 1:30 PM ET\n(P - 2078) Community Epidemiology of Symptomatic Human Coronavirus Infections in the CASCADIA Cohort (2022-2024)\nSaturday, October 24, 2026\n12:15 PM - 1:30 PM ET"
   },
   {
     "objectID": "blog/sl/sl.html",
@@ -555,7 +604,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Prior to studying biostatistics, I studied biochemistry and took pre-medicine courses at the University of Detroit Mercy. During the summers, I cared for hospitalized patients as a nurse technician in Michigan and worked at a children’s health clinic in rural Nicaragua. These experiences, combined with a love for mathematics, have made me passionate about improving the state of medical and public health research through education in statistics.\nI received my MS in Biostatistics from the University of Michigan in 2018, and I worked as a biostatistician in academic medical research in New York City from 2018-2023. In Fall 2023, I began the PhD program in Biostatistics at the University of Washington. For the first two years, I took coursework in statistical theory, and I am currently working on my dissertation.\nI am particularly interested in statistical and epidemiological methods to estimate causal, rather than correlative, effects, and in methods which require as few assumptions on the underlying distribution of the data as possible. I especially enjoy thinking about how to study treatments or exposures which may vary over a study period.\nI created this website in 2019 to store educational materials I’ve created on career, programming, and statistics topics. I am always open to hearing feedback on blog posts and illustrations, and I answer questions via email whenever I find time."
+    "text": "I am a fourth-year Biostatistics PhD student at the University of Washington. I earned an M.S. in Biostatistics from the University of Michigan and a B.S. in Biochemistry from the University of Detroit Mercy. Prior to beginning my PhD program, I worked for five years as an MS-level collaborative research biostatistician at Weill Cornell Medicine and Columbia University.\nI have extensive experience in study design, data management, statistical analyses, interpretation and visualization of results, and manuscript writing. I have applied these skills to many biomedical and public health domains, most notably to the transmission of respiratory diseases, acute and chronic pulmonary diseases, critical care populations, substance use disorders, and Alzheimer’s disease.\nPrior to beginning my career in biostatistics, I studied biochemistry and took pre-medicine courses at the University of Detroit Mercy. During the summers, I cared for hospitalized patients as a nurse technician in Michigan and worked at a children’s health clinic in rural Nicaragua. All of these experiences, combined with a love for mathematics, have made me passionate about improving the state of medical and public health research through education in statistics.\n\nI am particularly interested in statistical and epidemiological methods to estimate causal, rather than correlative, effects, and in methods which require as few assumptions on the underlying distribution of the data as possible. I am especially interested in how we may better study treatments or exposures which may vary over time. My first two years at the University of Washington were largely spent on coursework and my research assistantship position with Dr. Helen Chu. I am now in the dissertation stage of my PhD, and I am working with Dr. Marco Carone on developing statistical methodology with applications to infectious disease and vaccine research.\nLast but not least, I enjoy teaching and have served as the teaching assistant for several M.S. Biostatistics and Data Science courses, including causal inference, healthy policy research, data science, longitudinal methods, and introductory biostatistics courses. I created this website in 2019 to store educational materials I’ve created on career, programming, and statistics topics. I am always open to hearing feedback on blog posts and illustrations, and I answer questions via email whenever I find time."
   },
   {
     "objectID": "pubs/pubs_applications.html",

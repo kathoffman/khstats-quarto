@@ -57,6 +57,12 @@ color: #f8f9fa !important;
  -webkit-transition: all 0.2s ease-in-out;
  -moz-transition: all 0.2s ease-in-out;
  transition: all 0.2s ease-in-out; }
+ 
+ .narrow-content {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 //** Global textual link color.
@@ -81,3 +87,4 @@ a.sidebar-item-text.sidebar-link {
 .navbar li.dropdown-header {
   text-transform: none;
 }
+

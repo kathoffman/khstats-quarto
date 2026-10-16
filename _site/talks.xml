@@ -15,7 +15,28 @@
 <link>www.khstats.com/talks.html</link>
 </image>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Sun, 18 Sep 2022 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 23 Oct 2026 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Virus-Virus Interactions in US Adults and Children: A Prospective Cohort Study</title>
+  <link>www.khstats.com/talks/viral-int.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I recently presented this work to the University of Washington’s Biostatistics Student Seminar.</p>
+<p><a href="img/Hoffman CASCADIA_viral_interactions_talk Student Seminar.pdf">View or download the slides (PDF)</a></p>
+<iframe src="../img/Hoffman CASCADIA_viral_interactions_talk Student Seminar.pdf" width="100%" height="500px" style="border: none;">
+</iframe>
+
+
+
+ ]]></description>
+  <category>applications</category>
+  <guid>www.khstats.com/talks/viral-int.html</guid>
+  <pubDate>Fri, 23 Oct 2026 07:00:00 GMT</pubDate>
+  <media:content url="www.khstats.com/img/viral-int.png" medium="image" type="image/png" height="80" width="144"/>
+</item>
 <item>
   <title>Corticosteroids in COVID-19: Optimizing Observational Research through Target Trial Emulations</title>
   <link>www.khstats.com/talks/steroids.html</link>
@@ -31,7 +52,7 @@
  ]]></description>
   <category>statistics</category>
   <guid>www.khstats.com/talks/steroids.html</guid>
-  <pubDate>Sun, 18 Sep 2022 23:00:00 GMT</pubDate>
+  <pubDate>Mon, 19 Sep 2022 07:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/img/steroids-title.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
@@ -50,7 +71,7 @@
  ]]></description>
   <category>programming</category>
   <guid>www.khstats.com/talks/swimmers.html</guid>
-  <pubDate>Wed, 24 Aug 2022 23:00:00 GMT</pubDate>
+  <pubDate>Thu, 25 Aug 2022 07:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/img/graphics/rmed-screenshot.png" medium="image" type="image/png" height="78" width="144"/>
 </item>
 <item>
@@ -68,7 +89,7 @@
  ]]></description>
   <category>statistics</category>
   <guid>www.khstats.com/talks/ensemble.html</guid>
-  <pubDate>Tue, 19 Jan 2021 00:00:00 GMT</pubDate>
+  <pubDate>Tue, 19 Jan 2021 08:00:00 GMT</pubDate>
   <media:content url="www.khstats.com/img/wcm-cc-bagging.png" medium="image" type="image/png" height="90" width="144"/>
 </item>
 </channel>

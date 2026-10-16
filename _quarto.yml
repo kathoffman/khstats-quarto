@@ -19,11 +19,12 @@ website:
     type: overlay
   navbar:
     left:
-      # - about.qmd
+     # - about.qmd
       - blog.qmd
       - talks.qmd
       - sidebar:art
       - sidebar:research
+      - idweek.qmd
     right:
       - icon: twitter
         href: https://twitter.com/kat_hoffman_
