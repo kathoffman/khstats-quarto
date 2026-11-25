@@ -40,7 +40,7 @@ I'm particularly interested in assumption-lean causal inference in the presence 
 
 ::: {.home-card}
 
-[![](img/ident-vs-est.png){.card-image fig-alt="Identification versus estimation in causal inference"}](pubs/pubs_methods.qmd)
+[![](img/nature-comms-schematic.png){.card-image fig-alt="Figure from Hoffman et al. (2026)"}](publications.qmd)
 
 ::: {.card-content}
 
