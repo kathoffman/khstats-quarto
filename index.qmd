@@ -9,18 +9,19 @@ editor: source
 
 ::: {.hero-intro}
 
-[ BIOSTATISTICS · CAUSAL INFERENCE · INFECTIOUS DISEASE]{.eyebrow}
+<!-- [CAUSAL INFERENCE · RESPIRATORY AND INFECTIOUS DISEASES]{.eyebrow} -->
+<!-- [KATHERINE L. HOFFMAN]{.eyebrow} -->
+[]{.eyebrow}
 
 # Kat Hoffman
 
 [Statistics, biomedical research, and education.]{.hero-tagline}
 
-I'm a biostatistician and PhD student at the University
-of Washington, developing statistical methodology
-motivated by challenges in infectious disease and
-vaccine research.
+I am a biostatistician and PhD student at the University of Washington, developing statistical methodology motivated by challenges in respiratory infectious disease and vaccine research.
 
-I'm particularly interested in assumption-lean causal inference in the presence of time-varying and/or continuous exposures and time-to-event and/or composite outcomes.
+I'm particularly interested in assumption-lean causal inference using temporally complex observational data. I am also committed to statistical education, scientific translation, and advancing replicability in biomedical research.
+
+<!-- I'm particularly interested in assumption-lean causal inference using complex observational data, such as delayed entry, time-varying treatments, time-to-event outcomes, and composite exposures or outcomes. -->
 
 [Curriculum vitae](static/hoffman_cv_nov26.pdf){.btn .btn-outline-primary}
 
@@ -44,7 +45,7 @@ I'm particularly interested in assumption-lean causal inference in the presence 
 
 ::: {.card-content}
 
-### [Research](pubs/pubs_methods.qmd)
+### [Research](publications.qmd)
 
 Statistical methodology and applications in biomedical research.
 

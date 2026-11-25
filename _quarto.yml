@@ -4,17 +4,15 @@ project:
 website:
   title: "khstats."
   favicon: img/climbing_comic.jpg
-  image: img/climbing_comic.jpg
-  description: "Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc."
+  image: img/climbing-route-overlay.png
   twitter-card:
-    image: img/climbing_comic.jpg
-    description: "Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc."
+    image: img/climbing-route-overlay.png
     card-style: summary
   open-graph: true
   page-navigation: true
   google-analytics: "UA-136820093-1"
   site-url: "https://www.khstats.com"
-
+  
   search:
     location: navbar
     type: overlay

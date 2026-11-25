@@ -21,8 +21,8 @@ disease research group.
 
 I'm broadly interested in developing statistical methodology
 motivated by challenges in biomedical research. My current research
-interests include causal inference, complex and time-varying
-exposures, time-to-event outcomes, and applications in infectious
+interests include semiparametric causal inference, time-varying and continuous
+exposures, time-to-event and composite outcomes, and applications in infectious
 disease and vaccine research.
 
 [Curriculum vitae](static/hoffman_cv_nov26.pdf){.btn .btn-outline-primary}
@@ -42,9 +42,8 @@ disease and vaccine research.
 
 I grew up in a small town in Michigan and studied
 biochemistry at the University of Detroit Mercy, where I also
-played Division I softball. During and after college, I took care of patients as a nurse assistant at a hospital in Michigan in a health clinic in rural Nicaragua.
-I went on to pursue a Master's of Science
-in Biostatistics at the University of Michigan.
+played Division I softball. During and after college, I took care of patients as a nurse assistant at a hospital in Michigan and at a health clinic in rural Nicaragua.
+I went on to pursue a Master's of Science in Biostatistics at the University of Michigan.
 
 After earning my MS and before beginning my PhD, I spent five years working as a
 collaborative biostatistician in New York City, first at Weill
@@ -111,7 +110,7 @@ BS in Biochemistry
 
 I started KHstats to share my first blog post, [*A Day in the Life of a Biostatistician*](blog/ditl/), which has since reached several thousand readers. I discovered biostatistics almost by chance, and I wanted to help others explore and better understand biostatistics as a career.
 
-Since that first post, I've expanded KHstats to include statistical tutorials, R programming tips, educational illustrations, and occasional reflections on working as a biostatistician. I enjoy teaching and finding intuitive ways to explain complex statistical concepts, both to deepen my own understanding and to make these topics more accessible to others.
+After that first post, I expanded KHstats to include statistical tutorials, R programming tips, educational illustrations, and occasional reflections on working as a biostatistician. I enjoy teaching and finding intuitive ways to explain complex statistical concepts, both to deepen my own understanding and to make these topics more accessible to others.
 
 [→ Explore my illustrations](art/illustrations_viz.qmd)
 
