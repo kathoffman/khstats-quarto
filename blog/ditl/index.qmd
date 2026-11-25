@@ -31,11 +31,15 @@ I ultimately lucked out during a conversation with a professor during my senior 
 
 I feel wholeheartedly that although I would have enjoyed my life as an MD/PA/RN, biostatistics is the right career for me. So, in honor of my confused younger self, and as a way of paying it forward, I've dedicated this topic for my very first blog post!
 
-<p style="text-align: center; padding-bottom: 15px; padding-left: 15px; float: right; display: block;">
+<div class="post-clear"></div>
 
-<img src="/img/ditl/nursing.jpg" width="300"/><br />[Hanging out with my mom (an RN of 41 years and counting!) after a particularly exhausting night shift as a nurse technician.]{style="font-size: small;"}
-
-</p>
+<div class="post-photo-right">
+  <img src="/img/ditl/nursing.jpg" alt="After a night shift">
+  <span class="post-photo-caption">
+    Hanging out with my mom (an RN of 41 years and counting!)
+    after a particularly exhausting night shift as a nurse technician.
+  </span>
+</div>
 
 A disclaimer: what follows is a day in the life of one masters-level, academic research-focused biostatistician and I cannot make claims about the careers of statisticians in industry or pharmaceuticals or hospitals or government. In addition, here's a bit more background before I get into the granular details of my work:
 
@@ -45,7 +49,11 @@ A disclaimer: what follows is a day in the life of one masters-level, academic r
 
 So, without further ado! An average day\*\*:
 
-<img src="/img/ditl/desk.png" width="500px" height="375px"/>
+<div class="post-clear"></div>
+
+<div class="post-photo-left">
+  <img src="/img/ditl/desk.png" alt="My desk at work">
+</div>
 
 **9:30AM** - I arrive at my office and spend a few minutes chatting with my coworkers. To set the scene for you, I have a fairly spacious cubicle within a group of five other cubicles. I sit next to another research biostatistician, two health informatics professionals, and two clinical trial grant specialists. I'm actually not completely sure what that last pair's title is, but I know their primary task is to make sure several multi-million dollar clinical trial grants stay funded (woah). Everyone I sit by is young and goofy, but very driven, making for a fun office environment.
 
@@ -53,7 +61,9 @@ So, without further ado! An average day\*\*:
 
 **10:00AM** - I open a manuscript draft for a paper I received yesterday. It's from a group of residents and medical students I worked with a few months ago. Their study looks at the association between blood levels of a certain biomarker and the time to death in cancer patients. My role in the analysis was to examine the associations between several biomarkers such as phosphorus, phosphate, and calcitriol. I then fit a regression model, just like y=mx+b, but with way more math. For this analysis I used a model for when your y is a time to an event (death, in this case), fittingly called a survival model. After adjusting for confounding factors like age, which affects both tumor progression and biomarker levels, there was a significant association between the biomarker and time to death in cancer patients.
 
-```{r, fig.height=4}
+<div class="post-clear"></div>
+
+```{r, fig.height=4, fig.align="center", out.width="80%"}
 library(survival)
 library(survminer)
 temp <- ggsurvplot(
@@ -86,19 +96,25 @@ The researchers have asked for my assistance in writing the methods section. The
 
 **11:00AM** - This week's meeting is pretty straightforward. We discuss how we can improve one of the neurologist's National Institute of Health grants from a statistics standpoint. The statistical methods for this project can get complicated, in part because we are looking at the brain scans of women in different stages of menopause over time, and we have to consider age as a confounding factor. We want to convey to the reviewers of our grant how we plan to do this. Since this is a methods-focused meeting, I mostly listen and take notes along with two neurology research coordinators that also attend these weekly meetings. When the meeting concludes I have for less work than usual - I only need to make a few graphs representing our study design and past results for inclusion to the grant.
 
-![](https://raw.githubusercontent.com/kathoffman/khoffman_website/master/content/blog/katalan.gif)
-
+<div class="post-photo-left">
+  <img src="https://raw.githubusercontent.com/kathoffman/khoffman_website/master/content/blog/katalan.gif"
+       alt="My coworker and me">
+</div>
 **12:00PM** - I head to lunch with a group of coworkers. They have gotten food from a nearby salad place, and we sit in one of our favorite buildings on campus and eat together. Our jokes oscillate from incredibly nerdy to pretty stupid. One of my coworkers points out that our hair is styled the same way for the third day in a row.
 
 **12:45PM** - I get back to my desk and type up my handwritten notes from the neurology meeting and put them in that project's "Notes" folder. It's important to me that I keep track of all my meetings electronically - I fear losing my notebooks or someone else having to decipher my cursive should I ever have to pass off a project.
 
-<img src="/img/ditl/notes.jpg" width="50%" style="float:right; padding-left:25px"/>
+<div class="post-photo-right">
+  <img src="/img/ditl/notes.jpg" alt="Handwritten research notes">
+</div>
 
 **1:00PM** - I start to make a plan for a different analysis I'm working on. This project is something new for me - it involves a protein assay and data for 1000+ different protein expression levels. The researcher I'm working with wants to know which proteins are over- and under-expressed in people with a specific autoimmune disorder and a certain type of lung disease. I've recently spoken to some bioinformaticians and have a clearer idea of the analysis I need to do. I draw out a little map of the code organization I think would be the most efficient for this analysis and open up Rstudio.
 
 **1:30PM** - I get to work writing up functions, which is just a fancy programming way of saying your code can do the same thing to multiple data sets (or subsets of patients, as is the case of this protein expression study I'm doing). Sometimes it takes a bit longer to write my functions than it would if I were to just copy and paste my code several different times, but the final code is much more readable and less prone to errors. By the time I'm done working, I have some interactive plots showing the significant and non-significant results. When you hover over them, they show what protein corresponds to which point on the graph. They look like this, except this is not the real data we used in her study.
 
-![](https://raw.githubusercontent.com/kathoffman/khoffman_website/master/content/blog/volcano.gif)
+<div class="post-clear"></div>
+
+![](https://raw.githubusercontent.com/kathoffman/khoffman_website/master/content/blog/volcano.gif){width=100% fig-align="center"}
 
 I use Rstudio and its amazing Rmarkdown tool to craft a draft report to the researcher, and I save it with today's date in my "Reports" folder for that project. The report so far includes unadjusted and adjusted models of all the protein expressions using very small p-values to account for the 1000+ statistical comparisons we're making. I show the results in various plots such as the one above (called a "volcano plot" for its shape).
 
@@ -110,15 +126,23 @@ I close the report; I will continue working on this analysis tomorrow.
 
 **5:00PM** - The doctors arrive and, after introductions, we talk about the current stage of the project and what the goals are. We discuss the timing of starting chart reviews of patients, how we will upload the information to a database efficiently, and what might be the best way to condense the highly detailed genetics data into useful information for an analysis. Our solution will likely involve a series of iterative searches through the columns containing genetic information.
 
-<img src="/img/ditl/data_dict.png" width="500" height="250" />
-
-*The start of a database I am helping researchers build to collect data for their study. This is not my favorite part of my job, but it is a crucial step for good scientific research.*
+<div class="post-photo-center">
+  <img src="/img/ditl/data_dict.png" alt="Research data dictionary">
+  <span class="post-photo-caption">
+    The start of a database I am helping researchers build
+    to collect data for their study. This is not my favorite
+    part of my job, but it is a crucial step for good
+    scientific research.
+  </span>
+</div>
 
 **6:00PM** - The meeting ends, and I go back to my desk to record more handwritten notes. I log the hours I spent on each project that day into Toggl, which is the time-tracking application our team uses. This is so we know how much time we're spending on each project, and is as much for our own sake as it is anyone else's. I update my to-do list, which is a giant color-coded excel spreadsheet, and eat a few chocolate covered raisins as my reward for a productive day.
 
 **6:30PM** - I leave work! I typically have some kind of activity, like happy hour (see my cute cubicle buddies below), a sports game, or Spanish class that I'm heading off to. Some days I attend coding workshops hosted by groups such as R-ladies. On nights when I'm feeling especially nerdy, I'll go home and read a statistics paper or sift through the #rstats tips on twitter.
 
-<img src="/img/ditl/coworkers.jpg" width="550px" height="375px"/>
+<div class="post-photo-center">
+  <img src="/img/ditl/coworkers.jpg" alt="My coworkers">
+</div>
 
 ...So, there you have it. One average daily experience as an early career masters-level statistician. All in all, I have an excellent work-life balance and overall work environment. Every day I get to learn more about science, medicine, statistics, and the intersection of these wonderful ideas. Although it varies quite a bit, approximately 10% of each day involves writing, 20% interacting with other researchers, and the rest of it is spent thinking critically and finding answers to problems I am passionate about.
 

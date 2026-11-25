@@ -5,20 +5,20 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>KHstats</title>
-<link>www.khstats.com/talks.html</link>
-<atom:link href="www.khstats.com/talks.xml" rel="self" type="application/rss+xml"/>
+<title>khstats.</title>
+<link>https://www.khstats.com/talks.html</link>
+<atom:link href="https://www.khstats.com/talks.xml" rel="self" type="application/rss+xml"/>
 <description>Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc.</description>
 <image>
-<url>www.khstats.com/img/climbing_comic.jpg</url>
-<title>KHstats</title>
-<link>www.khstats.com/talks.html</link>
+<url>https://www.khstats.com/img/climbing_comic.jpg</url>
+<title>khstats.</title>
+<link>https://www.khstats.com/talks.html</link>
 </image>
 <generator>quarto-1.8.27</generator>
 <lastBuildDate>Fri, 23 Oct 2026 07:00:00 GMT</lastBuildDate>
 <item>
   <title>Virus-Virus Interactions in US Adults and Children: A Prospective Cohort Study</title>
-  <link>www.khstats.com/talks/viral-int.html</link>
+  <link>https://www.khstats.com/talks/viral-int.html</link>
   <description><![CDATA[ 
 
 
@@ -33,13 +33,13 @@
 
  ]]></description>
   <category>applications</category>
-  <guid>www.khstats.com/talks/viral-int.html</guid>
+  <guid>https://www.khstats.com/talks/viral-int.html</guid>
   <pubDate>Fri, 23 Oct 2026 07:00:00 GMT</pubDate>
-  <media:content url="www.khstats.com/img/viral-int.png" medium="image" type="image/png" height="80" width="144"/>
+  <media:content url="https://www.khstats.com/img/viral-int.png" medium="image" type="image/png" height="80" width="144"/>
 </item>
 <item>
   <title>Corticosteroids in COVID-19: Optimizing Observational Research through Target Trial Emulations</title>
-  <link>www.khstats.com/talks/steroids.html</link>
+  <link>https://www.khstats.com/talks/steroids.html</link>
   <description><![CDATA[ 
 
 
@@ -51,13 +51,13 @@
 
  ]]></description>
   <category>statistics</category>
-  <guid>www.khstats.com/talks/steroids.html</guid>
+  <guid>https://www.khstats.com/talks/steroids.html</guid>
   <pubDate>Mon, 19 Sep 2022 07:00:00 GMT</pubDate>
-  <media:content url="www.khstats.com/img/steroids-title.png" medium="image" type="image/png" height="81" width="144"/>
+  <media:content url="https://www.khstats.com/img/steroids-title.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
   <title>Swimmer plots for longitudinal data using ggplot2</title>
-  <link>www.khstats.com/talks/swimmers.html</link>
+  <link>https://www.khstats.com/talks/swimmers.html</link>
   <description><![CDATA[ 
 
 
@@ -70,13 +70,13 @@
 
  ]]></description>
   <category>programming</category>
-  <guid>www.khstats.com/talks/swimmers.html</guid>
+  <guid>https://www.khstats.com/talks/swimmers.html</guid>
   <pubDate>Thu, 25 Aug 2022 07:00:00 GMT</pubDate>
-  <media:content url="www.khstats.com/img/graphics/rmed-screenshot.png" medium="image" type="image/png" height="78" width="144"/>
+  <media:content url="https://www.khstats.com/img/graphics/rmed-screenshot.png" medium="image" type="image/png" height="78" width="144"/>
 </item>
 <item>
   <title>Introduction to Ensemble Learning and Super Learning</title>
-  <link>www.khstats.com/talks/ensemble.html</link>
+  <link>https://www.khstats.com/talks/ensemble.html</link>
   <description><![CDATA[ 
 
 
@@ -88,9 +88,9 @@
 
  ]]></description>
   <category>statistics</category>
-  <guid>www.khstats.com/talks/ensemble.html</guid>
+  <guid>https://www.khstats.com/talks/ensemble.html</guid>
   <pubDate>Tue, 19 Jan 2021 08:00:00 GMT</pubDate>
-  <media:content url="www.khstats.com/img/wcm-cc-bagging.png" medium="image" type="image/png" height="90" width="144"/>
+  <media:content url="https://www.khstats.com/img/wcm-cc-bagging.png" medium="image" type="image/png" height="90" width="144"/>
 </item>
 </channel>
 </rss>

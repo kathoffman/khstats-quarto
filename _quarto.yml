@@ -2,70 +2,69 @@ project:
   type: website
 
 website:
-  title: "KHstats"
+  title: "khstats."
   favicon: img/climbing_comic.jpg
   image: img/climbing_comic.jpg
   description: "Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc."
-  twitter-card: 
+  twitter-card:
     image: img/climbing_comic.jpg
     description: "Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc."
     card-style: summary
   open-graph: true
   page-navigation: true
   google-analytics: "UA-136820093-1"
-  site-url: "www.khstats.com"
-  search: 
+  site-url: "https://www.khstats.com"
+
+  search:
     location: navbar
     type: overlay
+
   navbar:
     left:
-     # - about.qmd
-      - blog.qmd
-      - talks.qmd
+      - text: "about"
+        href: about.qmd
+      - text: "research"
+        menu:
+          - text: "Selected Publications"
+            icon: journal-text
+            href: publications.qmd
+          - text: "Talks"
+            icon: easel
+            href: talks.qmd
+          - text: "Google Scholar"
+            icon: mortarboard
+            href: https://scholar.google.com/citations?hl=en&user=73RvTUoAAAAJ
       - sidebar:art
-      - sidebar:research
-      - idweek.qmd
+      - text: "writing"
+        file: blog.qmd
+
     right:
-      - icon: twitter
-        href: https://twitter.com/kat_hoffman_
-      - icon: bluesky
-        href: https://bsky.app/profile/kathoffman.bsky.social
+      - text: "CV"
+        file: static/KatherineHoffman_CV_Feb2026_v2.pdf
       - icon: github
         href: https://github.com/kathoffman
-      - text: CV
-        file: /static/KatherineHoffman_CV_Feb2026_v2.pdf
+      - icon: linkedin
+        href: https://www.linkedin.com/in/katherinelhoffman/
+        aria-label: LinkedIn
+      - icon: bluesky
+        href: https://bsky.app/profile/kathoffman.bsky.social
       - icon: envelope
         href: mailto:kathoffman.stats@gmail.com
 
-
   sidebar:
-    - id: research
-      collapse-level: 1
-      foreground: dark
-      title: "Research"
-      style: "docked"
-      background: light
-      contents:
-        - text: "Statistics Methods"
-          file: pubs/pubs_methods.qmd
-        - text: "Clinical Applications"
-          file: pubs/pubs_applications.qmd
-        - text: "Google Scholar Profile"
-          href: https://scholar.google.com/citations?user=73RvTUoAAAAJ&hl=en
     - id: art
       collapse-level: 1
-      title: "Illustrations"
+      title: "illustrations"
       style: "docked"
       contents:
         - text: "Visual Guides for Causal Inference"
           file: art/illustrations_viz.qmd
         - text: "Educational Drawings and Comics"
           file: art/illustrations_draw.qmd
-
 format:
   html:
     smooth-scroll: true
-    theme: [minty, styles.css]
+    theme: [default, theme.scss]
     highlight-style: github
     link-external-icon: false
     link-external-newwindow: true

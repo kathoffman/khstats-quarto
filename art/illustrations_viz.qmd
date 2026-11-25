@@ -1,30 +1,101 @@
 ---
 title: "Visual Guides for Causal Inference"
 page-layout: full
+lightbox: true
+toc: false
 ---
 
-This visual guides for causal inference series describes the estimation procedure for a mean difference in outcomes under a binary exposure for four estimation methods: g-computation, inverse probability weighting, one-step estimation (coming soon!), and targeted maximum likelihood estimation. The latter two methods are doubly robust and can be used with machine learning regressions such as the ensemble learning method superlearning.
+::: {.illustration-container}
 
-These guides are available on [Github](https://github.com/kathoffman/causal-inference-visual-guides) as pdfs and high resolution jpgs. They are free to use under a CC-BY license. Please provide attribution (Kat Hoffman).
+::: {.gallery-intro}
+
+An illustrated introduction to causal inference and statistical
+estimation. These guides are designed to build intuition for
+statistical methods that can otherwise feel mathematically
+intimidating.
+
+[High-resolution downloads on GitHub](https://github.com/kathoffman/causal-inference-visual-guides){.btn .btn-outline-primary}
+
+:::
+
+## Estimation methods
+
+The estimation guides consider a mean difference in outcomes
+under a binary exposure. Under causal assumptions, this quantity is known as the Average Treatment Effect (ATE).
+
+
+::: {.illustration-grid}
+
+::: {.illustration-card}
+
+![](../img/gcomp.jpeg){.gallery-image fig-alt="Illustrated guide to g-computation"}
 
 ### G-computation
 
-::: grid
-::: {.g-col-12 .g-col-md-8}
-![](../img/gcomp.jpeg)
+Estimating causal effects through outcome regression and
+standardization.
+
+[View full image](../img/gcomp.jpeg){.gallery-link}
+
 :::
 
-::: {.g-col-12 .g-col-md-8}
-### Inverse Probability Weighting
+::: {.illustration-card}
 
-![](../img/ipw.jpeg)
+![](../img/ipw.jpeg){.gallery-image fig-alt="Illustrated guide to inverse probability weighting"}
+
+### Inverse probability weighting
+
+Reweighting observations using estimated treatment probabilities.
+
+[View full image](../img/ipw.jpeg){.gallery-link}
+
 :::
+
+::: {.illustration-card}
+
+![](../img/tmle.jpeg){.gallery-image fig-alt="Illustrated guide to targeted maximum likelihood estimation"}
+
+### Targeted maximum likelihood estimation
+
+A doubly robust estimation approach that combines initial
+outcome and treatment models through a targeting step.
+
+[View full image](../img/tmle.jpeg){.gallery-link}
+
 :::
 
-### Targeted Maximum Likelihood Estimation
+:::
 
-![](../img/tmle.jpeg)
+## Statistical learning
 
-### Superlearning
+::: {.illustration-grid}
 
-![](../img/superlearning.jpeg)
+::: {.illustration-card}
+
+![](../img/superlearning.jpeg){.gallery-image fig-alt="Illustrated guide to Super Learning"}
+
+### Super Learning
+
+An ensemble learning method that combines predictions from
+a library of candidate learners.
+
+[View full image](../img/superlearning.jpeg){.gallery-link}
+
+:::
+
+:::
+
+::: {.illustration-license}
+
+**Using these illustrations**
+
+These guides are freely available under a CC BY license.
+You are welcome to share and adapt them with attribution
+to Kat Hoffman.
+
+PDFs and high-resolution images are available in the
+[GitHub repository](https://github.com/kathoffman/causal-inference-visual-guides).
+
+:::
+
+:::

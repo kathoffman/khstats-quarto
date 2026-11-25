@@ -1,0 +1,873 @@
+/*-- scss:defaults --*/
+
+// ==================================================
+// COLOR PALETTE
+// ==================================================
+
+$limestone: #F5F3EC;
+$forest:    #354C42;
+$moss:      #828D65;
+$sandstone: #B3A087;
+$slate:     #383F40;
+
+$dark-moss:  #626E50;
+$dark-sand:  #826B52;
+$light-moss: #E0E5D7;
+$light-sand: #E9DFD1;
+
+// Main colors
+
+$body-bg: $limestone;
+$body-color: $slate;
+$primary: $forest;
+$secondary: $moss;
+$headings-color: $forest;
+
+// Links
+
+$link-color: $forest;
+$link-hover-color: $dark-sand;
+$link-decoration: none;
+
+// Navigation
+
+$navbar-bg: $limestone;
+$navbar-fg: $forest;
+$navbar-hl: $dark-sand;
+
+// Sidebar
+
+$sidebar-bg: $limestone;
+$sidebar-fg: $slate;
+$sidebar-hl: $forest;
+
+// Borders
+
+$border-color: #D8D8CD;
+$border-radius: 0.5rem;
+
+// Code
+
+$code-block-bg: #EEF2F1;
+$code-color: $forest;
+
+// Footer
+
+$footer-bg: $limestone;
+$footer-fg: $slate;
+
+// Typography
+
+$font-family-sans-serif: "Source Sans 3", sans-serif;
+$headings-font-family: "Lora", Georgia, serif;
+
+$font-size-base: 1.05rem;
+$headings-font-weight: 500;
+$line-height-base: 1.65;
+
+
+/*-- scss:rules --*/
+
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap");
+
+
+// ==================================================
+// GENERAL TYPOGRAPHY
+// ==================================================
+
+h1, h2, h3 {
+  color: $primary;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  border-bottom: none;
+  margin-top: 2rem;
+}
+
+p {
+  margin-bottom: 1.2rem;
+}
+
+a {
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: $link-hover-color;
+}
+
+.narrow-content {
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+figcaption {
+  color: $dark-moss;
+  font-size: 0.85rem;
+}
+
+::selection {
+  background: $light-moss;
+  color: $forest;
+}
+
+
+// ==================================================
+// NAVIGATION
+// ==================================================
+
+.navbar {
+  border-bottom: 1px solid $border-color;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.navbar-brand {
+  font-family: "Lora", Georgia, serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.04em;
+}
+
+.sidebar-item-text.sidebar-link {
+  color: $body-color;
+}
+
+
+// ==================================================
+// HOMEPAGE
+// ==================================================
+
+.home-container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 3rem;
+  padding: 2rem 0 3rem;
+}
+
+.hero-intro {
+  min-width: 0;
+}
+
+.hero-intro h1 {
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  margin-top: 0.5rem;
+  line-height: 1.15;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: $dark-moss;
+}
+
+.hero-tagline {
+  font-family: "Lora", Georgia, serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: $dark-moss;
+}
+
+.hero-photo img {
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 0.8rem;
+  margin: 0 auto;
+}
+
+.hero-photo p {
+  margin: 0;
+}
+
+
+// ==================================================
+// HOMEPAGE CARDS
+// ==================================================
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 3rem;
+}
+
+.home-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: #E7EAE0;
+  border: 1px solid $border-color;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.home-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(53, 76, 66, 0.08);
+}
+
+.home-card h3 {
+  margin-top: 0;
+}
+
+.home-card > p {
+  margin-bottom: 0;
+}
+
+.home-card .card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 3px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem 0 0;
+}
+
+.card-content h3 {
+  font-size: 1.3rem;
+  margin: 0 0 0.75rem;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.card-content p:last-child {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.card-link {
+  color: $primary;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+
+// ==================================================
+// BLOG AND QUARTO LISTINGS
+// ==================================================
+
+.quarto-grid-item img.thumbnail-image {
+  object-fit: contain !important;
+  object-position: center;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.quarto-grid-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(53, 76, 66, 0.08);
+}
+
+
+// ==================================================
+// SELECTED PUBLICATIONS
+// ==================================================
+
+.publication {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid $border-color;
+}
+
+.publication h3 {
+  font-family: $font-family-sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+  margin-top: 0;
+  margin-bottom: 0.3rem;
+}
+
+.publication h3 a {
+  color: $primary;
+  text-decoration: none;
+}
+
+.publication h3 a:hover {
+  color: $link-hover-color;
+  text-decoration: underline;
+}
+
+.publication p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-bottom: 0.2rem;
+}
+
+.publication p:last-child {
+  margin-bottom: 0;
+}
+
+.publication-journal {
+  color: $dark-moss;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.publication strong {
+  font-weight: 700;
+}
+
+.publication:last-child {
+  border-bottom: none;
+}
+
+.publication .anchorjs-link {
+  display: none;
+}
+
+
+// ==================================================
+// ILLUSTRATION GALLERIES
+// ==================================================
+
+.illustration-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.gallery-intro {
+  max-width: 750px;
+  margin-bottom: 2rem;
+}
+
+.gallery-intro p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.gallery-intro .btn {
+  font-size: 0.85rem;
+}
+
+
+// Gallery layout
+
+.illustration-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
+  margin: 1.5rem 0 3rem;
+  align-items: start;
+}
+
+.comic-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+
+// Individual illustrations
+
+.illustration-card {
+  min-width: 0;
+  background: transparent;
+  padding-bottom: 1rem;
+}
+
+.illustration-card .gallery-image {
+  display: block;
+  width: 100%;
+  height: 350px;
+  object-fit: contain;
+  background-color: #FFFFFF;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  transition: opacity 0.2s ease;
+}
+
+.illustration-card .gallery-image:hover {
+  opacity: 0.9;
+  cursor: zoom-in;
+}
+
+.illustration-card h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0.8rem 0 0.4rem;
+}
+
+.illustration-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.illustration-card .anchorjs-link {
+  display: none;
+}
+
+.gallery-link {
+  color: $primary;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.gallery-link:hover {
+  text-decoration: underline;
+}
+
+
+// Comics
+
+.comic-grid .gallery-image {
+  height: 250px;
+}
+
+.comic-grid h3 {
+  font-size: 1.05rem;
+}
+
+
+// Licensing information
+
+.illustration-license {
+  border-top: 1px solid $border-color;
+  padding: 1.5rem 0;
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: $dark-moss;
+}
+
+.illustration-license p {
+  margin-bottom: 0.5rem;
+}
+
+
+// ==================================================
+// ABOUT PAGE
+// ==================================================
+
+.about-container {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.about-container h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.about-container p {
+  line-height: 1.65;
+}
+
+
+// About introduction and headshot
+
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.about-photo {
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+.about-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  margin: 0 auto;
+}
+
+.about-intro {
+  min-width: 0;
+}
+
+.about-intro h2 {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+
+.about-photo p {
+  margin: 0;
+}
+
+.about-photo figure {
+  margin: 0;
+}
+
+
+// Career timeline
+
+.career-timeline {
+  border-left: 1px solid $secondary;
+  margin: 2rem 0 3rem 0.4rem;
+  padding-left: 1.5rem;
+}
+
+.career-entry {
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.career-entry::before {
+  content: "";
+  position: absolute;
+  left: -1.8rem;
+  top: 0.45rem;
+  width: 9px;
+  height: 9px;
+  background-color: $primary;
+  border-radius: 50%;
+}
+
+.career-entry:last-child {
+  padding-bottom: 0;
+}
+
+.career-entry p {
+  margin-bottom: 0.2rem;
+  font-size: 0.95rem;
+}
+
+.career-date {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: $dark-moss;
+}
+
+
+// Illustration feature
+
+.about-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 2rem;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.about-feature img {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+
+.personal-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 260px));
+  justify-content: center;
+  align-items: start;
+  gap: 1.5rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.personal-photo {
+  min-width: 0;
+}
+
+.personal-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.personal-gallery p {
+  margin: 0 0 0.4rem;
+}
+
+.personal-gallery .photo-caption {
+  display: block;
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.3;
+  color: $dark-moss;
+  text-align: center;
+}
+
+
+// ==================================================
+// FOOTER
+// ==================================================
+
+.page-footer,
+.nav-footer {
+  border-top: 1px solid $border-color;
+  font-size: 0.9rem;
+}
+
+
+// ==================================================
+// RESPONSIVE LAYOUT: TABLETS
+// ==================================================
+
+@media (max-width: 992px) {
+
+  .illustration-grid,
+  .comic-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-cards {
+    gap: 1rem;
+  }
+
+}
+
+
+// ==================================================
+// RESPONSIVE LAYOUT: MOBILE
+// ==================================================
+
+@media (max-width: 768px) {
+
+  // Homepage
+
+  .home-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .home-hero {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0 2rem;
+  }
+
+  .hero-photo img {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .hero-tagline {
+    font-size: 1.15rem;
+  }
+
+  .home-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  // Illustration galleries
+
+  .illustration-grid,
+  .comic-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .illustration-card .gallery-image {
+    height: auto;
+    max-height: 500px;
+  }
+
+  .illustration-container {
+    padding: 0;
+  }
+
+  // About page
+
+  .about-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .about-hero,
+  .about-feature {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .about-photo {
+    max-width: 180px;
+  }
+
+  .about-photo img {
+    width: 180px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .personal-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+// Outside of statistics
+
+.outside-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  align-items: center;
+  gap: 3rem;
+  margin: 2.5rem 0;
+}
+
+.outside-text h2 {
+  margin-top: 0;
+}
+
+.outside-photo {
+  min-width: 0;
+  width: 100%;
+  max-width: 240px;
+}
+
+.outside-photo img {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  border-radius: 3px;
+  margin: 0 auto;
+}
+
+.outside-photo p {
+  margin: 0 0 0.5rem;
+}
+
+.outside-photo .photo-caption {
+  display: block;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: $dark-moss;
+  text-align: center;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .outside-section {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .outside-photo {
+    margin: 0 auto;
+  }
+}
+
+
+
+
+// ==================================================
+// BLOG POST PHOTO WRAPPING
+// ==================================================
+
+.post-photo-right,
+.post-photo-left {
+  width: 40%;
+  max-width: 300px;
+}
+
+.post-photo-right {
+  float: right;
+  margin: 0.5rem 0 1.25rem 1.75rem;
+}
+
+.post-photo-left {
+  float: left;
+  margin: 0.5rem 1.75rem 1.25rem 0;
+}
+
+.post-photo-right img,
+.post-photo-left img,
+.post-photo-center img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+.post-photo-center {
+  clear: both;
+  width: 100%;
+  max-width: 500px;
+  margin: 1.75rem auto;
+}
+
+.post-photo-caption {
+  display: block;
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: $dark-moss;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.post-clear {
+  clear: both;
+}
+
+@media (max-width: 768px) {
+  .post-photo-right,
+  .post-photo-left {
+    float: none;
+    width: 80%;
+    max-width: 300px;
+    margin: 1.5rem auto;
+  }
+}
+
+
+
+.hero-photo {
+  position: relative;
+}
+
+.hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(245, 243, 236, 0.25) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(245, 243, 236, 0.25) 1px,
+      transparent 1px
+    );
+
+  background-size: 20px 20px;
+
+  mask-image: radial-gradient(
+    ellipse at 75% 65%,
+    black 0%,
+    transparent 98%
+  );
+
+  opacity: 0.7;
+}

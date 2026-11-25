@@ -1,5 +1,5 @@
 ---
-title: "Illustrations"
+title: "illustrations"
 ---
 
 I enjoy making educational visualizations, including technical guides, summary graphics, and comics. These are all available on [Github](https://github.com/kathoffman/causal-inference-visual-guides) and free to use under a CC-BY license. Please provide attribution (Kat Hoffman).

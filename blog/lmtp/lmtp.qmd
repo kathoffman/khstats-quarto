@@ -1,5 +1,5 @@
 ---
-title: "An Illustrated Guide to Modified Treatment Policies, Part 1: Introduction and Motivation"
+title: "An Illustrated Introduction to Modified Treatment Policies"
 author: "Katherine Hoffman"
 image: lmtp/mtp_summary.jpg
 date: 2022-04-07

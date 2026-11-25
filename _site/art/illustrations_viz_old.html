@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Methods – KHstats</title>
+<title>Visual Guides for Causal Inference – khstats.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,6 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../pubs/pubs_applications.html" rel="next">
 <link href="../img/climbing_comic.jpg" rel="icon" type="image/jpeg">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -61,7 +41,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e90ddffe900973dd4b30f207a974063.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1437b31c1741f6f5ba10fc8997c8d56b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,16 +85,17 @@ ga('send', {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="Methods – KHstats">
-<meta property="og:image" content="www.khstats.com/pubs/img/climbing_comic.jpg">
-<meta property="og:site_name" content="KHstats">
-<meta name="twitter:title" content="Methods – KHstats">
+<meta property="og:title" content="Visual Guides for Causal Inference – khstats.">
+<meta property="og:description" content="Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc.">
+<meta property="og:image" content="https://www.khstats.com/img/gcomp.jpeg">
+<meta property="og:site_name" content="khstats.">
+<meta name="twitter:title" content="Visual Guides for Causal Inference – khstats.">
 <meta name="twitter:description" content="Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc.">
-<meta name="twitter:image" content="www.khstats.com/pubs/img/climbing_comic.jpg">
+<meta name="twitter:image" content="https://www.khstats.com/art/img/climbing_comic.jpg">
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -122,7 +103,7 @@ ga('send', {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">KHstats</span>
+    <span class="navbar-title">khstats.</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -132,16 +113,34 @@ ga('send', {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../blog.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../talks.html"> 
-<span class="menu-text">Talks</span></a>
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">about</span></a>
   </li>  
   <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">research</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
+        <li>
+    <a class="dropdown-item" href="../publications.html"><i class="bi bi-journal-text" role="img">
+</i> 
+ <span class="dropdown-text">Selected Publications</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../talks.html"><i class="bi bi-easel" role="img">
+</i> 
+ <span class="dropdown-text">Talks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://scholar.google.com/citations?hl=en&amp;user=73RvTUoAAAAJ"><i class="bi bi-mortarboard" role="img">
+</i> 
+ <span class="dropdown-text">Google Scholar</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-illustrations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Illustrations</span>
+ <span class="menu-text">illustrations</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-illustrations">    
         <li>
@@ -154,33 +153,23 @@ ga('send', {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Research</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
-        <li>
-    <a class="dropdown-item" href="../pubs/pubs_methods.html">
- <span class="dropdown-text">Statistics Methods</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../pubs/pubs_applications.html">
- <span class="dropdown-text">Clinical Applications</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">
- <span class="dropdown-text">Google Scholar Profile</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../idweek.html"> 
-<span class="menu-text">IDWeek 2026</span></a>
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">writing</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../static/KatherineHoffman_CV_Feb2026_v2.pdf"> 
+<span class="menu-text">CV</span></a>
+  </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/kat_hoffman_"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://github.com/kathoffman"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/katherinelhoffman/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -188,15 +177,6 @@ ga('send', {
     <a class="nav-link" href="https://bsky.app/profile/kathoffman.bsky.social"> <i class="bi bi-bluesky" role="img">
 </i> 
 <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/kathoffman"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../static/KatherineHoffman_CV_Feb2026_v2.pdf"> 
-<span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="mailto:kathoffman.stats@gmail.com"> <i class="bi bi-envelope" role="img">
@@ -209,58 +189,23 @@ ga('send', {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pubs/pubs_methods.html">Statistics Methods</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pubs/pubs_methods.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Statistics Methods</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pubs/pubs_applications.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clinical Applications</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Google Scholar Profile</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Methods</h1>
+<h1 class="title">Visual Guides for Causal Inference</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -272,30 +217,32 @@ ga('send', {
 </header>
 
 
-<section id="statistical-and-epidemiological-research-methods-manuscripts-and-pre-prints" class="level1">
-
-
+<p>This visual guides for causal inference series describes the estimation procedure for a mean difference in outcomes under a binary exposure for four estimation methods: g-computation, inverse probability weighting, one-step estimation (coming soon!), and targeted maximum likelihood estimation. The latter two methods are doubly robust and can be used with machine learning regressions such as the ensemble learning method superlearning.</p>
+<p>These guides are available on <a href="https://github.com/kathoffman/causal-inference-visual-guides">Github</a> as pdfs and high resolution jpgs. They are free to use under a CC-BY license. Please provide attribution (Kat Hoffman).</p>
+<section id="g-computation" class="level3">
+<h3 class="anchored" data-anchor-id="g-computation">G-computation</h3>
+<div class="grid">
+<div class="g-col-12 g-col-md-8">
+<p><img src="../img/gcomp.jpeg" class="img-fluid"></p>
+</div>
+<section id="inverse-probability-weighting" class="level3 g-col-12 g-col-md-8">
+<h3 class="anchored" data-anchor-id="inverse-probability-weighting">Inverse Probability Weighting</h3>
+<p><img src="../img/ipw.jpeg" class="img-fluid"></p>
+</section>
+</div>
+</section>
+<section id="targeted-maximum-likelihood-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="targeted-maximum-likelihood-estimation">Targeted Maximum Likelihood Estimation</h3>
+<p><img src="../img/tmle.jpeg" class="img-fluid"></p>
+</section>
+<section id="superlearning" class="level3">
+<h3 class="anchored" data-anchor-id="superlearning">Superlearning</h3>
+<p><img src="../img/superlearning.jpeg" class="img-fluid"></p>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Statistical and Epidemiological Research Methods Manuscripts and Pre-prints</h2><div id="refs" class="references csl-bib-body" role="list">
-<div id="ref-10.1001/jamanetworkopen.2022.34425" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Katherine L. Hoffman, Edward J. Schenck, Michael J. Satlin, William Whalen, Di Pan, Nicholas Williams, Iván Díaz. <span class="nocase">Comparison of a Target Trial Emulation Framework vs Cox Regression to Estimate the Association of Corticosteroids With COVID-19 Mortality</span>. <em>JAMA Network Open</em>. 2022;5(10):e2234425-e2234425. doi:<a href="https://doi.org/10.1001/jamanetworkopen.2022.34425">10.1001/jamanetworkopen.2022.34425</a></div>
-</div>
-<div id="ref-hoffman2024studying" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Katherine L. Hoffman, Diego Salazar-Barreto, Nicholas T. Williams, Kara E. Rudolph, Iván Díaz. Studying continuous, time-varying, and/or complex exposures using longitudinal modified treatment policies. <em>Epidemiology</em>. 2024;35(5):667-675. doi:<a href="https://doi.org/10.1097/EDE.0000000000001764">10.1097/EDE.0000000000001764</a></div>
-</div>
-<div id="ref-diaz2024causal" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Iván Díaz, Katherine L. Hoffman, Nima S. Hejazi. Causal survival analysis under competing risks using longitudinal modified treatment policies. <em>Lifetime Data Analysis</em>. 2024;30(1):213-236. doi:<a href="https://doi.org/10.1007/s10985-023-09606-7">10.1007/s10985-023-09606-7</a></div>
-</div>
-<div id="ref-diaz_nonparametric_2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Iván Díaz, Nicholas Williams, Katherine L. Hoffman, Edward J. Schenck. Nonparametric <span>Causal</span> <span>Effects</span> <span>Based</span> on <span>Longitudinal</span> <span>Modified</span> <span>Treatment</span> <span>Policies</span>. <em>Journal of the American Statistical Association</em>. Published online September 2021:1-16. doi:<a href="https://doi.org/10.1080/01621459.2021.1955691">10.1080/01621459.2021.1955691</a></div>
-</div>
-<div id="ref-gilbert2025identification" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Brian Gilbert, Katherine L. Hoffman, Nicholas Williams, Kara E. Rudolph, Edward J. Schenck, Iván Díaz. Identification and estimation of mediational effects of longitudinal modified treatment policies. <em>Biostatistics</em>. 2025;26(1):kxaf031. doi:<a href="https://doi.org/10.1093/biostatistics/kxaf031">10.1093/biostatistics/kxaf031</a></div>
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -369,7 +316,7 @@ ga('send', {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("www\.khstats\.com");
+        var filterRegex = new RegExp("https:\/\/www\.khstats\.com");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -701,15 +648,6 @@ ga('send', {
     }
   });
   </script>
-<nav class="page-navigation column-page-right">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../pubs/pubs_applications.html" class="pagination-link" aria-label="Clinical Applications">
-        <span class="nav-page-text">Clinical Applications</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

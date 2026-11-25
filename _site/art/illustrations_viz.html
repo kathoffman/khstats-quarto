@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Visual Guides for Causal Inference – KHstats</title>
+<title>Visual Guides for Causal Inference – khstats.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -42,7 +42,10 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e90ddffe900973dd4b30f207a974063.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1437b31c1741f6f5ba10fc8997c8d56b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -86,13 +89,13 @@ ga('send', {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="Visual Guides for Causal Inference – KHstats">
-<meta property="og:description" content="Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc.">
-<meta property="og:image" content="www.khstats.com/img/gcomp.jpeg">
-<meta property="og:site_name" content="KHstats">
-<meta name="twitter:title" content="Visual Guides for Causal Inference – KHstats">
+<meta property="og:title" content="Visual Guides for Causal Inference – khstats.">
+<meta property="og:image" content="https://www.khstats.com/img/gcomp.jpeg">
+<meta property="og:site_name" content="khstats.">
+<meta property="og:image:alt" content="Illustrated guide to g-computation">
+<meta name="twitter:title" content="Visual Guides for Causal Inference – khstats.">
 <meta name="twitter:description" content="Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc.">
-<meta name="twitter:image" content="www.khstats.com/art/img/climbing_comic.jpg">
+<meta name="twitter:image" content="https://www.khstats.com/art/img/climbing_comic.jpg">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -104,7 +107,7 @@ ga('send', {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">KHstats</span>
+    <span class="navbar-title">khstats.</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -114,16 +117,34 @@ ga('send', {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../blog.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../talks.html"> 
-<span class="menu-text">Talks</span></a>
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">about</span></a>
   </li>  
   <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">research</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
+        <li>
+    <a class="dropdown-item" href="../publications.html"><i class="bi bi-journal-text" role="img">
+</i> 
+ <span class="dropdown-text">Selected Publications</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../talks.html"><i class="bi bi-easel" role="img">
+</i> 
+ <span class="dropdown-text">Talks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://scholar.google.com/citations?hl=en&amp;user=73RvTUoAAAAJ"><i class="bi bi-mortarboard" role="img">
+</i> 
+ <span class="dropdown-text">Google Scholar</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-illustrations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Illustrations</span>
+ <span class="menu-text">illustrations</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-illustrations">    
         <li>
@@ -136,33 +157,23 @@ ga('send', {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Research</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
-        <li>
-    <a class="dropdown-item" href="../pubs/pubs_methods.html">
- <span class="dropdown-text">Statistics Methods</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../pubs/pubs_applications.html">
- <span class="dropdown-text">Clinical Applications</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">
- <span class="dropdown-text">Google Scholar Profile</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../idweek.html"> 
-<span class="menu-text">IDWeek 2026</span></a>
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">writing</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../static/KatherineHoffman_CV_Feb2026_v2.pdf"> 
+<span class="menu-text">CV</span></a>
+  </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/kat_hoffman_"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://github.com/kathoffman"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/katherinelhoffman/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -170,15 +181,6 @@ ga('send', {
     <a class="nav-link" href="https://bsky.app/profile/kathoffman.bsky.social"> <i class="bi bi-bluesky" role="img">
 </i> 
 <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/kathoffman"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../static/KatherineHoffman_CV_Feb2026_v2.pdf"> 
-<span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="mailto:kathoffman.stats@gmail.com"> <i class="bi bi-envelope" role="img">
@@ -248,30 +250,62 @@ ga('send', {
 </header>
 
 
-<p>This visual guides for causal inference series describes the estimation procedure for a mean difference in outcomes under a binary exposure for four estimation methods: g-computation, inverse probability weighting, one-step estimation (coming soon!), and targeted maximum likelihood estimation. The latter two methods are doubly robust and can be used with machine learning regressions such as the ensemble learning method superlearning.</p>
-<p>These guides are available on <a href="https://github.com/kathoffman/causal-inference-visual-guides">Github</a> as pdfs and high resolution jpgs. They are free to use under a CC-BY license. Please provide attribution (Kat Hoffman).</p>
+<div class="illustration-container">
+<div class="gallery-intro">
+<p>An illustrated introduction to causal inference and statistical estimation. These guides are designed to build intuition for statistical methods that can otherwise feel mathematically intimidating.</p>
+<p><a href="https://github.com/kathoffman/causal-inference-visual-guides" class="btn btn-outline-primary">High-resolution downloads on GitHub</a></p>
+</div>
+<section id="estimation-methods" class="level2">
+<h2 class="anchored" data-anchor-id="estimation-methods">Estimation methods</h2>
+<p>The estimation guides consider a mean difference in outcomes under a binary exposure. Under causal assumptions, this quantity is known as the Average Treatment Effect (ATE).</p>
+<div class="illustration-grid">
+<div class="illustration-card">
+<p><a href="../img/gcomp.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../img/gcomp.jpeg" class="gallery-image img-fluid" alt="Illustrated guide to g-computation"></a></p>
 <section id="g-computation" class="level3">
 <h3 class="anchored" data-anchor-id="g-computation">G-computation</h3>
-<div class="grid">
-<div class="g-col-12 g-col-md-8">
-<p><img src="../img/gcomp.jpeg" class="img-fluid"></p>
-</div>
-<section id="inverse-probability-weighting" class="level3 g-col-12 g-col-md-8">
-<h3 class="anchored" data-anchor-id="inverse-probability-weighting">Inverse Probability Weighting</h3>
-<p><img src="../img/ipw.jpeg" class="img-fluid"></p>
+<p>Estimating causal effects through outcome regression and standardization.</p>
+<p><a href="../img/gcomp.jpeg" class="gallery-link">View full image</a></p>
 </section>
 </div>
+<div class="illustration-card">
+<p><a href="../img/ipw.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../img/ipw.jpeg" class="gallery-image img-fluid" alt="Illustrated guide to inverse probability weighting"></a></p>
+<section id="inverse-probability-weighting" class="level3">
+<h3 class="anchored" data-anchor-id="inverse-probability-weighting">Inverse probability weighting</h3>
+<p>Reweighting observations using estimated treatment probabilities.</p>
+<p><a href="../img/ipw.jpeg" class="gallery-link">View full image</a></p>
 </section>
+</div>
+<div class="illustration-card">
+<p><a href="../img/tmle.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../img/tmle.jpeg" class="gallery-image img-fluid" alt="Illustrated guide to targeted maximum likelihood estimation"></a></p>
 <section id="targeted-maximum-likelihood-estimation" class="level3">
-<h3 class="anchored" data-anchor-id="targeted-maximum-likelihood-estimation">Targeted Maximum Likelihood Estimation</h3>
-<p><img src="../img/tmle.jpeg" class="img-fluid"></p>
+<h3 class="anchored" data-anchor-id="targeted-maximum-likelihood-estimation">Targeted maximum likelihood estimation</h3>
+<p>A doubly robust estimation approach that combines initial outcome and treatment models through a targeting step.</p>
+<p><a href="../img/tmle.jpeg" class="gallery-link">View full image</a></p>
 </section>
-<section id="superlearning" class="level3">
-<h3 class="anchored" data-anchor-id="superlearning">Superlearning</h3>
-<p><img src="../img/superlearning.jpeg" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="statistical-learning" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-learning">Statistical learning</h2>
+<div class="illustration-grid">
+<div class="illustration-card">
+<p><a href="../img/superlearning.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../img/superlearning.jpeg" class="gallery-image img-fluid" alt="Illustrated guide to Super Learning"></a></p>
+<section id="super-learning" class="level3">
+<h3 class="anchored" data-anchor-id="super-learning">Super Learning</h3>
+<p>An ensemble learning method that combines predictions from a library of candidate learners.</p>
+<p><a href="../img/superlearning.jpeg" class="gallery-link">View full image</a></p>
+</section>
+</div>
+</div>
+<div class="illustration-license">
+<p><strong>Using these illustrations</strong></p>
+<p>These guides are freely available under a CC BY license. You are welcome to share and adapt them with attribution to Kat Hoffman.</p>
+<p>PDFs and high-resolution images are available in the <a href="https://github.com/kathoffman/causal-inference-visual-guides">GitHub repository</a>.</p>
+</div>
+</section>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -347,7 +381,7 @@ ga('send', {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("www\.khstats\.com");
+        var filterRegex = new RegExp("https:\/\/www\.khstats\.com");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -689,6 +723,38 @@ ga('send', {
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

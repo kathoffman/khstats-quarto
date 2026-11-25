@@ -1,33 +1,154 @@
 ---
 title: "About"
-comments: false
+page-layout: full
+toc: false
 ---
 
-::: {.narrow-content}
+::: {.about-container}
 
+::: {.about-hero}
 
-I am a fourth-year Biostatistics PhD student at the University of Washington. I earned an M.S. in Biostatistics from the University of Michigan and a B.S. in Biochemistry from the University of Detroit Mercy. Prior to beginning my PhD program, I worked for five years as an MS-level collaborative research biostatistician at Weill Cornell Medicine and Columbia University.
+::: {.about-intro}
 
-I have extensive experience in study design, data management, statistical analyses, interpretation and visualization of results, and manuscript writing. I have applied these skills to many biomedical and public health domains, most notably to the transmission of respiratory diseases, acute and chronic pulmonary diseases, critical care populations, substance use disorders, and Alzheimer's disease.
+<!-- [ BIOSTATISTICIAN · RESEARCHER · ILLUSTRATOR ]{.eyebrow} -->
 
-Prior to beginning my career in biostatistics, I studied biochemistry and took pre-medicine courses at the University of Detroit Mercy. During the summers, I cared for hospitalized patients as a nurse technician in Michigan and worked at a children’s health clinic in rural Nicaragua. All of these experiences, combined with a love for mathematics, have made me passionate about improving the state of medical and public health research through education in statistics.
+## About me
 
-<!-- I received my MS in Biostatistics from the University of Michigan in 2018, and I worked as a biostatistician in academic medical research in New York City from 2018-2023. In Fall 2023, I began the PhD program in Biostatistics at the University of Washington. For the first two years, I took coursework in statistical theory, and I am currently working on my dissertation. -->
+I'm a PhD student in Biostatistics at the University of Washington,
+advised by [Dr. Marco Carone](https://www.biostat.washington.edu/),
+and a graduate student researcher in [Dr. Helen Chu](https://www.chulab.org/)'s infectious
+disease research group.
 
-I am particularly interested in statistical and epidemiological methods to estimate causal, rather than correlative, effects, and in methods which require as few assumptions on the underlying distribution of the data as possible. I am especially interested in how we may better study treatments or exposures which may vary over time. My first two years at the University of Washington were largely spent on coursework and my research assistantship position with [Dr. Helen Chu](https://www.chulab.org/). I am now in the dissertation stage of my PhD, and I am working with [Dr. Marco Carone](https://www.biostat.washington.edu/people/marco-carone) on developing statistical methodology with applications to infectious disease and vaccine research.
+I'm broadly interested in developing statistical methodology
+motivated by challenges in biomedical research. My current research
+interests include causal inference, complex and time-varying
+exposures, time-to-event outcomes, and applications in infectious
+disease and vaccine research.
 
-Last but not least, I enjoy teaching and have served as the teaching assistant for several M.S. Biostatistics and Data Science courses, including causal inference, healthy policy research, data science, longitudinal methods, and introductory biostatistics courses. I created this website in 2019 to store educational materials I’ve created on career, programming, and statistics topics. I am always open to hearing feedback on blog posts and illustrations, and I answer questions via email whenever I find time.
-
+[Curriculum vitae](static/hoffman_cv_nov26.pdf){.btn .btn-outline-primary}
+[Google Scholar](https://scholar.google.com/citations?user=73RvTUoAAAAJ&hl=en){.btn .btn-outline-primary}
 
 :::
 
-<!-- :::grid -->
+::: {.about-photo}
 
-<!-- ::: {.g-col-0 .g-col-md-3} -->
-<!-- ::: -->
-<!-- ::: {.g-col-12 .g-col-md-6} -->
-<!-- <img src="blog/lmtp/climbing_comic.jpg" width="100%"/> -->
-<!-- ::: -->
-<!-- ::: {.g-col-0 .g-col-md-3} -->
-<!-- ::: -->
-<!-- ::: -->
+![](img/florida_sepia_headshot.png){fig-alt="Portrait of Katherine Hoffman"}
+
+:::
+
+:::
+
+## My path to biostatistics
+
+I grew up in a small town in Michigan and studied
+biochemistry at the University of Detroit Mercy, where I also
+played Division I softball. During and after college, I took care of patients as a nurse assistant at a hospital in Michigan in a health clinic in rural Nicaragua.
+I went on to pursue a Master's of Science
+in Biostatistics at the University of Michigan.
+
+After earning my MS and before beginning my PhD, I spent five years working as a
+collaborative biostatistician in New York City, first at Weill
+Cornell Medicine and then at Columbia University. My experiences
+working alongside clinical researchers motivated my interest in
+developing statistical methods for answering complex scientific
+questions.
+
+::: {.career-timeline}
+
+::: {.career-entry}
+
+[2023–Present]{.career-date}
+
+**University of Washington**
+
+PhD in Biostatistics
+
+:::
+
+::: {.career-entry}
+
+[2022–2023]{.career-date}
+
+**Columbia University**
+
+Senior Data Analyst, Epidemiology
+
+:::
+
+::: {.career-entry}
+
+[2018–2022]{.career-date}
+
+**Weill Cornell Medicine**
+
+Collaborative Biostatistician
+
+:::
+
+::: {.career-entry}
+
+[2016–2018]{.career-date}
+
+**University of Michigan**
+
+MS in Biostatistics
+
+:::
+
+::: {.career-entry}
+
+[2011–2015]{.career-date}
+
+**University of Detroit Mercy**
+
+BS in Biochemistry
+
+:::
+
+:::
+
+## Writings and illustrations
+
+I started KHstats to share my first blog post, [*A Day in the Life of a Biostatistician*](blog/ditl/), which has since reached several thousand readers. I discovered biostatistics almost by chance, and I wanted to help others explore and better understand biostatistics as a career.
+
+Since that first post, I've expanded KHstats to include statistical tutorials, R programming tips, educational illustrations, and occasional reflections on working as a biostatistician. I enjoy teaching and finding intuitive ways to explain complex statistical concepts, both to deepen my own understanding and to make these topics more accessible to others.
+
+[→ Explore my illustrations](art/illustrations_viz.qmd)
+
+[→ Browse my writing](blog.qmd)
+
+<!-- ::::: {.outside-section} -->
+
+<!-- :::: {.outside-text} -->
+
+<!-- ## Outside of statistics -->
+
+<!-- When I'm not doing statistics, I enjoy spending time -->
+<!-- away from screens, either on a creative project or -->
+<!-- in the outdoors. -->
+
+<!-- :::: -->
+
+<!-- :::: {.outside-photo} -->
+
+<!-- ![](img/bikefield.png){width=240px fig-alt="Cycling in the San Juan Islands" fig-align="default"} -->
+
+<!-- [Cycling in the San Juan Islands]{.photo-caption} -->
+
+<!-- :::: -->
+
+<!-- ::::: -->
+
+## Get in touch
+
+I'm always happy to connect with others interested in
+biostatistics, causal inference, collaborative research,
+and statistical education.
+
+[Email](mailto:kathoffman.stats@gmail.com) ·
+[GitHub](https://github.com/kathoffman) ·
+[LinkedIn](https://www.linkedin.com/in/katherinelhoffman/) ·
+[Bluesky](https://bsky.app/profile/kathoffman.bsky.social) ·
+[X (inactive)](https://x.com/kat_hoffman_)
+
+:::

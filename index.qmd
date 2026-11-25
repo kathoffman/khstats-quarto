@@ -3,76 +3,84 @@ page-layout: full
 editor: source
 ---
 
-```{=html}
-<style>
-.news dl {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  column-gap: 1.5rem;
-  row-gap: 0.75rem;
-  margin: 0;
-}
-.news dt {
-  font-weight: 600;
-  color: var(--bs-secondary-color, #6c757d);
-  font-variant-numeric: tabular-nums;
-}
-.news dd {
-  margin: 0;
-}
-</style>
-```
+::: {.home-container}
 
-::: grid
+::: {.home-hero}
 
-::: {.g-col-12 .g-col-md-1}
+::: {.hero-intro}
+
+[ BIOSTATISTICS · CAUSAL INFERENCE · INFECTIOUS DISEASE]{.eyebrow}
+
+# Kat Hoffman
+
+[Statistics, biomedical research, and education.]{.hero-tagline}
+
+I'm a biostatistician and PhD student at the University
+of Washington, developing statistical methodology
+motivated by challenges in infectious disease and
+vaccine research.
+
+I'm particularly interested in assumption-lean causal inference in the presence of time-varying and/or continuous exposures and time-to-event and/or composite outcomes.
+
+[Curriculum vitae](static/hoffman_cv_nov26.pdf){.btn .btn-outline-primary}
+
 :::
 
-::: {.g-col-12 .g-col-md-4}
+::: {.hero-photo}
 
-<!-- ![](img/profile-modified-wide.png) -->
-![](img/florida_headshot.jpg){width=350 style="margin-top:5rem;"}
-:::
-
-::: {.g-col-12 .g-col-md-6}
-
-# Katherine (Kat) Hoffman
-
-I am an MS-level biostatistician and fourth-year Biostatistics PhD student at the University of Washington. I am advised by [**Dr. Marco Carone**](https://faculty.washington.edu/mcarone/about.html) and develop statistical methodology motivated by challenges that arise in infectious disease and vaccine research. My work is supported by [**Dr. Helen Chu**](https://aid.uw.edu/people/faculty/infectious-diseases/helen-chu) in the Department of Medicine.
-
-I am driven by the goal of advancing rigorous, reproducible biomedical research. My primary interests lie in causal inference, particularly for settings involving time-varying or continuous exposures and time-to-event outcomes.
-
-Outside of my research collaborations, I enjoy writing [blog posts](https://www.khstats.com/blog) about statistics, programming, and career-related topics. For many of my posts I create [illustrations](https://www.khstats.com/art/illustrations_draw) and infographics, such as my [Visual Guides for Causal Inference](https://www.khstats.com/art/illustrations_viz) series.
+![](img/climbingkat.png){fig-alt="Rock climbing outdoors"}
 
 :::
 
 :::
 
-::: grid
+## Explore my work
 
-::: {.g-col-12 .g-col-md-1}
+::: {.home-cards}
+
+::: {.home-card}
+
+[![](img/ident-vs-est.png){.card-image fig-alt="Identification versus estimation in causal inference"}](pubs/pubs_methods.qmd)
+
+::: {.card-content}
+
+### [Research](pubs/pubs_methods.qmd)
+
+Statistical methodology and applications in biomedical research.
+
+[Explore research →](publications.qmd){.card-link}
+
+:::
 :::
 
-::: {.g-col-12 .g-col-md-10 .news}
+::: {.home-card}
 
-## Recent news
+[![](img/superlearning.jpeg){.card-image fig-alt="Illustrated guide to Super Learning"}](art/illustrations_viz.qmd)
 
-Oct 2026
-:   Presented *"Viral Interference in US Adults and Children"* at IDWeek 2026 in Washington D.C. ([slides, poster](idweek.qmd))
+::: {.card-content}
 
-Oct 2026
-:   Paper *"Interactions between respiratory viruses in US adults and children: a prospective cohort study"* posted on *MedRxiv*. 
-<!-- ([preprint]()) -->
+### [Illustrations](art/illustrations_viz.qmd)
 
-Jul 2026
-:   Paper *"Immune correlates of risk for SARS-CoV-2 infection in children: a prospective, community-based cohort study"* published in *Nature Communications*. ([article](https://www.nature.com/articles/s41467-026-74684-8))
+Visual guides, educational drawings, and comics that make complex statistical concepts more intuitive.
 
-Feb 2026
-:   Attended the Isaac Newton Institute for Mathematical Sciences as a visiting scholar in the program, *Causal inference: From theory to practice and back again*.
+[Browse illustrations →](art/illustrations_viz.qmd){.card-link}
 
-Aug 2024
-:   Awarded the American Statistical Association's Gertrude M. Cox Scholarship.
+:::
+:::
 
+::: {.home-card}
+
+[![](blog/lmtp/lmtp/mtp_summary.jpg){.card-image fig-alt="MTP summary"}](blog.qmd)
+
+::: {.card-content}
+
+### [Writing](blog.qmd)
+
+Tutorials and reflections on statistics, programming, data visualization, and academic life.
+
+[Read my blog →](blog.qmd){.card-link}
+
+:::
 :::
 
 :::

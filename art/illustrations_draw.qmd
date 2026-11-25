@@ -1,40 +1,106 @@
 ---
 title: "Educational Drawings and Comics"
 page-layout: full
+lightbox: true
+toc: false
 ---
 
-These educational illustrations and comics are all available on [Github](https://github.com/kathoffman/causal-inference-visual-guides) and free to use under a CC-BY license. Please provide attribution (Kat Hoffman).
+::: {.illustration-container}
 
-::: grid
-::: {.g-col-12 .g-col-md-10}
-### Identification vs. Estimation in Causal Inference
+::: {.gallery-intro}
 
-![](../img/ident-vs-est.png)
+<!-- A collection of drawings and comics exploring statistical -->
+<!-- intuition, causal inference, and the sometimes humorous -->
+<!-- experience of being a statistician. -->
+
+[High-resolution downloads on GitHub](https://github.com/kathoffman/causal-inference-visual-guides){.btn .btn-outline-primary}
+
 :::
 
-::: {.g-col-12 .g-col-md-10}
-### Static, Dynamic, and Modified Treatment Policies
+## Statistical concepts
 
-![](../img/lmtp/mtp_summary.jpg)
-:::
-:::
+::: {.illustration-grid}
 
-## Comics
+::: {.illustration-card}
 
-::: grid
-::: {.g-col-12 .g-col-md-4}
-![](../img/climbing_comic.jpg)
-:::
+![](../img/ident-vs-est.png){.gallery-image fig-alt="Identification versus estimation in causal inference"}
 
-::: {.g-col-12 .g-col-md-4}
-![](../img/universe_comic.jpeg)
+### Identification vs. estimation
+
+Distinguishing causal identification from statistical estimation.
+
+[View full image](../img/ident-vs-est.png){.gallery-link}
+
 :::
 
-::: {.g-col-12 .g-col-md-4}
-![](../img/positivity_comic.jpeg)
+::: {.illustration-card}
+
+![](../img/lmtp/mtp_summary.jpg){.gallery-image fig-alt="Static, dynamic, and modified treatment policies"}
+
+### Static, dynamic, and modified treatment policies
+
+Visualizing different types of interventions in causal inference.
+
+[View full image](../img/lmtp/mtp_summary.jpg){.gallery-link}
+
 :::
 
-::: {.g-col-12 .g-col-md-6}
-![](../img/underlying_distributions.jpeg)
 :::
+
+## Statistical comics
+
+::: {.illustration-grid .comic-grid}
+
+::: {.illustration-card}
+
+![](../img/climbing_comic.JPG){.gallery-image fig-alt="Climbing comic"}
+
+### Climbing
+
+[View full image](../img/climbing_comic.JPG){.gallery-link}
+
+:::
+
+::: {.illustration-card}
+
+![](../img/universe_comic.jpeg){.gallery-image fig-alt="Universe comic"}
+
+### The universe
+
+[View full image](../img/universe_comic.jpeg){.gallery-link}
+
+:::
+
+::: {.illustration-card}
+
+![](../img/positivity_comic.jpeg){.gallery-image fig-alt="Positivity comic"}
+
+### Positivity
+
+[View full image](../img/positivity_comic.jpeg){.gallery-link}
+
+:::
+
+::: {.illustration-card}
+
+![](../img/underlying_distributions.jpeg){.gallery-image fig-alt="Underlying distributions comic"}
+
+### Underlying distributions
+
+[View full image](../img/underlying_distributions.jpeg){.gallery-link}
+
+:::
+
+:::
+
+::: {.illustration-license}
+
+**Using these illustrations**
+
+All illustrations are available under a CC BY license.
+Please provide attribution to Kat Hoffman when sharing
+or adapting these drawings.
+
+:::
+
 :::

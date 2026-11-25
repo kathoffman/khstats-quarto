@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>IDWeek 2026 – KHstats</title>
+<title>index_arxiv – khstats.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0e90ddffe900973dd4b30f207a974063.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-1437b31c1741f6f5ba10fc8997c8d56b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -85,13 +85,14 @@ ga('send', {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="IDWeek 2026 – KHstats">
-<meta property="og:description" content="Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc.">
-<meta property="og:image" content="www.khstats.com/img/climbing_comic.jpg">
-<meta property="og:site_name" content="KHstats">
-<meta name="twitter:title" content="IDWeek 2026 – KHstats">
+<meta property="og:title" content="khstats.">
+<meta property="og:image" content="https://www.khstats.com/img/bikefield.png">
+<meta property="og:site_name" content="khstats.">
+<meta property="og:image:height" content="1368">
+<meta property="og:image:width" content="2054">
+<meta name="twitter:title" content="khstats.">
 <meta name="twitter:description" content="Thoughts and doodles on (bio)statistics, causal inference, data visualization, R programming, etc.">
-<meta name="twitter:image" content="www.khstats.com/img/climbing_comic.jpg">
+<meta name="twitter:image" content="https://www.khstats.com/img/climbing_comic.jpg">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -103,7 +104,7 @@ ga('send', {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">KHstats</span>
+    <span class="navbar-title">khstats.</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -113,16 +114,34 @@ ga('send', {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./talks.html"> 
-<span class="menu-text">Talks</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">about</span></a>
   </li>  
   <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">research</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
+        <li>
+    <a class="dropdown-item" href="./publications.html"><i class="bi bi-journal-text" role="img">
+</i> 
+ <span class="dropdown-text">Selected Publications</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./talks.html"><i class="bi bi-easel" role="img">
+</i> 
+ <span class="dropdown-text">Talks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://scholar.google.com/citations?hl=en&amp;user=73RvTUoAAAAJ"><i class="bi bi-mortarboard" role="img">
+</i> 
+ <span class="dropdown-text">Google Scholar</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-illustrations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Illustrations</span>
+ <span class="menu-text">illustrations</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-illustrations">    
         <li>
@@ -135,33 +154,23 @@ ga('send', {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Research</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
-        <li>
-    <a class="dropdown-item" href="./pubs/pubs_methods.html">
- <span class="dropdown-text">Statistics Methods</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./pubs/pubs_applications.html">
- <span class="dropdown-text">Clinical Applications</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://scholar.google.com/citations?user=73RvTUoAAAAJ&amp;hl=en">
- <span class="dropdown-text">Google Scholar Profile</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./idweek.html" aria-current="page"> 
-<span class="menu-text">IDWeek 2026</span></a>
+    <a class="nav-link" href="./blog.html"> 
+<span class="menu-text">writing</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./static/KatherineHoffman_CV_Feb2026_v2.pdf"> 
+<span class="menu-text">CV</span></a>
+  </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/kat_hoffman_"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://github.com/kathoffman"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/katherinelhoffman/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -169,15 +178,6 @@ ga('send', {
     <a class="nav-link" href="https://bsky.app/profile/kathoffman.bsky.social"> <i class="bi bi-bluesky" role="img">
 </i> 
 <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/kathoffman"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./static/KatherineHoffman_CV_Feb2026_v2.pdf"> 
-<span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="mailto:kathoffman.stats@gmail.com"> <i class="bi bi-envelope" role="img">
@@ -192,101 +192,81 @@ ga('send', {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#medrxiv-preprint" id="toc-medrxiv-preprint" class="nav-link active" data-scroll-target="#medrxiv-preprint">MedRxiv Preprint</a></li>
-  <li><a href="#my-idweek-presentations" id="toc-my-idweek-presentations" class="nav-link" data-scroll-target="#my-idweek-presentations">My IDWeek presentations</a>
-  <ul class="collapse">
-  <li><a href="#friday-rapid-fire-talk-5-minutes" id="toc-friday-rapid-fire-talk-5-minutes" class="nav-link" data-scroll-target="#friday-rapid-fire-talk-5-minutes">Friday Rapid-fire Talk [5 minutes]</a></li>
-  <li><a href="#saturday-poster-session" id="toc-saturday-poster-session" class="nav-link" data-scroll-target="#saturday-poster-session">Saturday Poster Session</a></li>
-  </ul></li>
-  <li><a href="#other-relevant-presentations" id="toc-other-relevant-presentations" class="nav-link" data-scroll-target="#other-relevant-presentations">Other relevant presentations</a></li>
-  <li><a href="#related-work-from-the-chu-lab-at-idweek" id="toc-related-work-from-the-chu-lab-at-idweek" class="nav-link" data-scroll-target="#related-work-from-the-chu-lab-at-idweek">Related work from the Chu Lab at IDWeek</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">IDWeek 2026</h1>
+
+
+
+<style>
+.news dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 1.5rem;
+  row-gap: 0.75rem;
+  margin: 0;
+}
+.news dt {
+  font-weight: 600;
+  color: var(--bs-secondary-color, #6c757d);
+  font-variant-numeric: tabular-nums;
+}
+.news dd {
+  margin: 0;
+}
+</style>
+<div class="grid">
+<div class="g-col-12 g-col-md-1">
+
+</div>
+<div class="g-col-12 g-col-md-4">
+<!-- ![](img/profile-modified-wide.png) -->
+<!-- ![](img/florida_headshot.jpg){width=350 style="margin-top:5rem;"} -->
+<p><img src="img/bikefield.png" class="img-fluid" style="margin-top:5rem;" width="350"></p>
+</div>
+<section id="katherine-kat-hoffman" class="level1 g-col-12 g-col-md-6">
+<h1>Katherine (Kat) Hoffman</h1>
+<p>I am an MS-level biostatistician and fourth-year Biostatistics PhD student at the University of Washington. I am advised by <a href="https://faculty.washington.edu/mcarone/about.html">Dr.&nbsp;Marco Carone</a> and develop statistical methodology motivated by challenges that arise in infectious disease and vaccine research. My work is supported by <a href="https://aid.uw.edu/people/faculty/infectious-diseases/helen-chu">Dr.&nbsp;Helen Chu</a> in the Department of Medicine.</p>
+<p>I am driven by the goal of advancing rigorous, reproducible biomedical research. My primary interests lie in causal inference, particularly for settings involving time-varying or continuous exposures and time-to-event outcomes.</p>
+<p>Outside of my research collaborations, I enjoy writing <a href="https://www.khstats.com/blog">blog posts</a> about statistics, programming, and career-related topics. For many of my posts I create <a href="https://www.khstats.com/art/illustrations_draw">illustrations</a> and infographics, such as my <a href="https://www.khstats.com/art/illustrations_viz">Visual Guides for Causal Inference</a> series.</p>
+</section>
+</div>
+<div class="grid">
+<div class="g-col-12 g-col-md-1">
+
+</div>
+<section id="recent-news" class="level2 g-col-12 g-col-md-10 news">
+<h2 class="anchored" data-anchor-id="recent-news">Recent news</h2>
+<dl>
+<dt>Oct 2026</dt>
+<dd>
+Presented <em>“Viral Interference in US Adults and Children”</em> at IDWeek 2026 in Washington D.C. (<a href="idweek.qmd">slides, poster</a>)
+</dd>
+<dt>Oct 2026</dt>
+<dd>
+Paper <em>“Interactions between respiratory viruses in US adults and children: a prospective cohort study”</em> posted on <em>MedRxiv</em>. (<a href="https://www.medrxiv.org/content/10.64898/2026.10.15.26365672v1">preprint</a>) <!-- ([preprint]()) -->
+</dd>
+<dt>Jul 2026</dt>
+<dd>
+Paper <em>“Immune correlates of risk for SARS-CoV-2 infection in children: a prospective, community-based cohort study”</em> published in <em>Nature Communications</em>. (<a href="https://www.nature.com/articles/s41467-026-74684-8">article</a>)
+</dd>
+<dt>Feb 2026</dt>
+<dd>
+Attended the Isaac Newton Institute for Mathematical Sciences as a visiting scholar in the program, <em>Causal inference: From theory to practice and back again</em>.
+</dd>
+<dt>Aug 2024</dt>
+<dd>
+Awarded the American Statistical Association’s Gertrude M. Cox Scholarship.
+</dd>
+</dl>
+</section>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>I am presenting recent work on <strong>virus-virus interactions</strong> in the prospective community cohort study CASCADIA at <strong>IDWeek 2026</strong> in <strong>Washington D.C.</strong></p>
-<section id="medrxiv-preprint" class="level2">
-<h2 class="anchored" data-anchor-id="medrxiv-preprint">MedRxiv Preprint</h2>
-<p><a href="img/hoffman-medrxiv.pdf">View or download preprint</a></p>
-<iframe src="img/hoffman-medrxiv.pdf" width="80%" height="400px" style="border: none;">
-</iframe>
-</section>
-<section id="my-idweek-presentations" class="level2">
-<h2 class="anchored" data-anchor-id="my-idweek-presentations">My IDWeek presentations</h2>
-<section id="friday-rapid-fire-talk-5-minutes" class="level3">
-<h3 class="anchored" data-anchor-id="friday-rapid-fire-talk-5-minutes">Friday Rapid-fire Talk [5 minutes]</h3>
-<p>Rapid Fire Session Title: Rapid-Fire Poster Session: Catch Your Breath: Pulmonary Infections</p>
-<p>Rapid Fire Session Date: Friday October 23, 2026</p>
-<p>Rapid Fire Session Location: RF Arena 3</p>
-<p>Rapid Fire Session Time: 12:15 PM - 12:45 PM ET</p>
-</section>
-<section id="saturday-poster-session" class="level3">
-<h3 class="anchored" data-anchor-id="saturday-poster-session">Saturday Poster Session</h3>
-<p><strong>(P - 428) Viral Interference in a Community-Based Cohort in Washington and Oregon, 2022-2024</strong></p>
-<p>Saturday, October 24, 2026</p>
-<p>12:15 PM - 1:30 PM ET</p>
-<p><a href="img/Hoffman_IDWeekPoster_Viral_Interactions.pdf">View or download the poster (PDF)</a></p>
-<iframe src="img/Hoffman_IDWeekPoster_Viral_Interactions.pdf" width="80%" height="480px" style="border: none;">
-</iframe>
-<hr>
-</section>
-</section>
-<section id="other-relevant-presentations" class="level2">
-<h2 class="anchored" data-anchor-id="other-relevant-presentations">Other relevant presentations</h2>
-<p>I recently presented this work to the University of Washington’s Biostatistics Student Seminar.</p>
-<p><a href="img/Hoffman CASCADIA_viral_interactions_talk Student Seminar.pdf">View or download the slides (PDF)</a></p>
-<iframe src="img/Hoffman CASCADIA_viral_interactions_talk Student Seminar.pdf" width="80%" height="400px" style="border: none;">
-</iframe>
-</section>
-<section id="related-work-from-the-chu-lab-at-idweek" class="level2">
-<h2 class="anchored" data-anchor-id="related-work-from-the-chu-lab-at-idweek">Related work from the Chu Lab at IDWeek</h2>
-<p><strong>(P - 204) Antibody Correlates of Protection Against Human Metapneumovirus Infection in Children and Adults</strong></p>
-<p>Friday, October 23, 2026</p>
-<p>12:15 PM - 1:30 PM ET</p>
-<p><strong>(P - 418) Household Transmission of Symptomatic Human Coronavirus in Washington and Oregon, United States, 2022-2024</strong></p>
-<p>Saturday, October 24, 2026</p>
-<p>12:15 PM - 1:30 PM ET</p>
-<p><strong>(P - 460) Incidence of RSV infections among participants in the CASCADIA Prospective Community Cohort Study, Oregon and Washington, United States, November 2023–March 2024</strong></p>
-<p>Saturday, October 24, 2026</p>
-<p>12:15 PM - 1:30 PM ET</p>
-<p><strong>(P - 2050) Use of Whole Genome Sequencing to Determine True Household Transmission of Respiratory Syncytial Virus</strong></p>
-<p>Saturday, October 24, 2026</p>
-<p>12:15 PM - 1:30 PM ET</p>
-<p><strong>(P - 2078) Community Epidemiology of Symptomatic Human Coronavirus Infections in the CASCADIA Cohort (2022-2024)</strong></p>
-<p>Saturday, October 24, 2026</p>
-<p>12:15 PM - 1:30 PM ET</p>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -362,7 +342,7 @@ ga('send', {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("www\.khstats\.com");
+        var filterRegex = new RegExp("https:\/\/www\.khstats\.com");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

@@ -1,0 +1,246 @@
+---
+title: "Selected Publications"
+toc: true
+toc-title: "Research Areas"
+toc-depth: 2
+page-layout: article
+---
+
+My research interests span statistical methodology and causal
+inference, with applications in infectious disease and immunology, pulmonary and critical care, and substance use research.
+
+For a complete list of publications, please see my
+[Google Scholar profile](https://scholar.google.com/citations?user=73RvTUoAAAAJ&hl=en)
+or [CV](../static/hoffman_cv_nov26.pdf).
+
+\* Indicates co-first authorship.
+
+## Statistical Methodology & Causal Inference
+
+::: {.publication}
+
+### [Identification and estimation of mediational effects of longitudinal modified treatment policies](https://doi.org/10.1093/biostatistics/kxaf031)
+
+Gilbert B, **Hoffman KL**, Williams NT, Rudolph KE, Schenck EJ, Díaz I.
+
+[Biostatistics, 2025]{.publication-journal}
+
+:::
+
+
+::: {.publication}
+
+### [**Studying continuous, time-varying, and/or complex exposures using longitudinal modified treatment policies**](https://pubmed.ncbi.nlm.nih.gov/39109818/)
+
+**Hoffman KL**, Salazar-Barreto D, Williams NT, Rudolph KE, Díaz I.
+
+[Epidemiology, 2024]{.publication-journal}
+
+:::
+
+::: {.publication}
+
+### [Causal survival analysis under competing risks using longitudinal modified treatment policies](https://doi.org/10.1007/s10985-023-09606-7)
+
+Díaz I, Williams NT, **Hoffman KL**, Hejazi NS.
+
+[Lifetime Data Analysis, 2024]{.publication-journal}
+
+:::
+
+<!-- ::: {.publication} -->
+
+<!-- ### [Learning optimal dynamic treatment regimes from longitudinal data](https://doi.org/10.1093/aje/kwae122) -->
+
+<!-- Williams NT, **Hoffman KL**, Díaz I, Rudolph KE. -->
+
+<!-- [American Journal of Epidemiology, 2024]{.publication-journal} -->
+
+<!-- ::: -->
+
+::: {.publication}
+
+### [A causal roadmap for generating high-quality real-world evidence](https://doi.org/10.1017/cts.2023.635)
+
+Dang LE, Gruber S, Lee H, et al., **Hoffman KL**, et al.
+
+[Journal of Clinical and Translational Science, 2023]{.publication-journal}
+
+:::
+
+::: {.publication}
+
+### [**Comparison of a target trial emulation framework vs Cox regression to estimate the association of corticosteroids with COVID-19 mortality**](https://pubmed.ncbi.nlm.nih.gov/36190729/)
+
+**Hoffman KL**, Schenck EJ, Satlin MJ, Whalen W, Pan D, Williams N, Díaz I.
+
+[JAMA Network Open, 2022]{.publication-journal}
+
+:::
+
+
+::: {.publication}
+
+### [Nonparametric causal effects based on longitudinal modified treatment policies](https://www.tandfonline.com/doi/abs/10.1080/01621459.2021.1955691)
+
+Díaz I, Williams N, **Hoffman KL**, Schenck EJ.
+
+[Journal of the American Statistical Association, 2021]{.publication-journal}
+
+:::
+
+
+## Infectious Disease & Immunology
+
+::: {.publication}
+
+### [**Interactions between respiratory viruses in US adults and children: a prospective cohort study**](https://doi.org/10.64898/2026.10.15.26365672)
+
+**Hoffman KL**, Weil AA, Wetzler EA, Akinola BO, Beauge A, et al.
+
+[medRxiv, 2026 (Preprint)]{.publication-journal}
+
+:::
+
+::: {.publication}
+
+### [**Immune correlates of risk for SARS-CoV-2 infection in children: a prospective, community-based cohort study**](https://doi.org/10.1038/s41467-026-74684-8)
+
+**Hoffman KL**, Marshall G, Frivold C, Acker Z, Arnould IS, et al.
+
+[Nature Communications, 2026]{.publication-journal}
+
+:::
+
+::: {.publication}
+
+### [Household transmission of SARS-CoV-2 in Washington and Oregon, United States, 2022–2024](https://doi.org/10.1093/jpids/piag061)
+
+Babu TM, Casto A, Hollcroft M, **Hoffman KL**, et al.
+
+[Journal of the Pediatric Infectious Diseases Society, 2026]{.publication-journal}
+
+:::
+
+::: {.publication}
+
+### [Correlates of risk of respiratory syncytial virus disease: a prospective cohort study](https://doi.org/10.1038/s41467-025-63434-x)
+
+Frivold C, Cox SN, Starita L, Babu TM, **Hoffman KL**, et al.
+
+[Nature Communications, 2025]{.publication-journal}
+
+:::
+
+::: {.publication}
+
+### [Household transmission and genomic diversity of respiratory syncytial virus (RSV) in the United States, 2022–2023](https://doi.org/10.1093/cid/ciaf048)
+
+Cox SN, Roychoudhury P, Frivold C, et al., **Hoffman KL**, et al.
+
+[Clinical Infectious Diseases, 2025]{.publication-journal}
+
+:::
+
+
+
+## Substance Use & Health Services Research
+
+::: {.publication}
+
+### [Mediation of chronic pain and disability on opioid use disorder risk by pain management practices among adult Medicaid patients, 2016–2019](https://doi.org/10.1093/aje/kwaf093)
+
+Rudolph KE, Inose S, Williams NT, **Hoffman KL**, et al.
+
+[American Journal of Epidemiology, 2026]{.publication-journal}
+
+:::
+
+::: {.publication}
+
+### [Reducing prescription opioid dose and duration to reduce risk of opioid use disorder among patients with musculoskeletal pain](https://doi.org/10.1097/EDE.0000000000001899)
+
+Inose S, Williams NT, **Hoffman KL**, Perry A, Díaz I, Rudolph KE.
+
+[Epidemiology, 2025]{.publication-journal}
+
+:::
+
+<!-- ::: {.publication} -->
+
+<!-- ### [Pain management treatments and opioid use disorder risk in Medicaid patients](https://doi.org/10.1016/j.amepre.2024.07.006) -->
+
+<!-- Rudolph KE, Williams NT, Díaz I, Forrest S, **Hoffman KL**, et al. -->
+
+<!-- [American Journal of Preventive Medicine, 2024]{.publication-journal} -->
+
+<!-- ::: -->
+
+::: {.publication}
+
+### [**Independent and joint contributions of physical disability and chronic pain to incident opioid use disorder and opioid overdose among Medicaid patients**](https://pmc.ncbi.nlm.nih.gov/articles/PMC10994776/)
+
+**Hoffman KL**, Milazzo F, Williams NT, Samples H, Olfson M,
+Díaz I, Doan L, Cerda M, Crystal S, Rudolph KE.
+
+[Psychological Medicine, 2023]{.publication-journal}
+
+:::
+
+
+## Pulmonary & Critical Care Medicine
+
+
+::: {.publication}
+
+### [**A comparative analysis of the respiratory subscore of the sequential organ failure assessment scoring system**](https://doi.org/10.1513/AnnalsATS.202004-399OC)
+
+Schenck EJ\*, **Hoffman KL\***, Oromendia C, Sanchez E, Finkelsztein EJ, et al.
+
+[Annals of the American Thoracic Society, 2021]{.publication-journal}
+
+:::
+
+
+
+::: {.publication}
+
+### [Attributable mortality of acute respiratory distress syndrome: a systematic review, meta-analysis and survival analysis using targeted minimum loss-based estimation](https://doi.org/10.1136/thoraxjnl-2020-215950)
+
+Torres LK, **Hoffman KL**, Oromendia C, Díaz I, Harrington JS, et al.
+
+[Thorax, 2021]{.publication-journal}
+
+:::
+
+::: {.publication}
+
+### [**Cytokine signatures of end organ injury in COVID-19**](https://doi.org/10.1038/s41598-021-91859-z)
+
+Gómez-Escobar LG\*, **Hoffman KL\***, Choi JJ, Borczuk A, Salvatore S, et al.
+
+[Scientific Reports, 2021]{.publication-journal}
+
+:::
+
+
+::: {.publication}
+
+### [Critical carE Database for Advanced Research (CEDAR): An automated method to support intensive care units with electronic health record data](https://www.sciencedirect.com/science/article/pii/S1532046421001180)
+
+Schenck EJ, **Hoffman KL**, Cusick M, Kabariti J, Sholle ET, Campion TR Jr.
+
+[Journal of Biomedical Informatics, 2021]{.publication-journal}
+
+:::
+
+
+::: {.publication}
+
+### [Clinical characteristics of COVID-19 in New York City](https://doi.org/10.1056/NEJMc2010419)
+
+Goyal P, Choi JJ, Pinheiro LC, et al., **Hoffman KL**, et al.
+
+[New England Journal of Medicine, 2020]{.publication-journal}
+
+:::
